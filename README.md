@@ -6,13 +6,12 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 
 ## Steps
 ### 1. Create your bootloader USB to boot with Arch Linux
-Download the Arch Linux image.
 
+Download the Arch Linux image.__
 http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/intel_ucode.img
 http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/archiso.img
 
-Setup your USB and load the image.
-
+Setup your USB and load the image.__
 [https://wiki.archlinux.org/index.php/USB_flash_installation_media](https://wiki.archlinux.org/index.php/USB_flash_installation_media){:target="_blank"}
 
 
