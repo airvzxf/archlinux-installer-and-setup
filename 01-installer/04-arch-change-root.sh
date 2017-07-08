@@ -9,39 +9,39 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Arch Change Root
 # ----------------------------------------------------------------------
-# This is interesting, this command emulate your the login session
-# as a root in your new installed partition, every command you run
-# will take effects when you reboot your computer and use your new
-# user and password to login in your account.
+# This interesting command emulate that you are login in the mount device
+# and every command affect your session, that's the meaning if you config
+# your language, timezone, keyboard, etc., it will take effects when you
+# reboot and login in without the USB bootloader.
 
 # Go to the main Linux partition like a root user.
 arch-chroot /mnt
 
-#Set the keyboard layout
+# Set the keyboard layout
 loadkeys "$keyboardLayout"
 
-# Time zone
+# Set the time zone
 ln -sf /usr/share/zoneinfo/"$zoneInfo" /etc/localtime
 hwclock --systohc
 
-# Locale
+# Set the locale
 # Uncomment en_US.UTF-8 UTF-8 or find your language and charset
 nano /etc/locale.gen
 locale-gen
 echo "LANG=$languageCode" > /etc/locale.conf
 echo "KEYMAP=$keyboardLayout" > /etc/vconsole.conf
 
-# Hostname
+# Set the hostname
 echo "$yourComputerName" > /etc/hostname
 echo "127.0.1.1    localhost.localdomain    $yourComputerName" >> /etc/hosts
 
-# Install Basic Package
+# Install basic package
 pacman -S wpa_supplicant dialog grub efibootmgr
 
 # Install EFI into Grub
 grub-inatall --tartet=x86_64-efi
 
-# Initramfs, detect your hardware and install the common drivers 
+# Initramfs, create an initial ramdisk environment
 mkinitcpio -p linux
 
 # Config Grub
@@ -55,7 +55,7 @@ useradd -m -g users -G wheel -s /bin/bash "$yourUserName"
 passwd "$yourUserName"
 
 # Add sudo permissions for your user
-# This is the same if you edit the file "nano /etc/sudoers"
+# This is the same if you edit the file "/etc/sudoers"
 EDITOR=nano visudo
 # And uncomment to allow members of group to execute any command
 # %wheel ALL=(ALL) ALL
@@ -67,5 +67,5 @@ exit
 umount -R /mnt
 reboot
 
-# Check the Arch Linux setup scripts config your Arch Linux and install
-# apps like as Nvidia, Web browser, Utilities, Spotify, Steam, etc.
+# Check the Arch Linux setup scripts to install apps like as Nvidia,
+# Web browser, Utilities, Spotify, Steam, etc.

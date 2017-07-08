@@ -12,8 +12,8 @@
 # Download this project in your computer because when you reboot
 # your computer to the follow steps, you don't have a lot of apps or
 # packages, it's better if you have this information.
-mkdir /home/"$yourUserName"/workspace
-cd /home/"$yourUserName"/workspace
+mkdir ~/workspace
+cd ~/workspace
 git clone https://github.com/airvzxf/archLinux-installer-and-setup.git
 
 

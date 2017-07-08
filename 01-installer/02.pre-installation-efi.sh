@@ -13,32 +13,28 @@ source 00-config.sh
 #Set the keyboard layout
 loadkeys "$keyboardLayout"
 
-# Update the system clock
+# Update the clock system
 timedatectl set-ntp true
 
-# Check if your computer has the EFI boot loader
-# Verify the boot mode, if it is EFI.
+# Check if your computer has the EFI bootloader
 ls /sys/firmware/efi/efivars
-# Check if the motherboard works with EFI
+# there is another option
 efivar -l
 
 # Show partitions on the disks
 fdisk -l "$hardDiskDevice"
 
 # Delete all partitions
-# If you need to clean all your disk and start to zero, this is the option.
-# Warning: Be careful with this command, if you are looking for clean
-# all your disk and install only Arch Linux, otherwise if you have
-# the partitions in your disk, skip to the gdisk command.
+# If you need to clean all your disk and start from zero
+# otherwise skip to the gdisk command.
 #cfdisk $hardDisk
 
 # Create and setup the partitions
-# Warning: This example delete all partitions and data from the hard disk,
-# then create 3 partitions, first the boot loader (EFI System),
-# second the Linux Swap memory (cache of the memory ram),
-# third the partition for all your Arch Linux (Linux filesystem).
-# When you run the command you are able to write letters or numbers in
-# the terminal prompt after this "Command (? for help):"
+# Notes: This commands delete all data in your hard disk because it
+# create 3 partitions, first the bootloader (EFI System), second the
+# Linux Swap memory, third your Arch Linux (Linux filesystem).
+# When runs gdisk you need to write letters or numbers in the prompt
+# after this "Command (? for help):"
 gdisk "$hardDiskDevice"
 # - o (create a new empty GUID partition table (GPT))
 # - n (add a new partition)
@@ -60,8 +56,6 @@ gdisk "$hardDiskDevice"
 #   - y (confirm, yes)
 
 # Format the partitions
-# If you change the order from the partitions in gdisk, take care to
-# change the order from sda (sda1, sda2, sda3).
 mkfs.fat -F32 "$hardDiskDeviceBoot"
 mkswap "$hardDiskDeviceSwap"
 swapon "$hardDiskDeviceSwap"
@@ -69,7 +63,6 @@ mkfs.ext4 "$hardDiskDeviceLinux"
 fdisk -l "$hardDiskDevice"
 
 # Mount the file systems
-# Same careful for this commands.
 mount "$hardDiskDeviceLinux" /mnt
 mkdir /mnt/home
 mkdir /mnt/boot
