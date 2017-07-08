@@ -7,14 +7,19 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 ## Steps
 ### 1. Create your bootloader USB to boot with Arch Linux
 
-Download the Arch Linux image.__
+Download the Arch Linux image.<br />
 http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/intel_ucode.img
 http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/archiso.img
+https://www.archlinux.org/download/
 
-Setup your USB and load the image.__
+Setup your USB and load the image.<br />
 [https://wiki.archlinux.org/index.php/USB_flash_installation_media](https://wiki.archlinux.org/index.php/USB_flash_installation_media){:target="_blank"}
 
-
+Test1\n
+Test2<br>
+Test3_
+Test4__
+Test5
 
 ### 2. Init
 Reboot your computer with your bootloader USB and start with the USB.
@@ -24,7 +29,7 @@ Select the fist option which is ????????.
 Wait for the login session, if it requiered a user you can press [enter] or write root.
 
 The first thing you should to do is download the "init script" to start this journey.
-```bash
+```shell
 mkdir -p ~/workspace
 cd ~/workspace
 curl -LOk https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/01-init.sh
