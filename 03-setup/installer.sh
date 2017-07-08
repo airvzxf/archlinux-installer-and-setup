@@ -1,45 +1,5 @@
 #!/bin/bash
 
-# Laptop main page contains links to article.
-# https://wiki.archlinux.org/index.php/Laptop
-
-# List of applications
-# https://wiki.archlinux.org/index.php/List_of_applications
-
-# Codecs
-# https://wiki.archlinux.org/index.php/Codecs
-
-# Download this project in your computer because when you reboot
-# your computer to the follow steps, you don't have a lot of apps or
-# packages, it's better if you have this information.
-mkdir ~/workspace
-cd ~/workspace
-git clone https://github.com/airvzxf/archLinux-installer-and-setup.git
-
-
-# Update Repositories
-sudo pacman -Syu
-
-# Uninstall Repositories
-sudo pacman -R #[package_name]
-
-
-# Install yaourt: a pacman frontend which install the AUR packages.
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
-makepkg -si
-cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
-makepkg -si
-cd ..
-
-# Yaourt GUI 
-yaourt -S yaourt-gui
-yaourt -S pamac-aur
-
-
-
 
 # Keyboard configuration in Xorg
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
@@ -52,43 +12,8 @@ localectl list-x11-keymap-variants latam
 localectl --no-convert set-x11-keymap latam pc105 ,deadtilde
 
 
-pacman -Syuw                           # download packages
-rm /etc/ssl/certs/ca-certificates.crt  # remove conflicting file
-pacman -Su                             # perform upgradepacman -Rdd ca-certificates-utils
-pacman -Rdd ca-certificates-utils
-pacman -S ca-certificates-utils
-pacman -Syu
-
-
-# Multilib
-# Run and build 32-bit applications on 64-bit installations of Arch Linux. 
-# https://wiki.archlinux.org/index.php/Multilib
-sudo nano /etc/pacman.conf
-# Uncomment the line below of [multilib]
-# Include = /etc/pacman.d/mirrorlist
-sudo pacman -Syu
-
-
-# Problems with AUR keys when add or delete packages
-# Example: vlc-2.2.4.tar.xz ... FAILED (unknown public key 7180713BE58D1ADC)
-# Solve:
-# gpg --recv-keys 7180713BE58D1ADC
-
-# Commands
-# Show the installed packages and their versions
-sudo pacman -Q
-
-
-
-# Pacman always with color:
-sudo nano /etc/pacman.conf
-# Uncomment below: # Misc options
-# Color
-
-
 # Common applications for the OS
 sudo pacman -Syu
-sudo pacman -S --noconfirm base-devel sudo
 sudo pacman -S --noconfirm xdotool
 sudo pacman -S --noconfirm xbindkeys
 sudo pacman -S --noconfirm reflector
@@ -158,7 +83,7 @@ makepkg -sri
 
 # Screen brightness / Backlight
 ls /sys/class/backlight/
-# cat /sys/class/backlight/intel_backlight/max_brightness 
+# cat /sys/class/backlight/intel_backlight/max_brightness
 # 4882
 
 # Change
@@ -217,12 +142,12 @@ lspci -k | grep -A 2 -E "(VGA|3D)"
 # ---------------------------------------------------
 
 # http://www.nvidia.com/download/driverResults.aspx/114708/en-us
-# Linux x64 (AMD64/EM64T) Display Driver 
-# Version: 	375.39
-# Release Date: 	2017.2.14
-# Operating System: 	Linux 64-bit
-# Language: 	English (US)
-# File Size: 	73.68 MB
+# Linux x64 (AMD64/EM64T) Display Driver
+# Version:  375.39
+# Release Date:     2017.2.14
+# Operating System:     Linux 64-bit
+# Language:     English (US)
+# File Size:    73.68 MB
 
 # More information
 # ---------------------------------------------------
@@ -270,7 +195,7 @@ makepkg -si
 
 
 # Set up nvidia-xinitrc
-# Add this lines: 
+# Add this lines:
 xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112
 setxkbmap -model pc105 -layout latam -variant ,deadtilde
 openbox-session
@@ -294,7 +219,7 @@ sudo nvidia-xconfig
 xrandr | grep -w connected
 # LVDS-1-1 connected 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
 
-# Use the information, get the size in millimeters and convert to cm, 
+# Use the information, get the size in millimeters and convert to cm,
 # 309 mm x 173 mm
 # 30.9 cm x 17.3 cm
 
@@ -321,7 +246,7 @@ xdpyinfo | grep -B2 resolution
 
 
 
-# If you are on laptop, it might be a good idea to install and enable the acpid daemon instead. 
+# If you are on laptop, it might be a good idea to install and enable the acpid daemon instead.
 # https://wiki.archlinux.org/index.php/NVIDIA/Tips_and_tricks#Manual_configuration
 # https://wiki.archlinux.org/index.php/Acpid
 sudo pacman -S acpid
@@ -388,7 +313,7 @@ https://boinc.bakerlab.org/rosetta/
 
 
 # Computer 12543238 has been merged successfully into 12467511.
- 
+
 
 
 
@@ -495,7 +420,7 @@ yaourt -S lib32-libopenssl-1.0-compat
 # Play with any USB controller on Linux using Steam Big Picture
 # http://steamcommunity.com/app/221410/discussions/0/558748822569010381/
 
-# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller 
+# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller
 # https://steamcommunity.com/app/221410/discussions/0/558748653738497361/
 
 
@@ -576,7 +501,7 @@ sudo pacman -S lib32-gtk2
 # Others
 sudo pacman -S lib32-libxft
 sudo pacman -S lib32-freetype2
-sudo pacman -S lib32-libpng12 
+sudo pacman -S lib32-libpng12
 
 
 
@@ -591,15 +516,15 @@ sudo pacman -S lib32-libpng12
 # ----------------------------------------------------------------------
 # ERROR: ld.so: object '~/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
 
-# This can be fixed, however, by forcing the game to use a later version of OpenGL than it wants. Right click on the game, select Properties. Then, click "Set Launch Options" in the "General" tab and paste the following: 
+# This can be fixed, however, by forcing the game to use a later version of OpenGL than it wants. Right click on the game, select Properties. Then, click "Set Launch Options" in the "General" tab and paste the following:
 # MESA_GL_VERSION_OVERRIDE=3.1 MESA_GLSL_VERSION_OVERRIDE=140 %command%
 
-# Setup with multiple monitors can cause error which will make game unable to start. If you stuck on this error and have multiple monitors, try to disable all additional displays, and then run a game. You can enable them after the game successfully started. 
+# Setup with multiple monitors can cause error which will make game unable to start. If you stuck on this error and have multiple monitors, try to disable all additional displays, and then run a game. You can enable them after the game successfully started.
 export LD_LIBRARY_PATH=/usr/lib32/nvidia:/usr/lib/nvidia:$LD_LIBRARY_PATH
 
 
 
-# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller 
+# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller
 # https://steamcommunity.com/app/221410/discussions/0/558748653738497361/
 # ----------------------------------------------------------------------
 # Install xboxdrv
@@ -666,10 +591,10 @@ sudo pacman -S pulseaudio
 # Tricks and Hacks
 cd ~/.frictionalgames/Amnesia/Main/[userNameInTheGame]
 # Then ls and you see all your save files, open the last one and modify
-# <var type="2" name="mlTinderboxes" val="999" />	Unlimited Tinderboxes
-# <var type="3" name="mfHealth" val="9999.000000" />	Unlimited Health
-# <var type="3" name="mfLampOil" val="9999.000000" />	Unlimited Oil
-# <var type="3" name="mfSanity" val="9999.000000" />	Unlimited Sanity
+# <var type="2" name="mlTinderboxes" val="999" />   Unlimited Tinderboxes
+# <var type="3" name="mfHealth" val="9999.000000" />    Unlimited Health
+# <var type="3" name="mfLampOil" val="9999.000000" />   Unlimited Oil
+# <var type="3" name="mfSanity" val="9999.000000" />    Unlimited Sanity
 
 # Walkthrough
 # https://www.gamefaqs.com/pc/978772-amnesia-the-dark-descent/faqs/60874
@@ -750,6 +675,16 @@ sudo pacman -S runescape-launcher #AUR (new NXT client)
 sudo pacman -S ryzom-client #AUR
 
 
+
+
+
+
+
+# GEANY
+# Check how to config with command lines
+# Does not show whitespace by default. Visible whitespace can be toggled using the View > Editor > Show White Space option.
+# Trims trailing whitespace on file save when the "Strip trailing spaces and tabs" option is enabled (Preferences->Files->Saving Files, Check all options EXCEPT convert tabs to whit spaces)
+# ?? Maybe not: Preferences->Editor-Feachures, Check newline strip
 
 
 

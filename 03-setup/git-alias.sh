@@ -1,0 +1,23 @@
+# These configurations will be save in this file
+# ~/.gitconfig
+git config --global alias.ad 'add'
+git config --global alias.adp 'add -p'
+git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
+git config --global alias.br 'branch'
+git config --global alias.cm 'commit -m --verbose'
+git config --global alias.cmam 'commit -a -m --verbose'
+git config --global alias.cmamend 'commit --amend --verbose'
+git config --global alias.co 'checkout'
+git config --global alias.cob 'checkout -b'
+git config --global alias.com 'checkout master'
+git config --global alias.cos 'checkout -'
+git config --global alias.df 'diff'
+git config --global alias.dfc 'diff --cached'
+git config --global alias.dfs 'diff --stat'
+git config --global alias.lg 'log'
+git config --global alias.lglast 'log -1 HEAD'
+git config --global alias.lgp 'log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
+git config --global alias.lgwho 'shortlog -s --'
+git config --global alias.st 'status'
+git config --global alias.sts 'status -s'
+git config --global alias.un 'reset HEAD --'
