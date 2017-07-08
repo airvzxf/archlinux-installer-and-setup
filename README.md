@@ -10,11 +10,10 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 Download the Arch Linux image.<br>
 [Image x86](http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/intel_ucode.img)<br>
 [Image x86_64](http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/archiso.img)<br>
-(https://www.archlinux.org/download/)<br>
-<a href="https://www.archlinux.org/download/" target="_blank">Download official site</a><br>
+[Download from the official site](https://www.archlinux.org/download/)<br>
 
 Setup your USB and load the image.<br>
-[USB flash installation media](https://wiki.archlinux.org/index.php/USB_flash_installation_media){:target="_blank"}
+[USB flash installation media](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
 
 ### 2. Init
@@ -25,7 +24,7 @@ Select the fist option which is ????????.
 Wait for the login session, if it requiered a user you can press [enter] or write root.
 
 The first thing you should to do is download the "init script" to start this journey.
-```shell
+```sh
 mkdir -p ~/workspace
 cd ~/workspace
 curl -LOk https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/01-init.sh
