@@ -22,7 +22,13 @@ sudo pacman -Syy
 # I recommend you download this Git project in your computer if you
 # want to get all files and information with the last updates.
 # This project will be saved in ~/workspace/archLinux-installer-and-setup-master
+mkdir -p ~/workspace
+cd ~/workspace
+
 sudo pacman -S unzip
-curl -LOk https://github.com/airvzxf/archLinux-installer-and-setup/archive/master.zip
+curl -LOk -H 'Cache-Control: no-cache' https://github.com/airvzxf/archLinux-installer-and-setup/archive/master.zip
 unzip -o master.zip
 rm -f master.zip
+
+find ./archLinux-installer-and-setup-master -type f -iname *.sh -exec chmod +x {} \;
+rm -f 01-init.sh
