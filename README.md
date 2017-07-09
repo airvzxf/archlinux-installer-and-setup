@@ -27,7 +27,6 @@ Reboot your computer with your bootloader USB and start with the USB.
 ```sh
 curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/init.sh > init.sh
 chmod +x init.sh
-./init.sh
 
 
 ```
