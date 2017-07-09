@@ -28,4 +28,5 @@ echo "" > ~/.asoundrc
 # case it didn't work in steam games, maybe was because I had not
 # installed the pulseaudio, well use this command if you want to copy
 # "the best" setup
+# # https://bbs.archlinux.org/viewtopic.php?id=167275
 cp ./resources/asound/.asoundrc ~/
