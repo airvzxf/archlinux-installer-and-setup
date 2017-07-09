@@ -25,6 +25,7 @@ sudo pacman -Syy
 sudo pacman -S --needed --noconfirm unzip
 
 rm -f init.sh
+
 mkdir -p ~/workspace
 cd ~/workspace
 rm -fR archLinux-installer-and-setup-master
