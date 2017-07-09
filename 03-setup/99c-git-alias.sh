@@ -11,6 +11,7 @@
 # Create alias to write easy command like git cm thats means git commit -m
 # These configurations will be save in this file ~/.gitconfig
 git config --global --remove-section alias
+
 git config --global alias.ad '! git add "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.adp '! git add -p "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
@@ -29,6 +30,8 @@ git config --global alias.lg 'log'
 git config --global alias.lglast 'log -1 HEAD'
 git config --global alias.lgp 'log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 git config --global alias.lgwho 'shortlog -s --'
+git config --global alias.pl '! git pull && echo -e "" && echo -e "" && git status'
+git config --global alias.ps '! git push && echo -e "" && echo -e "" && git status'
 git config --global alias.st 'status'
 git config --global alias.sts 'status -s'
 git config --global alias.un 'reset HEAD --'
