@@ -39,5 +39,6 @@ find ./ -type f -iname *query_string* -exec rm -f {} \;
 
 # Systemctl
 # It's similar to Cron but new and improved
+# https://wiki.archlinux.org/index.php/Systemd/Timers
 # https://unix.stackexchange.com/questions/278564/cron-vs-systemd-timers
 # https://jason.the-graham.com/2013/03/06/how-to-use-systemd-timers/
