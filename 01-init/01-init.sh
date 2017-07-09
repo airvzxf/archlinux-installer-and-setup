@@ -17,7 +17,7 @@ ping -c3 google.com
 
 # If the Boot USB with Arch Linux show some error about the sources when
 # you try to instal something, execute this command.
-pacman -Syy
+sudo pacman -Syy
 
 # I recommend you download this Git project in your computer if you
 # want to get all files and information with the last updates.
