@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Xorg
-sudo pacman -S --noconfirm xdotool
-sudo pacman -S --noconfirm xbindkeys
-
-
 # Screen brightness / Backlight
 ls /sys/class/backlight/
 # cat /sys/class/backlight/intel_backlight/max_brightness
@@ -44,16 +39,8 @@ sudo chmod 640 gui_rpc_auth.cfg
 
 boincmgr
 # Add the projects
-https://einsteinathome.org/
-https://boinc.bakerlab.org/rosetta/
-
-
-# Computer 12543238 has been merged successfully into 12467511.
-
-
-
-
-boinccmd --lookup_account URL email passwd
+# https://einsteinathome.org/
+# https://boinc.bakerlab.org/rosetta/
 
 # Resources
 # https://boinc.berkeley.edu/wiki/Stop_or_start_BOINC_daemon_after_boot
@@ -81,34 +68,12 @@ sudo acpid restart
 
 
 
-# List of countries
-reflector --list-countries
-
-# Create Mirror List Server by speed and with the protocol https at least 10 servers
-sudo reflector --country 'US' --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-
-
-# Force pacman to refresh the package lists
-sudo pacman -Syyu  --noconfirm
 
 
 
 
-# https://wiki.archlinux.org/index.php/Xbindkeys
-# touch ~/.xbindkeysrc
-xbindkeys -d > ~/.xbindkeysrc
-
-# Identifying keycodes
-xbindkeys -k
-
-# Reload the configuration file and apply the changes
-xbindkeys -p
-xbindkeys
 
 
-##################################
-# End of xbindkeys configuration #
-##################################
 
 # Increase volume
 "amixer -q sset Master 5%+"
@@ -257,41 +222,6 @@ sudo pacman -S lib32-libpng12
 
 # Setup with multiple monitors can cause error which will make game unable to start. If you stuck on this error and have multiple monitors, try to disable all additional displays, and then run a game. You can enable them after the game successfully started.
 export LD_LIBRARY_PATH=/usr/lib32/nvidia:/usr/lib/nvidia:$LD_LIBRARY_PATH
-
-
-
-# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller
-# https://steamcommunity.com/app/221410/discussions/0/558748653738497361/
-# ----------------------------------------------------------------------
-# Install xboxdrv
-# https://aur.archlinux.org/packages/xboxdrv/
-git clone https://aur.archlinux.org/xboxdrv.git
-cd xboxdrv
-sudo pacman -S python2-dbus
-sudo pacman -S scons
-sudo pacman -S boost
-makepkg --check
-makepkg -si
-
-# It should be return nothing
-lsmod | grep xpad
-
-# List all your available input events,
-sudo pacman -S evtest
-ls /dev/input/ | grep event*
-# Try every one from 0 to 20 and press some button in the controller if in the terminal print lines every you press that's the event.
-# PS2 normally is the even 11
-# PS3 normally is the even 13
-sudo evtest /dev/input/event13
-
-# Initializing xboxdrv
-sudo xboxdrv --detach-kernel-driver --mimic-xpad
-xboxdrv --silent --detach-kernel-driver
-
-# Install Joy2Key
-yaourt -S joy2key
-
-
 
 
 # Steam Games
