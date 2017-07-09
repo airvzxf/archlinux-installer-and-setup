@@ -13,4 +13,4 @@ source 00-config.sh
 # the graphics system for example the desktop, windows, effects, colors,
 # video games, etc.
 sudo pacman -S --needed --noconfirm xorg-xinit
-#sudo pacman -S --needed --noconfirm xorg-fonts-type1
+sudo pacman -S --needed --noconfirm xorg-fonts-type1

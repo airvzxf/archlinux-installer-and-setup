@@ -37,8 +37,8 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 
 # Create a temp directory for the next scripts
-funcMkdir ~/workspace
-funcMkdir ~/Downloads/temp
+mkdir -p ~/workspace
+mkdir -p ~/Downloads/temp
 
 
 # Pacman config
@@ -108,11 +108,6 @@ systemctl status reflector.timer
 # Install yaourt: a pacman frontend which install the AUR packages.
 funcInstallAur package-query
 funcInstallAur yaourt
-
-cd ~/Downloads/temp
-git clone https://aur.archlinux.org/yaourt.git
-cd ~/Downloads/temp/yaourt
-makepkg -si
 
 
 # Audio Alsa

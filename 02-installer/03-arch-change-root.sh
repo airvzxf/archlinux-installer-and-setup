@@ -18,10 +18,10 @@ source 00-config.sh
 arch-chroot /mnt
 
 # Set the keyboard layout
-loadkeys "$keyboardLayout"
+loadkeys $keyboardLayout
 
 # Set the time zone
-ln -sf /usr/share/zoneinfo/"$zoneInfo" /etc/localtime
+ln -sf /usr/share/zoneinfo/$zoneInfo /etc/localtime
 hwclock --systohc
 
 # Set the locale
@@ -32,7 +32,7 @@ echo "LANG=$languageCode" > /etc/locale.conf
 echo "KEYMAP=$keyboardLayout" > /etc/vconsole.conf
 
 # Set the hostname
-echo "$yourComputerName" > /etc/hostname
+echo $yourComputerName > /etc/hostname
 echo "127.0.1.1    localhost.localdomain    $yourComputerName" >> /etc/hosts
 
 # Install basic package
@@ -51,8 +51,8 @@ grub-mkconig -o /boot/grub/grub.cfg
 passwd
 
 # Create your user and password
-useradd -m -g users -G wheel -s /bin/bash "$yourUserName"
-passwd "$yourUserName"
+useradd -m -g users -G wheel -s /bin/bash $yourUserName
+passwd $yourUserName
 
 # Add sudo permissions for your user
 # This is the same if you edit the file "/etc/sudoers"

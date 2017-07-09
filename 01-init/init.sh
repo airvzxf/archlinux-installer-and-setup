@@ -8,7 +8,7 @@
 # ----------------------------------------------------------------------
 # Notes
 # ----------------------------------------------------------------------
-# First you need to connect to Internet, if you use wire you don't need
+# First you need is connect to Internet, if you use wire you don't need
 # any special setup but if you use wifi you need to setup your network.
 # Select your network and write your password.
 sudo wifi-menu
@@ -19,7 +19,7 @@ ping -c3 google.com
 # you try to instal something, execute this command.
 sudo pacman -Syy
 
-# I recommend you download this Git project in your computer if you
+# I recommend you download this Git project in your USB if you
 # want to get all files and information with the last updates.
 # This project will be saved in ~/workspace/archLinux-installer-and-setup-master
 sudo pacman -S --needed --noconfirm unzip

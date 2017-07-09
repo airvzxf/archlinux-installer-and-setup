@@ -11,7 +11,7 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 
 #Set the keyboard layout
-loadkeys "$keyboardLayout"
+loadkeys $keyboardLayout
 
 # Update the clock system
 timedatectl set-ntp true
@@ -22,7 +22,7 @@ ls /sys/firmware/efi/efivars
 efivar -l
 
 # Show partitions on the disks
-fdisk -l "$hardDiskDevice"
+fdisk -l $hardDiskDevice
 
 # Delete all partitions
 # If you need to clean all your disk and start from zero
@@ -35,7 +35,7 @@ fdisk -l "$hardDiskDevice"
 # Linux Swap memory, third your Arch Linux (Linux filesystem).
 # When runs gdisk you need to write letters or numbers in the prompt
 # after this "Command (? for help):"
-gdisk "$hardDiskDevice"
+gdisk $hardDiskDevice
 # - o (create a new empty GUID partition table (GPT))
 # - n (add a new partition)
 #   - 1 (number of partition)
@@ -56,15 +56,15 @@ gdisk "$hardDiskDevice"
 #   - y (confirm, yes)
 
 # Format the partitions
-mkfs.fat -F32 "$hardDiskDeviceBoot"
-mkswap "$hardDiskDeviceSwap"
-swapon "$hardDiskDeviceSwap"
-mkfs.ext4 "$hardDiskDeviceLinux"
-fdisk -l "$hardDiskDevice"
+mkfs.fat -F32 $hardDiskDeviceBoot
+mkswap $hardDiskDeviceSwap
+swapon $hardDiskDeviceSwap
+mkfs.ext4 $hardDiskDeviceLinux
+fdisk -l $hardDiskDevice
 
 # Mount the file systems
-mount "$hardDiskDeviceLinux" /mnt
+mount $hardDiskDeviceLinux /mnt
 mkdir /mnt/home
 mkdir /mnt/boot
 mkdir /mnt/boot/efi
-mount "$hardDiskDeviceBoot" /mnt/boot/efi
+mount $hardDiskDeviceBoot /mnt/boot/efi
