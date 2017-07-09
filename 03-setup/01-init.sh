@@ -72,3 +72,18 @@ cd ~/Downloads/temp
 git clone https://aur.archlinux.org/yaourt.git
 cd ~/Downloads/temp/yaourt
 makepkg -si
+
+
+# Audio Alsa
+#-----------------------------------------------------------------------
+# https://wiki.gentoo.org/wiki/ALSA
+sudo pacman -S --noconfirm alsa-utils
+
+# Useful commands
+#speaker-test -c2 -twav -l1
+#aplay -L
+#aplay --list-devices
+#amixer controls | grep Master
+#cat /sys/class/sound/card*/id
+#cat /proc/asound/card0/pcm0p/info
+#cat /proc/asound/card0/pcm3p/info
