@@ -19,11 +19,11 @@ Setup your USB and load the image.<br>
 ### 2. Init
 Reboot your computer with your bootloader USB and start with the USB.
 
-Select the fist option which is ????????.
+1. Select the fist option which is ????????.
 
-Wait for the login session, if it requiered a user you can press [enter] or write root.
+2. Wait for the login session, if it requiered a user you can press [enter] or write root.
 
-The first thing you should to do is download the "init script" to start this journey.
+3. The first thing you should to do is download the "init script" to start this journey.
 ```sh
 mkdir -p ~/workspace
 cd ~/workspace
