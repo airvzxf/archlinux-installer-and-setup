@@ -1,9 +1,9 @@
 # ALSA
 # /etc/asound.conf
 
-# ipc_key  	  - must be unique, it has no other meaning.
+# ipc_key         - must be unique, it has no other meaning.
 # ipc_key_add_uid - allows multi user audio when false.
-# ipc_perm 	  - sets permissions, may fix issues on multi user or tty playback.
+# ipc_perm        - sets permissions, may fix issues on multi user or tty playback.
 
 # smaller buffer/period sizes can generally reduce latency and hence give better performance,
 # but going too small can cause crackling or other sound issues.
