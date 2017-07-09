@@ -23,7 +23,7 @@ Reboot your computer with your bootloader USB and start with the USB.
 
 2. Wait for the login session, if it requiered a user you can press [enter] or write root.
 
-3. The first thing you should to do is download the "init script" to start this journey.
+3. The first thing you should to do is download the "init script" to start this journey.<br>
 ```sh
 mkdir -p ~/workspace
 cd ~/workspace
