@@ -5,33 +5,6 @@ sudo pacman -S --noconfirm xdotool
 sudo pacman -S --noconfirm xbindkeys
 
 
-# Software engineers
-sudo pacman -S --noconfirm git
-
-
-# Other utilities
-sudo pacman -S xfce4-screenshooter # Screenshots
-
-sudo pacman -S hdparm #List brand and properties for your HHD
-sudo hdparm -I /dev/sda
-
-
-
-
-
-
-# Firefox Adons
-# Lastpass
-# Full Web Page Screenshots (♥♥♥♥♥)
-# Screenshoter (Fixed)
-
-
-# Spotify
-yaourt -S spotify-stable
-
-
-
-
 # Screen brightness / Backlight
 ls /sys/class/backlight/
 # cat /sys/class/backlight/intel_backlight/max_brightness
@@ -42,24 +15,6 @@ sudo tee /sys/class/backlight/intel_backlight/brightness <<< 1000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 2000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 3000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 4882
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Install Media Players
-sudo pacman -S --noconfirm parole
-sudo pacman -S --noconfirm gst-libav
 
 
 
