@@ -1,5 +1,16 @@
-# These configurations will be save in this file
-# ~/.gitconfig
+#!/bin/bash
+source 00-config.sh
+
+# ----------------------------------------------------------------------
+# Arch Linux :: Configuration
+# ----------------------------------------------------------------------
+# https://github.com/airvzxf/archLinux-installer-and-setup
+
+# ----------------------------------------------------------------------
+# Git
+# ----------------------------------------------------------------------
+# Create alias to write easy command like git cm thats means git commit -m
+# These configurations will be save in this file ~/.gitconfig
 git config --global --remove-section alias
 git config --global alias.ad '! git add "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.adp '! git add -p "$@" && echo -e "" && echo -e "" && git status'

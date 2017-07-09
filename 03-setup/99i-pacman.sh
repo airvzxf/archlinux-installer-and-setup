@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ----------------------------------------------------------------------
-# Arch Linux :: Setup
+# Arch Linux :: Information
 # ----------------------------------------------------------------------
 # https://github.com/airvzxf/archLinux-installer-and-setup
 
