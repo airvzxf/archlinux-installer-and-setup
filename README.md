@@ -27,11 +27,12 @@ Reboot your computer with your bootloader USB and start with the USB.
 ```sh
 mkdir -p ~/workspace
 cd ~/workspace
-curl -LOk https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/01-init.sh
+rm -f 01-init.sh
+rm -fR archLinux-installer-and-setup-master
+
+curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/01-init.sh > 01-init.sh
 chmod +x 01-init.sh
 ./01-init.sh
-rm -f 01-init.sh
-chmod +x ./archLinux-installer-and-setup-master/*.sh
 ```
 
 This script create a directory which name is "archLinux-installer-and-setup-master", this directory contains all the scripts to install and setup your Arch Linux.
