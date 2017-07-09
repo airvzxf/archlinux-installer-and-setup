@@ -40,6 +40,7 @@ source 00-config.sh
 funcMkdir ~/workspace
 funcMkdir ~/Downloads/temp
 
+
 # Pacman config
 # ----------------------------------------------------------------------
 # sudo nano /etc/pacman.conf
@@ -58,6 +59,46 @@ sudo pacman -Syyu
 # Uncomment #Color, if you want the pacman's output has colors
 #Color
 sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
+
+
+
+# Reflector
+# ----------------------------------------------------------------------
+# Retrieves the latest mirrorlist from the MirrorStatus page, filters
+# the most up-to-date mirrors, sorts them by speed and overwrites.
+sudo pacman -S reflector
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck
+
+sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman -Syyu
+
+# Update automatically every day
+reflectorService=sudo /etc/systemd/system/reflector.service
+sudo touch $reflectorService
+sudo chmod 755 $reflectorService
+echo -e "[Unit]" | sudo tee -a $reflectorService
+echo -e "Description=Pacman mirrorlist update\n" | sudo tee -a $reflectorService
+echo -e "[Service]" | sudo tee -a $reflectorService
+echo -e "Type=oneshot" | sudo tee -a $reflectorService
+echo -e "ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist" | sudo tee -a $reflectorService
+
+reflectorTimer=/etc/systemd/system/reflector.timer
+sudo touch $reflectorTimer
+sudo chmod 755 $reflectorTimer
+echo -e "[Unit]" | sudo tee -a $reflectorTimer
+echo -e "Description=Run reflector daily\n" | sudo tee -a $reflectorTimer
+echo -e "[Timer]" | sudo tee -a $reflectorTimer
+echo -e "OnCalendar=daily" | sudo tee -a $reflectorTimer
+echo -e "RandomizedDelaySec=12h" | sudo tee -a $reflectorTimer
+echo -e "Persistent=true\n" | sudo tee -a $reflectorTimer
+echo -e "[Install]" | sudo tee -a $reflectorTimer
+echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
+
+systemctl start reflector.service
+systemctl start reflector.timer
+
+systemctl status reflector.service
+systemctl status reflector.timer
 
 
 
