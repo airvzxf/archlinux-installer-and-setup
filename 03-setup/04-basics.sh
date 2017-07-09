@@ -15,13 +15,13 @@ source 00-config.sh
 sudo pacman -Syu
 
 # Basic packages (apps)
-sudo pacman -S --needed --noconfirm geany # Text editor
+sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
 sudo pacman -S --needed --noconfirm epdfview # PDF Viewer
 sudo pacman -S --needed --noconfirm reflector # Sorted mirrors in Arch Linux
 sudo pacman -S --needed --noconfirm parole # Media player
+sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
 sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
 sudo hdparm -I /dev/sda
-sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
 yaourt -S --needed --noconfirm spotify-stable # Spotify
 
 
@@ -42,5 +42,5 @@ yaourt -S --needed --noconfirm palemoon-bin
 # Software engineers
 sudo pacman -S --needed --noconfirm git
 
-# More
+# More packages
 sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
