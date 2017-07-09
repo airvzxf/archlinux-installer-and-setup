@@ -36,3 +36,8 @@ sudo find / -type d -iname *query_string* 2>/dev/null
 # Search files and do specific actions
 find ./ -iname *query_string* -exec chmod +x {} \;
 find ./ -type f -iname *query_string* -exec rm -f {} \;
+
+# Systemctl
+# It's similar to Cron but new and improved
+# https://unix.stackexchange.com/questions/278564/cron-vs-systemd-timers
+# https://jason.the-graham.com/2013/03/06/how-to-use-systemd-timers/
