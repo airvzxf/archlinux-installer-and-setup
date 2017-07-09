@@ -77,7 +77,7 @@ reflectorService=sudo /etc/systemd/system/reflector.service
 sudo touch $reflectorService
 sudo chmod 755 $reflectorService
 echo -e "[Unit]" | sudo tee -a $reflectorService
-echo -e "Description=Pacman mirrorlist update\n" | sudo tee -a $reflectorService
+echo -e "Description=Pacman mirrorlist update with reflector\n" | sudo tee -a $reflectorService
 echo -e "[Service]" | sudo tee -a $reflectorService
 echo -e "Type=oneshot" | sudo tee -a $reflectorService
 echo -e "ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist" | sudo tee -a $reflectorService
