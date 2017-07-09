@@ -25,14 +25,9 @@ Reboot your computer with your bootloader USB and start with the USB.
 
 3. The first thing you should to do is download the "init script" to start this journey.<br>
 ```sh
-mkdir -p ~/workspace
-cd ~/workspace
-rm -f 01-init.sh
-rm -fR archLinux-installer-and-setup-master
-
-curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/01-init.sh > 01-init.sh
-chmod +x 01-init.sh
-./01-init.sh
+curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-init/init.sh > init.sh
+chmod +x init.sh
+./init.sh
 
 
 ```
