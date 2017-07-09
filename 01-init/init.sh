@@ -24,6 +24,7 @@ sudo pacman -Syy
 # This project will be saved in ~/workspace/archLinux-installer-and-setup-master
 sudo pacman -S --needed --noconfirm unzip
 
+rm -f init.sh
 mkdir -p ~/workspace
 cd ~/workspace
 rm -fR archLinux-installer-and-setup-master
@@ -33,4 +34,3 @@ unzip -o master.zip
 rm -f master.zip
 
 find ./archLinux-installer-and-setup-master -type f -iname *.sh -exec chmod +x {} \;
-rm -f init.sh
