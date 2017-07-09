@@ -22,7 +22,7 @@ sudo pacman -Syy
 # I recommend you download this Git project in your computer if you
 # want to get all files and information with the last updates.
 # This project will be saved in ~/workspace/archLinux-installer-and-setup-master
-sudo pacman -S --needed unzip
+sudo pacman -S --needed --noconfirm unzip
 
 mkdir -p ~/workspace
 cd ~/workspace

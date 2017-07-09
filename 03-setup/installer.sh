@@ -182,7 +182,7 @@ sudo pacman -S --needed --noconfirm lib32-libxinerama
 sudo pacman -S --needed --noconfirm lib32-libusb
 
 # libudev.so.0 => not found
-sudo pacman -S lib32-libudev0-shim
+sudo pacman -S --needed --noconfirm lib32-libudev0-shim
 
 # libICE.so.6 => not found
 # libSM.so.6 => not found
