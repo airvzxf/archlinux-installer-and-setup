@@ -66,7 +66,7 @@ sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
 # ----------------------------------------------------------------------
 # Retrieves the latest mirrorlist from the MirrorStatus page, filters
 # the most up-to-date mirrors, sorts them by speed and overwrites.
-sudo pacman -S reflector
+sudo pacman -S --needed --noconfirm reflector
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck
 
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -118,7 +118,7 @@ makepkg -si
 # Audio Alsa
 #-----------------------------------------------------------------------
 # https://wiki.gentoo.org/wiki/ALSA
-sudo pacman -S --noconfirm alsa-utils
+sudo pacman -S --needed --noconfirm alsa-utils
 
 # Useful commands
 #speaker-test -c2 -twav -l1

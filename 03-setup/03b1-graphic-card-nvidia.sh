@@ -16,20 +16,20 @@ source 00-config.sh
 lspci -k | grep -A 2 -E "(VGA|3D)"
 
 # Install basic packages
-sudo pacman -S --noconfirm linux-headers
-sudo pacman -S --noconfirm xorg-xrandr
-sudo pacman -S --noconfirm xorg-xdpyinfo
-sudo pacman -S --noconfirm xorg-fonts-type1
-sudo pacman -S --noconfirm bbswitch
+sudo pacman -S --needed --noconfirm linux-headers
+sudo pacman -S --needed --noconfirm xorg-xrandr
+sudo pacman -S --needed --noconfirm xorg-xdpyinfo
+sudo pacman -S --needed --noconfirm xorg-fonts-type1
+sudo pacman -S --needed --noconfirm bbswitch
 
 # Install nvidia packages
-yaourt -S --noconfirm nvidia-utils-beta
-yaourt -S --noconfirm nvidia-beta
-yaourt -S --noconfirm nvidia-xrun
+yaourt -S --needed --noconfirm nvidia-utils-beta
+yaourt -S --needed --noconfirm nvidia-beta
+yaourt -S --needed --noconfirm nvidia-xrun
 
 # Install the windows manager
-sudo pacman --noconfirm -S openbox
-sudo pacman --noconfirm -S acpid
+sudo pacman --needed --noconfirm -S openbox
+sudo pacman --needed --noconfirm -S acpid
 
 # If you try to run the command xinit your screen freezen to solve this
 # problem you need to install nvidia-xrun which avoid this problem and
@@ -63,11 +63,11 @@ nvidia-xrun
 # If you are on laptop, it might be a good idea to install and enable the acpid daemon instead.
 # https://wiki.archlinux.org/index.php/NVIDIA/Tips_and_tricks#Manual_configuration
 # https://wiki.archlinux.org/index.php/Acpid
-#sudo pacman -S acpid
+#sudo pacman -S --needed acpid
 #systemctl start acpid.service
 
 # (WW) The directory "/usr/share/fonts/Type1/" does not exist.
-#sudo pacman -S xorg-fonts-type1
+#sudo pacman -S --needed xorg-fonts-type1
 
 # Change the font type
 # https://wiki.archlinux.org/index.php/Font_configuration

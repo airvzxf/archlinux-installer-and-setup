@@ -15,10 +15,10 @@ sudo tee /sys/class/backlight/intel_backlight/brightness <<< 4882
 
 # Install Boinc
 ########################################################################
-sudo pacman -S boinc
+sudo pacman -S --needed --noconfirm boinc
 
 # Install libraries
-sudo pacman -S lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
+sudo pacman -S --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
 
 # Add your user to the boinc group
 sudo usermod -a -G boinc $(whoami)
@@ -94,7 +94,7 @@ sudo acpid restart
 ##################################
 
 # Install a lot of libraries from this AUR package
-yaourt -S wine-gaming-nine
+yaourt -S --needed --noconfirm wine-gaming-nine
 
 
 # Steam
@@ -108,10 +108,10 @@ yaourt -S wine-gaming-nine
 
 # Easy way
 # --------------------------------
-yaourt -S  steam-native-runtime
+yaourt -S --needed --noconfirm  steam-native-runtime
 
 # Install OpenSSL 1.0
-yaourt -S lib32-libopenssl-1.0-compat
+yaourt -S --needed --noconfirm lib32-libopenssl-1.0-compat
 # If some game not work, try that first
 # To set custom launch options for a game, right-click on it in your library, select Properties and click on the Set Launch Options button.
 # Add to your launch options:
@@ -133,7 +133,7 @@ sudo geany /etc/pacman.conf
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 
-sudo pacman -S steam
+sudo pacman -S --needed --noconfirm steam
 
 # Steam/Troubleshooting
 #https://wiki.archlinux.org/index.php/Steam/Troubleshooting#Steam_runtime_issues
@@ -144,7 +144,7 @@ steam -textclient
 # Run steam, if you got this errors
 # libGL error: No matching fbConfigs or visuals found
 # libGL error: failed to load driver: swrast
-sudo pacman -S lib32-nvidia-utils
+sudo pacman -S --needed --noconfirm lib32-nvidia-utils
 
 
 # Missing libraries
@@ -155,54 +155,54 @@ file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found'
 # All this libraries should be there in MultiLib repositories
 
 # libXtst.so.6 => not found
-sudo pacman -S lib32-libxtst
+sudo pacman -S --needed --noconfirm lib32-libxtst
 
 # libgio-2.0.so.0 => not found
 # libglib-2.0.so.0 => not found
 # libgobject-2.0.so.0 => not found
-sudo pacman -S lib32-libdbusmenu-glib
+sudo pacman -S --needed --noconfirm lib32-libdbusmenu-glib
 
 # libfontconfig.so.1 => not found
 # libfreetype.so.6 => not found
-sudo pacman -S lib32-fontconfig
+sudo pacman -S --needed --noconfirm lib32-fontconfig
 
 # libgdk_pixbuf-2.0.so.0 => not found
-sudo pacman -S lib32-gdk-pixbuf2
+sudo pacman -S --needed --noconfirm lib32-gdk-pixbuf2
 
 # libopenal.so.1 => not found
-sudo pacman -S lib32-openal
+sudo pacman -S --needed --noconfirm lib32-openal
 
 # libXrandr.so.2 => not found
-sudo pacman -S lib32-libxrandr
+sudo pacman -S --needed --noconfirm lib32-libxrandr
 
 # libXinerama.so.1 => not found
-sudo pacman -S lib32-libxinerama
+sudo pacman -S --needed --noconfirm lib32-libxinerama
 
 # libusb-1.0.so.0 => not found
-sudo pacman -S lib32-libusb
+sudo pacman -S --needed --noconfirm lib32-libusb
 
 # libudev.so.0 => not found
 sudo pacman -S lib32-libudev0-shim
 
 # libICE.so.6 => not found
 # libSM.so.6 => not found
-sudo pacman -S lib32-libsm
+sudo pacman -S --needed --noconfirm lib32-libsm
 
 # libpulse.so.0 => not found
-sudo pacman -S lib32-libpulse
+sudo pacman -S --needed --noconfirm lib32-libpulse
 
 # libdbus-glib-1.so.2 => not found
 # libnm-glib.so.4 => not found
 # libnm-util.so.2 => not found
-sudo pacman -S lib32-libnm-glib
+sudo pacman -S --needed --noconfirm lib32-libnm-glib
 
 # libgtk-x11-2.0.so.0 => not found
-sudo pacman -S lib32-gtk2
+sudo pacman -S --needed --noconfirm lib32-gtk2
 
 # Others
-sudo pacman -S lib32-libxft
-sudo pacman -S lib32-freetype2
-sudo pacman -S lib32-libpng12
+sudo pacman -S --needed --noconfirm lib32-libxft
+sudo pacman -S --needed --noconfirm lib32-freetype2
+sudo pacman -S --needed --noconfirm lib32-libpng12
 
 
 
@@ -233,12 +233,12 @@ export LD_LIBRARY_PATH=/usr/lib32/nvidia:/usr/lib/nvidia:$LD_LIBRARY_PATH
 
 # https://aur.archlinux.org/packages/blt4l-runtime-bin/
 # https://github.com/blt4linux/blt4l
-yaourt -S blt4l-runtime-bin
+yaourt -S --needed --noconfirm blt4l-runtime-bin
 
 # No audio
 pacman -Qs pulseaudio
 pacman -Si pulseaudio
-sudo pacman -S pulseaudio
+sudo pacman -S --needed --noconfirm pulseaudio
 # And reboot to make effect.
 
 # Wikis
@@ -281,9 +281,9 @@ pacman -Qi steam
 # List all installed packages that have the text "nvidia" mentioned somewhere
 pacman -Qs nvidia
 
-sudo pacman -S nvidia
-sudo pacman -S nvidia-libgl
-sudo pacman -S lib32-nvidia-libgl
+sudo pacman -S --needed --noconfirm nvidia
+sudo pacman -S --needed --noconfirm nvidia-libgl
+sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
 
 
 
@@ -293,52 +293,52 @@ sudo pacman -Rsc steam
 
 
 # FreedroidRPG — Mature science fiction role playing game set in the future
-sudo pacman -S freedroidrpg
+sudo pacman -S --needed --noconfirm freedroidrpg
 
 # OpenMW — Attempt to reimplement the popular role-playing game Morrowind. OpenMW aims to be a fully playable, open source implementation of the game's engin
-sudo pacman -S openmw
+sudo pacman -S --needed --noconfirm openmw
 
 # Cube 2: Sauerbraten — Improved version of the Cube engine.
-sudo pacman -S sauerbraten
+sudo pacman -S --needed --noconfirm sauerbraten
 
 # Urban Terror — Modern multiplayer FPS based on the ioquake3 engine.
-sudo pacman -S urbanterror
+sudo pacman -S --needed --noconfirm urbanterror
 
 # Flight Gear — Open-source, multi-platform flight simulator.
-sudo pacman -S flightgear
+sudo pacman -S --needed --noconfirm flightgear
 
 # Oolite — 3D space trading and combat simulator in the spirit of Elite.
-sudo pacman -S oolite
+sudo pacman -S --needed --noconfirm oolite
 
 # Globulation 2 — Multiplayer RTS with some "economic" elements minimizing the amount of micromanagement.
-sudo pacman -S glob2
+sudo pacman -S --needed --noconfirm glob2
 
 # The Battle for Wesnoth — Free, turn-based tactical strategy game with a high fantasy theme, featuring both single-player, and online/hotseat multiplayer combat.
-sudo pacman -S wesnoth
+sudo pacman -S --needed --noconfirm wesnoth
 
 # Simutrans — Another Transport simulation that works on linux with sdl.
-sudo pacman -S simutrans
+sudo pacman -S --needed --noconfirm simutrans
 
 # OpenTTD — Open source clone of the Microprose game "Transport Tycoon Deluxe", a popular game originally written by Chris Sawyer. It attempts to mimic the original game as closely as possible while extending it with new features.
-sudo pacman -S openttd
+sudo pacman -S --needed --noconfirm openttd
 
 # Lincity-ng — City simulation game in which you are required to build and maintain a city. You can win the game either by building a sustainable economy or by evacuating all citizens with spaceships.
-sudo pacman -S lincity-ng
+sudo pacman -S --needed --noconfirm lincity-ng
 
 # Dofus — Free, manga inspired, Massively Multiplayer Online Role-playing Game (MMORPG) for Adobe AIR
-sudo pacman -S dofus #AUR
+sudo pacman -S --needed --noconfirm dofus #AUR
 
 #      Savage 2: A Tortured Soul — Fantasy themed online multiplayer team-based FPS/RTS/RPG hybrid. Free-to-play as of December 2008. Pay for premium accounts providing crucial game elements such as extra inventory slots, access to clans and removal of the Hellbourne unit restrictions (per-account), as well as access to replays and stats.
-sudo pacman -S savage2 #AUR
+sudo pacman -S --needed --noconfirm savage2 #AUR
 
 # Planeshift — Role Playing Game immersed into a 3D virtual fantasy world which is FULLY FREE to play. Fully free means you will have no surprises of premium content which will limit your gameplay or unbalance the game. There are no limitations in skills, ranks, abilities, items you can gain with your free account
-sudo pacman -S planeshift #AUR
+sudo pacman -S --needed --noconfirm planeshift #AUR
 
 # RuneScape — Massive online adventure game by Jagex
-sudo pacman -S runescape-launcher #AUR (new NXT client)
+sudo pacman -S --needed --noconfirm runescape-launcher #AUR (new NXT client)
 
 # Ryzom — 3D Fantasy MMORPG
-sudo pacman -S ryzom-client #AUR
+sudo pacman -S --needed --noconfirm ryzom-client #AUR
 
 
 

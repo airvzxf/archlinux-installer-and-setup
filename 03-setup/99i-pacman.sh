@@ -20,6 +20,10 @@ sudo pacman -Syyu
 
 # Install package
 sudo pacman -S [package_name]
+# Not required confirmation
+sudo pacman -S -- noconfirm
+# If the packages is alrady installed, doesn't install it
+sudo pacman -S --needed
 
 # Uninstall package
 # Removes a single package, leaving all of its dependencies installed
