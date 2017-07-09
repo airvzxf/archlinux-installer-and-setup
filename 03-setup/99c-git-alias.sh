@@ -1,15 +1,16 @@
 # These configurations will be save in this file
 # ~/.gitconfig
-git config --global alias.ad 'add'
-git config --global alias.adp 'add -p'
+git config --global --remove-section alias
+git config --global alias.ad '! git add "$@" && echo -e "" && echo -e "" && git status'
+git config --global alias.adp '! git add -p "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
 git config --global alias.br 'branch'
-git config --global alias.cm 'commit -m'
-git config --global alias.cmam 'commit -a -m'
-git config --global alias.cmamend 'commit --amend'
-git config --global alias.co 'checkout'
-git config --global alias.cob 'checkout -b'
-git config --global alias.com 'checkout master'
+git config --global alias.cm '! git commit -m && echo -e "" && echo -e "" && git status'
+git config --global alias.cma '! git commit -a -m && echo -e "" && echo -e "" && git status'
+git config --global alias.cmamend '! git commit --amend && echo -e "" && echo -e "" && git status'
+git config --global alias.co '! git checkout "$@" && echo -e "" && echo -e "" && git status'
+git config --global alias.cob '! git checkout -b "$@" && echo -e "" && echo -e "" && git status'
+git config --global alias.com '! git checkout master && echo -e "" && echo -e "" && git status'
 git config --global alias.cos 'checkout -'
 git config --global alias.df 'diff'
 git config --global alias.dfc 'diff --cached'
