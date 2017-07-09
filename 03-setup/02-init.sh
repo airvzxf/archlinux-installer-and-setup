@@ -19,13 +19,6 @@ source 00-config.sh
 funcMkdir ~/workspace
 funcMkdir ~/Downloads/temp
 
-# I recommend you download this Git project in your computer if you
-# want to get all files and information with the last updates.
-# This project will be saved in ~/workspace/archLinux-installer-and-setup-master
-# Uncomment this line if you want to download the project
-# funcGetGitProject
-
-
 # Pacman config
 # ----------------------------------------------------------------------
 # sudo nano /etc/pacman.conf
