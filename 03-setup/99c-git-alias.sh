@@ -5,8 +5,8 @@ git config --global alias.ad '! git add "$@" && echo -e "" && echo -e "" && git 
 git config --global alias.adp '! git add -p "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
 git config --global alias.br 'branch'
-git config --global alias.cm '! git commit -m && echo -e "" && echo -e "" && git status'
-git config --global alias.cma '! git commit -a -m && echo -e "" && echo -e "" && git status'
+git config --global alias.cm '! git commit -m "$@" && echo -e "" && echo -e "" && git status'
+git config --global alias.cma '! git commit -a -m "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.cmamend '! git commit --amend && echo -e "" && echo -e "" && git status'
 git config --global alias.co '! git checkout "$@" && echo -e "" && echo -e "" && git status'
 git config --global alias.cob '! git checkout -b "$@" && echo -e "" && echo -e "" && git status'
