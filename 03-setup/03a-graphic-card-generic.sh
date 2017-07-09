@@ -24,3 +24,14 @@ localectl list-x11-keymap-variants latam
 
 # Setup the configuration
 localectl --no-convert set-x11-keymap latam pc105 ,deadtilde
+
+# Xbindkeys
+# https://wiki.archlinux.org/index.php/Xbindkeys
+sudo pacman -S --noconfirm xbindkeys
+# touch ~/.xbindkeysrc
+xbindkeys -d > ~/.xbindkeysrc
+# Identifying keycodes
+xbindkeys -k
+# Reload the configuration file and apply the changes
+xbindkeys -p
+xbindkeys
