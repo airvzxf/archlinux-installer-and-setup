@@ -42,3 +42,8 @@ find ./ -type f -iname *query_string* -exec rm -f {} \;
 # https://wiki.archlinux.org/index.php/Systemd/Timers
 # https://unix.stackexchange.com/questions/278564/cron-vs-systemd-timers
 # https://jason.the-graham.com/2013/03/06/how-to-use-systemd-timers/
+
+# Mount and umount USB
+sudo mkdir -p /mnt/usb
+sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usb
+sudo umount -R /mnt/usb
