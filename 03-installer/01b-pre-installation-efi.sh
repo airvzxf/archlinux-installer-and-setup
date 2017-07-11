@@ -27,6 +27,8 @@ fdisk -l $hardDiskDevice
 # Delete all partitions
 # If you need to clean all your disk and start from zero
 # otherwise skip to the gdisk command.
+# In other case this command is an "UI" to delete, create, edit partitions
+# in your hard disk or USB, it's very useful.
 #cfdisk $hardDisk
 
 # Create and setup the partitions
