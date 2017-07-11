@@ -32,7 +32,7 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 ### 2. Init
 Reboot your computer with your bootloader USB and start with the USB.
 
-1. Select the first option which is ????????.
+1. Select the first option which is "Arch Linux archiso x86_64 UEFI CD".
 
 2. Wait for the login session, if it requires a user you can press [enter] or write root.
 
