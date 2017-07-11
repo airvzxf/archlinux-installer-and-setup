@@ -10,6 +10,13 @@ source 00-config.sh
 # Pre-installation (EFI)
 # ----------------------------------------------------------------------
 
+# Install and run reflector to update the mirror data base
+sudo pacman -S --needed --noconfirm reflector
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
+
+sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman -Syyu
+
 #Set the keyboard layout
 loadkeys $keyboardLayout
 
