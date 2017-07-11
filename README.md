@@ -8,7 +8,7 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 ### 1. Create your bootloader USB to boot with Arch Linux
 [Arch Linux official documentation.](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-- This project have an script to [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-bootable-usb/01-bootable-usb.sh>
+- This project have an script to [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-bootable-usb/01-bootable-usb.sh)
 
 Or
 
