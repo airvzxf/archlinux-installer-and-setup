@@ -43,23 +43,20 @@ sudo dd if=/dev/zero of=/dev/$usbDevice bs=512 count=1 conv=notrunc &>/dev/null
 	echo   # First sector (Accept default: 1)
 	echo   # Last sector (Accept default: varies)
 	echo a # toggle a bootable flag
-	echo t # change a partition type
-	echo b # b W95 FAT32
 	echo w # Write changes
 ) | sudo fdisk /dev/$usbDevice &>/dev/null
 
 usbPartition="$usbDevice"1
 
-echo -e ""
-echo -e "Wait, formatting the USB...\n"
-sudo mkfs.fat -F32 /dev/$usbPartition &>/dev/null
-
-sudo fdisk /dev/$usbDevice -l
-
 mkdir -p ~/workspace
 
-# Needs downlad the last version.
+# Needs to download the last version.
 
 echo -e ""
 echo -e "Wait, loading Arch Linux in the USB...\n"
-sudo dd bs=4M if=~/workspace/archlinux-2017.07.01-x86_64.iso of=/dev/$usbDevice status=progress && sync
+sudo dd bs=4M if=~/workspace/archlinux-2017.07.01-x86_64.iso of=/dev/$usbDevice status=progress &>/dev/null && sync &>/dev/null
+
+sudo fdisk /dev/$usbDevice -l
+
+echo -e "\n"
+echo -e "Successful! The bootable USB has been created.\n"
