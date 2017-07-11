@@ -67,7 +67,7 @@ sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
 # Retrieves the latest mirrorlist from the MirrorStatus page, filters
 # the most up-to-date mirrors, sorts them by speed and overwrites.
 sudo pacman -S --needed --noconfirm reflector
-sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syyu
