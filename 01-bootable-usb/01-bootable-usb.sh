@@ -51,6 +51,11 @@ usbPartition="$usbDevice"1
 mkdir -p ~/workspace
 
 # Needs to download the last version.
+# Maybe add some curl with regex to catch /href="(archlinux-....\...\...-x86_64.iso)"/, this file should be save in ~/workspace/
+# Save this match in a var like a $archlinuxISO
+# https://archlinux.surlyjake.com/archlinux/iso/latest/$archlinuxISO
+# http://mirror.rackspace.com/archlinux/iso/latest/$archlinuxISO
+# Modified the dd to put the correct file ~/workspace/$archlinuxISO
 
 echo -e ""
 echo -e "Wait, loading Arch Linux in the USB...\n"
