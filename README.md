@@ -13,11 +13,10 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 Or
 
 - Download the Arch Linux image.<br>
-[Image x86](http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/intel_ucode.img)<br>
-[Image x86_64](http://mirror.rackspace.com/archlinux/iso/latest/arch/boot/x86_64/archiso.img)<br>
+[The official server](http://mirror.rackspace.com/archlinux/iso/latest/)<br>
 [Download from the official site](https://www.archlinux.org/download/)<br>
 
-  - In GNU/Linux
+  - Create in GNU/Linux
     - Use this command where sdx is your USB device, to find what is this, run sudo fdisk -l and try to search your USB and the device name. Your USB must be formatted to FAT32.<br>
    Warning: This will irrevocably destroy all data on /dev/sdx.<br>
 ```sh
@@ -36,7 +35,7 @@ Reboot your computer with your bootloader USB and start with the USB.
 
 2. Wait for the login session, if it requires a user you can press [enter] or write root.
 
-3. Connecte to internet.
+3. Connect to internet.
 
 4. The first thing you should to do is download the "init script" to start this journey.<br>
 ```sh
