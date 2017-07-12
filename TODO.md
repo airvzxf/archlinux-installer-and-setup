@@ -1,8 +1,8 @@
 # TODO
 
-## Important, Let's try to delete this change. I'm sure
+## Important
 - Githug
-  - [ ] Check if is possible revert/delete some change in the server (2017-07-09)
+  - [x] Check if is possible revert/delete some change in the server (2017-07-09)
 - Bootloader USB
   - [x] Create bootloader scripts (2017-07-09)
   - [x] Check if I can use one memory which install reflector (2017-07-09)
