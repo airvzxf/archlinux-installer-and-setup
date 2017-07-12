@@ -47,3 +47,9 @@ find ./ -type f -iname *query_string* -exec rm -f {} \;
 sudo mkdir -p /mnt/usb
 sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usb
 sudo umount -R /mnt/usb
+
+# Git
+# Undo a "public" change
+# https://stackoverflow.com/questions/1270514/undoing-a-git-push
+git push -f origin last_known_good_commit:branch_name
+
