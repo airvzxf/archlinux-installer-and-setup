@@ -1,6 +1,6 @@
 # TODO
 
-## Important, Let's try to delete this change
+## Important, Let's try to delete this change. I'm sure
 - Githug
   - [ ] Check if is possible revert/delete some change in the server (2017-07-09)
 - Bootloader USB
