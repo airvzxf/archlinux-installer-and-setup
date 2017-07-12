@@ -15,11 +15,11 @@ source 00-config.sh
 # https://wiki.archlinux.org/index.php/Gamepad
 
 # Install packages
-yaourt -S --needed --noconfirm  steam-native-runtime
-yaourt -S --needed --noconfirm lib32-libopenssl-1.0-compat
-sudo pacman -S --needed --noconfirm nvidia
-sudo pacman -S --needed --noconfirm nvidia-libgl
-sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
+yaourt -S --needed  steam-native-runtime
+yaourt -S --needed lib32-libopenssl-1.0-compat
+sudo pacman -S --needed nvidia
+sudo pacman -S --needed nvidia-libgl
+sudo pacman -S --needed lib32-nvidia-libgl
 
 
 # Missing libraries
@@ -28,7 +28,7 @@ sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
 # Run steam, if you got this errors
 # libGL error: No matching fbConfigs or visuals found
 # libGL error: failed to load driver: swrast
-sudo pacman -S --needed --noconfirm lib32-nvidia-utils
+sudo pacman -S --needed lib32-nvidia-utils
 
 # Steam has a good commands to check all the missing libraries
 # All this libraries should be there in MultiLib repositories
@@ -37,51 +37,51 @@ file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found'
 
 
 # libXtst.so.6 => not found
-sudo pacman -S --needed --noconfirm lib32-libxtst
+sudo pacman -S --needed lib32-libxtst
 
 # libgio-2.0.so.0 => not found
 # libglib-2.0.so.0 => not found
 # libgobject-2.0.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-libdbusmenu-glib
+sudo pacman -S --needed lib32-libdbusmenu-glib
 
 # libfontconfig.so.1 => not found
 # libfreetype.so.6 => not found
-sudo pacman -S --needed --noconfirm lib32-fontconfig
+sudo pacman -S --needed lib32-fontconfig
 
 # libgdk_pixbuf-2.0.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-gdk-pixbuf2
+sudo pacman -S --needed lib32-gdk-pixbuf2
 
 # libopenal.so.1 => not found
-sudo pacman -S --needed --noconfirm lib32-openal
+sudo pacman -S --needed lib32-openal
 
 # libXrandr.so.2 => not found
-sudo pacman -S --needed --noconfirm lib32-libxrandr
+sudo pacman -S --needed lib32-libxrandr
 
 # libXinerama.so.1 => not found
-sudo pacman -S --needed --noconfirm lib32-libxinerama
+sudo pacman -S --needed lib32-libxinerama
 
 # libusb-1.0.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-libusb
+sudo pacman -S --needed lib32-libusb
 
 # libudev.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-libudev0-shim
+sudo pacman -S --needed lib32-libudev0-shim
 
 # libICE.so.6 => not found
 # libSM.so.6 => not found
-sudo pacman -S --needed --noconfirm lib32-libsm
+sudo pacman -S --needed lib32-libsm
 
 # libpulse.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-libpulse
+sudo pacman -S --needed lib32-libpulse
 
 # libdbus-glib-1.so.2 => not found
 # libnm-glib.so.4 => not found
 # libnm-util.so.2 => not found
-sudo pacman -S --needed --noconfirm lib32-libnm-glib
+sudo pacman -S --needed lib32-libnm-glib
 
 # libgtk-x11-2.0.so.0 => not found
-sudo pacman -S --needed --noconfirm lib32-gtk2
+sudo pacman -S --needed lib32-gtk2
 
 # Others
-sudo pacman -S --needed --noconfirm lib32-libxft
-sudo pacman -S --needed --noconfirm lib32-freetype2
-sudo pacman -S --needed --noconfirm lib32-libpng12
+sudo pacman -S --needed lib32-libxft
+sudo pacman -S --needed lib32-freetype2
+sudo pacman -S --needed lib32-libpng12

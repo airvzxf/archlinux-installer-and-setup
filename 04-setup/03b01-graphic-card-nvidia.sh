@@ -16,20 +16,20 @@ source 00-config.sh
 lspci -k | grep -A 2 -E "(VGA|3D)"
 
 # Install basic packages
-sudo pacman -S --needed --noconfirm linux-headers
-sudo pacman -S --needed --noconfirm xorg-xrandr
-sudo pacman -S --needed --noconfirm xorg-xdpyinfo
-sudo pacman -S --needed --noconfirm xorg-fonts-type1
-sudo pacman -S --needed --noconfirm bbswitch
+sudo pacman -S --needed linux-headers
+sudo pacman -S --needed xorg-xrandr
+sudo pacman -S --needed xorg-xdpyinfo
+sudo pacman -S --needed xorg-fonts-type1
+sudo pacman -S --needed bbswitch
 
 # Install nvidia packages
-yaourt -S --needed --noconfirm nvidia-utils-beta
-yaourt -S --needed --noconfirm nvidia-beta
-yaourt -S --needed --noconfirm nvidia-xrun
+yaourt -S --needed nvidia-utils-beta
+yaourt -S --needed nvidia-beta
+yaourt -S --needed nvidia-xrun
 
 # Install the windows manager
-sudo pacman --needed --noconfirm -S openbox
-sudo pacman --needed --noconfirm -S acpid
+sudo pacman --needed -S openbox
+sudo pacman --needed -S acpid
 
 # If you try to run the command xinit your screen freezen to solve this
 # problem you need to install nvidia-xrun which avoid this problem and

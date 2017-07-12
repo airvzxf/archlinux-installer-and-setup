@@ -14,8 +14,8 @@ source 00-config.sh
 # upgrade automatically.
 # Normally when you reboot your computer and try to star nvidia-xrun
 # this doesn't work then you need to follow this commands.
-sudo pacman -S --needed --noconfirm linux-headers
+sudo pacman -S --needed linux-headers
 
-yaourt -S --needed --noconfirm nvidia-utils-beta
-yaourt -S --needed --noconfirm nvidia-beta
-yaourt -S --needed --noconfirm nvidia-beta
+yaourt -S --needed nvidia-utils-beta
+yaourt -S --needed nvidia-beta
+yaourt -S --needed nvidia-beta

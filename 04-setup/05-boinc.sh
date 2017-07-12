@@ -12,10 +12,10 @@ source 00-config.sh
 # Berkeley Open Infrastructure for Network Computing for desktop
 # Helps to the world to find solution for the physicals problems, aids,
 # climate, etc.
-sudo pacman -S --needed --noconfirm boinc
+sudo pacman -S --needed boinc
 
 # Install libraries
-sudo pacman -S --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
+sudo pacman -S --needed lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
 
 # Add your user to the boinc group
 sudo usermod -a -G boinc $(whoami)

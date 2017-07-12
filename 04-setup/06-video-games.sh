@@ -11,4 +11,4 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 
 # Install a lot of libraries for general games from this AUR package
-yaourt -S --needed --noconfirm wine-gaming-nine
+yaourt -S --needed wine-gaming-nine

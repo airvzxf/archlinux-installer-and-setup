@@ -14,7 +14,7 @@ source 00-config.sh
 # for more performance check what is the brand and model and setup.
 # This guide setup the keyboard to la-latin1, keylayout spanish-Mexico.
 # If you have Nvidia card I have some script to setup it.
-sudo pacman -S --needed --noconfirm xorg-setxkbmap
+sudo pacman -S --needed xorg-setxkbmap
 
 # Keyboard configuration in Xorg
 # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
@@ -27,7 +27,7 @@ localectl --no-convert set-x11-keymap latam pc105 ,deadtilde
 
 # Xbindkeys
 # https://wiki.archlinux.org/index.php/Xbindkeys
-sudo pacman -S --needed --noconfirm xbindkeys
+sudo pacman -S --needed xbindkeys
 # touch ~/.xbindkeysrc
 xbindkeys -d > ~/.xbindkeysrc
 # Identifying keycodes

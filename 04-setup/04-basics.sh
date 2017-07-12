@@ -15,14 +15,14 @@ source 00-config.sh
 sudo pacman -Syu
 
 # Basic packages (apps)
-sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
-sudo pacman -S --needed --noconfirm epdfview # PDF Viewer
-sudo pacman -S --needed --noconfirm reflector # Sorted mirrors in Arch Linux
-sudo pacman -S --needed --noconfirm parole # Media player
-sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
-sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
+sudo pacman -S --needed geany geany-plugins # Text editor
+sudo pacman -S --needed epdfview # PDF Viewer
+sudo pacman -S --needed reflector # Sorted mirrors in Arch Linux
+sudo pacman -S --needed parole # Media player
+sudo pacman -S --needed xfce4-screenshooter # Screenshots
+sudo pacman -S --needed hdparm #List brand and properties for your hard disk
 sudo hdparm -I /dev/sda
-yaourt -S --needed --noconfirm spotify-stable # Spotify
+yaourt -S --needed spotify-stable # Spotify
 
 
 # Web browsers
@@ -30,9 +30,9 @@ yaourt -S --needed --noconfirm spotify-stable # Spotify
 # palemoon is based on Firefox focusing on efficiency, low memory and cpu
 # Firefox is so cool with the graphics
 # Chromium the most standar in Linux
-sudo pacman -S --needed --noconfirm firefox
-sudo pacman -S --needed --noconfirm chromium
-yaourt -S --needed --noconfirm palemoon-bin
+sudo pacman -S --needed firefox
+sudo pacman -S --needed chromium
+yaourt -S --needed palemoon-bin
 
 # Firefox Adons
 # Lastpass
@@ -40,7 +40,7 @@ yaourt -S --needed --noconfirm palemoon-bin
 # Screenshoter (Fixed)
 
 # Software engineers
-sudo pacman -S --needed --noconfirm git
+sudo pacman -S --needed git
 
 # More packages
-sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
+sudo pacman -S --needed transmission-gtk # Torrents

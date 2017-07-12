@@ -19,7 +19,7 @@ funcContinue() {
 
 
 # Install and run reflector to update the mirror data base
-pacman -S --needed --noconfirm reflector
+pacman -S --needed reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 
 reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist

@@ -39,7 +39,7 @@ echo $yourComputerName > /etc/hostname
 echo "127.0.1.1    localhost.localdomain    $yourComputerName" >> /etc/hosts
 
 # Install basic package
-pacman -S --needed --noconfirm wpa_supplicant dialog grub efibootmgr
+pacman -S --needed wpa_supplicant dialog grub efibootmgr
 
 # Install EFI into Grub
 grub-inatall --tartet=x86_64-efi
