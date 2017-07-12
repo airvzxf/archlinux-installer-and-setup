@@ -13,7 +13,7 @@
 archlinuxImageURL="http://mirror.rackspace.com/archlinux/iso/latest/"
 
 funcContinue() {
-	if ! [[ "$isThisTheUsb" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+	if ! [[ $1 =~ ^([yY][eE][sS]|[yY])+$ ]]; then
 		echo -e "\nThe script has been FINISHED."
 		exit -1
 	fi
