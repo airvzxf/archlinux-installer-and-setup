@@ -26,8 +26,11 @@ hwclock --systohc
 
 # Set the locale
 # Uncomment en_US.UTF-8 UTF-8 or find your language and charset
-nano /etc/locale.gen
+# nano /etc/locale.gen
+# This command auto delete the comments in /etc/locale.gen
+sed -i '/[^ ]en_US.UTF-8 UTF-8/ s/^##*//' /etc/locale.gen
 locale-gen
+
 echo "LANG=$languageCode" > /etc/locale.conf
 echo "KEYMAP=$keyboardLayout" > /etc/vconsole.conf
 
@@ -56,9 +59,11 @@ passwd $yourUserName
 
 # Add sudo permissions for your user
 # This is the same if you edit the file "/etc/sudoers"
-EDITOR=nano visudo
+#EDITOR=nano visudo
 # And uncomment to allow members of group to execute any command
 # %wheel ALL=(ALL) ALL
+# This command delete the comment in /etc/sudoers
+sed -i '/%wheel ALL=(ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # Exit from Arch change root
 exit

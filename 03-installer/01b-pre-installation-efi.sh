@@ -10,12 +10,20 @@ source 00-config.sh
 # Pre-installation (EFI)
 # ----------------------------------------------------------------------
 
-# Install and run reflector to update the mirror data base
-sudo pacman -S --needed --noconfirm reflector
-sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
+funcContinue() {
+	if ! [[ $1 =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+		echo -e "\nThe script has been FINISHED."
+		exit -1
+	fi
+}
 
-sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-sudo pacman -Syyu
+
+# Install and run reflector to update the mirror data base
+pacman -S --needed --noconfirm reflector
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
+
+reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syyu
 
 #Set the keyboard layout
 loadkeys $keyboardLayout
@@ -44,7 +52,7 @@ fdisk -l $hardDiskDevice
 # Linux Swap memory, third your Arch Linux (Linux filesystem).
 # When runs gdisk you need to write letters or numbers in the prompt
 # after this "Command (? for help):"
-gdisk $hardDiskDevice
+#gdisk $hardDiskDevice
 # - o (create a new empty GUID partition table (GPT))
 # - n (add a new partition)
 #   - 1 (number of partition)
@@ -63,6 +71,44 @@ gdisk $hardDiskDevice
 #   - 8300 (Linux filesystem)
 # - w (write table to disk and exit)
 #   - y (confirm, yes)
+
+echo -e "\n"
+echo -e "Warning: This script delete all partitions and data from the selected device.\n"
+
+read -r -p "Write in lowercase your Hard Disk device for example sda: " hddDevice
+
+echo -e ""
+read -r -p "Is this (/dev/$hddDevice) the USB device? [y/N]: " isThisTheHdd
+funcContinue $isThisTheHdd
+
+umount -R /dev/$hddDevice &>/dev/null
+
+dd if=/dev/zero of=/dev/$hddDevice bs=512 count=1 conv=notrunc &>/dev/null
+
+(
+	echo g # Create a new empty GPT partition table
+	echo n # Add a new partition
+	echo 1 # Partition number
+	echo   # First sector (Accept default: 1)
+	echo +512M # Last sector (Accept default: varies)
+	echo t # change a partition type
+	echo 1 # EFI (FAT-12/16/32)
+	echo n # Add a new partition
+	echo 2 # Partition number
+	echo   # First sector (Accept default: 1)
+	echo +3G # Last sector (Accept default: varies)
+	echo t # change a partition type
+	echo 2 # select partition number
+	echo 19 # Linux swap
+	echo n # Add a new partition
+	echo 3 # Partition number
+	echo   # First sector (Accept default: 1)
+	echo   # Last sector (Accept default: varies)
+	echo t # change a partition type
+	echo 3 # select partition number
+	echo 20 # Linux filesystem
+	echo w # Write changes
+) | fdisk /dev/$hddDevice &>/dev/null
 
 # Format the partitions
 mkfs.fat -F32 $hardDiskDeviceBoot
