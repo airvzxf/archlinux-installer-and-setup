@@ -10,6 +10,9 @@ source 00-config.sh
 # Create a bootable USB
 # ----------------------------------------------------------------------
 
+
+archlinuxImageURL="http://mirror.rackspace.com/archlinux/iso/latest/"
+
 funcContinue() {
 	if ! [[ "$isThisTheUsb" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
 		echo -e "\nThe script has been FINISHED."
@@ -50,16 +53,14 @@ usbPartition="$usbDevice"1
 
 mkdir -p ~/workspace
 
-# Needs to download the last version.
-# Maybe add some curl with regex to catch /href="(archlinux-....\...\...-x86_64.iso)"/, this file should be save in ~/workspace/
-# Save this match in a var like a $archlinuxISO
-# https://archlinux.surlyjake.com/archlinux/iso/latest/$archlinuxISO
-# http://mirror.rackspace.com/archlinux/iso/latest/$archlinuxISO
-# Modified the dd to put the correct file ~/workspace/$archlinuxISO
+archlinuxISO=$(curl $archlinuxImageURL 2>/dev/null | grep -om 1 "archlinux-....\...\...-x86_64.iso" | head -n1)
+
+echo -e ""
+curl -H 'Cache-Control: no-cache' $archlinuxImageURL/$archlinuxISO > ~/workspace/$archlinuxISO
 
 echo -e ""
 echo -e "Wait, loading Arch Linux in the USB...\n"
-sudo dd bs=4M if=~/workspace/archlinux-2017.07.01-x86_64.iso of=/dev/$usbDevice status=progress &>/dev/null && sync &>/dev/null
+sudo dd bs=4M if=~/workspace/$archlinuxISO of=/dev/$usbDevice status=progress &>/dev/null && sync &>/dev/null
 
 sudo fdisk /dev/$usbDevice -l
 
