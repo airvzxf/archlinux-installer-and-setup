@@ -8,7 +8,7 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 ### 1. Create your bootloader USB to boot with Arch Linux
 [Arch Linux official documentation.](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-- This project have an script to [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-bootable-usb/01-bootable-usb.sh)
+- This project has a script to [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-bootable-usb/01-bootable-usb.sh)
 
 Or
 
@@ -16,9 +16,9 @@ Or
 [The official server](http://mirror.rackspace.com/archlinux/iso/latest/)<br>
 [Download from the official site](https://www.archlinux.org/download/)<br>
 
-  - Create in GNU/Linux
-    - Use this command where sdx is your USB device, to find what is this, run sudo fdisk -l and try to search your USB and the device name. Your USB must be formatted to FAT32.<br>
-   Warning: This will irrevocably destroy all data on /dev/sdx.<br>
+- Create the bootable USB in GNU/Linux
+  - Use this command where sdx is your USB device, to find what is this, run sudo fdisk -l and try to search your USB and the device name. Your USB must be formatted to FAT32.<br>
+    Warning: This will irrevocably destroy all data on /dev/sdx.<br>
 ```sh
 sudo fdisk -l
 sudo cfdisk /dev/sd[x]
@@ -29,21 +29,26 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 
 
 ### 2. Init
-Reboot your computer with your bootloader USB and start with the USB.
+Reboot your computer with your bootloader USB and init the system with the USB.
 
 1. Select the first option which is "Arch Linux archiso x86_64 UEFI CD".
 
-2. Wait for the login session, if it requires a user you can press [enter] or write root.
+2. Wait for the login session, if it requires a user you can write root and press [enter].
 
 3. Connect to internet.
+   - If your computer is not connected with ethernet wire you need to setup the wifi with this command.
+```sh
+# Select your network and write your password.
+sudo wifi-menu
+```
 
-4. The first thing you should to do is download the "init script" to start this journey.<br>
+4. Download the "init script" to start this journey.<br>
+   They should be in `~/workspace/archLinux-installer-and-setup-master`
 ```sh
 curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/02-init/init.sh > init.sh
 chmod +x init.sh
 ./init.sh
+cd ~/workspace/archLinux-installer-and-setup-master
 
 
 ```
-
-This script create a directory which name is "archLinux-installer-and-setup-master", this directory contains all the scripts to install and setup your Arch Linux.
