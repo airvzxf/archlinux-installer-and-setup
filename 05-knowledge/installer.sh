@@ -42,3 +42,16 @@ sudo acpid restart
 # Does not show whitespace by default. Visible whitespace can be toggled using the View > Editor > Show White Space option.
 # Trims trailing whitespace on file save when the "Strip trailing spaces and tabs" option is enabled (Preferences->Files->Saving Files, Check all options EXCEPT convert tabs to whit spaces)
 # ?? Maybe not: Preferences->Editor-Feachures, Check newline strip
+
+# Partial upgrades are unsupported
+# https://wiki.archlinux.org/index.php/System_maintenance#Partial_upgrades_are_unsupported
+#sudo pacman -Syu
+
+# Install python pip
+sudo pacman -S python-pip
+
+# Markdown viewwr
+# grip -b ./
+# grip -b fine_name
+sudo pip install grip
+
