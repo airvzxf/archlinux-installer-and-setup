@@ -53,3 +53,6 @@ sudo umount -R /mnt/usb
 # https://stackoverflow.com/questions/1270514/undoing-a-git-push
 git push -f origin last_known_good_commit:branch_name
 
+# Battery status
+upower -i /org/freedesktop/UPower/devices/battery_BAT0
+upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|time|percentage"
