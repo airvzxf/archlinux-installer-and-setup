@@ -56,3 +56,8 @@ git push -f origin last_known_good_commit:branch_name
 # Battery status
 upower -i /org/freedesktop/UPower/devices/battery_BAT0
 upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|energy\:|time|percentage"
+
+# Wifi menu
+# Delete or modify a specific wifi
+ls -lha /etc/netctl/
+sudo rm -f [network-name]
