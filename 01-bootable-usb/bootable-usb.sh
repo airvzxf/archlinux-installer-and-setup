@@ -19,7 +19,7 @@ funcContinue() {
 }
 
 echo -e ""
-echo -e "Create a bootable USB"
+echo -e "CREATE A BOOTABLE USB"
 echo -e ""
 
 echo -e ""
@@ -34,16 +34,16 @@ read -r -p "Write in lowercase the name for the USB device, e.g. sdb, sdc sdx: "
 echo -e ""
 read -r -p "Is this (/dev/$usbDevice) the USB device? [y/N]: " isThisTheUsb
 funcContinue $isThisTheUsb
-
 echo -e ""
+
 echo -e "Umounting the $usbDevice device"
 sudo umount -R /dev/$usbDevice &>/dev/null
-
 echo -e ""
+
 echo -e "Deleting all the partitions in your USB ($usbDevice)"
 sudo dd if=/dev/zero of=/dev/$usbDevice bs=512 count=1 conv=notrunc &>/dev/null
-
 echo -e ""
+
 echo -e "Creating all partitions and formatting your USB properly"
 (
 	echo o # Create a new empty DOS partition table
@@ -55,27 +55,27 @@ echo -e "Creating all partitions and formatting your USB properly"
 	echo a # toggle a bootable flag
 	echo w # Write changes
 ) | sudo fdisk /dev/$usbDevice &>/dev/null
+echo -e ""
 
 usbPartition="$usbDevice"1
 
-echo -e ""
 echo -e "Creating directory ~/workspace"
 mkdir -p ~/workspace
-
-
 echo -e ""
+
 echo -e "Downloading Arch Linux ISO (image)"
 archlinuxISO=$(curl $archlinuxImageURL 2>/dev/null | grep -om 1 "archlinux-....\...\...-x86_64.iso" | head -n1)
 echo -e ""
 curl -H 'Cache-Control: no-cache' $archlinuxImageURL/$archlinuxISO > ~/workspace/$archlinuxISO
-
 echo -e ""
+
 echo -e "Loading Arch Linux in the USB..."
 sudo dd bs=4M if=~/workspace/$archlinuxISO of=/dev/$usbDevice status=progress &>/dev/null && sync &>/dev/null
-
 echo -e ""
+
 echo -e "This is your formatted USB"
 sudo fdisk /dev/$usbDevice -l
+echo -e ""
 
 echo -e "\n"
 echo -e "Ready! The next step is restart your computer and init the system with your USB.\n"
