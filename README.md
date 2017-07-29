@@ -70,3 +70,6 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 2. Installation.<br>
    Download and install the base packages in your Linux partition and create the automatically mount partitions.
+
+3. Arch change Root.<br>
+   Emulate that you are login in the mount device and every command affect your session, setup the basic config to start to run Arch Linux in your Hard Drive Device.
