@@ -17,6 +17,7 @@ source 00-config.sh
 echo -e ""
 echo -e "LOGIN AS ARCH ROOT IN YOUR PARTITION"
 echo -e ""
+funcIsConnectedToInternet
 
 # Go to the main Linux partition like a root user.
 echo -e "Going to the main Linux partition like a root user"

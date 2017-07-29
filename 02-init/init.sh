@@ -11,9 +11,23 @@
 # First you need is connect to Internet, if you use wire you don't need
 # any special setup but if you use wifi you need to setup your network.
 
+funcIsConnectedToInternet() {
+	if ! ping -c 1 google.com >> /dev/null 2>&1; then
+		echo -e ""
+		echo -e "You have problems with your Internet."
+		echo -e "Please check if: "
+		echo -e "- The Internet works properly"
+		echo -e "- The Internet cable is connected to your computer and modem"
+		echo -e "- If you have wifi please execute this command: 'wifi-menu' and connect in your account"
+		echo -e ""
+		exit -1
+	fi
+}
+
 echo -e ""
 echo -e "INIT THE ARCH LINUX INSTALLATION"
 echo -e ""
+funcIsConnectedToInternet
 
 # Check if your wifi connection works properly
 echo -e "Checking if the computer has Internet connection"

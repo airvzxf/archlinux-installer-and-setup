@@ -10,17 +10,11 @@ source 00-config.sh
 # Pre-installation (EFI)
 # ----------------------------------------------------------------------
 
-funcContinue() {
-	if ! [[ $1 =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-		echo -e "\nThe script has been FINISHED."
-		exit -1
-	fi
-}
-
 echo -e ""
 echo -e "PRE-INSTALL ARCH LINUX IN YOUR HARD DISK DEVICE"
 echo -e "Note: This installation works only in EFI computers."
 echo -e ""
+funcIsConnectedToInternet
 
 # Install and run reflector to update the mirror data base
 echo -e "Installing reflector, which update the Arch Linux sources to use the faster and reliable"
