@@ -114,7 +114,7 @@ echo -e ""
 
 
 echo -e "\n"
-echo -e "Ready! The next step is execute the file `02-installation.sh`\n"
+echo -e "Ready! The next step is execute the file '02-installation.sh'\n"
 echo -e "Successful! You got the step 3 of 3 in your installation process.\n"
 read -n 1 -s -r -p "Press any key to reboot"
 

@@ -31,5 +31,5 @@ cat /mnt/etc/fstab
 echo -e ""
 
 echo -e "\n"
-echo -e "Ready! The next step is execute the file `03-arch-change-root.sh`\n"
+echo -e "Ready! The next step is execute the file '03-arch-change-root.sh'\n"
 echo -e "Successful! You got the step 2 of 3 in your installation process.\n"
