@@ -58,7 +58,7 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 ### 3. Installer
 Install Arch Linux in your Hard Disk Device<br>
-If you are executing the script in this project, please go to this path:
+If you are executing these scripts in this project, please go to this path:
 ```sh
 cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
