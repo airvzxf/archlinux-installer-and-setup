@@ -73,5 +73,5 @@ ls -lha ./
 echo -e ""
 
 echo -e "\n"
-echo -e "Ready! The next step go to `~/workspace/archLinux-installer-and-setup-master/03-installer/` and execute the first script which start with '01b-pre-installation-efi.sh'\n"
+echo -e "Ready! The next step go to '~/workspace/archLinux-installer-and-setup-master/03-installer/' and execute the first script which start with '01b-pre-installation-efi.sh'\n"
 echo -e "Successful! You have been inited this project.\n"

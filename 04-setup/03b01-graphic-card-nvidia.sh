@@ -43,7 +43,7 @@ echo -e "xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112" > ~/.nvid
 echo -e "setxkbmap -model pc105 -layout latam -variant ,deadtilde" >> ~/.nvidia-xinitrc
 echo -e "openbox-session" >> ~/.nvidia-xinitrc
 
-# Close all the startX with `killall -15 Xorg`, then you shouldn't use
+# Close all the startX with 'killall -15 Xorg', then you shouldn't use
 # startx any more you need nvidia-xrun
 #killall -15 Xorg
 nvidia-xrun
