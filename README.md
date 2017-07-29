@@ -29,7 +29,7 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 
 
 ### 2. Init
-Reboot your computer with your bootloader USB and init the system with the USB.
+Reboot your computer with your bootloader USB plugged in your computer and init the system with the USB.
 
 1. Select the first option which is "Arch Linux archiso x86_64 UEFI CD".
 
@@ -43,7 +43,7 @@ sudo wifi-menu
 ```
 
 4. Download the "init script" to start this journey.<br>
-   They should be in `~/workspace/archLinux-installer-and-setup-master`
+   This script should be downloaded in `~/workspace/archLinux-installer-and-setup-master`
 ```sh
 curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/02-init/init.sh > init.sh
 chmod +x init.sh
