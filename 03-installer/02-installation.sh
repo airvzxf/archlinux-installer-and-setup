@@ -25,7 +25,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo -e ""
 
 # Check if all your partitions are in this file (boot, swap, linux)
-echo -e "Please check if all the partitions are correct"
+echo -e "Please check if all the partitions are correct:"
 cat /mnt/etc/fstab
 echo -e ""
 
