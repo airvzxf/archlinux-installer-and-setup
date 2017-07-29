@@ -52,3 +52,6 @@ cd ~/workspace/archLinux-installer-and-setup-master
 
 
 ```
+
+
+### 3. Installer
