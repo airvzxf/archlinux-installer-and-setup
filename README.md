@@ -48,10 +48,25 @@ sudo wifi-menu
 curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/02-init/init.sh > init.sh
 chmod +x init.sh
 ./init.sh
-cd ~/workspace/archLinux-installer-and-setup-master
+cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 
 ```
 
 
+
+
 ### 3. Installer
+Install Arch Linux in your Hard Disk Device<br>
+If you are executing the script in this project, please go to this path:
+```sh
+cd ~/workspace/archLinux-installer-and-setup-master/03-installer
+
+
+```
+
+1. Pre-installation.<br>
+   Clean/Erease your hard disk and format ever partition then create the files systems.
+
+2. Installation.<br>
+   Download and install the base packages in your Linux partition and create the automatically mount partitions.
