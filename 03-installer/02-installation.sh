@@ -14,6 +14,7 @@ echo -e ""
 echo -e "INSTALL ARCH LINUX IN YOUR HARD DISK DEVICE"
 echo -e ""
 funcIsConnectedToInternet
+funcUmountAndMountSystem
 
 # Download and install the base packages in your Linux partition
 echo -e "Downloading and install the base packages in your Linux partition"
