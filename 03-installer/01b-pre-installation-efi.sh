@@ -132,13 +132,7 @@ fdisk -l $hardDiskDevice
 echo -e ""
 
 # Mount the file systems
-echo -e "Mounting the file systems"
-mount $hardDiskDeviceLinux /mnt
-mkdir -p /mnt/home
-mkdir -p /mnt/boot
-mkdir -p /mnt/boot/efi
-mount $hardDiskDeviceBoot /mnt/boot/efi
-echo -e ""
+funcUmountAndMountSystem
 
 echo -e "\n"
 echo -e "Ready! The next step is execute the file '02-installation.sh'\n"
