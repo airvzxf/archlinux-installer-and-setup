@@ -34,14 +34,15 @@ rm -f 00-config.sh
 rm -f 00r-arch-change-root.sh
 
 
-# Unmount the main partition
-echo -e "Unmounting the main partition"
+# Unmount partitions
+echo -e "Unmounting partitions"
 umount -R /mnt
+umount -R /mnt/boot/efi
 echo -e ""
 
 
 echo -e "\n"
-echo -e "Ready! The next step is setup.\n"
+echo -e "Ready! The next step is setup all the operative system.\n"
 echo -e "Successful! You have been installed Arch Linux.\n"
 read -n 1 -s -r -p "Press any key to reboot"
 
