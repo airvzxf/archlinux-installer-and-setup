@@ -66,3 +66,7 @@ sudo rm -f [network-name]
 ip link
 sudo ip link set [interface] down
 sudo ip link set [interface] down
+
+# Change user and load entire environment in shell script
+sudo su [user] -c [command]
+sudo su - [user] -c [command]
