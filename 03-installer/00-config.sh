@@ -39,3 +39,18 @@ funcIsConnectedToInternet() {
 		exit -1
 	fi
 }
+
+funcUmountAndMountSystem() {
+	echo -e ""
+	echo -e "Mounting the file systems"
+	mkdir -p /mnt/home
+	mkdir -p /mnt/boot
+	mkdir -p /mnt/boot/efi
+	fuser -k /mnt/boot/efi
+	fuser -k /mnt
+	umount -R /mnt/boot/efi
+	umount -R /mnt
+	mount $hardDiskDeviceLinux /mnt
+	mount $hardDiskDeviceBoot /mnt/boot/efi
+	echo -e ""
+}
