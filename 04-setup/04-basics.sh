@@ -19,6 +19,7 @@ sudo pacman -S --needed geany geany-plugins # Text editor
 sudo pacman -S --needed epdfview # PDF Viewer
 sudo pacman -S --needed reflector # Sorted mirrors in Arch Linux
 sudo pacman -S --needed parole # Media player
+sudo pacman -S --needed gst-libav # GStreamer ffmpeg Plugin
 sudo pacman -S --needed xfce4-screenshooter # Screenshots
 sudo pacman -S --needed hdparm #List brand and properties for your hard disk
 sudo hdparm -I /dev/sda
