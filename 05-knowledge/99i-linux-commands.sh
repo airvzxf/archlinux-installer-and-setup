@@ -61,3 +61,8 @@ upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|energy\:
 # Delete or modify a specific wifi
 ls -lha /etc/netctl/
 sudo rm -f [network-name]
+
+# Enabling and disabling network interfaces
+ip link
+sudo ip link set [interface] down
+sudo ip link set [interface] down
