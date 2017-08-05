@@ -15,6 +15,7 @@ source 00-config.sh
 sudo pacman -Syu
 
 # Basic packages (apps)
+sudo pacman -S --needed konsole # Terminal / Console window
 sudo pacman -S --needed geany geany-plugins # Text editor
 sudo pacman -S --needed epdfview # PDF Viewer
 sudo pacman -S --needed reflector # Sorted mirrors in Arch Linux
