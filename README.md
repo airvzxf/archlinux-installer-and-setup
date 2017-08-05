@@ -56,7 +56,7 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 
 
-### 3. Installer
+### 3. Install
 Install Arch Linux in your Hard Disk Device<br>
 If you are executing these scripts in this project, please go to this path:
 ```sh
@@ -73,3 +73,8 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 3. Arch change Root.<br>
    Emulate that you are login in the mount device and every command affect your session, setup the basic config to start to run Arch Linux in your Hard Drive Device.
+
+
+
+
+### 4. Setup
