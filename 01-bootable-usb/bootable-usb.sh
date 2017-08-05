@@ -47,7 +47,7 @@ echo -e "Warning: This script delete all partitions and data from the selected d
 read -r -p "Write in lowercase the name for the USB device, e.g. sdb, sdc sdx: " usbDevice
 
 echo -e ""
-read -r -p "Is this (/dev/$usbDevice) the USB device? [y/N]: " isThisTheUsb
+read -n 1 -r -p "Is this (/dev/$usbDevice) the USB device? [y/N]: " isThisTheUsb
 funcContinue $isThisTheUsb
 echo -e ""
 

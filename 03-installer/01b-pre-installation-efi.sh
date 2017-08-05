@@ -86,7 +86,7 @@ echo -e "Warning: This script delete all partitions and data from the selected d
 read -r -p "Write in lowercase your Hard Disk device for example sda: " hddDevice
 
 echo -e ""
-read -r -p "Is this (/dev/$hddDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
+read -n 1 -r -p "Is this (/dev/$hddDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
 funcContinue $isThisTheHdd
 
 echo -e ""
