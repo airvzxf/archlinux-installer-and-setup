@@ -44,7 +44,7 @@ echo -e ""
 #echo -e ""
 
 # Show partitions on the disks
-echo -e "Showing partitions on the disks"
+echo -e "Showing $hardDiskDevice partition"
 echo -e ""
 fdisk -l $hardDiskDevice
 echo -e ""
@@ -58,11 +58,10 @@ echo -e ""
 
 echo -e "\n"
 echo -e "Warning: This script delete all partitions and data from the selected device."
-
 echo -e ""
 read -n 1 -r -p "Is this ($hardDiskDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
 echo -e ""
-echo -e "NOTE: If you want to install Arch Linux in other device, please change the hard disk vars into the config gile (00-config.sh)."
+echo -e "NOTE: If you want to install Arch Linux in other device, please change the hard disk vars into the config file (00-config.sh)."
 echo -e "Run 'fdisk -l' to see all the hard disk devices."
 funcContinue $isThisTheHdd
 echo -e ""
@@ -118,6 +117,7 @@ echo -e "\n"
 echo -e "Showing formatted hard disk"
 echo -e ""
 fdisk -l $hardDiskDevice
+echo -e ""
 
 # Mount the file systems
 funcMountSystem

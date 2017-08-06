@@ -26,6 +26,7 @@ cp 00r-arch-change-root.sh /mnt
 
 # Go to the main Linux partition like a root user.
 echo -e "Going to the main Linux partition like a root user"
+echo -e ""
 arch-chroot /mnt /00r-arch-change-root.sh
 echo -e ""
 
@@ -38,6 +39,7 @@ rm -f /mnt/00r-arch-change-root.sh
 echo -e "Copying this project into user workspace directory"
 mkdir -p /mnt/home/$yourUserName/workspace
 cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/workspace/
+echo -e ""
 
 
 # Unmount partitions

@@ -43,10 +43,10 @@ echo -e ""
 echo -e "Setting the hostname"
 echo $yourComputerName > /etc/hostname
 funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    $yourComputerName" /etc/hosts
-echo -e ""
 
 # Install basic package
 echo -e "Installing basic package: wpa_supplicant dialog grub efibootmgr"
+echo -e ""
 pacman -S --needed --noconfirm wpa_supplicant dialog grub efibootmgr git
 echo -e ""
 
@@ -57,11 +57,13 @@ echo -e ""
 
 # Initramfs, create an initial ramdisk environment
 echo -e "Creating an initial ramdisk environment"
+echo -e ""
 mkinitcpio -p linux
 echo -e ""
 
 # Config Grub
 echo -e "Setting the grub config"
+echo -e ""
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e ""
 
