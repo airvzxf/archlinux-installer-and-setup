@@ -29,11 +29,6 @@ echo -e "INIT THE ARCH LINUX INSTALLATION"
 echo -e ""
 funcIsConnectedToInternet
 
-# Check if your wifi connection works properly
-echo -e "Checking if the computer has Internet connection"
-ping -c3 google.com
-echo -e ""
-
 # If the Boot USB with Arch Linux show some error about the sources when
 # you try to install something then execute this command.
 echo -e "Updating the database sources in Arch Linux"
