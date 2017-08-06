@@ -1,16 +1,7 @@
 # TODO
 
 ## Important
-- Githug
-  - [x] Check if is possible revert/delete some change in the server (2017-07-09)
-- Bootloader USB
-  - [x] Create bootloader scripts (2017-07-09)
-  - [x] Check if I can use one memory which install reflector (2017-07-09)
-- Installer direcotry
-  - [x] 01b pre installer efi: Add a promt read asking if you want to format all your disk? [n/Y]:
-  - [x] 03 arch change root: Auto uncomment the lines in # Set the locale
-  - [x] 03 arch change root: Auto uncomment the lines in # # Add sudo permissions for your user
-
+- Nothing
 
 ## Hardware
 - Keyboard special keys
