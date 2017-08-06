@@ -48,7 +48,7 @@ echo -e ""
 
 # Install basic package
 echo -e "Installing basic package: wpa_supplicant dialog grub efibootmgr"
-pacman -S --needed wpa_supplicant dialog grub efibootmgr
+pacman -S --needed --noconfirm wpa_supplicant dialog grub efibootmgr
 echo -e ""
 
 # Install EFI into Grub

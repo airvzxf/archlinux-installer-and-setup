@@ -18,7 +18,7 @@ funcIsConnectedToInternet
 
 # Install and run reflector to update the mirror data base
 echo -e "Installing reflector, which update the Arch Linux sources to use the faster and reliable"
-pacman -S --needed reflector
+pacman -S --needed --noconfirm reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 echo -e ""
 
