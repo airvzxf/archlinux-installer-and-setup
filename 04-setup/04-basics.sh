@@ -25,7 +25,7 @@ sudo pacman -S --needed xfce4-screenshooter # Screenshots
 sudo pacman -S --needed hdparm #List brand and properties for your hard disk
 sudo hdparm -I /dev/sda
 yaourt -S --needed spotify-stable # Spotify
-
+sudo pacman -S --needed redshift # Automatically adjusts the color temperature of your screen
 
 # Web browsers
 # I recommend install all of these because
