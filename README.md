@@ -75,6 +75,7 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 3. Arch change Root.<br>
    Emulate that you are login in the mount device and every command affect your session, setup the basic config to start to run Arch Linux in your Hard Drive Device.
+   - Reboot the computer
 
 
 
@@ -108,13 +109,14 @@ sudo wifi-menu
 
 5. 03b01-graphic-card-nvidia.sh
    - Install Nvidia graphic card.
+   - Reboot the computer.
 
-6. 03b02-graphic-card-nvidia-after-install.sh
+6. 03b02-graphic-card-nvidia-startx.sh
+   - Start the openbox window manager.
+
+7. 03b03-graphic-card-nvidia-gui.sh
    - Run Xconfig.
    - Run at first time acpid service.
-
-7. 03b03-graphic-card-nvidia-upgrade.sh
-   - If the system was upgraded you need upgrade the Nvidia drivers.
 
 8. 04-basics.sh
    - Install a lot of packages: editor, web browser, media player, etc.
