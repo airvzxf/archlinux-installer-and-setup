@@ -24,7 +24,7 @@ echo -e ""
 
 echo -e "Getting 5 Arch Linux's mirros sorted by rate (speed and the last update)"
 reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syyu
+pacman -Syyu --noconfirm
 echo -e ""
 
 #Set the keyboard layout

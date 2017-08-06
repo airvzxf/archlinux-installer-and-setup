@@ -54,7 +54,7 @@ mkdir -p ~/Downloads/temp
 # Include = /etc/pacman.d/mirrorlist
 # This command delete the comments:
 sudo sed -i '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
-sudo pacman -Syyu
+sudo pacman -Syyu --noconfirm
 
 # Uncomment #Color, if you want the pacman's output has colors
 #Color
@@ -70,7 +70,7 @@ sudo pacman -S --needed --noconfirm reflector
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-sudo pacman -Syyu
+sudo pacman -Syyu --noconfirm
 
 # Update automatically every day
 reflectorService=sudo /etc/systemd/system/reflector.service
