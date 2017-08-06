@@ -20,7 +20,6 @@ echo -e ""
 echo -e "Setting the time zone"
 ln -sf /usr/share/zoneinfo/$zoneInfo /etc/localtime
 hwclock --systohc
-timedatectl
 echo -e ""
 
 # Set the locale
@@ -48,7 +47,7 @@ echo -e ""
 
 # Install basic package
 echo -e "Installing basic package: wpa_supplicant dialog grub efibootmgr"
-pacman -S --needed --noconfirm wpa_supplicant dialog grub efibootmgr
+pacman -S --needed --noconfirm wpa_supplicant dialog grub efibootmgr git
 echo -e ""
 
 # Install EFI into Grub

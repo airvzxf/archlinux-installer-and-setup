@@ -41,7 +41,6 @@ funcIsConnectedToInternet() {
 }
 
 funcMountSystem() {
-	echo -e ""
 	echo -e "Mounting the file systems"
 	mkdir -p /mnt/home
 	mkdir -p /mnt/boot
@@ -56,7 +55,6 @@ funcMountSystem() {
 }
 
 funcUmountSystem() {
-	echo -e ""
 	echo -e "Umounting the file systems"
 	fuser -k /mnt
 	umount -R /mnt
@@ -66,7 +64,6 @@ funcUmountSystem() {
 
 funcAddTextAtTheEndOfFile() {
 	if ! grep -Fxq "$1" $2; then
-		echo -e ""
 		echo -e "Adding text at the end of the file $2"
 		echo -e "$1"
 		echo "$1" >> $2

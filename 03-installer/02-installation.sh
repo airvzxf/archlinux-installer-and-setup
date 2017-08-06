@@ -14,7 +14,7 @@ echo -e ""
 echo -e "INSTALL ARCH LINUX IN YOUR HARD DISK DEVICE"
 echo -e ""
 funcIsConnectedToInternet
-funcUmountAndMountSystem
+funcMountSystem
 
 # Download and install the base packages in your Linux partition
 echo -e "Downloading and install the base packages in your Linux partition"
@@ -23,7 +23,7 @@ echo -e ""
 
 # Create a file to mount partitions automatically in the boot
 echo -e "Creating the automatically mount partitions in fstab file"
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt > /mnt/etc/fstab
 echo -e ""
 
 # Check if all your partitions are in this file (boot, swap, linux)

@@ -18,7 +18,7 @@ echo -e ""
 echo -e "LOGIN AS ARCH ROOT IN YOUR PARTITION"
 echo -e ""
 funcIsConnectedToInternet
-funcUmountAndMountSystem
+funcMountSystem
 
 # Copy these files into the mnt directory
 cp 00-config.sh /mnt
@@ -30,21 +30,19 @@ arch-chroot /mnt /00r-arch-change-root.sh
 echo -e ""
 
 # Delete the copied files
-rm -f 00-config.sh
-rm -f 00r-arch-change-root.sh
+rm -f /mnt/00-config.sh
+rm -f /mnt/00r-arch-change-root.sh
 
 
 # Copy this project into user workspace directory
 echo -e "Copying this project into user workspace directory"
 mkdir -p /mnt/home/$yourUserName/workspace
-cp -R ../../archLinux-installer-and-setup /mnt/home/$yourUserName/workspace/
+cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/workspace/
 
 
 # Unmount partitions
-echo -e "Unmounting partitions"
-umount -R /mnt
-umount -R /mnt/boot/efi
-echo -e ""
+funcUmountSystem
+
 
 
 echo -e "\n"

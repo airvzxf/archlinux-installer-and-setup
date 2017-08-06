@@ -45,6 +45,7 @@ echo -e ""
 
 # Show partitions on the disks
 echo -e "Showing partitions on the disks"
+echo -e ""
 fdisk -l $hardDiskDevice
 echo -e ""
 
@@ -53,22 +54,28 @@ echo -e ""
 # otherwise skip to the gdisk command.
 # In other case this command is an "UI" to delete, create, edit partitions
 # in your hard disk or USB, it's very useful.
-#cfdisk $hardDisk
+#cfdisk $hardDiskDevice
 
 echo -e "\n"
 echo -e "Warning: This script delete all partitions and data from the selected device."
 
 echo -e ""
-read -n 1 -r -p "Is this (/dev/$hddDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
+read -n 1 -r -p "Is this ($hardDiskDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
+echo -e "NOTE: If you want to install Arch Linux in other device, please change the hard disk vars into the config gile (00-config.sh)."
+echo -e "Run 'fdisk -l' to see all the hard disk devices."
 funcContinue $isThisTheHdd
-
 echo -e ""
-echo -e "Erasing your Hard Disk"
+
+# Umount system partitions
 funcUmountSystem
+
+# Erease the hard disk
+echo -e "Erasing your Hard Disk"
 dd if=/dev/zero of=/dev/$hardDiskDevice bs=512 count=1 conv=notrunc &>/dev/null
 echo -e ""
 
 echo -e "Formatting your Hard Disk Device"
+echo -e ""
 (
 	echo g # Create a new empty GPT partition table
 	echo n # Add a new partition
@@ -96,22 +103,23 @@ echo -e "Formatting your Hard Disk Device"
 echo -e ""
 
 # Umount partitions
-echo -e ""
-echo -e "Umounting system partitions"
 funcUmountSystem
-echo -e ""
 
 # Format the partitions
 echo -e "Formatting the partitions"
+echo -e ""
 mkfs.fat -F32 $hardDiskDeviceBoot
 mkswap $hardDiskDeviceSwap
-swapon $hardDiskDeviceSwap
-mkfs.ext4 $hardDiskDeviceLinux
-fdisk -l $hardDiskDevice
+mkfs.ext4 -F $hardDiskDeviceLinux
+echo -e "\n"
+
+# Show formated hard disk
+echo -e "Showing formatted hard disk"
 echo -e ""
+fdisk -l $hardDiskDevice
 
 # Mount the file systems
-funcUmountAndMountSystem
+funcMountSystem
 
 echo -e "\n"
 echo -e "Ready! The next step is execute the file '02-installation.sh'\n"
