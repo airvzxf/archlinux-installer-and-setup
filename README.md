@@ -45,7 +45,7 @@ sudo wifi-menu
 ```
 
 4. Download the "init script" to start this journey.<br>
-   This script should be downloaded in `~/workspace/archLinux-installer-and-setup-master`
+   This script should be downloaded in `~/workspace/archLinux-installer-and-setup-master`.<br>
    You can run this short url vs the long github link: `curl -L https://goo.gl/g2KLba > init.sh`
 ```sh
 #curl -L https://goo.gl/g2KLba > init.sh
