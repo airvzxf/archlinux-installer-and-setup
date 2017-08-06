@@ -24,7 +24,7 @@ echo -e ""
 
 echo -e "Getting 5 Arch Linux's mirros sorted by rate (speed and the last update)"
 reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Syyu --noconfirm
+pacman -Syy --noconfirm
 echo -e ""
 
 #Set the keyboard layout
@@ -37,10 +37,11 @@ echo -e "Updating the clock system"
 timedatectl set-ntp true
 echo -e ""
 
+# NOTE: Create function to detect if this computer has EFI.
 # Check if your computer has the EFI bootloader
-echo -e "Checking if your computer has the EFI bootloader"
-ls /sys/firmware/efi/efivars
-echo -e ""
+#echo -e "Checking if your computer has the EFI bootloader"
+#ls /sys/firmware/efi/efivars
+#echo -e ""
 
 # Show partitions on the disks
 echo -e "Showing partitions on the disks"
@@ -54,36 +55,8 @@ echo -e ""
 # in your hard disk or USB, it's very useful.
 #cfdisk $hardDisk
 
-# Create and setup the partitions
-# Notes: This commands delete all data in your hard disk because it
-# create 3 partitions, first the bootloader (EFI System), second the
-# Linux Swap memory, third your Arch Linux (Linux filesystem).
-# When runs gdisk you need to write letters or numbers in the prompt
-# after this "Command (? for help):"
-#gdisk $hardDiskDevice
-# - o (create a new empty GUID partition table (GPT))
-# - n (add a new partition)
-#   - 1 (number of partition)
-#   - [Enter] (start partition at, default is fine)
-#   - +512M (size of this partition)
-#   - EF00 (EFI System)
-# - n
-#   - 2
-#   - [Enter]
-#   - +3G
-#   - 8200 (Linux Swap)
-# - n
-#   - 3
-#   - [Enter]
-#   - [Enter] (size of this partition, all the available empty space)
-#   - 8300 (Linux filesystem)
-# - w (write table to disk and exit)
-#   - y (confirm, yes)
-
 echo -e "\n"
-echo -e "Warning: This script delete all partitions and data from the selected device.\n"
-
-read -r -p "Write in lowercase your Hard Disk device for example sda: " hddDevice
+echo -e "Warning: This script delete all partitions and data from the selected device."
 
 echo -e ""
 read -n 1 -r -p "Is this (/dev/$hddDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
@@ -91,8 +64,8 @@ funcContinue $isThisTheHdd
 
 echo -e ""
 echo -e "Erasing your Hard Disk"
-umount -R /dev/$hddDevice &>/dev/null
-dd if=/dev/zero of=/dev/$hddDevice bs=512 count=1 conv=notrunc &>/dev/null
+funcUmountSystem
+dd if=/dev/zero of=/dev/$hardDiskDevice bs=512 count=1 conv=notrunc &>/dev/null
 echo -e ""
 
 echo -e "Formatting your Hard Disk Device"
@@ -119,17 +92,23 @@ echo -e "Formatting your Hard Disk Device"
 	echo 3 # select partition number
 	echo 20 # Linux filesystem
 	echo w # Write changes
-) | fdisk /dev/$hddDevice &>/dev/null
+) | fdisk /dev/$hardDiskDevice &>/dev/null
+echo -e ""
+
+# Umount partitions
+echo -e ""
+echo -e "Umounting system partitions"
+funcUmountSystem
 echo -e ""
 
 # Format the partitions
-#~ echo -e "Formatting the partitions"
-#~ mkfs.fat -F32 $hardDiskDeviceBoot
-#~ mkswap $hardDiskDeviceSwap
-#~ swapon $hardDiskDeviceSwap
-#~ mkfs.ext4 $hardDiskDeviceLinux
-#~ fdisk -l $hardDiskDevice
-#~ echo -e ""
+echo -e "Formatting the partitions"
+mkfs.fat -F32 $hardDiskDeviceBoot
+mkswap $hardDiskDeviceSwap
+swapon $hardDiskDeviceSwap
+mkfs.ext4 $hardDiskDeviceLinux
+fdisk -l $hardDiskDevice
+echo -e ""
 
 # Mount the file systems
 funcUmountAndMountSystem

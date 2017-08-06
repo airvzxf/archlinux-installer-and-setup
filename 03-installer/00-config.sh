@@ -46,12 +46,22 @@ funcUmountAndMountSystem() {
 	mkdir -p /mnt/home
 	mkdir -p /mnt/boot
 	mkdir -p /mnt/boot/efi
-	fuser -k /mnt/boot/efi
 	fuser -k /mnt
-	umount -R /mnt/boot/efi
+	fuser -k $hardDiskDeviceSwap
 	umount -R /mnt
+	umount -R $hardDiskDeviceSwap
 	mount $hardDiskDeviceLinux /mnt
-	mount $hardDiskDeviceBoot /mnt/boot/efi
+	echo -e ""
+}
+
+funcUmountSystem() {
+	echo -e ""
+	echo -e "Umounting the file systems"
+	fuser -k /mnt
+	fuser -k $hardDiskDeviceSwap
+	umount -R /mnt
+	umount -R $hardDiskDeviceSwap
+	mount $hardDiskDeviceLinux /mnt
 	echo -e ""
 }
 
