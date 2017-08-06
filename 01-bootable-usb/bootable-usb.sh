@@ -51,6 +51,7 @@ read -n 1 -r -p "Is this (/dev/$usbDevice) the USB device? [y/N]: " isThisTheUsb
 funcContinue $isThisTheUsb
 echo -e ""
 
+echo -e ""
 echo -e "Umounting the $usbDevice device"
 sudo umount -R /dev/$usbDevice &>/dev/null
 echo -e ""
