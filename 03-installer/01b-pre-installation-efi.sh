@@ -123,13 +123,13 @@ echo -e "Formatting your Hard Disk Device"
 echo -e ""
 
 # Format the partitions
-echo -e "Formatting the partitions"
-mkfs.fat -F32 $hardDiskDeviceBoot
-mkswap $hardDiskDeviceSwap
-swapon $hardDiskDeviceSwap
-mkfs.ext4 $hardDiskDeviceLinux
-fdisk -l $hardDiskDevice
-echo -e ""
+#~ echo -e "Formatting the partitions"
+#~ mkfs.fat -F32 $hardDiskDeviceBoot
+#~ mkswap $hardDiskDeviceSwap
+#~ swapon $hardDiskDeviceSwap
+#~ mkfs.ext4 $hardDiskDeviceLinux
+#~ fdisk -l $hardDiskDevice
+#~ echo -e ""
 
 # Mount the file systems
 funcUmountAndMountSystem
