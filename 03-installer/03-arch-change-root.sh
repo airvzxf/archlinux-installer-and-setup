@@ -34,6 +34,12 @@ rm -f 00-config.sh
 rm -f 00r-arch-change-root.sh
 
 
+# Copy this project into user workspace directory
+echo -e "Copying this project into user workspace directory"
+mkdir -p /mnt/home/$yourUserName/workspace
+cp -R ../../archLinux-installer-and-setup /mnt/home/$yourUserName/workspace/
+
+
 # Unmount partitions
 echo -e "Unmounting partitions"
 umount -R /mnt

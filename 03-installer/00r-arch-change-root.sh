@@ -53,7 +53,7 @@ echo -e ""
 
 # Install EFI into Grub
 echo -e "Installing EFI into Grub"
-grub-inatall --tartet=x86_64-efi
+grub-install --target=x86_64-efi
 echo -e ""
 
 # Initramfs, create an initial ramdisk environment
@@ -63,7 +63,7 @@ echo -e ""
 
 # Config Grub
 echo -e "Setting the grub config"
-grub-mkconig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 echo -e ""
 
 # Change root password

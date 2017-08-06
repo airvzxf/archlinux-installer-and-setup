@@ -73,7 +73,8 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syyu --noconfirm
 
 # Update automatically every day
-reflectorService=sudo /etc/systemd/system/reflector.service
+reflectorService=/etc/systemd/system/reflector.service
+sudo rm -f $reflectorService
 sudo touch $reflectorService
 sudo chmod 755 $reflectorService
 echo -e "[Unit]" | sudo tee -a $reflectorService
@@ -106,6 +107,7 @@ systemctl status reflector.timer
 # ----------------------------------------------------------------------
 
 # Install yaourt: a pacman frontend which install the AUR packages.
+sudo pacman -S --needed --noconfirm git
 funcInstallAur package-query
 funcInstallAur yaourt
 
