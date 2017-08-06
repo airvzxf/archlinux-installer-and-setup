@@ -75,7 +75,6 @@ dd if=/dev/zero of=/dev/$hardDiskDevice bs=512 count=1 conv=notrunc &>/dev/null
 echo -e ""
 
 echo -e "Formatting your Hard Disk Device"
-echo -e ""
 (
 	echo g # Create a new empty GPT partition table
 	echo n # Add a new partition
