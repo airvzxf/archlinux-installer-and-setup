@@ -17,9 +17,10 @@ loadkeys $keyboardLayout
 echo -e ""
 
 # Set the time zone
-echo -e "Sett the time zone"
+echo -e "Setting the time zone"
 ln -sf /usr/share/zoneinfo/$zoneInfo /etc/localtime
 hwclock --systohc
+timedatectl
 echo -e ""
 
 # Set the locale
@@ -27,7 +28,7 @@ echo -e ""
 # nano /etc/locale.gen
 # This command auto delete the comments in /etc/locale.gen
 echo -e "Setting the language and charset into locale"
-sed -i '/[^ ]en_US.UTF-8 UTF-8/ s/^##*//' /etc/locale.gen
+sed -i '/[^ ]$languageCode UTF-8/ s/^##*//' /etc/locale.gen
 locale-gen
 echo -e ""
 
@@ -42,7 +43,7 @@ echo -e ""
 # Set the hostname
 echo -e "Setting the hostname"
 echo $yourComputerName > /etc/hostname
-echo "127.0.1.1    localhost.localdomain    $yourComputerName" >> /etc/hosts
+funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    $yourComputerName" /etc/hosts
 echo -e ""
 
 # Install basic package

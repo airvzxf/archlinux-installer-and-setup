@@ -54,3 +54,13 @@ funcUmountAndMountSystem() {
 	mount $hardDiskDeviceBoot /mnt/boot/efi
 	echo -e ""
 }
+
+funcAddTextAtTheEndOfFile() {
+	if ! grep -Fxq "$1" $2; then
+		echo -e ""
+		echo -e "Adding text at the end of the file $2"
+		echo -e "$1"
+		echo "$1" >> $2
+		echo -e ""
+	fi
+}
