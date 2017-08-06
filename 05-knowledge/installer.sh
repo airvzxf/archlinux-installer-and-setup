@@ -50,8 +50,8 @@ sudo acpid restart
 # Install python pip
 sudo pacman -S python-pip
 
-# Markdown viewwr
-# grip -b ./
-# grip -b fine_name
+# Markdown viewer
 sudo pip install grip
+#grip -b ./
+#grip -b fine_name
 
