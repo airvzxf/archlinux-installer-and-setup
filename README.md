@@ -28,6 +28,8 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 ```
 
 
+
+
 ### 2. Init
 Reboot your computer with your bootloader USB plugged in your computer and init the system with the USB.
 
@@ -78,3 +80,65 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 
 ### 4. Setup
+Install all the basic packages including the graphic drivers and window manager also set up the properties in some files to improve your experience.
+```sh
+cd ~/workspace/archLinux-installer-and-setup-master/04-setup
+
+
+```
+
+1. Connect to internet.
+   - If your computer is not connected with ethernet wire you need to setup the wifi with this command.
+```sh
+# Select your network and write your password.
+sudo wifi-menu
+```
+
+2. 01-setup.sh
+   - Create workspace folder and others into home directory.
+   - Install and set up reflector.
+   - Install yaourt.
+   - Install alsa audio.
+
+3. 02-xorg.sh
+   - Install xorg.
+
+4. 03a-graphic-card-generic.sh
+   - Keyboard configuration.
+
+5. 03b01-graphic-card-nvidia.sh
+   - Install Nvidia graphic card.
+
+6. 03b02-graphic-card-nvidia-after-install.sh
+   - Run Xconfig.
+   - Run at first time acpid service.
+
+7. 03b03-graphic-card-nvidia-upgrade.sh
+   - If the system was upgraded you need upgrade the Nvidia drivers.
+
+8. 04-basics.sh
+   - Install a lot of packages: editor, web browser, media player, etc.
+
+9. 05a-boinc.sh
+   - Install boinc.
+   - Needs logout and login again from your windows manager.
+
+10. 05b-boinc-after-install.sh
+    - Set up boinc.
+
+11. 06-video-games.sh
+    - Install general package for almost video games.
+
+12. 07-steam.sh
+    - Install and set up Steam.
+
+
+
+
+### 5. Knowledge
+This interesting folder contain resources, configurations, information, link references, errors and solutions, etc.
+```sh
+cd ~/workspace/archLinux-installer-and-setup-master/05-knowledge
+
+
+```
