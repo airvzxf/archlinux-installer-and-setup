@@ -43,6 +43,10 @@ chown -R /mnt/home/$yourUserName/workspace $yourUserName
 chgrp -R /mnt/home/$yourUserName/workspace users
 echo -e ""
 
+# Copy mirror list updated to user
+echo -e "Copying mirror list updated to user"
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+echo -e ""
 
 # Unmount partitions
 funcUmountSystem
