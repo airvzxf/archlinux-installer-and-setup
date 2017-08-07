@@ -12,24 +12,69 @@ source 00-config.sh
 # When upgrade pacman some time we lost the nvidia drivers we need to
 # re-install that.
 
+echo -e ""
+
 # Check what graphic cards have in your computer
+echo -e "Checking the installed graphic card"
+echo -e ""
 lspci -k | grep -A 2 -E "(VGA|3D)"
+echo -e "\n"
 
 # Install basic packages
-sudo pacman -S --needed linux-headers
-sudo pacman -S --needed xorg-xrandr
-sudo pacman -S --needed xorg-xdpyinfo
-sudo pacman -S --needed xorg-fonts-type1
-sudo pacman -S --needed bbswitch
+echo -e "Installing Linux headers"
+echo -e ""
+sudo pacman -S --needed --noconfirm linux-headers
+echo -e "\n"
+
+echo -e "Installing Xorg xrandr"
+echo -e ""
+sudo pacman -S --needed --noconfirm xorg-xrandr
+echo -e "\n"
+
+echo -e "Installing Xorg xdisplay info"
+echo -e ""
+sudo pacman -S --needed --noconfirm xorg-xdpyinfo
+echo -e "\n"
+
+echo -e "Installing Xorg fonts type 1"
+echo -e ""
+sudo pacman -S --needed --noconfirm xorg-fonts-type1
+echo -e "\n"
+
+echo -e "Installing bbSwitch"
+echo -e ""
+sudo pacman -S --needed --noconfirm bbswitch
+echo -e "\n"
+
 
 # Install nvidia packages
+echo -e "Installing Nvidia utils beta"
+echo -e ""
 yaourt -S --needed --noconfirm nvidia-utils-beta
+echo -e "\n"
+
+echo -e "Installing Nvidia beta"
+echo -e ""
 yaourt -S --needed --noconfirm nvidia-beta
+echo -e "\n"
+
+echo -e "Installing Nvidia xrun"
+echo -e ""
 yaourt -S --needed --noconfirm nvidia-xrun
+echo -e "\n"
+
 
 # Install the windows manager
-sudo pacman --needed -S openbox
-sudo pacman --needed -S acpid
+echo -e "Installing Openbox"
+echo -e ""
+sudo pacman --needed --noconfirm -S openbox
+echo -e "\n"
+
+echo -e "Installing AcpID"
+echo -e ""
+sudo pacman --needed --noconfirm -S acpid
+echo -e "\n"
+
 
 # If you try to run the command xinit your screen freezen to solve this
 # problem you need to install nvidia-xrun which avoid this problem and
@@ -39,6 +84,7 @@ sudo pacman --needed -S acpid
 # 2. setxkbmap setup your keyword map and layout because xrun avoid all
 # the xorg configs, every Xorg setup you need to put in this file.
 # 3. openbox open the window manager (desktop)
+echo -e "Adding to .nvidia-xinitrc the xrun config"
 echo -e "xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112" > ~/.nvidia-xinitrc
 echo -e "setxkbmap -model pc105 -layout latam -variant ,deadtilde" >> ~/.nvidia-xinitrc
 echo -e "openbox-session" >> ~/.nvidia-xinitrc
@@ -46,8 +92,9 @@ echo -e ""
 
 # Install konsole before run openbox window manager
 echo -e "Installing konsole before run openbox window manager"
-sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
 echo -e ""
+sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
+echo -e "\n"
 
 
 

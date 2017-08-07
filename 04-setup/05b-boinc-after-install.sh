@@ -9,21 +9,33 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Boinc after install
 # ----------------------------------------------------------------------
+echo -e ""
+
 # After logout and login again
+echo -e "Checks if 'boinc' is in your groups"
 groups # Checks if "boinc" is in your groups
+echo -e ""
 
 # Boinc work with services to start to use boinc you need to start its
 # services and then open the manager to add, delete project, change
 # configs, etc.
 # Start the boinc service
+echo -e "Start boinc service"
+echo -e ""
 systemctl start boinc.service
+echo -e "\n"
+
 # Other options
-#systemctl status boinc.service
+echo -e "Start boinc service"
+echo -e ""
+systemctl status boinc.service
+echo -e "\n"
 #systemctl stop boinc.service
 #systemctl restart boinc.service
 
 # If you run the boinc manager you always needs to execute the command
 # in your home directory ~/
+echo -e "Setting up the boinc config to run boinc in the home directory ~/"
 cd ~/
 ln -s /var/lib/boinc/gui_rpc_auth.cfg gui_rpc_auth.cfg
 sudo chmod 640 gui_rpc_auth.cfg
@@ -40,3 +52,5 @@ cd ~/ && boincmgr
 # https://www.mankier.com/1/boinccmd
 # https://boinc.berkeley.edu/wiki/Boinccmd_tool
 
+echo -e "Finished successfully!"
+echo -e ""

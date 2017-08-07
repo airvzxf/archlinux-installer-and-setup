@@ -9,6 +9,13 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Video Games
 # ----------------------------------------------------------------------
+echo -e ""
 
 # Install a lot of libraries for general games from this AUR package
+echo -e "Installing wine gaming libraries"
+echo -e ""
 yaourt -S --needed wine-gaming-nine
+echo -e "\n"
+
+echo -e "Finished successfully!"
+echo -e ""

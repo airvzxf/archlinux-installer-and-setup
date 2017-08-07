@@ -7,11 +7,17 @@ source 00-config.sh
 # https://github.com/airvzxf/archLinux-installer-and-setup
 
 # ----------------------------------------------------------------------
-# After install Nvidia
+# Sart the openbox window manager
 # ----------------------------------------------------------------------
-# Then login to your session and execute this commands in the windows
-# terminal (konsole).
 
-# When you start the openbox window manager
-sudo nvidia-xconfig
-systemctl start acpid.service
+# Close all the startX with 'killall -15 Xorg', then you shouldn't use
+# startx any more you need nvidia-xrun
+funcIsConnectedToInternet
+
+echo -e ""
+echo -e "Kill Xorg if it's opened"
+sudo killall -15 Xorg
+echo -e ""
+
+echo -e "Run Openbox with Nvidia drivers"
+nvidia-xrun

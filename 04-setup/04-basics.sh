@@ -10,31 +10,91 @@ source 00-config.sh
 # Basics
 # ----------------------------------------------------------------------
 # This is the basics packages I suggest to install
+echo -e ""
 
 # Update the repositories
+echo -e "Updating repositories"
+echo -e ""
 sudo pacman -Syu
+echo -e "\n"
 
 # Basic packages (apps)
-sudo pacman -S --needed konsole # Terminal / Console window
-sudo pacman -S --needed geany geany-plugins # Text editor
-sudo pacman -S --needed epdfview # PDF Viewer
-sudo pacman -S --needed reflector # Sorted mirrors in Arch Linux
-sudo pacman -S --needed parole # Media player
-sudo pacman -S --needed gst-libav # GStreamer ffmpeg Plugin
-sudo pacman -S --needed xfce4-screenshooter # Screenshots
-sudo pacman -S --needed hdparm #List brand and properties for your hard disk
+echo -e "Installing konsole"
+echo -e ""
+sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
+echo -e "\n"
+
+echo -e "Installing geany"
+echo -e ""
+sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
+echo -e "\n"
+
+echo -e "Installing ePDF viewr"
+echo -e ""
+sudo pacman -S --needed --noconfirm epdfview # PDF Viewer
+echo -e "\n"
+
+echo -e "Installing reflector"
+echo -e ""
+sudo pacman -S --needed --noconfirm reflector # Sorted mirrors in Arch Linux
+echo -e "\n"
+
+echo -e "Installing Parole"
+echo -e ""
+sudo pacman -S --needed --noconfirm parole # Media player
+echo -e "\n"
+
+echo -e "Installing GStreamer ffmpeg"
+echo -e ""
+sudo pacman -S --needed --noconfirm gst-libav # GStreamer ffmpeg Plugin
+echo -e "\n"
+
+echo -e "Installing screanshooter"
+echo -e ""
+sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
+echo -e "\n"
+
+echo -e "Installing hdd parameters"
+echo -e ""
+sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
 sudo hdparm -I /dev/sda
-yaourt -S --needed spotify-stable # Spotify
-sudo pacman -S --needed redshift # Automatically adjusts the color temperature of your screen
+echo -e "\n"
+
+echo -e "Installing spotify"
+echo -e ""
+yaourt -S --needed --noconfirm spotify-stable # Spotify
+echo -e "\n"
+
+echo -e "Installing redshift"
+echo -e ""
+sudo pacman -S --needed --noconfirm redshift # Automatically adjusts the color temperature of your screen
+echo -e "\n"
+
 
 # Web browsers
 # I recommend install all of these because
 # palemoon is based on Firefox focusing on efficiency, low memory and cpu
 # Firefox is so cool with the graphics
 # Chromium the most standar in Linux
+echo -e "Installing firefox"
+echo -e ""
+sudo pacman -S --needed --noconfirm ttf-freefonts
+echo -e "\n"
+
+echo -e "Installing firefox"
+echo -e ""
 sudo pacman -S --needed firefox
-sudo pacman -S --needed chromium
-yaourt -S --needed palemoon-bin
+echo -e "\n"
+
+echo -e "Installing chromium"
+echo -e ""
+sudo pacman -S --needed --noconfirm chromium
+echo -e "\n"
+
+echo -e "Installing palemoon"
+echo -e ""
+yaourt -S --needed --noconfirm palemoon
+echo -e "\n"
 
 # Firefox Adons
 # Lastpass
@@ -42,7 +102,17 @@ yaourt -S --needed palemoon-bin
 # Screenshoter (Fixed)
 
 # Software engineers
-sudo pacman -S --needed git
+echo -e "Installing git"
+echo -e ""
+sudo pacman -S --needed --noconfirm git
+echo -e "\n"
 
 # More packages
-sudo pacman -S --needed transmission-gtk # Torrents
+echo -e "Installing transmission"
+echo -e ""
+sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
+echo -e "\n"
+
+
+echo -e "Finished successfully!"
+echo -e ""

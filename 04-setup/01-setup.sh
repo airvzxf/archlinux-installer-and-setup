@@ -114,12 +114,6 @@ echo -e "RandomizedDelaySec=12h" | sudo tee -a $reflectorTimer
 echo -e "Persistent=true\n" | sudo tee -a $reflectorTimer
 echo -e "[Install]" | sudo tee -a $reflectorTimer
 echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
-
-systemctl start reflector.service
-systemctl start reflector.timer
-
-systemctl status reflector.service
-systemctl status reflector.timer
 echo -e "\n"
 
 
