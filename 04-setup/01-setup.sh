@@ -151,5 +151,12 @@ echo -e "\n"
 #cat /proc/asound/card0/pcm0p/info
 #cat /proc/asound/card0/pcm3p/info
 
+
+# Pulse audio
+echo -e "Installing Pulse audio"
+sudo pacman -S --needed --noconfirm pulseaudio
+echo -e "\n"
+
+
 echo -e "Finished successfully!"
 echo -e ""
