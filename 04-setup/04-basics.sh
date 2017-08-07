@@ -93,7 +93,7 @@ echo -e "\n"
 
 #~ echo -e "Installing palemoon"
 #~ echo -e ""
-#~ yaourt -S --needed --noconfirm palemoon
+#~ yaourt -S --needed --noconfirm palemoon-bin
 #~ echo -e "\n"
 
 # Firefox Adons
