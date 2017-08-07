@@ -39,6 +39,8 @@ rm -f /mnt/00r-arch-change-root.sh
 echo -e "Copying this project into user workspace directory"
 mkdir -p /mnt/home/$yourUserName/workspace
 cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/workspace/
+chown -R /mnt/home/$yourUserName/workspace $yourUserName
+chgrp -R /mnt/home/$yourUserName/workspace users
 echo -e ""
 
 
