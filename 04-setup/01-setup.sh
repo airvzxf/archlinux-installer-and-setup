@@ -37,6 +37,7 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 
 # Create a temp directory for the next scripts
+echo -e ""
 mkdir -p ~/workspace
 mkdir -p ~/Downloads/temp
 
@@ -53,12 +54,19 @@ mkdir -p ~/Downloads/temp
 # [multilib]
 # Include = /etc/pacman.d/mirrorlist
 # This command delete the comments:
+echo -e "Activing MultiLib"
 sudo sed -i '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
+echo -e ""
+echo -e "Upgrading system"
+echo -e ""
 sudo pacman -Syyu --noconfirm
+echo -e "\n"
 
 # Uncomment #Color, if you want the pacman's output has colors
 #Color
+echo -e "Activing color option in pacman"
 sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
+echo -e ""
 
 
 
@@ -66,13 +74,25 @@ sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
 # ----------------------------------------------------------------------
 # Retrieves the latest mirrorlist from the MirrorStatus page, filters
 # the most up-to-date mirrors, sorts them by speed and overwrites.
+echo -e "Installing reflector"
+echo -e ""
 sudo pacman -S --needed --noconfirm reflector
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
+echo -e "\n"
 
+echo -e "Upgrading mirror list"
+echo -e ""
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+echo -e "\n"
+
+echo -e "Upgrading system"
+echo -e ""
 sudo pacman -Syyu --noconfirm
+echo -e "\n"
 
 # Update automatically every day
+echo -e "Setting up automate daily reflector update"
+echo -e ""
 reflectorService=/etc/systemd/system/reflector.service
 sudo rm -f $reflectorService
 sudo touch $reflectorService
@@ -100,6 +120,7 @@ systemctl start reflector.timer
 
 systemctl status reflector.service
 systemctl status reflector.timer
+echo -e "\n"
 
 
 
@@ -107,15 +128,25 @@ systemctl status reflector.timer
 # ----------------------------------------------------------------------
 
 # Install yaourt: a pacman frontend which install the AUR packages.
+echo -e "Installing git"
 sudo pacman -S --needed --noconfirm git
+echo -e "\n"
+
+echo -e "Installing package-query"
 funcInstallAur package-query
+echo -e "\n"
+
+echo -e "Installing yaourt"
 funcInstallAur yaourt
+echo -e "\n"
 
 
 # Audio Alsa
 #-----------------------------------------------------------------------
 # https://wiki.gentoo.org/wiki/ALSA
+echo -e "Installing Alsa utils"
 sudo pacman -S --needed --noconfirm alsa-utils
+echo -e "\n"
 
 # Useful commands
 #speaker-test -c2 -twav -l1
@@ -125,3 +156,6 @@ sudo pacman -S --needed --noconfirm alsa-utils
 #cat /sys/class/sound/card*/id
 #cat /proc/asound/card0/pcm0p/info
 #cat /proc/asound/card0/pcm3p/info
+
+echo -e "Finished successfully!"
+echo -e ""
