@@ -12,5 +12,16 @@ source 00-config.sh
 # This is the X Window System and it's the basic package to handle all
 # the graphics system for example the desktop, windows, effects, colors,
 # video games, etc.
-sudo pacman -S --needed xorg-xinit
-sudo pacman -S --needed xorg-fonts-type1
+
+echo -e ""
+
+echo -e "Installing Xorg xinit"
+sudo pacman -S --needed --noconfirm xorg-xinit
+echo -e "\n"
+
+echo -e "Installing Xorg fonts"
+sudo pacman -S --needed --noconfirm xorg-fonts-type1
+echo -e "\n"
+
+echo -e "Finished successfully!"
+echo -e ""
