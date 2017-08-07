@@ -91,11 +91,6 @@ echo -e ""
 sudo pacman -S --needed --noconfirm chromium
 echo -e "\n"
 
-#~ echo -e "Installing palemoon"
-#~ echo -e ""
-#~ yaourt -S --needed --noconfirm palemoon-bin
-#~ echo -e "\n"
-
 # Firefox Adons
 # Lastpass
 # Full Web Page Screenshots (♥♥♥♥♥)
