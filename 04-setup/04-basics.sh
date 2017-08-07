@@ -76,9 +76,9 @@ echo -e "\n"
 # palemoon is based on Firefox focusing on efficiency, low memory and cpu
 # Firefox is so cool with the graphics
 # Chromium the most standar in Linux
-echo -e "Installing freefonts"
+echo -e "Installing TTF free font"
 echo -e ""
-yaourt -S --needed --noconfirm freefonts
+sudo pacman -S --needed --noconfirm ttf-freefont
 echo -e "\n"
 
 echo -e "Installing firefox"
