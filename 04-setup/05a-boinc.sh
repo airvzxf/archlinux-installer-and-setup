@@ -16,13 +16,13 @@ echo -e ""
 
 echo -e "Installing boinc"
 echo -e ""
-sudo pacman -S --needed boinc
+sudo pacman -S --needed --noconfirm boinc
 echo -e "\n"
 
 # Install libraries
 echo -e "Installing libraries"
 echo -e ""
-sudo pacman -S --needed lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
+sudo pacman -S --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu
 echo -e "\n"
 
 # Add your user to the boinc group
