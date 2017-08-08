@@ -37,11 +37,9 @@ echo -e "Updating the clock system"
 timedatectl set-ntp true
 echo -e ""
 
-# NOTE: Create function to detect if this computer has EFI.
 # Check if your computer has the EFI bootloader
-#echo -e "Checking if your computer has the EFI bootloader"
-#ls /sys/firmware/efi/efivars
-#echo -e ""
+echo -e "Checking if your computer has the EFI bootloader"
+funcIsEfiBios
 
 # Show partitions on the disks
 echo -e "Showing $hardDiskDevice partition"

@@ -70,3 +70,13 @@ funcAddTextAtTheEndOfFile() {
 		echo -e ""
 	fi
 }
+
+funcIsEfiBios() {
+	if ! [[ $(ls -A /sys/firmware/efi/efivars) ]]; then
+		echo -e ""
+		echo -e "This script only run the Arch Linux in EFI BIOS, sorry."
+		echo -e ""
+		echo -e "The script has been FINISHED."
+		exit -1
+	fi
+}
