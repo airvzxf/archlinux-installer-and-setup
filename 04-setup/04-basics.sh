@@ -57,7 +57,6 @@ echo -e "\n"
 echo -e "Installing hdd parameters"
 echo -e ""
 sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
-sudo hdparm -I /dev/sda
 echo -e "\n"
 
 echo -e "Installing spotify"

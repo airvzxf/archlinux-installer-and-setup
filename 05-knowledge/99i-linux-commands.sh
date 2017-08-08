@@ -70,3 +70,6 @@ sudo ip link set [interface] down
 # Change user and load entire environment in shell script
 sudo su [user] -c [command]
 sudo su - [user] -c [command]
+
+# Check Hard Disk information
+sudo hdparm -I /dev/sda
