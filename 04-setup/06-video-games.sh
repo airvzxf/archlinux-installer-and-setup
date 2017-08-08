@@ -14,7 +14,9 @@ echo -e ""
 # Install a lot of libraries for general games from this AUR package
 echo -e "Installing wine gaming libraries"
 echo -e ""
-yaourt -S --needed --depends wine-gaming-nine
+sudo pacman -S gcc-multilib
+sudo pacman -S gcc-libs-multilib
+yaourt -S --needed wine-gaming-nine
 echo -e "\n"
 
 
