@@ -37,7 +37,7 @@ rm -f /mnt/00r-arch-change-root.sh
 # Copy this project into user workspace directory
 echo -e "Copying this project into user home directory"
 cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/
-chgrp -R users /mnt/home/$yourUserName/archLinux-installer-and-setup
+chgrp -R users /mnt/home/$yourUserName/archLinux-installer-and-setup-master
 echo -e ""
 
 # Unmount partitions
