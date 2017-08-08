@@ -83,7 +83,7 @@ echo -e "\n"
 
 echo -e "Installing firefox"
 echo -e ""
-sudo pacman -S --needed firefox
+sudo pacman -S --needed --noconfirm firefox
 echo -e "\n"
 
 echo -e "Installing chromium"
