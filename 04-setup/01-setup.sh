@@ -40,6 +40,7 @@ source 00-config.sh
 echo -e ""
 mkdir -p ~/workspace
 mkdir -p ~/Downloads/temp
+sudo chown -R $(whoami) ../../archLinux-installer-and-setup
 
 
 # Pacman config

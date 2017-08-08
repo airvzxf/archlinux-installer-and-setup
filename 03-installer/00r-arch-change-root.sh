@@ -91,11 +91,6 @@ echo -e "Adding sudo permissions for your user"
 sed -i '/%wheel ALL=(ALL) ALL/ s/^##* *//' /etc/sudoers
 echo -e ""
 
-# Change owner in workspace directory
-echo -e "Changing owner in workspace directory"
-chown -R $yourUserName /home/$yourUserName/workspace
-echo -e ""
-
 # Exit from Arch change root
 echo -e "Exiting from Arch change root"
 exit
