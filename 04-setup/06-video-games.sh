@@ -19,5 +19,6 @@ echo -e ""
 yaourt -S --needed --depends wine-gaming-nine
 echo -e "\n"
 
+
 echo -e "Finished successfully!"
 echo -e ""
