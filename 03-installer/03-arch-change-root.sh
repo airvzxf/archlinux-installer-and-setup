@@ -24,6 +24,13 @@ funcMountSystem
 cp 00-config.sh /mnt
 cp 00r-arch-change-root.sh /mnt
 
+# Copy this project into user workspace directory
+echo -e "Copying this project into user workspace directory"
+mkdir -p /mnt/home/$yourUserName/workspace
+cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/workspace/
+chgrp -R users /mnt/home/$yourUserName/workspace
+echo -e ""
+
 # Go to the main Linux partition like a root user.
 echo -e "Going to the main Linux partition like a root user"
 echo -e ""
@@ -34,14 +41,6 @@ echo -e ""
 rm -f /mnt/00-config.sh
 rm -f /mnt/00r-arch-change-root.sh
 
-
-# Copy this project into user workspace directory
-echo -e "Copying this project into user workspace directory"
-mkdir -p /mnt/home/$yourUserName/workspace
-cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/workspace/
-chown -R "$yourUserName" /mnt/home/$yourUserName/workspace
-chgrp -R users /mnt/home/$yourUserName/workspace
-echo -e ""
 
 # Unmount partitions
 funcUmountSystem
