@@ -83,3 +83,9 @@ systemctl list-unit-files --state=enabled
 systemctl list-unit-files --state=disabled
 # List running services
 systemctl | grep running
+
+# Debug the bash file
+# In the bash scripts xxx.sh you are able to add 'set -x' to debug the script
+#!/bin/bash
+set -x
+
