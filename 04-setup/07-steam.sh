@@ -17,7 +17,7 @@ source 00-config.sh
 # Install packages
 echo -e "Installing Steam native runtime"
 echo -e ""
-yaourt -S --needed --noconfirm steam-native-runtime
+yaourt -S --needed steam-native-runtime
 echo -e "\n"
 
 echo -e "Installing lib openssl"
