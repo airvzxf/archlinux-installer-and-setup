@@ -14,12 +14,11 @@ echo -e ""
 # Install a lot of libraries for general games from this AUR package
 echo -e "Installing wine gaming libraries"
 echo -e ""
-sudo pacman -S --needed --noconfirm gcc-multilib
-sudo pacman -S --needed --noconfirm gcc-libs-multilib
+sudo bash -c 'yes | pacman -S --needed gcc-multilib'
+#~ sudo pacman -S --needed --noconfirm gcc-libs-multilib
 yaourt -S --needed wine-gaming-nine
 echo -e "\n"
 
 
 echo -e "Finished successfully!"
 echo -e ""
-
