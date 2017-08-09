@@ -17,28 +17,30 @@ source 00-config.sh
 # Install packages
 echo -e "Installing Steam native runtime"
 echo -e ""
-yaourt -S --needed steam-native-runtime
+yaourt -S --needed --noconfirm steam-native-runtime
 echo -e "\n"
 
 echo -e "Installing lib openssl"
 echo -e ""
-yaourt -S --needed lib32-libopenssl-1.0-compat
+#yaourt -S --needed lib32-libopenssl-1.0-compat
 echo -e "\n"
 
 echo -e "Installing nvidia"
 echo -e ""
-sudo pacman -S --needed nvidia
-echo -e "\n"
-
-echo -e "Installing nvidia lib GL"
-echo -e ""
-sudo pacman -S --needed nvidia-libgl
+yes | sudo pacman -S --needed nvidia
 echo -e "\n"
 
 echo -e "Installing nvidia lib32 LG"
 echo -e ""
-sudo pacman -S --needed lib32-nvidia-libgl
+sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
 echo -e "\n"
+
+echo -e "Installing nvidia lib GL"
+echo -e ""
+yes | sudo pacman -S --needed nvidia-libgl
+echo -e "\n"
+
+steam-native-runtime
 
 
 # Missing libraries
@@ -59,7 +61,7 @@ echo -e ""
 cd ~/.local/share/Steam/ubuntu12_32
 file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
 echo -e "\n"
-
+exit -1
 
 # libXtst.so.6 => not found
 echo -e "Installing lib32 Xtst"
