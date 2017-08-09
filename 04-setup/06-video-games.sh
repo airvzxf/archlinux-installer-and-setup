@@ -15,8 +15,8 @@ echo -e ""
 echo -e "Installing wine gaming libraries"
 echo -e ""
 sudo bash -c 'yes | pacman -S --needed gcc-multilib'
-#~ sudo pacman -S --needed --noconfirm gcc-libs-multilib
-yaourt -S --needed wine-gaming-nine
+echo -e "\n"
+yaourt -S --needed --noconfirm wine-gaming-nine
 echo -e "\n"
 
 
