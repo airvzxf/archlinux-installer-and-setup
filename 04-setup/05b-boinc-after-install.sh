@@ -13,7 +13,7 @@ echo -e ""
 
 # After logout and login again
 echo -e "Checks if 'boinc' is in your groups"
-groups # Checks if "boinc" is in your groups
+groups
 echo -e ""
 
 # Boinc work with services to start to use boinc you need to start its
