@@ -74,6 +74,8 @@ funcInstallAur() {
 		cd ..
 		rm -fR $1
 	fi
+	
+	rm -fR $directory
 
 	return 0
 }

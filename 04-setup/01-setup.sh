@@ -39,7 +39,6 @@ source 00-config.sh
 # Create a temp directory for the next scripts
 echo -e ""
 mkdir -p ~/workspace
-mkdir -p ~/Downloads/temp
 sudo chown -R $(whoami) ../../archLinux-installer-and-setup-master
 
 
