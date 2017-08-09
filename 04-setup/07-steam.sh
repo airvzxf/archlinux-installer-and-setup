@@ -15,19 +15,6 @@ source 00-config.sh
 # https://wiki.archlinux.org/index.php/Gamepad
 
 # Install packages
-echo -e "Installing Steam"
-echo -e ""
-sudo pacman -S --needed --noconfirm steam
-echo -e "Open steam package, pleas close when it finished"
-echo -e ""
-steam
-echo -e "\n"
-
-echo -e "Installing Steam native runtime"
-echo -e ""
-sudo pacman -S --needed --noconfirm steam-native-runtime
-echo -e "\n"
-
 echo -e "Installing lib openssl"
 echo -e ""
 #yaourt -S --needed lib32-libopenssl-1.0-compat
@@ -51,6 +38,19 @@ echo -e "\n"
 echo -e "Installing nvidia lib GL"
 echo -e ""
 yes | sudo pacman -S --needed nvidia-libgl
+echo -e "\n"
+
+echo -e "Installing Steam"
+echo -e ""
+sudo pacman -S --needed --noconfirm steam
+echo -e "Open steam package wait to lunch the app and login into your account, please close when you finished"
+echo -e ""
+steam
+echo -e "\n"
+
+echo -e "Installing Steam native runtime"
+echo -e ""
+sudo pacman -S --needed --noconfirm steam-native-runtime
 echo -e "\n"
 
 
