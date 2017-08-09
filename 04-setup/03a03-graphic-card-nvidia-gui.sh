@@ -11,6 +11,7 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Then login to your session and execute this commands in the windows
 # terminal (konsole).
+funcIsConnectedToInternet
 
 # When you start the openbox window manager
 echo -e ""

@@ -11,6 +11,7 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # When upgrade pacman some time we lost the nvidia drivers we need to
 # re-install that.
+funcIsConnectedToInternet
 
 echo -e ""
 

@@ -12,6 +12,7 @@ source 00-config.sh
 # This is the X Window System and it's the basic package to handle all
 # the graphics system for example the desktop, windows, effects, colors,
 # video games, etc.
+funcIsConnectedToInternet
 
 echo -e ""
 

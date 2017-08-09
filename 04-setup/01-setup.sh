@@ -35,6 +35,7 @@ source 00-config.sh
 
 # General setup for this script and the following
 # ----------------------------------------------------------------------
+funcIsConnectedToInternet
 
 # Create a temp directory for the next scripts
 echo -e ""

@@ -9,6 +9,8 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Boinc after install
 # ----------------------------------------------------------------------
+funcIsConnectedToInternet
+
 echo -e ""
 
 # After logout and login again

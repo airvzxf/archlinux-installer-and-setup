@@ -9,6 +9,8 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Basics
 # ----------------------------------------------------------------------
+funcIsConnectedToInternet
+
 # This is the basics packages I suggest to install
 echo -e ""
 

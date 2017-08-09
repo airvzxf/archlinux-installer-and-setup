@@ -13,6 +13,7 @@ source 00-config.sh
 # https://wiki.archlinux.org/index.php/Steam/Troubleshooting
 # https://wiki.archlinux.org/index.php/Steam/Game-specific_troubleshooting
 # https://wiki.archlinux.org/index.php/Gamepad
+funcIsConnectedToInternet
 
 # Install packages
 echo -e "Installing lib openssl"

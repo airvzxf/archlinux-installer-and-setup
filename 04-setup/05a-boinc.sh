@@ -12,6 +12,8 @@ source 00-config.sh
 # Berkeley Open Infrastructure for Network Computing for desktop
 # Helps to the world to find solution for the physicals problems, aids,
 # climate, etc.
+funcIsConnectedToInternet
+
 echo -e ""
 
 echo -e "Installing boinc"

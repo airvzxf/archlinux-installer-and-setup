@@ -9,6 +9,8 @@ source 00-config.sh
 # ----------------------------------------------------------------------
 # Video Games
 # ----------------------------------------------------------------------
+funcIsConnectedToInternet
+
 echo -e ""
 
 # Install a lot of libraries for general games from this AUR package
