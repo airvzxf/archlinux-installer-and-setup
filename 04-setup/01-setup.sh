@@ -105,13 +105,16 @@ echo -e "Type=oneshot" | sudo tee -a $reflectorService
 echo -e "ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist" | sudo tee -a $reflectorService
 
 reflectorTimer=/etc/systemd/system/reflector.timer
+sudo rm -f $reflectorTimer
 sudo touch $reflectorTimer
 sudo chmod 755 $reflectorTimer
 echo -e "[Unit]" | sudo tee -a $reflectorTimer
-echo -e "Description=Run reflector daily\n" | sudo tee -a $reflectorTimer
+echo -e "Description=Run reflector minutely" | sudo tee -a $reflectorTimer
+echo -e "Requires=network-online.target" | sudo tee -a $reflectorTimer
+echo -e "After=network-online.target\n" | sudo tee -a $reflectorTimer
 echo -e "[Timer]" | sudo tee -a $reflectorTimer
-echo -e "OnCalendar=daily" | sudo tee -a $reflectorTimer
-echo -e "RandomizedDelaySec=12h" | sudo tee -a $reflectorTimer
+echo -e "OnCalendar=hourly" | sudo tee -a $reflectorTimer
+echo -e "RandomizedDelaySec=60" | sudo tee -a $reflectorTimer
 echo -e "Persistent=true\n" | sudo tee -a $reflectorTimer
 echo -e "[Install]" | sudo tee -a $reflectorTimer
 echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
