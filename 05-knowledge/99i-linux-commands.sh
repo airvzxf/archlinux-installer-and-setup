@@ -73,3 +73,13 @@ sudo su - [user] -c [command]
 
 # Check Hard Disk information
 sudo hdparm -I /dev/sda
+
+# Manage Systemd Services and Units
+# https://www.tecmint.com/manage-services-using-systemd-and-systemctl-in-linux/
+systemctl
+systemctl list-unit-files
+# List static, disabled or enable
+systemctl list-unit-files --state=enabled
+systemctl list-unit-files --state=disabled
+# List running services
+systemctl | grep running
