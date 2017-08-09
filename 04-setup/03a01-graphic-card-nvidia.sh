@@ -48,14 +48,19 @@ echo -e "\n"
 
 
 # Install nvidia packages
-echo -e "Installing Nvidia utils beta"
+echo -e "Installing Nvidia utils"
 echo -e ""
-yaourt -S --needed --noconfirm nvidia-utils-beta
+sudo pacman -S --needed --noconfirm nvidia-utils
 echo -e "\n"
 
-echo -e "Installing Nvidia beta"
+echo -e "Installing Nvidia"
 echo -e ""
-yaourt -S --needed --noconfirm nvidia-beta
+sudo pacman -S --needed --noconfirm nvidia
+echo -e "\n"
+
+echo -e "Installing Nvidia settings"
+echo -e ""
+sudo pacman -S --needed --noconfirm nvidia-settings
 echo -e "\n"
 
 echo -e "Installing Nvidia xrun"
