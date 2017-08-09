@@ -114,7 +114,7 @@ echo -e "Requires=network-online.target" | sudo tee -a $reflectorTimer
 echo -e "After=network-online.target\n" | sudo tee -a $reflectorTimer
 echo -e "[Timer]" | sudo tee -a $reflectorTimer
 echo -e "OnCalendar=hourly" | sudo tee -a $reflectorTimer
-echo -e "RandomizedDelaySec=60" | sudo tee -a $reflectorTimer
+echo -e "RandomizedDelaySec=5min" | sudo tee -a $reflectorTimer
 echo -e "Persistent=true\n" | sudo tee -a $reflectorTimer
 echo -e "[Install]" | sudo tee -a $reflectorTimer
 echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
