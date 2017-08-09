@@ -15,9 +15,17 @@ source 00-config.sh
 # https://wiki.archlinux.org/index.php/Gamepad
 
 # Install packages
+echo -e "Installing Steam"
+echo -e ""
+sudo pacman -S --needed --noconfirm steam
+echo -e "Open steam package, pleas close when it finished"
+echo -e ""
+steam
+echo -e "\n"
+
 echo -e "Installing Steam native runtime"
 echo -e ""
-yaourt -S --needed --noconfirm steam-native-runtime
+sudo pacman -S --needed --noconfirm steam-native-runtime
 echo -e "\n"
 
 echo -e "Installing lib openssl"
@@ -30,6 +38,11 @@ echo -e ""
 yes | sudo pacman -S --needed nvidia
 echo -e "\n"
 
+echo -e "Installing nvidia"
+echo -e ""
+sudo pacman -S --needed nvidia-utils
+echo -e "\n"
+
 echo -e "Installing nvidia lib32 LG"
 echo -e ""
 sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
@@ -39,8 +52,6 @@ echo -e "Installing nvidia lib GL"
 echo -e ""
 yes | sudo pacman -S --needed nvidia-libgl
 echo -e "\n"
-
-steam-native-runtime
 
 
 # Missing libraries
@@ -61,7 +72,6 @@ echo -e ""
 cd ~/.local/share/Steam/ubuntu12_32
 file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
 echo -e "\n"
-exit -1
 
 # libXtst.so.6 => not found
 echo -e "Installing lib32 Xtst"
