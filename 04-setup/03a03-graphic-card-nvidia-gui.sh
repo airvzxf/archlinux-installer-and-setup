@@ -19,25 +19,6 @@ echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
 echo -e ""
 
-echo -e "Start acpid service"
-systemctl start acpid.service
-echo -e ""
-systemctl status acpid.service
-echo -e "\n"
-
-echo -e "Start reflector service"
-systemctl start reflector.service
-echo -e ""
-systemctl status reflector.service
-echo -e "\n"
-
-echo -e "Start reflector timer"
-systemctl start reflector.timer
-echo -e ""
-systemctl status reflector.timer
-echo -e "\n"
-
-
 #~ # This guide setup the keyboard to la-latin1, keylayout spanish-Mexico.
 #~ # If you have Nvidia card I have some script to setup it.
 
