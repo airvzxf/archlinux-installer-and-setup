@@ -87,5 +87,6 @@ systemctl | grep running
 # Debug the bash file
 # In the bash scripts xxx.sh you are able to add 'set -x' to debug the script
 #!/bin/bash
-set -x
+set -x # Enable debug output
+set +x # Disable debug output
 
