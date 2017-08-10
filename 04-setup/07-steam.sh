@@ -175,5 +175,5 @@ sudo pacman -S --needed lib32-libpng12
 echo -e "\n"
 
 
-echo -e "Finished successfully!"
+echo -e "Congrats! You were install and setup Arch Linux."
 echo -e ""

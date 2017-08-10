@@ -21,3 +21,7 @@ echo -e ""
 
 echo -e "Run Openbox with Nvidia drivers"
 nvidia-xrun
+
+echo -e "Ready! The next step is run './03a03-graphic-card-nvidia-gui.sh'.\n"
+echo -e "Finished successfully!"
+echo -e ""

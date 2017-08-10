@@ -22,5 +22,6 @@ yaourt -S --needed --noconfirm wine-gaming-nine
 echo -e "\n"
 
 
+echo -e "Ready! The next step is run './07-steam.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

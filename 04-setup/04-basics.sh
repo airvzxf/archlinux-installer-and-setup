@@ -111,5 +111,6 @@ sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
 echo -e "\n"
 
 
+echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

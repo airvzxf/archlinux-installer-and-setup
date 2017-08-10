@@ -162,5 +162,6 @@ sudo pacman -S --needed --noconfirm pulseaudio
 echo -e "\n"
 
 
+echo -e "Ready! The next step is run './02-xorg.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

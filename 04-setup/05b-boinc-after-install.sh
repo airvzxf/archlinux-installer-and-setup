@@ -54,5 +54,6 @@ cd ~/ && boincmgr
 # https://www.mankier.com/1/boinccmd
 # https://boinc.berkeley.edu/wiki/Boinccmd_tool
 
+echo -e "Ready! The next step is run './06-video-games.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

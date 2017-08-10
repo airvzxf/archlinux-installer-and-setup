@@ -32,6 +32,8 @@ echo -e "Adding user to boinc group"
 sudo usermod -a -G boinc $(whoami)
 echo -e ""
 
+echo -e "Ready! The next step is run './05b-boinc-after-install.sh'.\n"
+
 # You need logout and login again from your windows manager
 read -n 1 -s -r -p "Press any key to reboot"
 sudo reboot

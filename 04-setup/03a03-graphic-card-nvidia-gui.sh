@@ -58,5 +58,6 @@ echo -e ""
 #~ xbindkeys
 #~ echo -e "\n"
 
+echo -e "Ready! The next step is run './04-basics.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

@@ -24,5 +24,6 @@ echo -e "Installing Xorg fonts"
 sudo pacman -S --needed --noconfirm xorg-fonts-type1
 echo -e "\n"
 
+echo -e "Ready! The next step is run './03a01-graphic-card-nvidia.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""

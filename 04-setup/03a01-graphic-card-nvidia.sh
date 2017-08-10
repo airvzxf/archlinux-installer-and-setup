@@ -108,6 +108,7 @@ sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
 echo -e "\n"
 
 
+echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.sh'.\n"
 
 # Reboot
 read -n 1 -s -r -p "Press any key to reboot"
