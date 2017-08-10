@@ -9,6 +9,7 @@ ls /sys/class/backlight/
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 1000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 2000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 3000
+sudo tee /sys/class/backlight/intel_backlight/brightness <<< 4000
 sudo tee /sys/class/backlight/intel_backlight/brightness <<< 4882
 
 
