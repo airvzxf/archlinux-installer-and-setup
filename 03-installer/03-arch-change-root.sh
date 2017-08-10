@@ -40,6 +40,11 @@ cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/
 chgrp -R users /mnt/home/$yourUserName/archLinux-installer-and-setup-master
 echo -e ""
 
+# Copy wifi config into the new user
+echo -e "Copying wifi config into the new user"
+cp -R /etc/netctl /mnt/etc/
+echo -e ""
+
 # Unmount partitions
 funcUmountSystem
 
