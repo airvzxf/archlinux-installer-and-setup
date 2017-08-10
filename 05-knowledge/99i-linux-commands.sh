@@ -65,7 +65,7 @@ sudo rm -f [network-name]
 # Enabling and disabling network interfaces
 ip link
 sudo ip link set [interface] down
-sudo ip link set [interface] down
+sudo ip link set [interface] up
 
 # Change user and load entire environment in shell script
 sudo su [user] -c [command]
