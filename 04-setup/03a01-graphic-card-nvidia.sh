@@ -74,6 +74,11 @@ echo -e ""
 sudo pacman -S --needed --noconfirm ocl-icd
 echo -e "\n"
 
+echo -e "Installing OpenCL Info"
+echo -e ""
+sudo pacman -S --needed --noconfirm clinfo
+echo -e "\n"
+
 echo -e "Installing Cuda"
 echo -e ""
 sudo pacman -S --needed --noconfirm cuda
