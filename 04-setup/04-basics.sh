@@ -120,6 +120,11 @@ echo -e ""
 sudo pacman -S --needed --noconfirm libreoffice-fresh # Office
 echo -e "\n"
 
+echo -e "Installing Tree"
+echo -e ""
+sudo pacman -S --needed --noconfirm tree #A directory listing program displaying a depth indented list of files
+echo -e "\n"
+
 
 echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
 echo -e "Finished successfully!"
