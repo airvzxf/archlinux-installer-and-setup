@@ -3,11 +3,10 @@
 
 screenResolutionWidth=1920
 screenResolutionHeight=1080
-screenRate=60.00
-
 screenName="LVDS-1-1"
 screenName="HDMI-1-1"
 screenStatus="connected"
+screenRate=60.00
 echo -e ""
 
 funcIsEmptyThenExit() {
@@ -85,7 +84,7 @@ funcIsEmptyThenExit screenDpis
 echo -e "screenDpis: $screenDpis"
 echo -e ""
 
-screenDpis=$(awk "BEGIN { w=(($screenDpisWidth + $screenDpisHeight) / 2); printf(\"%.2f\", w)}")
+screenDpis=$(awk "BEGIN { w=(($screenDpisWidth + $screenDpisHeight) / 2); printf(\"%d\", w)}")
 funcIsEmptyThenExit screenDpis
 echo -e "Medium Dpis: $screenDpis"
 echo -e ""
@@ -96,30 +95,3 @@ echo -e "Run this command'nano ~/.nvidia-xinitrc' and copy the line below."
 echo -e "xrandr --output $screenName --mode ${screenResolutionWidth}x${screenResolutionHeight} --rate 60 --dpi ${screenDpis}"
 xrandr --output $screenName --mode ${screenResolutionWidth}x${screenResolutionHeight} --rate ${screenRate} --dpi ${screenDpis}
 echo -e "\n"
-
-#~ 1366x768
-
-#~ HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 853mm x 480mm
-   #~ 1920x1080     60.00*+  59.94    30.00    24.00    29.97    23.98  
-   #~ 1920x1080i    60.00    59.94  
-   #~ 1680x1050     59.88  
-   #~ 1280x1024     60.02  
-   #~ 1440x900      59.90  
-   #~ 1280x960      60.00  
-   #~ 1280x800      74.93    59.91  
-   #~ 1280x768      59.99  
-   #~ 1280x720      60.00    59.94  
-   #~ 1024x768      60.00  
-   #~ 1440x480i     59.94  
-   #~ 800x600       60.32    56.25  
-   #~ 720x480       60.00    59.94  
-   #~ 720x480i      60.00    59.94  
-   #~ 640x480       60.00    59.94  
-   #~ 720x400       70.08  
-
-#~ https://www.insigniaproducts.com/pdp/NS-40D510NA15/2992002
-#~ E39G4QNKDWBYNNX
-#~ Serial No.: KQPG7YA009654
-#~ 16G28X
-#~ Rev. B
-#~ MFG Date: July, 2016
