@@ -69,6 +69,16 @@ echo -e ""
 sudo pacman -S --needed --noconfirm opencl-nvidia
 echo -e "\n"
 
+echo -e "Installing OpenCL ICD Bindings"
+echo -e ""
+sudo pacman -S --needed --noconfirm ocl-icd
+echo -e "\n"
+
+echo -e "Installing Cuda"
+echo -e ""
+sudo pacman -S --needed --noconfirm cuda
+echo -e "\n"
+
 echo -e "Installing Nvidia xrun"
 echo -e ""
 yaourt -S --needed --noconfirm nvidia-xrun
