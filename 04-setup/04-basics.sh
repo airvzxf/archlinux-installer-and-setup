@@ -122,7 +122,12 @@ echo -e "\n"
 
 echo -e "Installing Tree"
 echo -e ""
-sudo pacman -S --needed --noconfirm tree #A directory listing program displaying a depth indented list of files
+sudo pacman -S --needed --noconfirm tree # A directory listing program displaying a depth indented list of files
+echo -e "\n"
+
+echo -e "Installing Obconf Openbox configuration tool"
+echo -e ""
+sudo pacman -S --needed --noconfirm obconf # Configuration tool for the Openbox windowmanager
 echo -e "\n"
 
 
