@@ -123,6 +123,17 @@ sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
 echo -e "\n"
 
 
+echo -e "- Solving Xorg warnings"
+echo -e "mkfontdir in font dpis"
+sudo mkfontdir /usr/share/fonts/100dpi/
+sudo mkfontdir /usr/share/fonts/75dpi/
+echo -e ""
+echo -e "Enable ACPID service"
+sudo systemctl enable --now acpid
+echo -e ""
+
+
+
 echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.sh'.\n"
 
 # Reboot
@@ -134,6 +145,12 @@ reboot
 
 # Avoid errors in the log
 # ----------------------------------------------------------------------
+
+# Needs to solve
+#~ [   161.208] (WW) Falling back to old probe method for modesetting
+#~ [   161.599] (WW) NVIDIA(0): Unable to get display device for DPI computation.
+#~ [   161.657] (WW) NVIDIA(0): Option "PrimaryGPU" is not used
+
 
 # (WW) NVIDIA(0): Unable to get display device for DPI computation
 # NVIDIA(0): DPI set to (75, 75); computed from built-in default
