@@ -120,6 +120,9 @@ echo -e "[Install]" | sudo tee -a $reflectorTimer
 echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
 echo -e "\n"
 
+sudo systemctl enable reflector.timer
+
+
 
 
 # Yaourt
