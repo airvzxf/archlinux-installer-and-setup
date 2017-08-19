@@ -36,9 +36,14 @@ echo -e ""
 sudo pacman -S --needed --noconfirm bc # Terminal calculator
 echo -e "\n"
 
-echo -e "Installing ePDF viewr"
+echo -e "Installing ePDF viewer"
 echo -e ""
 sudo pacman -S --needed --noconfirm epdfview # PDF Viewer
+echo -e "\n"
+
+echo -e "Installing lximage viewer"
+echo -e ""
+sudo pacman -S --needed --noconfirm lximage-qt # Image viewer
 echo -e "\n"
 
 echo -e "Installing reflector"
