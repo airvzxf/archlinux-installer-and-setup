@@ -9,6 +9,9 @@
 # Config
 # ----------------------------------------------------------------------
 # Set the configuration variables to us in all the scripts
+yourComputerName="wolfMachine"
+yourUserName="wolf"
+
 
 # ----------------------------------------------------------------------
 # Load sub sources
