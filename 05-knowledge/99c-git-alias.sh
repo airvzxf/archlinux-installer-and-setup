@@ -15,7 +15,7 @@ git config --global -l
 
 # Store your password and specify the time on cache
 git config --global credential.helper cache
-git config --global credential.helper "cache --timeout=3600" # 1 hour
+git config --global credential.helper "cache --timeout=604800" # 7 days
 
 # Store your credentials
 git config credential.helper store
