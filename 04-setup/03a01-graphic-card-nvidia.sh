@@ -111,7 +111,7 @@ echo -e "\n"
 # the xorg configs, every Xorg setup you need to put in this file.
 # 3. openbox open the window manager (desktop)
 echo -e "Adding to .nvidia-xinitrc the xrun config"
-echo -e "xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112" > ~/.nvidia-xinitrc
+echo -e "xrandr --output LVDS-1-1 --primary --mode 1366x768 --dpi 130" > ~/.nvidia-xinitrc
 echo -e "setxkbmap -model pc105 -layout latam -variant ,deadtilde" >> ~/.nvidia-xinitrc
 echo -e "openbox-session" >> ~/.nvidia-xinitrc
 echo -e ""
