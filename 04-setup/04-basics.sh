@@ -10,6 +10,7 @@ source 00-config.sh
 # Basics
 # ----------------------------------------------------------------------
 funcIsConnectedToInternet
+mkdir -p ~/.config
 
 # This is the basics packages I suggest to install
 echo -e ""
@@ -29,6 +30,7 @@ echo -e "\n"
 echo -e "Installing geany"
 echo -e ""
 sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
+cp ./setup-resources/.config/geany ~/.config/
 echo -e "\n"
 
 echo -e "Installing bc terminal calculator"
