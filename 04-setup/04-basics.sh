@@ -31,6 +31,8 @@ echo -e "Installing geany"
 echo -e ""
 sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
 cp ./setup-resources/.config/geany ~/.config/
+sed -i -- 's/wolfMachine/'${yourComputerName}'/g' ~/.config/geany/geany.conf
+sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/geany/geany.conf
 echo -e "\n"
 
 echo -e "Installing bc terminal calculator"
