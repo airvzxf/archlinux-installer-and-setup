@@ -10,10 +10,11 @@
 
 ## Software
 - Auto config (modified the app config files instead of change from GUI)
-  - [ ] Konsole (2017-07-09)
-  - [ ] Geany (2017-07-09)
+  - [x] Konsole (2017-07-09)
+  - [x] Geany (2017-07-09)
 - Openbox
-  - [ ] Create apps menu appropriate with the packages installed when click on desktop whit the second mouse button and display the apps (2017-07-09)
+  - [x] Create apps menu appropriate with the packages installed when click on desktop whit the second mouse button and display the apps (2017-07-09)
+
 
 ## More
 - Spelling
