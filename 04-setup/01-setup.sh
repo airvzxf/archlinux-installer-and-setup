@@ -36,6 +36,7 @@ source 00-config.sh
 # General setup for this script and the following
 # ----------------------------------------------------------------------
 funcIsConnectedToInternet
+mkdir -p ~/.config
 
 # Create a temp directory for the next scripts
 echo -e ""
@@ -169,6 +170,7 @@ echo -e "Setting up config files"
 cp ./setup-resources/.bash_profile ~/
 cp ./setup-resources/.bashrc ~/
 cp ./setup-resources/.toprc ~/
+cp -R ./setup-resources/.config/openbox ~/.config/
 echo -e "\n"
 
 

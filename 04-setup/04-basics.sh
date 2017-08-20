@@ -25,12 +25,13 @@ echo -e "\n"
 echo -e "Installing konsole"
 echo -e ""
 sudo pacman -S --needed --noconfirm konsole # Terminal / Console window
+cp ./setup-resources/.config/konsolerc ~/.config/
 echo -e "\n"
 
 echo -e "Installing geany"
 echo -e ""
 sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
-cp ./setup-resources/.config/geany ~/.config/
+cp -R ./setup-resources/.config/geany ~/.config/
 sed -i -- 's/wolfMachine/'${yourComputerName}'/g' ~/.config/geany/geany.conf
 sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/geany/geany.conf
 echo -e "\n"
