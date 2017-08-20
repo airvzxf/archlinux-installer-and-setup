@@ -12,7 +12,7 @@
 
 # Search the proccess in your system
 ps aux | grep proccess_name
-# Don't show ps it self processor, put brackets in the first letter
+# PS do not show itself processor, put brackets in the first letter
 ps aux | grep [p]roccess_name
 
 
@@ -37,11 +37,25 @@ sudo find / -type d -iname *query_string* 2>/dev/null
 find ./ -iname *query_string* -exec chmod +x {} \;
 find ./ -type f -iname *query_string* -exec rm -f {} \;
 
+# Search words inside of the files
+grep -rnw [directory] -e [pattern]
+
+
+# Open desktop files
+gtk-launch [name].desktop
+
+# Open files with the app in command line mode
+xdg-open [file]
+
 # Systemctl
 # It's similar to Cron but new and improved
 # https://wiki.archlinux.org/index.php/Systemd/Timers
 # https://unix.stackexchange.com/questions/278564/cron-vs-systemd-timers
 # https://jason.the-graham.com/2013/03/06/how-to-use-systemd-timers/
+# Enable a unit to be started on bootup:
+sudo systemctl enable [unit]
+# Enable a unit to be started on bootup and Start immediately:
+sudo systemctl enable --now [unit]
 
 # Mount and umount USB
 sudo mkdir -p /mnt/usb
@@ -60,12 +74,37 @@ upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|energy\:
 # Wifi menu
 # Delete or modify a specific wifi
 ls -lha /etc/netctl/
-sudo rm -f [network-name]
+sudo rm -f /etc/netctl/[network-name]
 
 # Enabling and disabling network interfaces
 ip link
 sudo ip link set [interface] down
 sudo ip link set [interface] up
+# Show information about the IP
+ip addr show dev [interface]
+# If you connect a ethernet wire or USB/ethernet adaptor to refresh the
+# DNS and enable your Internet connection run this command:
+sudo dhcpcd
+
+# Network monitor in command line
+vnstat --iflist # Show the devices
+vnstat -i [device] -l # View live network traffic usage
+
+# Network benchmark
+# https://greyhound-forty.gitbooks.io/tech-support-notes/Topic03/Bandwidth_Speed.html
+
+# Network performance measurement tool
+nuttcp -i1 -r [IP]
+
+# Testing two nodes
+iperf -s -i 2 # Run in the host
+iperf -c [IP] -t 20 -i 2 # Run in the node
+
+# Speedtest in command line
+speedtest-cli
+
+# Utility to query the network driver and hardware settings
+ethtool [device]
 
 # Change user and load entire environment in shell script
 sudo su [user] -c [command]
@@ -90,3 +129,17 @@ systemctl | grep running
 set -x # Enable debug output
 set +x # Disable debug output
 
+# Manage 2-monitors
+# https://wiki.archlinux.org/index.php/xrandr#Manage_2-monitors
+# https://wiki.archlinux.org/index.php/Multihead#RandR
+# LVDS-1-1 is my laptop monitor
+# HDMI left of LVDS at their preferred resolutions
+xrandr --output HDMI-1-1 --mode 1920x1080i --set audio force-dvi --output LVDS-1-1 --mode 1366x768 --left-of HDMI-1-1 --dpi 140
+
+# Turn off HDMI
+xrandr --output HDMI-1-1 --off
+
+# Restart all
+xrandr --output HDMI-1-1 --off
+xrandr --output LVDS-1-1 --off
+xrandr --output LVDS-1-1 --primary --mode 1366x768 --rate 60 --dpi 112
