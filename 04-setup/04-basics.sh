@@ -123,6 +123,8 @@ echo -e "\n"
 echo -e "Installing transmission"
 echo -e ""
 sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
+cp -R ./setup-resources/.config/transmission ~/.config/
+sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/transmission/settings.json
 echo -e "\n"
 
 echo -e "Installing LibreOffice"
