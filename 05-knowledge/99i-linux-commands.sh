@@ -80,6 +80,7 @@ sudo rm -f /etc/netctl/[network-name]
 ip link
 sudo ip link set [interface] down
 sudo ip link set [interface] up
+sudo dhcpcd # Needs to reload the DHCP
 # Show information about the IP
 ip addr show dev [interface]
 # If you connect a ethernet wire or USB/ethernet adaptor to refresh the
