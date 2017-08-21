@@ -71,6 +71,7 @@ echo -e "\n"
 echo -e "Show missing libraries in Steam"
 echo -e ""
 cd ~/.local/share/Steam/ubuntu12_32
+chmod +x libx264.so.142
 file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
 echo -e "\n"
 
