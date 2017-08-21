@@ -36,6 +36,13 @@ sudo pacman -Rsc steam
 # Solved with the correct configuration in ~/.asoundrc
 
 
+# Can't set the specified locale! Check LANG, LC_CTYPE, LC_ALL.
+# Uncomment en_US.UTF-8 UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:
+sudo sed -i '/en_US.UTF-8 UTF-8/ s/^##*//' /etc/locale.gen
+sudo locale-gen
+
+
+
 # Other errors
 # ----------------------------------------------------------------------
 
