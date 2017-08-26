@@ -66,6 +66,10 @@ sudo umount -R /mnt/usb
 # Undo a "public" change
 # https://stackoverflow.com/questions/1270514/undoing-a-git-push
 git push -f origin last_known_good_commit:branch_name
+# Missing certificate
+# fatal: unable to access: error setting certificate verify locations:
+#  CAfile: /etc/ssl/certs/ca-certificates.crt
+sudo git config --system http.sslcainfo "/etc/ca-certificates/extracted/ca-bundle.trust.crt"
 
 # Battery status
 upower -i /org/freedesktop/UPower/devices/battery_BAT0
