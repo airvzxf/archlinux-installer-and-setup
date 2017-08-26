@@ -34,5 +34,12 @@ sudo pacman -S --needed --noconfirm ethtool #Utility to query the network driver
 sudo pacman -S --needed --noconfirm speedtest-cli #Command line interface for testing internet bandwidth using speedtest.net
 echo -e "\n"
 
+echo -e ""
+echo -e "Installing Mind maps"
+echo -e ""
+sudo pacman -S --needed --noconfirm freemind
+echo -e "\n"
+
+
 echo -e "Finished successfully!"
 echo -e ""
