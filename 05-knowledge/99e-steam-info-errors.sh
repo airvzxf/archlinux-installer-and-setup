@@ -16,6 +16,10 @@
 # Install steam without UI, then if you run steam-native it show the missing libraries
 steam -textclient
 
+# Error with cannot connect with Steam
+# opensslconnection.cpp (1393) : Assertion Failed: unable to load trusted SSL root certificates
+# Assert( Assertion Failed: unable to load trusted SSL root certificates ):opensslconnection.cpp:1393
+sudo pacman -S --force ca-certificates-utils
 
 # Remove Steam
 sudo pacman -Rs steam
