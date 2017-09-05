@@ -40,6 +40,22 @@ find ./ -type f -iname *query_string* -exec rm -f {} \;
 # Search words inside of the files
 grep -rnw [directory] -e [pattern]
 
+# Show folder and files sizes
+du -ahLHd 1 | sort -hr
+du -hd 1 | sort -rh
+du -h | sort -hr
+du | sort -nr
+# Show files too
+du -ad 1 | sort -nr
+# Only show the first directory
+du -d 1 | sort -nr
+# Dereference all symbolic links
+du -LH -d 1 | sort -nr
+# Show the total
+du -s
+#Count sizes many times if hard linked
+du -l | sort -nr
+
 
 # Open desktop files
 gtk-launch [name].desktop
