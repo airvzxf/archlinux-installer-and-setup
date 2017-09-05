@@ -59,6 +59,9 @@ echo -e "\n"
 echo -e "Installing Parole"
 echo -e ""
 sudo pacman -S --needed --noconfirm parole # Media player
+sudo pacman -S --needed --noconfirm gst-plugins-good # Plugins
+sudo pacman -S --needed --noconfirm gst-plugins-bad # Plugins
+sudo pacman -S --needed --noconfirm gst-plugins-ugly # Plugins
 echo -e "\n"
 
 echo -e "Installing GStreamer ffmpeg"
