@@ -24,7 +24,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias cpu='top -o cpu'
 alias mem='top -o rsize'
 alias cputemp='sensors | grep Core'
-alias fastping='pingf -c 5'
+alias pingfast='ping www.google.com'
 
 alias ..='cd ../../'
 alias ...='cd ../../../'
