@@ -79,6 +79,11 @@ echo -e ""
 sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
 echo -e "\n"
 
+echo -e "Installing color diff"
+echo -e ""
+sudo pacman -S --needed --noconfirm colordiff #Diff command with pretty output
+echo -e "\n"
+
 echo -e "Installing spotify"
 echo -e ""
 gpg --recv-keys 13B00F1FD2C19886 # This is the public key for Spotify AUR
