@@ -86,6 +86,12 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias cpu='top -o %CPU'
 alias mem='top -o %MEM'
 alias cputemp='sensors | grep Core'
+alias meminfo='free -mlt'
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+alias cpuinfo='lscpu'
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
 alias pingfast='ping www.google.com'
 
 alias ..='cd ../'
@@ -113,12 +119,6 @@ alias d='date +%F'
 alias now='date +"%T"'
 alias nowtime=now
 alias nowdate='date +"%m-%d-%Y"'
-
-alias meminfo='free -mlt'
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
-alias cpuinfo='lscpu'
-alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 alias web='chromium'
 alias myip='curl icanhazip.com'
