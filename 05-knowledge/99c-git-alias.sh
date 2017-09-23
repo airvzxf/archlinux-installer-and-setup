@@ -47,3 +47,4 @@ git config --global alias.ps '! git push && echo -e "\n" && git status && echo -
 git config --global alias.st '! git status && echo -e "\n"'
 git config --global alias.sts '! git status -s && echo -e "\n"'
 git config --global alias.un 'reset HEAD --'
+git config --global alias.untrack 'ls-files . --exclude-standard --others'
