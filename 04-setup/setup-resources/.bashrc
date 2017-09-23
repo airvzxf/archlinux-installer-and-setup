@@ -80,7 +80,8 @@ alias grep='grep --color=auto'
 alias h='history'
 alias hg='history | grep'
 alias j='jobs -l'
-alias dufast='du -hd 1 | sort -rh'
+alias dufast='du -had 1 | sort -rh'
+alias dudirfast='du -hd 1 | sort -rh'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 
 alias cpu='top -o %CPU'
