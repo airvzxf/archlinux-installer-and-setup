@@ -54,15 +54,40 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWCOLORHINTS=1
 
 function color_my_prompt {
-	local __user_and_host="$bldylw\u$bldwht@$bldgrn\h"
-	local __cur_location="$bldblu\W"
-	local __git_branch_color="$bldred"
-	local __git_branch='$(__git_ps1 "(%s)")'
-	local __prompt_tail="$txtwht$(date)\n$bldpur$"
-	local __last_color="$txtrst"
-	export PS1="\n\n$__user_and_host\n$__cur_location $__git_branch_color$__git_branch\n$__prompt_tail$__last_color "
+	local __user_and_host="\n\n${bldylw}\u${bldwht}@${bldgrn}\h ${txtwht}| ${bldwht}\t (\d)\n"
+	local __cur_location="${txtcyn}\w"
+	local __git_branch='$(__git_ps1 "\n(%s)")'
+	local __prompt_tail="\n$"
+	local __last_color="${txtrst}"
+
+	# Capture the output of the "git status" command.
+	git_status="$(git status 2> /dev/null)"
+
+	# Set color based on clean/staged/dirty.
+	if [[ ${git_status} =~ "othing to commit" ]]; then
+		state="${bldgrn}"
+	elif [[ ${git_status} =~ "Changes to be committed" ]]; then
+		state="${bldylw}"
+	else
+		state="${bldred}"
+	fi
+
+	# collect the number of commits ahead or behind origin 
+	sym="$(echo \"${git_status}\" | sed -r 's/.*by[[:blank:]]([0-9]*)[[:blank:]]commit.*/\1/' | grep '[0-9]' 2> /dev/null)"
+	
+	# add marker for origin status with number of commits ahead (+) or behind (-)
+	if [[ ${git_status} =~ "branch is ahead of" ]]; then
+		sym="[+"${sym}"]"
+	elif [[ ${git_status} =~ "branch is behind" ]]; then
+		sym="[-"${sym}"]"
+	else
+		sym=""
+	fi
+
+	export PS1="$__user_and_host$__cur_location${state}$__git_branch${sym}$__last_color$__prompt_tail "
 }
-color_my_prompt
+# Tell bash to execute this function just before displaying its prompt.
+PROMPT_COMMAND=color_my_prompt
 
 
 alias src='source ~/.bash_profile'
@@ -96,10 +121,10 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias pingfast='ping www.google.com'
 
 alias ..='cd ../'
-alias ...='cd ../../'
-alias ....='cd ../../../'
-alias .....='cd ../../../../'
-alias ......='cd ../../../../../'
+alias ....='cd ../../'
+alias ......='cd ../../../'
+alias ........='cd ../../../../'
+alias ..........='cd ../../../../../'
 
 alias chx='chmod 755'
 alias chr='chmod 644'
