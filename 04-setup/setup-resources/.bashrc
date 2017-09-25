@@ -141,9 +141,8 @@ alias ct='column -t'
 alias dffast='df -hPT | column -t'
 alias mount='mount | column -t'
 
-alias d='date +%F'
+alias d='date'
 alias now='date +"%T"'
-alias nowtime=now
 alias nowdate='date +"%m-%d-%Y"'
 
 alias web='chromium'
