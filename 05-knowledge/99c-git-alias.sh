@@ -11,7 +11,7 @@
 # Manually set up these two options
 #git config --global user.email "your_email"
 #git config --global user.name "your_name"
-git config --global -l
+#git config --global -l
 
 # Store your password and specify the time on cache
 git config --global credential.helper cache
@@ -44,7 +44,13 @@ git config --global alias.lgp 'log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ 
 git config --global alias.lgwho 'shortlog -s --'
 git config --global alias.pl '! git pull && echo -e "\n" && git status && echo -e "\n"'
 git config --global alias.ps '! git push && echo -e "\n" && git status && echo -e "\n"'
+git config --global alias.rs '! git reset HEAD~ && echo -e "\n" && git status && echo -e "\n"'
+git config --global alias.rss '! git reset --soft HEAD~ && echo -e "\n" && git status && echo -e "\n"'
+git config --global alias.rsh '! git reset --hard HEAD~ && echo -e "\n" && git status && echo -e "\n"'
 git config --global alias.st '! git status && echo -e "\n"'
 git config --global alias.sts '! git status -s && echo -e "\n"'
 git config --global alias.un 'reset HEAD --'
 git config --global alias.untrack 'ls-files . --exclude-standard --others'
+
+# Show the config file
+git config --global -l
