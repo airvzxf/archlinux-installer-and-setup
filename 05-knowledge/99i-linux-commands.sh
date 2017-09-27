@@ -98,14 +98,21 @@ sudo rm -f /etc/netctl/[network-name]
 
 # Enabling and disabling network interfaces
 ip link
-sudo ip link set [interface] down
-sudo ip link set [interface] up
+sudo ip link set down [interface]
+sudo ip link set up [interface]
 sudo dhcpcd # Needs to reload the DHCP
 # Show information about the IP
 ip addr show dev [interface]
 # If you connect a ethernet wire or USB/ethernet adaptor to refresh the
 # DNS and enable your Internet connection run this command:
 sudo dhcpcd
+
+# Reset the wifi connection
+sudo ip link set down [interface]
+sudo systemctl stop dhcpcd.service
+sudo killall dhcpcd
+sudo ip link set up [interface]
+sudo wifi-menu
 
 # Network monitor in command line
 vnstat --iflist # Show the devices
@@ -130,6 +137,7 @@ ethtool [device]
 # Change user and load entire environment in shell script
 sudo su [user] -c [command]
 sudo su - [user] -c [command]
+sudo su - [user]
 
 # Check Hard Disk information
 sudo hdparm -I /dev/sda
