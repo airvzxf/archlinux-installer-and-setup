@@ -111,6 +111,11 @@ sudo dhcpcd
 sudo ip link set down [interface]
 sudo systemctl stop dhcpcd.service
 sudo killall dhcpcd
+sudo nscd
+sudo nscd -K
+sudo nscd -i hosts
+ip addr flush dev [interface]
+ip route flush dev [interface]
 sudo ip link set up [interface]
 sudo wifi-menu
 
