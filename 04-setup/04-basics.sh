@@ -150,6 +150,21 @@ echo -e ""
 sudo pacman -S --needed --noconfirm obconf # Configuration tool for the Openbox windowmanager
 echo -e "\n"
 
+echo -e "Installing Bluetooth"
+echo -e ""
+sudo pacman -S --needed --noconfirm bluez bluez-utils
+sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
+#sudo pacman -S --needed --noconfirm bluez-firmware
+sudo usermod -a -G lp $(whoami)
+audioBluetooth=/etc/bluetooth/audio.conf
+sudo rm -f $audioBluetooth
+sudo touch $audioBluetooth
+echo -e "[General]" | sudo tee -a $audioBluetooth
+echo -e "Enable=Source,Sink,Media,Socket" | sudo tee -a $audioBluetooth
+modprobe btusb
+systemctl start bluetooth.service
+echo -e "\n"
+
 
 echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
 echo -e "Finished successfully!"
