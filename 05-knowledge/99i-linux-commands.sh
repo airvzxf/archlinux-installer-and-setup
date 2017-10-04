@@ -177,3 +177,45 @@ xrandr --output HDMI-1-1 --off
 xrandr --output HDMI-1-1 --off
 xrandr --output LVDS-1-1 --off
 xrandr --output LVDS-1-1 --primary --mode 1366x768 --rate 60 --dpi 112
+
+
+
+# Connect bluetooth headset
+
+# Run these the first time
+# Make sure your device is not blocked
+rfkill list
+#rfkill unblock all
+modprobe btusb
+systemctl start bluetooth.service
+
+# Turn on your headset device
+
+# Set up the first time
+bluetoothctl
+# Enter the next commands
+# $ power on
+# $ agent on
+# $ default-agent
+# $ scan on
+# It shows:
+#    [NEW] Device 30:23:57:A2:71:59 BX950
+# $ trust [MAC Address]
+# $ pair [MAC Address]
+# $ connect [MAC Address]
+# $ scan off
+# $ exit
+
+# If you had setted up your device you only need these
+modprobe btusb
+systemctl start bluetooth.service
+bluetoothctl
+power on
+agent on
+default-agent
+connect 30:23:57:A2:71:59
+exit
+
+
+# Search commands in the the packages
+pkgfile [package]
