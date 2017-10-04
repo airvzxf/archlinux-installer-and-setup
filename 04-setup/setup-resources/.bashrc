@@ -90,6 +90,22 @@ function color_my_prompt {
 PROMPT_COMMAND=color_my_prompt
 
 
+function make-completion-wrapper () {
+	local function_name="$2"
+	local arg_count=$(($#-3))
+	local comp_function_name="$1"
+	shift 2
+	local function="
+function $function_name {
+	((COMP_CWORD+=$arg_count))
+	COMP_WORDS=( "$@" \${COMP_WORDS[@]:1} )
+	"$comp_function_name"
+	return 0
+}"
+	eval "$function"
+}
+
+
 alias src='source ~/.bash_profile'
 
 alias ls='ls --color=auto'
@@ -150,3 +166,8 @@ alias myip='curl icanhazip.com'
 alias boinc='cd ~/workspace/boinc/ && /usr/bin/boinc'
 alias boincmgr='cd ~/workspace/boinc/ && boincmgr'
 alias screenshot='xfce4-screenshooter'
+
+alias wifi='sudo netctl stop-all && sudo netctl start'
+_completion_loader netctl
+make-completion-wrapper _netctl _netctl_start netctl start
+complete -F _netctl_start wifi
