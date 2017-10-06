@@ -134,7 +134,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-alias pingfast='while true; do ping www.google.com; sleep 1; done'
+alias pingfast='while true; do ping www.google.com | xargs -L 1 -I "{}" date "+%a, %T:%t {}"; sleep 1; done'
 
 alias ..='cd ../'
 alias ....='cd ../../'
