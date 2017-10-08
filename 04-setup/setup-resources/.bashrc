@@ -171,7 +171,7 @@ alias downloads='cd ~/Downloads'
 alias desktop='cd ~/Desktop'
 alias workspace='cd ~/workspace'
 alias projects='cd ~/workspace/projects'
-alias projectscheck='~/workspace/projects/check-git-projects.sh'
+alias projectscheck='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 
 alias wifi='sudo netctl stop-all && sudo netctl start'
 _completion_loader netctl
