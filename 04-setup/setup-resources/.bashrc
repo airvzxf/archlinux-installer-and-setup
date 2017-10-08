@@ -166,6 +166,12 @@ alias myip='curl icanhazip.com'
 alias boinc='cd ~/workspace/boinc/ && /usr/bin/boinc'
 alias boincmgr='cd ~/workspace/boinc/ && boincmgr'
 alias screenshot='xfce4-screenshooter'
+alias volume='alsamixer'
+alias downloads='cd ~/Downloads'
+alias desktop='cd ~/Desktop'
+alias workspace='cd ~/workspace'
+alias projects='cd ~/workspace/projects'
+alias projectscheck='~/workspace/projects/check-git-projects.sh'
 
 alias wifi='sudo netctl stop-all && sudo netctl start'
 _completion_loader netctl
