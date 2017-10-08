@@ -54,7 +54,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWCOLORHINTS=1
 
 function color_my_prompt {
-	local __user_and_host="\n\n${bldylw}\u${bldwht}@${bldgrn}\h ${txtwht}| ${bldwht}\t (\d)\n"
+	local __user_and_host="${bldylw}\u${bldwht}@${bldgrn}\h ${txtwht}| ${bldwht}\t (\d)\n"
 	local __cur_location="${txtcyn}\w"
 	local __git_branch='$(__git_ps1 "\n(%s)")'
 	local __prompt_tail="\n$"
@@ -86,11 +86,34 @@ function color_my_prompt {
 
 	export PS1="$__user_and_host$__cur_location${state}$__git_branch${sym}$__last_color$__prompt_tail "
 }
-# Tell bash to execute this function just before displaying its prompt.
+
 PROMPT_COMMAND=color_my_prompt
 
+is_prompted=false
 
-function make-completion-wrapper () {
+pre_invoke_exec () {
+	[ -n "$COMP_LINE" ] && return
+
+	if [ "$BASH_COMMAND" == "clear" ] || [[ "$BASH_COMMAND" == 'printf "'* ]]
+	then
+		is_prompted=false
+		return
+	fi
+
+	if [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ]
+	then
+		if $is_prompted
+		then
+			echo -e "\n\n"
+		fi
+
+		is_prompted=true
+	fi
+}
+
+trap 'pre_invoke_exec' DEBUG
+
+function make_completion_wrapper () {
 	local function_name="$2"
 	local arg_count=$(($#-3))
 	local comp_function_name="$1"
@@ -161,10 +184,18 @@ alias d='date'
 alias now='date +"%T"'
 alias nowdate='date +"%m-%d-%Y"'
 
-alias web='chromium'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|energy\:|time|percentage"'
+
+alias x='exit'
+alias cls='printf "\E[\E[2J" && printf "\E[H"'
+alias clr='clear && printf "\E[3J"'
+
+alias o='chromium >/dev/null 2>&1 & firefox >/dev/null 2>&1 & geany >/dev/null 2>&1 &'
+alias web='chromium >/dev/null 2>&1 &'
+alias music='spotify >/dev/null 2>&1 &'
 alias myip='curl icanhazip.com'
 alias boinc='cd ~/workspace/boinc/ && /usr/bin/boinc'
-alias boincmgr='cd ~/workspace/boinc/ && boincmgr'
+alias boincmgr='cd ~/workspace/boinc/ && nvidia-settings >/dev/null 2>&1 & boincmgr'
 alias screenshot='xfce4-screenshooter'
 alias volume='alsamixer'
 alias downloads='cd ~/Downloads'
@@ -175,5 +206,5 @@ alias projectscheck='cd ~/workspace/projects && ~/workspace/projects/check-git-p
 
 alias wifi='sudo netctl stop-all && sudo netctl start'
 _completion_loader netctl
-make-completion-wrapper _netctl _netctl_start netctl start
+make_completion_wrapper _netctl _netctl_start netctl start
 complete -F _netctl_start wifi
