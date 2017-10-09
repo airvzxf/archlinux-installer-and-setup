@@ -10,11 +10,13 @@
 # [DON'T EXECUTE THIS SCRIPT, IS ONLY INFORMATIVE]
 # ----------------------------------------------------------------------
 
-pyChamDir='/home/wolf/workspace/pycharm/pycharm-2017.2.2/'
-# Create a link reference to execute pycharm in anywhere
-sudo ln -n $pyChamDir/bin/pycharm.sh /usr/local/bin/pycharm
-sudo ln -n $pyChamDir/bin/restart.py /usr/local/bin/pycharm-restart
-
+sudo rm /usr/local/bin/pycharm*
+pyChamDir='/home/wolf/workspace/packages/pycharm-2017.2.3/bin'
+sudo ln -s $pyChamDir/pycharm.sh /usr/local/bin/pycharm.sh
+sudo ln -s $pyChamDir/restart.py /usr/local/bin/pycharm-restart
+sudo ln -s $pyChamDir/format.sh /usr/local/bin/pycharm-formatter
+sudo ln -s $pyChamDir/inspect.sh /usr/local/bin/pycharm-inspector
+sudo ln -s $pyChamDir/printenv.py /usr/local/bin/pycharm-env
 
 # Insatall optional packages
 sudo pacman -S cython # (cython-kivy) (optional) – For performance debugger in Python 3
