@@ -216,3 +216,38 @@ alias wifi='sudo netctl stop-all && sudo netctl start'
 _completion_loader netctl
 make_completion_wrapper _netctl _netctl_start netctl start
 complete -F _netctl_start wifi
+
+
+function try_to_connect_to_uv_internet() {
+	wifi_name="wlp3s0-Brutus24GHz"
+	max_retrys=10
+
+	ping='ping -c 1 -q www.google.com'
+	counter=0
+	first_time=true
+
+	while true
+	do
+		let "counter++"
+		ping_result=$($ping 2>&1)
+
+		if [[ "$ping_result" == "ping: www.google.com: Name or service not known" ]]
+		then
+			echo -n $(date "+%a, %T%t")"> " && $ping
+
+			if [[ $counter == $max_retrys || $first_time == true ]]
+			then
+				counter=0
+				first_time=false
+
+				sudo netctl stop-all
+				sudo netctl start $wifi_name
+			fi
+		else
+			break
+		fi
+
+		sleep 1
+	done
+}
+alias uvwifi='try_to_connect_to_uv_internet'
