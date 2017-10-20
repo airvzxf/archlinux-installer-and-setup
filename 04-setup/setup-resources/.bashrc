@@ -190,6 +190,10 @@ alias findall='fa(){ sudo find / -iname *"$@"* 2>/dev/null;  unset -f fa; }; fa'
 alias findallfile='faf(){ sudo find / -type f -iname *"$@"* 2>/dev/null;  unset -f faf; }; faf'
 alias findalldir='fad(){ sudo find / -type d -iname *"$@"* 2>/dev/null;  unset -f fad; }; fad'
 
+alias findhere='fa(){ sudo find ./ -iname *"$@"* 2>/dev/null;  unset -f fa; }; fa'
+alias findherefile='faf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null;  unset -f faf; }; faf'
+alias findheredir='fad(){ sudo find ./ -type d -iname *"$@"* 2>/dev/null;  unset -f fad; }; fad'
+
 alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'
 alias clr='clear && printf "\E[3J"'
