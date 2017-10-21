@@ -226,7 +226,7 @@ complete -F _netctl_start wifi
 
 
 function try_to_connect_to_uv_internet() {
-	wifi_name="wlp3s0-Brutus24GHz"
+	wifi_name=$1
 	max_retrys=10
 
 	ping='ping -c 1 -q www.google.com'
@@ -257,4 +257,5 @@ function try_to_connect_to_uv_internet() {
 		sleep 1
 	done
 }
-alias uvwifi='try_to_connect_to_uv_internet'
+alias uvwifi='try_to_connect_to_uv_internet wlp3s0-Brutus24GHz'
+alias homewifi='try_to_connect_to_uv_internet wlp3s0-MySpectrumWiFi20-2G'
