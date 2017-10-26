@@ -226,9 +226,9 @@ make_completion_wrapper _netctl _netctl_start netctl start
 complete -F _netctl_start wifi
 
 
-function try_to_connect_to_uv_internet() {
+function try_to_connect_to_my_internet() {
 	wifi_name=$1
-	max_retrys=10
+	max_retrys=20
 
 	ping='ping -c 1 -q www.google.com'
 	counter=0
@@ -258,5 +258,5 @@ function try_to_connect_to_uv_internet() {
 		sleep 1
 	done
 }
-alias uvwifi='try_to_connect_to_uv_internet wlp3s0-Brutus24GHz'
-alias homewifi='try_to_connect_to_uv_internet wlp3s0-MySpectrumWiFi20-2G'
+alias uvwifi='try_to_connect_to_my_internet wlp3s0-Brutus24GHz'
+alias homewifi='try_to_connect_to_mt_internet wlp3s0-MySpectrumWiFi20-2G'
