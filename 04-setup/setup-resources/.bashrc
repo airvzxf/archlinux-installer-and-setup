@@ -259,4 +259,4 @@ function try_to_connect_to_my_internet() {
 	done
 }
 alias uvwifi='try_to_connect_to_my_internet wlp3s0-Brutus24GHz'
-alias homewifi='try_to_connect_to_mt_internet wlp3s0-MySpectrumWiFi20-2G'
+alias homewifi='try_to_connect_to_my_internet wlp3s0-MySpectrumWiFi20-2G'
