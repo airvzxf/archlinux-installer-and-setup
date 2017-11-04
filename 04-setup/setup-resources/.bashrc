@@ -201,6 +201,12 @@ alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'
 alias clr='clear && printf "\E[3J"'
 
+alias piplist='pip list --format=columns'
+alias pipoutdate='pip list --outdated --format=legacy'
+alias pipupgrade="pip list --outdated --format legacy | sed 's/(.*//g' | xargs -n1 sudo pip install -U"
+alias pipsearch='pps(){ pip search $1 | sort;  unset -f pps; }; pps'
+alias pipinstall='ppi(){ sudo pip install $1;  unset -f ppi; }; ppi'
+
 alias o='chromium >/dev/null 2>&1 & firefox >/dev/null 2>&1 & geany >/dev/null 2>&1 &'
 alias m='spotify >/dev/null 2>&1 &'
 alias web='chromium >/dev/null 2>&1 &'
