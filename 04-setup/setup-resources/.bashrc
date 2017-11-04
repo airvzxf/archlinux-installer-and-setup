@@ -137,9 +137,10 @@ alias l.='ls --color=auto -lhad .*'
 alias ll='ls --color=auto -lha'
 
 alias diff='colordiff'
-alias egrep='egrep -n --color=auto'
-alias fgrep='fgrep -n --color=auto'
-alias grep='grep -n --color=auto'
+
+alias grep='gp(){ grep --color=auto -nir $1 $2;  unset -f gp; }; gp'
+alias egrep='egp(){ egrep --color=auto -nir $1 $2;  unset -f egp; }; egp'
+alias fgrep='fgp(){ fgrep --color=auto -nir $1 $2;  unset -f fgp; }; fgp'
 
 alias h='history'
 alias hg='history | grep'
