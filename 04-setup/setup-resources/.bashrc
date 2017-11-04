@@ -268,3 +268,5 @@ function try_to_connect_to_my_internet() {
 }
 alias uvwifi='try_to_connect_to_my_internet wlp3s0-Brutus24GHz'
 alias homewifi='try_to_connect_to_my_internet wlp3s0-MySpectrumWiFi20-2G'
+alias starbuckswifi='try_to_connect_to_my_internet wlp3s0-GoogleStarbucks'
+alias htcwifi='try_to_connect_to_my_internet wlp3s0-IsraelRoldanHTC'
