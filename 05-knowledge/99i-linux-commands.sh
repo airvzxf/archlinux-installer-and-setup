@@ -219,3 +219,7 @@ exit
 
 # Search commands in the the packages
 pkgfile [package]
+
+
+# Show the RAM hardware info
+sudo dmidecode --type memory
