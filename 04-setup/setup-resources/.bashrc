@@ -139,10 +139,10 @@ alias llp='stat -c "%a (%A) %n" *'
 
 alias diff='colordiff'
 
-alias grep='gp(){ grep --color=auto -nir $1 $2; unset -f gp; }; gp'
-alias egrep='egp(){ egrep --color=auto -nir $1 $2; unset -f egp; }; egp'
-alias fgrep='fgp(){ fgrep --color=auto -nir $1 $2; unset -f fgp; }; fgp'
-alias pgrep='pgp(){ pgrep -il $1; unset -f pgp; }; pgp'
+alias grepi='gp(){ grep --color=auto -nir $1 $2; unset -f gp; }; gp'
+alias egrepi='egp(){ egrep --color=auto -nir $1 $2; unset -f egp; }; egp'
+alias fgrepi='fgp(){ fgrep --color=auto -nir $1 $2; unset -f fgp; }; fgp'
+alias pgrepi='pgp(){ pgrep -il $1; unset -f pgp; }; pgp'
 
 alias h='history'
 alias hg='history | grep'
