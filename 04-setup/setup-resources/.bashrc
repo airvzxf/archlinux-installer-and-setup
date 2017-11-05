@@ -160,6 +160,8 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
+alias memoryclean='sudo sh -c "echo 3 >/proc/sys/vm/drop_caches && swapoff -a && swapon -a && printf \"\n%s\n\" \"Ram-cache and Swap Cleared\""'
+
 alias pingfast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
 
 alias ..='cd ../'
