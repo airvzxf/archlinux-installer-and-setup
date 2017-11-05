@@ -72,9 +72,9 @@ function color_my_prompt {
 		state="${bldred}"
 	fi
 
-	# collect the number of commits ahead or behind origin 
+	# collect the number of commits ahead or behind origin
 	sym="$(echo \"${git_status}\" | sed -r 's/.*by[[:blank:]]([0-9]*)[[:blank:]]commit.*/\1/' | grep '[0-9]' 2> /dev/null)"
-	
+
 	# add marker for origin status with number of commits ahead (+) or behind (-)
 	if [[ ${git_status} =~ "branch is ahead of" ]]; then
 		sym="[+"${sym}"]"
