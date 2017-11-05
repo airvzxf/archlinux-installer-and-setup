@@ -135,6 +135,7 @@ alias ls='ls --color=auto'
 alias l='ls --color=auto -lh'
 alias l.='ls --color=auto -lhad .*'
 alias ll='ls --color=auto -lha'
+alias llp='stat -c "%a (%A) %n" *'
 
 alias diff='colordiff'
 
@@ -167,8 +168,11 @@ alias ......='cd ../../../'
 alias ........='cd ../../../../'
 alias ..........='cd ../../../../../'
 
-alias chx='chmod 755'
-alias chr='chmod 644'
+alias chx='sudo chmod 755'
+alias chxdirectories='sudo find ./ -type d -exec chmod 755 {} \;'
+alias chr='sudo chmod 644'
+alias chrfiles='sudo find ./ -type f -exec chmod 644 {} \;'
+
 alias rmf='rm -rf'
 
 alias tgz='tar -zcvf'
