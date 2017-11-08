@@ -1,18 +1,18 @@
 [Desktop Entry]
-DefaultProfile=
+DefaultProfile=WolfKonsoleProfile.profile
 
 [Favorite Profiles]
-Favorites=
+Favorites=WolfKonsoleProfile.profile
 
 [KonsoleWindow]
 ShowWindowTitleOnTitleBar=true
 
 [MainWindow]
 Height 1080=741
-Height 768=743
+Height 768=512
 State=AAAA/wAAAAD9AAAAAAAABVYAAALOAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1366=1366
+Width 1366=910
 Width 1920=1366
 Window-Maximized 1134x768=true
 Window-Maximized 1418x961=true
@@ -21,6 +21,7 @@ Window-Maximized 2836x1921=true
 Window-Maximized 568x193=true
 Window-Maximized 631x214=true
 Window-Maximized 709x241=true
+Window-Maximized 768x1366=true
 Window-Maximized 811x276=true
 Window-Maximized 811x550=true
 Window-Maximized 946x641=true
