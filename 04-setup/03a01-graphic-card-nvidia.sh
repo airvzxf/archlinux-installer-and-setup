@@ -101,6 +101,11 @@ echo -e ""
 sudo pacman --needed --noconfirm -S acpid
 echo -e "\n"
 
+echo -e "Installing redshift"
+echo -e ""
+sudo pacman -S --needed --noconfirm redshift # Automatically adjusts the color temperature of your screen
+echo -e "\n"
+
 
 # If you try to run the command xinit your screen freezen to solve this
 # problem you need to install nvidia-xrun which avoid this problem and
@@ -113,6 +118,7 @@ echo -e "\n"
 echo -e "Adding to .nvidia-xinitrc the xrun config"
 echo -e "xrandr --output LVDS-1-1 --primary --mode 1366x768 --dpi 130" > ~/.nvidia-xinitrc
 echo -e "setxkbmap -model pc105 -layout latam -variant ,deadtilde" >> ~/.nvidia-xinitrc
+echo -e "redshift" >> ~/.nvidia-xinitrc
 echo -e "openbox-session" >> ~/.nvidia-xinitrc
 echo -e ""
 

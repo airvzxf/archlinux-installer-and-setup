@@ -90,11 +90,6 @@ gpg --recv-keys 13B00F1FD2C19886 # This is the public key for Spotify AUR
 yaourt -S --needed --noconfirm spotify-stable # Spotify
 echo -e "\n"
 
-echo -e "Installing redshift"
-echo -e ""
-sudo pacman -S --needed --noconfirm redshift # Automatically adjusts the color temperature of your screen
-echo -e "\n"
-
 
 # Web browsers
 # I recommend install all of these because
