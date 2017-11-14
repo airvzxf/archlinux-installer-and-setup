@@ -93,7 +93,39 @@ sudo pacman -Syyu --noconfirm
 echo -e "\n"
 
 # Update automatically every day
-echo -e "Setting up automate daily reflector update"
+echo -e "Setting up automate for daily system upgrade"
+echo -e ""
+upgradeSystemService=/etc/systemd/system/upgrade_system.service
+sudo rm -f $upgradeSystemService
+sudo touch $upgradeSystemService
+sudo chmod 755 $upgradeSystemService
+echo -e "[Unit]" | sudo tee -a $upgradeSystemService
+echo -e "Description=Pacman upgrade the system\n" | sudo tee -a $upgradeSystemService
+echo -e "[Service]" | sudo tee -a $upgradeSystemService
+echo -e "Type=oneshot" | sudo tee -a $upgradeSystemService
+echo -e "ExecStart=/usr/bin/pacman -Syyu --noconfirm" | sudo tee -a $upgradeSystemService
+
+upgradeSystemTimer=/etc/systemd/system/upgrade_system.timer
+sudo rm -f $upgradeSystemTimer
+sudo touch $upgradeSystemTimer
+sudo chmod 755 $upgradeSystemTimer
+echo -e "[Unit]" | sudo tee -a $upgradeSystemTimer
+echo -e "Description=Run pacman system upgrade daily" | sudo tee -a $upgradeSystemTimer
+echo -e "Requires=network-online.target" | sudo tee -a $upgradeSystemTimer
+echo -e "After=network-online.target\n" | sudo tee -a $upgradeSystemTimer
+echo -e "[Timer]" | sudo tee -a $upgradeSystemTimer
+echo -e "OnCalendar=daily" | sudo tee -a $upgradeSystemTimer
+echo -e "RandomizedDelaySec=12h" | sudo tee -a $upgradeSystemTimer
+echo -e "Persistent=true\n" | sudo tee -a $upgradeSystemTimer
+echo -e "[Install]" | sudo tee -a $upgradeSystemTimer
+echo -e "WantedBy=timers.target" | sudo tee -a $upgradeSystemTimer
+echo -e "\n"
+
+sudo systemctl enable upgrade_system.timer
+
+
+# Update automatically every day
+echo -e "Setting up automate for daily reflector updates"
 echo -e ""
 reflectorService=/etc/systemd/system/reflector.service
 sudo rm -f $reflectorService
