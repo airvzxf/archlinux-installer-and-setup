@@ -179,10 +179,13 @@ alias rmf='rm -rf'
 
 alias tgz='tar -zcvf'
 alias tbz='tar -jcvf'
+alias txz='tar -Jcvf'
 alias untgz='tar -zxvf'
 alias untbz='tar -jxvf'
+alias untxz='tar -Jxvf'
 alias tgzlist='tar -ztvf'
 alias tbzlist='tar -jtvf'
+alias txzlist='tar -Jtvf'
 
 alias ct='column -t'
 alias dffast='df -hPT | column -t'
