@@ -40,9 +40,9 @@ comment_single=;
 
 # set to false if a comment character/string should start at column 0 of a line, true uses any
 # indentation of the line, e.g. setting to true causes the following on pressing CTRL+d
-	#command_example();
+#	#command_example();
 # setting to false would generate this
-#	command_example();
+##	command_example();
 # This setting works only for single line comments
 comment_use_indent=true
 
@@ -50,9 +50,9 @@ comment_use_indent=true
 context_action_cmd=
 
 [indentation]
-#width=4
+width=4
 # 0 is spaces, 1 is tabs, 2 is tab & spaces
-#type=1
+type=0
 
 [build_settings]
 # %f will be replaced by the complete filename
