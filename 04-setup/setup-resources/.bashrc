@@ -239,6 +239,7 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias pyc='pycharm.sh >/dev/null 2>&1 &'
 alias pycformatter='pyf(){ pycharm-formatter -r $(pwd)/$1; unset -f pyf; }; pyf'
 alias pycinspector='rmf ~/Downloads/pyInspectorOutpu && pycharm-inspector $(pwd)/ $(pwd)/.idea/inspectionProfiles/python_inspector.xml ~/Downloads/pyInspectorOutpu -v2 && geany ~/Downloads/pyInspectorOutpu/*'
+alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
 alias wifi='sudo netctl stop-all && sudo netctl start'
 _completion_loader netctl
