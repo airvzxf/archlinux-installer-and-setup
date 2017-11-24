@@ -74,9 +74,14 @@ sudo systemctl enable [unit]
 sudo systemctl enable --now [unit]
 
 # Mount and umount USB
-sudo mkdir -p /mnt/usb
-sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usb
-sudo umount -R /mnt/usb
+sudo mkdir -p /mnt/usbstick
+sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usbstick
+sudo umount -R /mnt/usbstick
+
+# Mount and umount USB
+grep $USER /etc/passwd
+sudo mount -o uid=1000,gid=1000,utf8,fmask=137,dmask=027 /dev/sdb1 /mnt/usbstick/
+sudo umount -R /mnt/usbstick
 
 # Git
 # Undo a "public" change
@@ -185,7 +190,7 @@ xrandr --output LVDS-1-1 --primary --mode 1366x768 --rate 60 --dpi 112
 # Run these the first time
 # Make sure your device is not blocked
 rfkill list
-#rfkill unblock all
+#sudo rfkill unblock all
 modprobe btusb
 systemctl start bluetooth.service
 
@@ -201,6 +206,7 @@ bluetoothctl
 # It shows:
 #    [NEW] Device 30:23:57:A2:71:59 BX950
 # $ trust [MAC Address]
+# $ connect [MAC Address]
 # $ pair [MAC Address]
 # $ connect [MAC Address]
 # $ scan off
