@@ -73,12 +73,18 @@ sudo systemctl enable [unit]
 # Enable a unit to be started on bootup and Start immediately:
 sudo systemctl enable --now [unit]
 
+# Create a NTFS or FAT USB
+# Delete / Create the partitions and use the FAT23 or NTFS
+sudo cfdisk /dev/sdb
+# Convert this partition to FAT format
+sudo mkfs.vfat /dev/sdb1
+
 # Mount and umount USB
 sudo mkdir -p /mnt/usbstick
 sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usbstick
 sudo umount -R /mnt/usbstick
 
-# Mount and umount USB
+# Mount and umount USB, other way
 grep $USER /etc/passwd
 sudo mount -o uid=1000,gid=1000,utf8,fmask=137,dmask=027 /dev/sdb1 /mnt/usbstick/
 sudo umount -R /mnt/usbstick
