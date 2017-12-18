@@ -131,6 +131,8 @@ function $function_name {
 
 alias src='source ~/.bash_profile'
 
+alias sudo='sudo '
+
 alias ls='ls --color=auto'
 alias l='ls --color=auto -lh'
 alias l.='ls --color=auto -lhad .*'
@@ -139,10 +141,10 @@ alias llp='stat -c "%a (%A) %n" *'
 
 alias diff='colordiff'
 
-alias grepi='gp(){ grep --color=auto -nir $1 $2; unset -f gp; }; gp'
-alias egrepi='egp(){ egrep --color=auto -nir $1 $2; unset -f egp; }; egp'
-alias fgrepi='fgp(){ fgrep --color=auto -nir $1 $2; unset -f fgp; }; fgp'
-alias pgrepi='pgp(){ pgrep -il $1; unset -f pgp; }; pgp'
+alias grepi='gp(){ sudo grep --color=auto -nir $1 $2; unset -f gp; }; gp'
+alias egrepi='egp(){ sudo egrep --color=auto -nir $1 $2; unset -f egp; }; egp'
+alias fgrepi='fgp(){ sudo fgrep --color=auto -nir $1 $2; unset -f fgp; }; fgp'
+alias pgrepi='pgp(){ sudo pgrep -il $1; unset -f pgp; }; pgp'
 
 alias h='history'
 alias hg='history | grep'
