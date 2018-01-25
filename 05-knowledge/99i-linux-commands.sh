@@ -111,12 +111,16 @@ sudo rm -f /etc/netctl/[network-name]
 ip link
 sudo ip link set down [interface]
 sudo ip link set up [interface]
-sudo dhcpcd # Needs to reload the DHCP
+sudo killall dhcpcd
+#sudo dhcpcd # Needs to reload the DHCP
+sudo systemctl restart dhcpcd.service
 # Show information about the IP
 ip addr show dev [interface]
 # If you connect a ethernet wire or USB/ethernet adaptor to refresh the
 # DNS and enable your Internet connection run this command:
-sudo dhcpcd
+sudo killall dhcpcd
+#sudo dhcpcd
+sudo systemctl restart dhcpcd.service
 
 # Reset the wifi connection
 sudo ip link set down [interface]
@@ -192,6 +196,13 @@ xrandr --output LVDS-1-1 --primary --mode 1366x768 --rate 60 --dpi 112
 
 
 # Connect bluetooth headset
+# https://purplepalmdash.github.io/2013/12/19/bluetooth-headset-on-archlinux/
+# https://wiki.archlinux.org/index.php/Bluetooth_headset#Headset_via_Bluez5.2FPulseAudio
+sudo pacman -S --needed --noconfirm pulseaudio-alsa
+sudo pacman -S --needed --noconfirm pulseaudio-bluetooth
+sudo pacman -S --needed --noconfirm bluez
+sudo pacman -S --needed --noconfirm bluez-libs
+sudo pacman -S --needed --noconfirm bluez-utils
 
 # Run these the first time
 # Make sure your device is not blocked
@@ -199,6 +210,7 @@ rfkill list
 #sudo rfkill unblock all
 modprobe btusb
 systemctl start bluetooth.service
+pulseaudio -k
 
 # Turn on your headset device
 
@@ -212,7 +224,6 @@ bluetoothctl
 # It shows:
 #    [NEW] Device 30:23:57:A2:71:59 BX950
 # $ trust [MAC Address]
-# $ connect [MAC Address]
 # $ pair [MAC Address]
 # $ connect [MAC Address]
 # $ scan off
@@ -220,13 +231,18 @@ bluetoothctl
 
 # If you had setted up your device you only need these
 modprobe btusb
-systemctl start bluetooth.service
+systemctl restart bluetooth.service
 bluetoothctl
 power on
 agent on
 default-agent
 connect 30:23:57:A2:71:59
 exit
+
+# If you have problems with the sound try to close pulseaudio and open again
+# the close and open spotify or any media player
+pulseaudio -k
+pulseaudio --start
 
 
 # Search commands in the the packages
@@ -235,3 +251,28 @@ pkgfile [package]
 
 # Show the RAM hardware info
 sudo dmidecode --type memory
+
+
+# Security in liux
+#-------------------------------------------------------------------------------
+
+# lynis
+sudo lynis audit system
+
+# rkhunter
+sudo pacman -S lsof
+yaourt -S skdet
+yaourt -S tripwire-git
+yaourt -S net-tools-debian-ifconfig
+
+sudo rkhunter --propupd
+sudo rkhunter --check --skip-keypress
+
+# arch-audit
+arch-audit
+
+# Clam AntiVirus Scanner
+sudo freshclam
+
+# Nmap
+nmap
