@@ -257,6 +257,8 @@ function try_to_connect_to_my_internet() {
 	counter=0
 	first_time=true
 
+	sudo netctl stop-all
+
 	while true
 	do
 		let "counter++"
@@ -271,7 +273,6 @@ function try_to_connect_to_my_internet() {
 				counter=0
 				first_time=false
 
-				sudo netctl stop-all
 				sudo netctl start $wifi_name
 			fi
 		else
@@ -285,3 +286,4 @@ alias uvwifi='try_to_connect_to_my_internet wlp3s0-Brutus24GHz'
 alias homewifi='try_to_connect_to_my_internet wlp3s0-MySpectrumWiFi20-2G'
 alias starbuckswifi='try_to_connect_to_my_internet wlp3s0-GoogleStarbucks'
 alias htcwifi='try_to_connect_to_my_internet wlp3s0-IsraelRoldanHTC'
+alias usbethernet='try_to_connect_to_my_internet enp0s20u1u4-Home'
