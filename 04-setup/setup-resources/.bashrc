@@ -273,7 +273,7 @@ function try_to_connect_to_my_internet() {
 				counter=0
 				first_time=false
 
-				sudo netctl start $wifi_name
+				sudo netctl restart $wifi_name
 			fi
 		else
 			break
