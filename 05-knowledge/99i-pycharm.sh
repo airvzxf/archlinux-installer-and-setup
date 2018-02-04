@@ -11,7 +11,7 @@
 # ----------------------------------------------------------------------
 
 sudo rm /usr/local/bin/pycharm*
-pyChamDir='/home/wolf/workspace/packages/pycharm-2017.2.3/bin'
+pyChamDir='/home/wolf/workspace/packages/pycharm/bin'
 sudo ln -s $pyChamDir/pycharm.sh /usr/local/bin/pycharm.sh
 sudo ln -s $pyChamDir/restart.py /usr/local/bin/pycharm-restart
 sudo ln -s $pyChamDir/format.sh /usr/local/bin/pycharm-formatter
