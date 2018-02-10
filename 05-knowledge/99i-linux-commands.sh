@@ -203,6 +203,8 @@ sudo pacman -S --needed --noconfirm pulseaudio-bluetooth
 sudo pacman -S --needed --noconfirm bluez
 sudo pacman -S --needed --noconfirm bluez-libs
 sudo pacman -S --needed --noconfirm bluez-utils
+yaourt -S bluez-utils-compat
+gpg --recv-keys 06CA9F5D1DCF2659
 
 # Run these the first time
 # Make sure your device is not blocked
