@@ -280,3 +280,20 @@ sudo freshclam
 
 # Nmap
 nmap
+
+
+
+
+# Create ssh keys to access into remote server without password
+#-------------------------------------------------------------------------------
+
+# In your local machine
+
+mkdir -p ssh_keys
+
+ssh-keygen -t rsa -b 4096 -f ./ssh_keys/free_access
+
+ssh-copy-id -i ./ssh_keys/free_access -i ./ssh_keys/free_access user@IP
+# Enter the remote user password to upload the ssh id
+
+ssh -i ./ssh_keys/free_access user@IP
