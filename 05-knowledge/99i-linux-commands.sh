@@ -208,6 +208,26 @@ sudo pacman -S --needed --noconfirm bluez-utils
 # yaourt -S bluez-utils-compat
 # gpg --recv-keys 06CA9F5D1DCF2659
 
+
+# How to check if you missing some module
+lsmod > loaded-modules-before-sleep.txt
+# Sleep your computer and wake up.
+lsmod > loaded-modules-after-sleep.txt
+diff loaded-modules-before-sleep.txt loaded-modules-after-sleep.txt
+
+
+# Bluetooth problems when can't turn on the power or anothers
+# https://unix.stackexchange.com/questions/113828/how-to-find-and-reload-specific-driver-from-kernel
+lsmod | grep -i bluetooth
+# bluetooth: 10 btrtl,btintel,bnep,btbcm,rfcomm,ath3k,btusb
+sudo rmmod ath3k && sudo modprobe ath3k
+sudo rmmod btusb && sudo modprobe btusb
+# Sleep the computer.
+sudo systemctl restart bluetooth
+bluetoothctl
+# Wait until the controller is loaded again.
+
+
 # Run these the first time
 # Make sure your device is not blocked
 rfkill list
