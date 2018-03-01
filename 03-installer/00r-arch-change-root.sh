@@ -64,6 +64,10 @@ echo -e ""
 # Config Grub
 echo -e "Setting the grub config"
 echo -e ""
+echo -e "Changing the initial timeout from 5 to 1 second"
+sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
+echo -e ""
+echo -e "Creating the grub config file"
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e ""
 
