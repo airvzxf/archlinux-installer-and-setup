@@ -133,6 +133,9 @@ alias src='source ~/.bash_profile'
 
 alias sudo='sudo '
 
+alias rs='sudo reboot'
+alias off='sudo poweroff'
+
 alias ls='ls --color=auto'
 alias l='ls --color=auto -lh'
 alias l.='ls --color=auto -lhad .*'
