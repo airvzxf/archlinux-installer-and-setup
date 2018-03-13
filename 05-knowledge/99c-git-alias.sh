@@ -20,6 +20,9 @@ git config --global credential.helper "cache --timeout=604800" # 7 days
 # Store your credentials
 git config credential.helper store
 
+# Change the git editor to vim
+git config --global core.editor "vim"
+
 # Create alias to write easy command like git cm thats means git commit -m
 # These configurations will be save in this file ~/.gitconfig
 git config --global --remove-section alias
