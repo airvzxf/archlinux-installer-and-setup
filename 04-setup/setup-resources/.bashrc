@@ -194,7 +194,7 @@ alias txzlist='tar -Jtvf'
 
 alias ct='column -t'
 alias dffast='df -hPT | column -t'
-alias mount='mount | column -t'
+alias mountinfo='mount | column -t'
 
 alias d='date'
 alias now='date +"%T"'
