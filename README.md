@@ -45,14 +45,13 @@ sudo wifi-menu
 ```
 
 4. Download the "init script" to start this journey.<br>
-   This script should be downloaded in `~/workspace/archLinux-installer-and-setup-master`.<br>
-   You can run this short url vs the long github link: `curl -L https://goo.gl/g2KLba > init.sh`
+   This script helps to download the archLinux project in your computer to proceed with the installation.<br>
 ```sh
-#curl -L https://goo.gl/g2KLba > init.sh
-curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/02-init/init.sh > init.sh
+cd ~/
+curl -L https://goo.gl/g2KLba > init.sh
+#curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/02-init/init.sh > init.sh
 chmod +x init.sh
 ./init.sh
-cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 
 ```
@@ -71,14 +70,28 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 
 1. Pre-installation.<br>
    Clean/Erease your hard disk and format ever partition then create the files systems.
+```sh
+./01b-pre-installation-efi.sh
+
+
+```
 
 2. Installation.<br>
    Download and install the base packages in your Linux partition and create the automatically mount partitions.
+```sh
+./02-installation.sh
+
+
+```
 
 3. Arch change Root.<br>
    Emulate that you are login in the mount device and every command affect your session, setup the basic config to start to run Arch Linux in your Hard Drive Device.
    - Reboot the computer
+```sh
+./03-arch-change-root.sh
 
+
+```
 
 
 
