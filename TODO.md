@@ -18,4 +18,4 @@
 
 ## More
 - Spelling
-  - [ ] Ewww! I'm pretty sure this project have a lot of mistakes (2017-07-09)
+  - [ ] Ewww! I'm pretty sure this project have a lot of typos (2017-07-09)
