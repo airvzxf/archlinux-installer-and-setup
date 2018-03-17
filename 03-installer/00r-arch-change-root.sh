@@ -95,6 +95,13 @@ echo -e "Adding sudo permissions for your user"
 sed -i '/%wheel ALL=(ALL) ALL/ s/^##* *//' /etc/sudoers
 echo -e ""
 
+# Move the archLinux project into the user folder.
+echo -e "Moving the archLinux project into the user folder."
+mv /archLinux-installer-and-setup-master /home/$yourUserName/
+chown -R $yourUserName /home/$yourUserName/archLinux-installer-and-setup-master
+chgrp -R users /home/$yourUserName/archLinux-installer-and-setup-master
+echo -e ""
+
 # Exit from Arch change root
 echo -e "Exiting from Arch change root"
 exit

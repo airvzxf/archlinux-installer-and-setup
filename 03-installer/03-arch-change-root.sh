@@ -24,6 +24,11 @@ funcMountSystem
 cp 00-config.sh /mnt
 cp 00r-arch-change-root.sh /mnt
 
+# Copy this project into user workspace directory
+echo -e "Copying this project into the root directory"
+cp -R ../../archLinux-installer-and-setup-master /mnt/
+echo -e ""
+
 # Go to the main Linux partition like a root user.
 echo -e "Going to the main Linux partition like a root user"
 echo -e ""
@@ -33,12 +38,6 @@ echo -e ""
 # Delete the copied files
 rm -f /mnt/00-config.sh
 rm -f /mnt/00r-arch-change-root.sh
-
-# Copy this project into user workspace directory
-echo -e "Copying this project into user home directory"
-cp -R ../../archLinux-installer-and-setup-master /mnt/home/$yourUserName/
-chgrp -R users /mnt/home/$yourUserName/archLinux-installer-and-setup-master
-echo -e ""
 
 # Copy wifi config into the new user
 echo -e "Copying wifi config into the new user"
