@@ -16,6 +16,10 @@ funcIsConnectedToInternet
 
 echo -e ""
 
+echo -e "Installing Xorg"
+sudo pacman -S --needed --noconfirm xorg
+echo -e "\n"
+
 echo -e "Installing Xorg xinit"
 sudo pacman -S --needed --noconfirm xorg-xinit
 echo -e "\n"
