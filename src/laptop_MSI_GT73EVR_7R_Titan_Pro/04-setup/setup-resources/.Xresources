@@ -1,0 +1,36 @@
+! The default values are in: /usr/share/X11/app-defaults/XTerm
+
+XTerm.termName: xterm-256color
+
+XTerm.vt100.locale: true
+
+!XTerm.vt100.metaSendsEscape: true
+
+XTerm.vt100.scrollBar: true
+XTerm.vt100.scrollbar.width: 16
+XTerm.vt100.saveLines: 10000000
+
+XTerm.vt100.foreground: white
+XTerm.vt100.background: black
+
+XTerm.vt100.faceName: Monospace:antialias=true
+XTerm.vt100.faceSize: 9
+
+XTerm.vt100.loginShell: true
+
+XTerm.vt100.selectToClipboard:true
+
+XTerm.vt100.printerCommand: xterm -T History -e sh -c 'less -r <&3' 3<&0
+
+! For toogle between full screen use Alt-Enter
+! Replace Ctrl-C SIGINT/interrupt for Ctrl-Shift-C 
+
+XTerm.vt100.translations: #override \n\
+    Ctrl <Key>M: maximize() \n\
+    Ctrl <Key>R: restore() \n\
+    Ctrl Shift <Key>F: fullscreen() \n\
+    Ctrl Shift <Key>C: string(0x03) \n\
+    Ctrl <Key>F: print-everything() \n\
+    Ctrl <Key>slash: print-everything() \n\
+    Ctrl <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl <Key>V: insert-selection(CLIPBOARD)
