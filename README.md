@@ -8,7 +8,8 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 ### 1. Create your bootloader USB to boot with Arch Linux
 [Arch Linux official documentation.](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-- This project has a script to [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/01-bootable-usb/bootable-usb.sh)
+- This project has a script to
+  [create a USB flash installation media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/bootable-usb.sh)
 
 Or
 
@@ -71,7 +72,7 @@ chmod +x init.sh
 Install Arch Linux in your Hard Disk Device<br>
 If you are executing these scripts in this project, please go to this path:
 ```sh
-cd ~/workspace/archLinux-installer-and-setup-master/03-installer
+cd ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer
 
 
 ```
@@ -106,7 +107,7 @@ cd ~/workspace/archLinux-installer-and-setup-master/03-installer
 ### 4. Setup
 Install all the basic packages including the graphic drivers and window manager also set up the properties in some files to improve your experience.
 ```sh
-cd ~/workspace/archLinux-installer-and-setup-master/04-setup
+cd ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup
 
 
 ```
@@ -163,7 +164,7 @@ sudo wifi-menu
 ### 5. Knowledge
 This interesting folder contain resources, configurations, information, link references, errors and solutions, etc.
 ```sh
-cd ~/workspace/archLinux-installer-and-setup-master/05-knowledge
+cd ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge
 
 
 ```
