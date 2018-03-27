@@ -16,7 +16,7 @@
 #
 #xfce-mcs-manager &
 
-#Startups
+# Startups
 redshift &
 chromium &
 geany &
