@@ -48,7 +48,7 @@ sudo wifi-menu
 4. Download the "init script" to start this journey.<br>
    This script helps to download the archLinux project in your computer to proceed with the installation.<br>
 
-Before run the script change the name and e-mail variables in the file. 
+Before run the script change the name and e-mail variables in the 'init.sh' file.
 ```sh
 cd ~/
 
@@ -78,6 +78,14 @@ Install Arch Linux in your Hard Disk Device<br>
 If you are executing these scripts in this project, please go to this path:
 ```sh
 cd ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer
+
+
+```
+
+Before run the script change the name and e-mail variables in the '00-config.sh' file.
+```sh
+# Change your name and e-mail from the 00-config.sh file executing the nano command.
+nano ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/00-config.sh
 
 
 ```
