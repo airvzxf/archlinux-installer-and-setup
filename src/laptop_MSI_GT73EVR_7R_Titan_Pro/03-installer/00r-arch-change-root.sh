@@ -13,12 +13,12 @@ source 00-config.sh
 
 # Set the keyboard layout
 echo -e "Setting the keyboard layout"
-loadkeys $keyboardLayout
+loadkeys ${keyboardLayout}
 echo -e ""
 
 # Set the time zone
 echo -e "Setting the time zone"
-ln -sf /usr/share/zoneinfo/$zoneInfo /etc/localtime
+ln -sf /usr/share/zoneinfo/${zoneInfo} /etc/localtime
 hwclock --systohc
 echo -e ""
 
@@ -27,22 +27,22 @@ echo -e ""
 # nano /etc/locale.gen
 # This command auto delete the comments in /etc/locale.gen
 echo -e "Setting the language and charset into locale"
-sed -i "/[^ ]$languageCode UTF-8/ s/^##*//" /etc/locale.gen
+sed -i "/[^ ]${languageCode} UTF-8/ s/^##*//" /etc/locale.gen
 locale-gen
 echo -e ""
 
 echo -e "Setting the language into locale config"
-echo "LANG=$languageCode" > /etc/locale.conf
+echo "LANG=${languageCode}" > /etc/locale.conf
 echo -e ""
 
 echo -e "Setting the keyboard layout into vconsole config"
-echo "KEYMAP=$keyboardLayout" > /etc/vconsole.conf
+echo "KEYMAP=${keyboardLayout}" > /etc/vconsole.conf
 echo -e ""
 
 # Set the hostname
 echo -e "Setting the hostname"
-echo $yourComputerName > /etc/hostname
-funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    $yourComputerName" /etc/hosts
+echo ${yourComputerName} > /etc/hostname
+funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    ${yourComputerName}" /etc/hosts
 
 # Install basic package
 echo -e "Installing basic packages"
@@ -86,12 +86,12 @@ passwd
 echo -e ""
 
 # Create your user and password
-echo -e "Creating your user ($yourUserName)"
-useradd -m -g users -G wheel,storage,power -s /bin/bash $yourUserName
+echo -e "Creating your user (${yourUserName})"
+useradd -m -g users -G wheel,storage,power -s /bin/bash ${yourUserName}
 echo -e ""
 
 echo -e "Please change your user password:"
-passwd $yourUserName
+passwd $y{ourUserName}
 echo -e ""
 
 # Add sudo permissions for your user
@@ -108,10 +108,10 @@ echo -e ""
 
 # Move the archLinux project into the user folder.
 echo -e "Moving the archLinux project into the user folder."
-mkdir -p /home/$yourUserName/workspace/projects
-cd /home/$yourUserName/workspace/projects
+mkdir -p /home/${yourUserName}/workspace/projects
+cd /home/${yourUserName}/workspace/projects
 mv /archLinux-installer-and-setup ./
-chown -R $yourUserName ./archLinux-installer-and-setup
+chown -R ${yourUserName} ./archLinux-installer-and-setup
 chgrp -R users ./archLinux-installer-and-setup
 echo -e ""
 

@@ -23,7 +23,7 @@ yourName="Israel Roldan"
 yourEmail="israel.alberto.rv@gmail.com"
 
 funcContinue() {
-	if ! [[ $1 =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+	if ! [[ ${1} =~ ^([yY][eE][sS]|[yY])+$ ]]; then
 		echo -e "\nThe script has been FINISHED."
 		exit -1
 	fi
@@ -50,9 +50,9 @@ funcMountSystem() {
 	fuser -k /mnt
 	umount -R /mnt
 	swapoff -a
-	mount $hardDiskDeviceLinux /mnt
-	mount $hardDiskDeviceBoot /mnt/boot/EFI
-	swapon $harDiskDeviceSwap
+	mount ${hardDiskDeviceLinux} /mnt
+	mount ${hardDiskDeviceBoot} /mnt/boot/EFI
+	swapon ${harDiskDeviceSwap}
 	echo -e ""
 }
 
@@ -65,10 +65,10 @@ funcUmountSystem() {
 }
 
 funcAddTextAtTheEndOfFile() {
-	if ! grep -Fxq "$1" $2; then
-		echo -e "Adding text at the end of the file $2"
-		echo -e "$1"
-		echo "$1" >> $2
+	if ! grep -Fxq "${1}" ${2}; then
+		echo -e "Adding text at the end of the file ${2}"
+		echo -e "${1}"
+		echo "${1}" >> ${2}
 		echo -e ""
 	fi
 }

@@ -29,7 +29,7 @@ echo -e ""
 
 #Set the keyboard layout
 echo -e "Setting the keyboard layout"
-loadkeys $keyboardLayout
+loadkeys ${keyboardLayout}
 echo -e ""
 
 # Update the clock system
@@ -42,9 +42,9 @@ echo -e "Checking if your computer has the EFI bootloader"
 funcIsEfiBios
 
 # Show partitions on the disks
-echo -e "Showing $hardDiskDevice partition"
+echo -e "Showing ${hardDiskDevice} partition"
 echo -e ""
-fdisk -l $hardDiskDevice
+fdisk -l ${hardDiskDevice}
 echo -e ""
 
 # Delete all partitions
@@ -52,16 +52,16 @@ echo -e ""
 # otherwise skip to the gdisk command.
 # In other case this command is an "UI" to delete, create, edit partitions
 # in your hard disk or USB, it's very useful.
-#cfdisk $hardDiskDevice
+#cfdisk ${hardDiskDevice}
 
 echo -e "\n"
 echo -e "Warning: This script delete all partitions and data from the selected device."
 echo -e ""
-read -n 1 -r -p "Is this ($hardDiskDevice) the Hard Disk Device device? [y/N]: " isThisTheHdd
+read -n 1 -r -p "Is this (${hardDiskDevice}) the Hard Disk Device device? [y/N]: " isThisTheHdd
 echo -e ""
 echo -e "NOTE: If you want to install Arch Linux in other device, please change the hard disk vars into the config file (00-config.sh)."
 echo -e "Run 'fdisk -l' to see all the hard disk devices."
-funcContinue $isThisTheHdd
+funcContinue ${isThisTheHdd}
 echo -e ""
 
 # Umount system partitions
@@ -69,7 +69,7 @@ funcUmountSystem
 
 # Erease the hard disk
 echo -e "Erasing your Hard Disk"
-dd if=/dev/zero of=/dev/$hardDiskDevice bs=512 count=1 conv=notrunc &>/dev/null
+dd if=/dev/zero of=/dev/${hardDiskDevice} bs=512 count=1 conv=notrunc &>/dev/null
 echo -e ""
 
 echo -e "Formatting your Hard Disk Device"
@@ -96,7 +96,7 @@ echo -e "Formatting your Hard Disk Device"
 	echo 3 # select partition number
 	echo 20 # Linux filesystem
 	echo w # Write changes
-) | fdisk /dev/$hardDiskDevice &>/dev/null
+) | fdisk /dev/${hardDiskDevice} &>/dev/null
 echo -e ""
 
 # Umount partitions
@@ -105,15 +105,15 @@ funcUmountSystem
 # Format the partitions
 echo -e "Formatting the partitions"
 echo -e ""
-mkfs.fat -F32 $hardDiskDeviceBoot
-mkswap $hardDiskDeviceSwap
-mkfs.ext4 -F $hardDiskDeviceLinux
+mkfs.fat -F32 ${hardDiskDeviceBoot}
+mkswap ${hardDiskDeviceSwap}
+mkfs.ext4 -F ${hardDiskDeviceLinux}
 echo -e "\n"
 
 # Show formated hard disk
 echo -e "Showing formatted hard disk"
 echo -e ""
-fdisk -l $hardDiskDevice
+fdisk -l ${hardDiskDevice}
 echo -e ""
 
 # Mount the file systems
