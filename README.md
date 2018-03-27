@@ -47,6 +47,8 @@ sudo wifi-menu
 
 4. Download the "init script" to start this journey.<br>
    This script helps to download the archLinux project in your computer to proceed with the installation.<br>
+
+Before run the script change the name and e-mail variables in the file. 
 ```sh
 cd ~/
 
@@ -58,6 +60,9 @@ curl -L https://goo.gl/vkE1DS > init.sh
 
 # For ASUS Laptop
 #curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/02-init/init.sh > init.sh
+
+# Change your name and e-mail from the init.sh file executing the nano command.
+# nano init.sh
 
 chmod +x init.sh
 ./init.sh
