@@ -19,6 +19,8 @@ zoneInfo="America/New_York"
 languageCode="en_US.UTF-8"
 yourComputerName="MSI_GT73EVR_7RF"
 yourUserName="wolf"
+yourName="Israel Roldan"
+yourEmail="israel.alberto.rv@gmail.com"
 
 funcContinue() {
 	if ! [[ $1 =~ ^([yY][eE][sS]|[yY])+$ ]]; then
@@ -44,13 +46,11 @@ funcMountSystem() {
 	echo -e "Mounting the file systems"
 	mkdir -p /mnt/home
 	mkdir -p /mnt/boot
-	# mkdir -p /mnt/boot/efi
 	mkdir -p /mnt/boot/EFI
 	fuser -k /mnt
 	umount -R /mnt
 	swapoff -a
 	mount $hardDiskDeviceLinux /mnt
-	# mount $hardDiskDeviceBoot /mnt/boot/efi
 	mount $hardDiskDeviceBoot /mnt/boot/EFI
 	swapon $harDiskDeviceSwap
 	echo -e ""

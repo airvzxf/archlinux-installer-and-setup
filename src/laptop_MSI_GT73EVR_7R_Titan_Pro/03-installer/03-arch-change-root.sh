@@ -26,7 +26,7 @@ cp 00r-arch-change-root.sh /mnt
 
 # Copy this project into user workspace directory
 echo -e "Copying this project into the root directory"
-cp -R ../../archLinux-installer-and-setup-master /mnt/
+cp -R ../../../../archLinux-installer-and-setup /mnt/
 echo -e ""
 
 # Go to the main Linux partition like a root user.

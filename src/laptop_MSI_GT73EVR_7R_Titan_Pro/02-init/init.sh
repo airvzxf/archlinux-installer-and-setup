@@ -55,7 +55,6 @@ rm -fR ~/workspace/projects/archLinux-installer-and-setup*
 echo -e ""
 
 echo -e "Creating workspace and projects direcotory"
-mkdir -p ~/workspace
 mkdir -p ~/workspace/projects
 cd ~/workspace/projects
 echo -e ""

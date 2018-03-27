@@ -9,4 +9,4 @@ git config --global user.email "israel.alberto.rv@gmail.com"
 #git clone https://github.com/airvzxf/archLinux-installer-and-setup
 #cd ./archLinux-installer-and-setup
 
-#rm -fR ~/archLinux-installer-and-setup-master
+#rm -fR ~/archLinux-installer-and-setup

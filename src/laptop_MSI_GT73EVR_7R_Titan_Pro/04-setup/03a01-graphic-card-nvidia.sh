@@ -128,7 +128,7 @@ echo -e "[[ -f ~/.Xresources ]] && xrdb -merge -I${HOME} ~/.Xresources" >> ~/.xi
 echo -e "xrandr --newmode \"1920x1080_120.00\"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync" > ~/.xinitrc
 echo -e "xrandr --addmode DP-0 \"1920x1080_120.00\"" >> ~/.xinitrc
 echo -e "xrandr --output DP-0 --primary --mode \"1920x1080_120.00\" --dpi 130" >> ~/.xinitrc
-echo -e "xbacklight -set 30" >> ~/.xinitrc
+echo -e "xbacklight -set 40" >> ~/.xinitrc
 echo -e "openbox-session" >> ~/.xinitrc
 echo -e ""
 

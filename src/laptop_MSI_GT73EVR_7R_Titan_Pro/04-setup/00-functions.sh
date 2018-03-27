@@ -79,16 +79,3 @@ funcInstallAur() {
 
 	return 0
 }
-
-funcGetGitProject() {
-	funcInstallPackage unzip
-	funcMkdir ~/workspace
-
-	cd ~/workspace
-	curl -LOk -H 'Cache-Control: no-cache' https://github.com/airvzxf/archLinux-installer-and-setup/archive/master.zip
-	unzip -o master.zip
-	rm -f master.zip
-	find ./archLinux-installer-and-setup-master -type f -iname *.sh -exec chmod +x {} \;
-
-	return 0
-}

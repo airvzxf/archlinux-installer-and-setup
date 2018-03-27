@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 source 00-config.sh
 
 # ----------------------------------------------------------------------
@@ -45,9 +45,17 @@ echo $yourComputerName > /etc/hostname
 funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    $yourComputerName" /etc/hosts
 
 # Install basic package
-echo -e "Installing basic packages: wpa_supplicant dialog vim git grub efibootmgr dosfstools os-prober mtools"
+echo -e "Installing basic packages"
 echo -e ""
-pacman -S --needed --noconfirm wpa_supplicant dialog vim git grub efibootmgr dosfstools os-prober mtools
+pacman -S --needed --noconfirm wpa_supplicant
+pacman -S --needed --noconfirm dialog
+pacman -S --needed --noconfirm vim
+pacman -S --needed --noconfirm git
+pacman -S --needed --noconfirm grub
+pacman -S --needed --noconfirm efibootmgr
+pacman -S --needed --noconfirm dosfstools
+pacman -S --needed --noconfirm os-prober
+pacman -S --needed --noconfirm mtools
 echo -e ""
 
 # Install EFI into Grub
@@ -100,9 +108,17 @@ echo -e ""
 
 # Move the archLinux project into the user folder.
 echo -e "Moving the archLinux project into the user folder."
-mv /archLinux-installer-and-setup-master /home/$yourUserName/
-chown -R $yourUserName /home/$yourUserName/archLinux-installer-and-setup-master
-chgrp -R users /home/$yourUserName/archLinux-installer-and-setup-master
+mkdir -p /home/$yourUserName/workspace/projects
+cd /home/$yourUserName/workspace/projects
+mv /archLinux-installer-and-setup ./
+chown -R $yourUserName ./archLinux-installer-and-setup
+chgrp -R users ./archLinux-installer-and-setup
+echo -e ""
+
+echo -e "Set up Git"
+git config --global user.name ${yourName}
+git config --global user.email ${yourEmail}
+./archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.sh
 echo -e ""
 
 # Exit from Arch change root
