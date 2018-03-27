@@ -299,9 +299,8 @@ function try_to_connect_to_my_internet() {
 	while true
 	do
 		let "counter++"
-		ping_result=$($ping 2>&1)
 
-		if [[ "$ping_result" == "ping: www.google.com: Temporary failure in name resolution" ]]
+		if ! ping -c 1 google.com >> /dev/null 2>&1
 		then
 			echo -n $(date "+%a, %T%t")"> " && $ping
 
