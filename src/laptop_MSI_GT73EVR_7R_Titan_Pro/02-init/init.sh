@@ -11,6 +11,11 @@
 # First you need is connect to Internet, if you use wire you don't need
 # any special setup but if you use wifi you need to setup your network.
 
+# Setup the name and email using in Github.
+name="Israel Roldan"
+email="israel.alberto.rv@gmail.com"
+
+# Function which check if your computer is connected to Internet.
 funcIsConnectedToInternet() {
 	if ! ping -c 1 google.com >> /dev/null 2>&1; then
 		echo -e ""
@@ -35,38 +40,44 @@ echo -e "Updating the database sources in Arch Linux"
 pacman --noconfirm -Syy
 echo -e ""
 
-# I recommend you download this Git project in your USB if you
-# want to get all files and information with the last updates.
-# This project will be saved in ~/workspace/archLinux-installer-and-setup-master
-echo -e "Installing unzip package to extract zip files"
-pacman -S --needed --noconfirm unzip
+echo -e "Installing Git"
+pacman -S --needed --noconfirm git
 echo -e ""
 
-echo -e "Removing the init.sh script which was downloaded for youd"
+echo -e "Removing the init.sh script which was downloaded"
 rm -f init.sh
 echo -e ""
 
-echo "Creating ~/workspace direcotory"
+echo -e "Cleaning the older downloaded project"
+rm -fR ~/archLinux-installer-and-setup*
+rm -fR ~/workspace/archLinux-installer-and-setup*
+rm -fR ~/workspace/projects/archLinux-installer-and-setup*
+echo -e ""
+
+echo -e "Creating workspace and projects direcotory"
 mkdir -p ~/workspace
-cd ~/workspace
-rm -fR archLinux-installer-and-setup-master
+mkdir -p ~/workspace/projects
+cd ~/workspace/projects
 echo -e ""
 
-echo -e "Downloading and extracting the project, you'll have access to the all scripts needed to your installation and setup."
-curl -LOk -H 'Cache-Control: no-cache' https://github.com/airvzxf/archLinux-installer-and-setup/archive/master.zip
-unzip -o master.zip
-rm -f master.zip
+echo -e "Cloning the git project in your computer"
+git clone https://github.com/airvzxf/archLinux-installer-and-setup.git
+cd ./archLinux-installer-and-setup/
 echo -e ""
 
-echo -e "Changing the permissions files to executable"
-find ./archLinux-installer-and-setup-master -type f -iname *.sh -exec chmod +x {} \;
+echo -e "Set up Git"
+git config --global user.name ${name}
+git config --global user.email ${email}
+./src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.sh
 echo -e ""
 
 echo -e "Going to the directory 03-installer"
-cd ~/workspace/archLinux-installer-and-setup-master/03-installer/
+cd ./src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/
 ls -lha ./
 echo -e ""
 
 echo -e "\n"
-echo -e "Ready! The next step go to '~/workspace/archLinux-installer-and-setup-master/03-installer/' and execute the first script which start with '01b-pre-installation-efi.sh'\n"
+echo -e "Ready! The next step is execute the file './01b-pre-installation-efi.sh'\n"
+
+echo -e "The project was created in '~/workspace/projects/archLinux-installer-and-setup/'"
 echo -e "Successful! You have been inited this project.\n"
