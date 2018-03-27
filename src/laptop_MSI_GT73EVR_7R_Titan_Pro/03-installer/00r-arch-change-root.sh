@@ -46,7 +46,6 @@ funcAddTextAtTheEndOfFile "127.0.1.1    localhost.localdomain    ${yourComputerN
 
 # Install basic package
 echo -e "Installing basic packages"
-echo -e ""
 pacman -S --needed --noconfirm wpa_supplicant
 pacman -S --needed --noconfirm dialog
 pacman -S --needed --noconfirm vim
@@ -65,17 +64,18 @@ echo -e ""
 
 # Initramfs, create an initial ramdisk environment
 echo -e "Creating an initial ramdisk environment"
-echo -e ""
 mkinitcpio -p linux
 echo -e ""
 
 # Config Grub
 echo -e "Setting the grub config"
 echo -e ""
+
 echo -e "Changing the initial timeout from 5 to 0 second"
 sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet video.use_native_backlight=1"/g' /etc/default/grub
 echo -e ""
+
 echo -e "Creating the grub config file"
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e ""
@@ -91,7 +91,7 @@ useradd -m -g users -G wheel,storage,power -s /bin/bash ${yourUserName}
 echo -e ""
 
 echo -e "Please change your user password:"
-passwd $y{ourUserName}
+passwd ${yourUserName}
 echo -e ""
 
 # Add sudo permissions for your user
@@ -102,12 +102,14 @@ echo -e ""
 # This command delete the comment in /etc/sudoers
 echo -e "Adding sudo permissions for your user"
 sed -i '/%wheel ALL=(ALL) ALL/ s/^##* *//' /etc/sudoers
+echo -e ""
+
 echo -e "The sudo password is requested one time per session"
 sed -i "\$a\\\n\nDefaults:${yourUserName} timestamp_timeout=-1\n" /etc/sudoers
 echo -e ""
 
 # Move the archLinux project into the user folder.
-echo -e "Moving the archLinux project into the user folder."
+echo -e "Moving the archLinux project into the user workspace directory"
 mkdir -p /home/${yourUserName}/workspace/projects
 cd /home/${yourUserName}/workspace/projects
 mv /archLinux-installer-and-setup ./

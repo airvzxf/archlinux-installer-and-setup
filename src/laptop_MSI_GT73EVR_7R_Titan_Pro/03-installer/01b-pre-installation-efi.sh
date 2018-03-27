@@ -19,10 +19,10 @@ funcIsConnectedToInternet
 # Install and run reflector to update the mirror data base
 echo -e "Installing reflector, which update the Arch Linux sources to use the faster and reliable"
 pacman -S --needed --noconfirm reflector
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 echo -e ""
 
 echo -e "Getting 5 Arch Linux's mirros sorted by rate (speed and the last update)"
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 pacman --noconfirm -Syy
 echo -e ""
@@ -120,5 +120,5 @@ echo -e ""
 funcMountSystem
 
 echo -e "\n"
-echo -e "Ready! The next step is execute the file '02-installation.sh'\n"
+echo -e "Ready! The next step is execute the file './02-installation.sh'\n"
 echo -e "Successful! You got the step 1 of 3 in your installation process.\n"

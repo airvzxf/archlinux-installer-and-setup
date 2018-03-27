@@ -20,11 +20,12 @@ echo -e ""
 funcIsConnectedToInternet
 funcMountSystem
 
-# Copy these files into the mnt directory
+# Copy the arch change sripts into the root directory
+echo -e "Copying the arch change sripts into the root directory"
 cp 00-config.sh /mnt
 cp 00r-arch-change-root.sh /mnt
 
-# Copy this project into user workspace directory
+# Copy this project into the root directory
 echo -e "Copying this project into the root directory"
 cp -R ../../../../archLinux-installer-and-setup /mnt/
 echo -e ""
@@ -35,7 +36,8 @@ echo -e ""
 arch-chroot /mnt /00r-arch-change-root.sh
 echo -e ""
 
-# Delete the copied files
+# Delete the arch change sripts from the root directory
+echo -e "Deleting the arch change sripts from the root directory"
 rm -f /mnt/00-config.sh
 rm -f /mnt/00r-arch-change-root.sh
 
