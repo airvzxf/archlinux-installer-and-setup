@@ -55,7 +55,7 @@ curl -L https://goo.gl/vkE1DS > init.sh
 # For MSI Laptop
 #curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_ASUS_K46CB/02-init/init.sh > init.sh
 
-For ASUS Laptop
+# For ASUS Laptop
 #curl https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/02-init/init.sh > init.sh
 
 chmod +x init.sh
