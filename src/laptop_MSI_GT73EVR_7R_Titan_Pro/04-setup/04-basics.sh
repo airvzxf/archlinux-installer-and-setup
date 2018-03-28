@@ -102,9 +102,9 @@ cp -R ./setup-resources/.config/transmission ~/.config/
 sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/transmission/settings.json
 echo -e "\n"
 
-echo -e "Installing LibreOffice"
-sudo pacman -S --needed --noconfirm libreoffice-fresh # Office
-echo -e "\n"
+#~ echo -e "Installing LibreOffice"
+#~ sudo pacman -S --needed --noconfirm libreoffice-fresh # Office
+#~ echo -e "\n"
 
 echo -e "Installing Tree"
 sudo pacman -S --needed --noconfirm tree # A directory listing program displaying a depth indented list of files
@@ -137,19 +137,19 @@ sudo pacman -S --needed --noconfirm iperf #Command line interface for testing in
 echo -e "\n"
 
 
-echo -e "Installing Bluetooth"
-sudo pacman -S --needed --noconfirm bluez bluez-utils
-sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
-#sudo pacman -S --needed --noconfirm bluez-firmware
-sudo usermod -a -G lp $(whoami)
-audioBluetooth=/etc/bluetooth/audio.conf
-sudo rm -f $audioBluetooth
-sudo touch $audioBluetooth
-echo -e "[General]" | sudo tee -a $audioBluetooth
-echo -e "Enable=Source,Sink,Media,Socket" | sudo tee -a $audioBluetooth
-modprobe btusb
-#systemctl start bluetooth.service
-echo -e "\n"
+#~ echo -e "Installing Bluetooth"
+#~ sudo pacman -S --needed --noconfirm bluez bluez-utils
+#~ sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
+#~ #sudo pacman -S --needed --noconfirm bluez-firmware
+#~ sudo usermod -a -G lp $(whoami)
+#~ audioBluetooth=/etc/bluetooth/audio.conf
+#~ sudo rm -f $audioBluetooth
+#~ sudo touch $audioBluetooth
+#~ echo -e "[General]" | sudo tee -a $audioBluetooth
+#~ echo -e "Enable=Source,Sink,Media,Socket" | sudo tee -a $audioBluetooth
+#~ modprobe btusb
+#~ #systemctl start bluetooth.service
+#~ echo -e "\n"
 
 
 echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
