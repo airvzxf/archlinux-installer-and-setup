@@ -5,7 +5,7 @@ Arch Linux is a great distro but I spend a lot of time installing and setting up
 ---
 
 ## Steps
-### 1. Create your bootloader USB to boot with Arch Linux
+### 1.1 Create your bootloader USB to boot with Arch Linux.
 [Arch Linux official documentation.](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
 - This project has a script to
@@ -26,6 +26,33 @@ sudo cfdisk /dev/sd[x]
 # Delete all the partitions.
 # Select: New -> Partition size [enter] -> Primary -> Enable "Bootable" -> Type -> "b W95 FAT32" -> Write -> yes -> Quite
 sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
+
+
+```
+
+
+### 1.2 If you want to create a custom bootloader USB installing git or other packages you are able to run my scripts.
+1. Create the ISO file based in our setup.
+   [create a custom Arch Linux ISO](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb.sh)
+```sh
+# You are able to change the directory where the archiso should be create.
+# And the packages which you are looking.
+
+# Execute the scripts
+./custom-bootable-usb.sh
+
+
+```
+
+2. Create the USB bootable based on your custom Arch Linux ISO.
+   [create a custom Arch Linux USB flash media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb-creating-usb.sh)
+```sh
+# You are able to change the directory where the ISO should be find.
+
+# Execute the scripts
+./custom-bootable-usb-creating-usb.sh
+
+
 ```
 
 
@@ -43,6 +70,8 @@ Reboot your computer with your bootloader USB plugged in your computer and init 
 ```sh
 # Select your network and write your password.
 sudo wifi-menu
+
+
 ```
 
 4. Download the "init script" to start this journey.<br>
@@ -130,6 +159,8 @@ cd ~/workspace/archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro
 ```sh
 # Select your network and write your password.
 sudo wifi-menu
+
+
 ```
 
 2. 01-setup.sh

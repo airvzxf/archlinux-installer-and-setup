@@ -6,10 +6,10 @@
 # https://github.com/airvzxf/archLinux-installer-and-setup
 
 # ----------------------------------------------------------------------
-# Create a Custom Bootable USB
+# Create a custom bootable USB
 # ----------------------------------------------------------------------
 
-archiso_directory="archLinuxLiveIso"
+archiso_folder="archLinuxLiveIso"
 
 current_directory=$(pwd)
 
@@ -17,7 +17,7 @@ cd ~
 home_directory=$(pwd)
 cd ${current_directory}
 
-archiso_directory=${home_directory}/Downloads/${archiso_directory}
+archiso_directory=${home_directory}/Downloads/${archiso_folder}
 mkarchiso_file=${archiso_directory}/mkarchiso
 
 
@@ -77,7 +77,7 @@ sudo sed -i -- 's/bash/bash -x/g' ./build.sh
 echo -e ""
 
 echo -e "Changed path directory from mkarchiso in 'build.sh'"
-sudo sed -i -- 's/mkarchiso/'${mkarchiso_file}'/g' ./build.sh
+sudo sed -i -- 's|mkarchiso|'${mkarchiso_file}'|g' ./build.sh
 echo -e ""
 
 echo -e "Building the ISO file"
