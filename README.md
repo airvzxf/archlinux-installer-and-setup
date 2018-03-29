@@ -33,7 +33,7 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 
 ### 1.2 If you want to create a custom bootloader USB installing git or another packages you are able to run my scripts.
 1. Create the ISO file based in our setup.
-   [create a custom Arch Linux ISO](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb.sh)
+   [Create a custom Arch Linux ISO](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb.sh)
 ```sh
 # You are able to change the directory where the archiso should be create.
 # And the packages which you are looking.
@@ -45,7 +45,7 @@ sudo dd bs=4M if=[path_file_archlinux.iso] of=/dev/sd[x] status=progress && sync
 ```
 
 2. Create the USB bootable based on your custom Arch Linux ISO.
-   [create a custom Arch Linux USB flash media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb-creating-usb.sh)
+   [Create a custom Arch Linux USB flash media](https://raw.githubusercontent.com/airvzxf/archLinux-installer-and-setup/master/src/laptop_MSI_GT73EVR_7R_Titan_Pro/01-bootable-usb/custom-bootable-usb-creating-usb.sh)
 ```sh
 # You are able to change the directory where the ISO should be find.
 
