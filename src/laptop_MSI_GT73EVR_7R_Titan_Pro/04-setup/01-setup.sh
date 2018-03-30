@@ -199,6 +199,10 @@ echo -e "Installing Alsa utils"
 sudo pacman -S --needed --noconfirm alsa-utils
 echo -e "\n"
 
+echo -e "Adding audio into the user group"
+sudo usermod -a -G audio $(whoami)
+echo -e "\n"
+
 # Useful commands
 #speaker-test -c2 -twav -l1
 #aplay -L
