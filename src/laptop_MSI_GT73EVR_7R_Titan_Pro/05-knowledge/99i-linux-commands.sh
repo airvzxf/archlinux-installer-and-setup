@@ -322,3 +322,28 @@ ssh-copy-id -i ./ssh_keys/free_access -i ./ssh_keys/free_access user@IP
 # Enter the remote user password to upload the ssh id
 
 ssh -i ./ssh_keys/free_access user@IP
+
+
+
+
+# Install VirtualBox
+#-------------------------------------------------------------------------------
+sudo pacman -S virtualbox-host-modules-arch
+sudo pacman -S virtualbox
+yaourt -S virtualbox-ext-oracle
+
+# VirtualBox recognize USB.
+sudo vboxmanage internalcommands createrawvmdk -filename  ~/VirtualBoxVMs/usb.vmdk -rawdisk /dev/sdz
+sudo usermod -a -G vboxusers $(whoami)
+sudo usermod -a -G disk $(whoami)
+# Reboot
+
+virtualbox
+
+
+
+
+# Recording desktop
+#-------------------------------------------------------------------------------
+# A feature-rich screen recorder that supports X11 and OpenGL.
+sudo pacman -S simplescreenrecorder
