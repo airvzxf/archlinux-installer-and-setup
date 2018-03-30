@@ -29,6 +29,14 @@ sudo pacman -S --needed --noconfirm xorg-fonts-type1
 sudo pacman -S --needed --noconfirm xorg-fonts-misc
 echo -e "\n"
 
+echo -e "Installing TTF free font"
+sudo pacman -S --needed --noconfirm ttf-freefont
+echo -e "\n"
+
+echo -e "Installing emojis font"
+sudo pacman -S --needed --noconfirm noto-fonts-emoji
+echo -e "\n"
+
 echo -e "Ready! The next step is run './03a01-graphic-card-nvidia.sh'.\n"
 echo -e "Finished successfully!"
 echo -e ""
