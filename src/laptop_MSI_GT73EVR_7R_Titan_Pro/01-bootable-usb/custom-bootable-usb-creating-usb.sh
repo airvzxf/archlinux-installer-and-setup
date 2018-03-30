@@ -17,8 +17,9 @@ cd ~
 home_directory=$(pwd)
 cd ${current_directory}
 
-iso_version=$(date +%Y.%m.%d)
-archiso_file=${home_directory}/Downloads/${archiso_folder}/archlinux-${iso_version}-x86_64.iso
+archiso_directory=${home_directory}/Downloads/${archiso_folder}/out
+archlinux_iso=$(ls -t ${archiso_directory}/ | grep -om 1 "archlinux-....\...\...-x86_64.iso" | head -n1)
+archiso_file=${archiso_directory}/${archlinux_iso}
 
 
 funcContinue() {
@@ -73,7 +74,11 @@ echo -e ""
 usbPartition="${usb_device}"1
 
 echo -e "Loading Arch Linux in the USB..."
-sudo dd bs=4M if=${archiso_file} of=/dev/${usb_device} status=progress &>/dev/null && sync &>/dev/null
+sudo dd bs=4M if=${archiso_file} of=/dev/${usb_device} status=progress
+echo -e ""
+
+echo -e "Synchronizing, please wait..."
+sync
 echo -e ""
 
 echo -e "This is your formatted USB"
