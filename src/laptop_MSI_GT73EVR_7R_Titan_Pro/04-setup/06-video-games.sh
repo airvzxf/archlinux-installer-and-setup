@@ -15,12 +15,12 @@ echo -e ""
 
 # Install a lot of libraries for general games from this AUR package
 echo -e "Installing wine gaming libraries"
-echo -e ""
 yes | sudo pacman -S --needed gcc-multilib
 echo -e "\n"
+
+echo -e "Installing wine gaming"
 yaourt -S --needed --noconfirm wine-gaming-nine
 echo -e "\n"
-
 
 echo -e "Ready! The next step is run './07-steam.sh'.\n"
 echo -e "Finished successfully!"
