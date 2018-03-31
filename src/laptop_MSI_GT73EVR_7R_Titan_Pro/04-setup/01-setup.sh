@@ -112,7 +112,7 @@ sudo chmod 755 ${upgrade_system_service}
 
 echo -e \
 '[Unit]
-Description=Pacman upgrade the system
+Description=Pacman upgrading the system
 
 [Service]
 Type=oneshot
@@ -127,7 +127,7 @@ sudo chmod 755 ${upgrade_system_timer}
 
 echo -e \
 '[Unit]
-Description=Run pacman system upgrade daily
+Description=Run pacman upgrade system every 12 hours
 Requires=network-online.target
 After=network-online.target
 
@@ -153,7 +153,7 @@ sudo chmod 755 ${reflector_service}
 
 echo -e \
 '[Unit]
-Description=Pacman mirrorlist update with reflector
+Description=Pacman mirrorlist updated with reflector
 
 [Service]
 Type=oneshot
@@ -168,7 +168,7 @@ sudo chmod 755 ${reflector_timer}
 
 echo -e \
 '[Unit]
-Description=Run reflector minutely
+Description=Run reflector every 5 minutes
 Requires=network-online.target
 After=network-online.target
 
