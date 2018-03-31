@@ -54,6 +54,28 @@ echo -e "\n"
 #~ sudo pacman -S --needed --noconfirm steam-native-runtime
 #~ echo -e "\n"
 
+# Setup controller
+# ----------------------------------------------------------------------
+steam_controller_rules=/lib/udev/rules.d/99-steam-controller-perms.rules
+
+sudo rm -f ${steam_controller_rules}
+sudo touch ${steam_controller_rules}
+
+echo -e \
+'# Valve USB devices
+SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
+
+# Steam Controller udev write access
+KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess"
+
+# HTC Vive HID Sensor naming and permissioning
+
+# Valve HID devices over USB hidraw
+KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666"
+
+# Valve HID devices over bluetooth hidraw
+KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"' | sudo tee -a ${steam_controller_rules}
+
 
 # Missing libraries
 # ----------------------------------------------------------------------
