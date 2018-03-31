@@ -58,9 +58,6 @@ echo -e "\n"
 # ----------------------------------------------------------------------
 steam_controller_rules=/lib/udev/rules.d/99-steam-controller-perms.rules
 
-sudo rm -f ${steam_controller_rules}
-sudo touch ${steam_controller_rules}
-
 echo -e \
 '# Valve USB devices
 SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
@@ -74,7 +71,7 @@ KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess"
 KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666"
 
 # Valve HID devices over bluetooth hidraw
-KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"' | sudo tee -a ${steam_controller_rules}
+KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"' | sudo tee ${steam_controller_rules}
 
 
 # Missing libraries

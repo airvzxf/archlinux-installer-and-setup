@@ -124,12 +124,15 @@ echo -e "\n"
 # the xorg configs, every Xorg setup you need to put in this file.
 # 3. openbox open the window manager (desktop)
 echo -e "Adding to setup to the xinit file"
-echo -e "[[ -f ~/.Xresources ]] && xrdb -merge -I${HOME} ~/.Xresources" >> ~/.xinitrc
-echo -e "xrandr --newmode \"1920x1080_120.00\"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync" > ~/.xinitrc
-echo -e "xrandr --addmode DP-0 \"1920x1080_120.00\"" >> ~/.xinitrc
-echo -e "xrandr --output DP-0 --primary --mode \"1920x1080_120.00\" --dpi 130" >> ~/.xinitrc
-echo -e "xbacklight -set 40" >> ~/.xinitrc
-echo -e "openbox-session" >> ~/.xinitrc
+echo -e \
+'[[ -f ~/.Xresources ]] && xrdb -merge -I'${HOME}'' | sudo tee-a ~/.Xresources
+
+echo -e \
+'xrandr --newmode "1920x1080_120.00"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync
+xrandr --addmode DP-0 "1920x1080_120.00"
+xrandr --output DP-0 --primary --mode "1920x1080_120.00" --dpi 130
+xbacklight -set 40
+openbox-session' | sudo tee ~/.xinitrc
 echo -e ""
 
 # Install xterm before run openbox window manager
@@ -146,9 +149,6 @@ echo -e ""
 #~ echo -e "Xorg with Nvidia"
 #~ nvidia_config_file=/etc/X11/xorg.conf.d/20-nvidia.conf
 
-#~ sudo rm -f ${nvidia_config_file}
-#~ sudo touch ${nvidia_config_file}
-
 #~ echo -e \
 #~ 'Section "Device"
     #~ Identifier     "Nvidia Graphic Card"
@@ -156,7 +156,7 @@ echo -e ""
     #~ VendorName     "NVIDIA Corporation"
     #~ BoardName      "GeForce GTX 1080 Mobile"
     #~ BusID          "PCI:1:0:0"
-#~ EndSection' | sudo tee -a ${nvidia_config_file}
+#~ EndSection' | sudo tee ${nvidia_config_file}
 #~ echo -e ""
 
 

@@ -146,12 +146,9 @@ echo -e "\n"
 
 #~ audio_bluetooth=/etc/bluetooth/audio.conf
 
-#~ sudo rm -f ${audio_bluetooth}
-#~ sudo touch ${audio_bluetooth}
-
 #~ echo -e \
 #~ '[General]
-#~ Enable=Source,Sink,Media,Socket' | sudo tee -a ${audio_bluetooth}
+#~ Enable=Source,Sink,Media,Socket' | sudo tee ${audio_bluetooth}
 
 #~ modprobe btusb
 #~ #sudo systemctl start bluetooth.service

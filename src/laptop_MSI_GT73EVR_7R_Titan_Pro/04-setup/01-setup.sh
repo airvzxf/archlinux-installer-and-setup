@@ -106,24 +106,18 @@ echo -e "\n"
 echo -e "Setting up automate job for daily system upgrade"
 upgrade_system_service=/etc/systemd/system/upgrade_system.service
 
-sudo rm -f ${upgrade_system_service}
-sudo touch ${upgrade_system_service}
-sudo chmod 755 ${upgrade_system_service}
-
 echo -e \
 '[Unit]
 Description=Pacman upgrading the system
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/pacman --noconfirm -Syyu' | sudo tee -a ${upgrade_system_service}
+ExecStart=/usr/bin/pacman --noconfirm -Syyu' | sudo tee ${upgrade_system_service}
+
+sudo chmod 755 ${upgrade_system_service}
 
 
 upgrade_system_timer=/etc/systemd/system/upgrade_system.timer
-
-sudo rm -f ${upgrade_system_timer}
-sudo touch ${upgrade_system_timer}
-sudo chmod 755 ${upgrade_system_timer}
 
 echo -e \
 '[Unit]
@@ -137,7 +131,10 @@ RandomizedDelaySec=12h
 Persistent=true
 
 [Install]
-WantedBy=timers.target' | sudo tee -a ${upgrade_system_timer}
+WantedBy=timers.target' | sudo tee ${upgrade_system_timer}
+
+sudo chmod 755 ${upgrade_system_timer}
+
 echo -e "\n"
 
 sudo systemctl enable upgrade_system.timer
@@ -147,24 +144,18 @@ sudo systemctl enable upgrade_system.timer
 echo -e "Setting up automate job for update servers with reflector every 5 minutes"
 reflector_service=/etc/systemd/system/reflector.service
 
-sudo rm -f ${reflector_service}
-sudo touch ${reflector_service}
-sudo chmod 755 ${reflector_service}
-
 echo -e \
 '[Unit]
 Description=Pacman mirrorlist updated with reflector
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist' | sudo tee -a ${reflector_service}
+ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist' | sudo tee ${reflector_service}
+
+sudo chmod 755 ${reflector_service}
 
 
 reflector_timer=/etc/systemd/system/reflector.timer
-
-sudo rm -f ${reflector_timer}
-sudo touch ${reflector_timer}
-sudo chmod 755 ${reflector_timer}
 
 echo -e \
 '[Unit]
@@ -178,7 +169,10 @@ RandomizedDelaySec=5min
 Persistent=true
 
 [Install]
-WantedBy=timers.target' | sudo tee -a ${reflector_timer}
+WantedBy=timers.target' | sudo tee ${reflector_timer}
+
+sudo chmod 755 ${reflector_timer}
+
 echo -e "\n"
 
 sudo systemctl enable reflector.timer

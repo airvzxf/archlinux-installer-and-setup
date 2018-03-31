@@ -59,8 +59,9 @@ cd ${archiso_directory}
 echo -e ""
 
 echo -e "Adding packages into 'packages.both'"
-echo -e "" >> ./packages.both
-echo -e "git" >> ./packages.both
+echo -e \
+'
+git' | sudo tee -a ./packages.both
 echo -e ""
 
 echo -e "Copying mkarchiso into a temporary file"
