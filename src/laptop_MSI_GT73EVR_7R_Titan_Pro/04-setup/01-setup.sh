@@ -209,17 +209,22 @@ echo -e "Installing Pulse audio"
 sudo pacman -S --needed --noconfirm pulseaudio
 echo -e "\n"
 
-echo -e "Configure pulseaudio to recognize the woofer"
+#~ echo -e "Configure pulseaudio to recognize the woofer"
 
-ehco -e "Configuring the daemon.conf file"
-cp /etc/pulse/daemon.conf ~/.config/pulse/
-sed -i '/; enable-lfe-remixing = no/ s/^;;* *//' ~/.config/pulse/daemon.conf
-sed -i 's/enable-lfe-remixing = no/enable-lfe-remixing = yes/g' ~/.config/pulse/daemon.conf
+#~ ehco -e "Configuring the daemon.conf file"
+#~ cp /etc/pulse/daemon.conf ~/.config/pulse/
+#~ sed -i '/; enable-lfe-remixing = no/ s/^;;* *//' ~/.config/pulse/daemon.conf
+#~ sed -i 's/enable-lfe-remixing = no/enable-lfe-remixing = yes/g' ~/.config/pulse/daemon.conf
 
-ehco -e "Configuring the default.pa file"
-cp /etc/pulse/default.pa ~/.config/pulse/
-sed -i "\$a\\\n\nload-module module-combine channels=6 channel_map=front-left,front-right,rear-left,rear-right,front-center,lfe" ~/.config/pulse/default.pa
-echo -e "\n"
+#~ ehco -e "Configuring the default.pa file"
+#~ cp /etc/pulse/default.pa ~/.config/pulse/
+#~ sed -i "\$a\\\n\nload-module module-combine channels=6 channel_map=front-left,front-right,rear-left,rear-right,front-center,lfe" ~/.config/pulse/default.pa
+#~ echo -e "\n"
+
+# Try to test the woofer
+#speaker-test -c6 -s6 -twav
+# http://www.leeenux-linux.com/blog/woofer-and-subwoofer-test/
+# http://www.leeenux-linux.com/WooferTest/120-129.mp3
 
 # Useful commands
 #speaker-test -c2 -twav -l1
