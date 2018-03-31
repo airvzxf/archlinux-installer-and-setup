@@ -38,7 +38,6 @@ source 00-config.sh
 funcIsConnectedToInternet
 
 # Create a temp directory for the next scripts
-echo -e ""
 mkdir -p ~/.config
 mkdir -p ~/workspace
 
@@ -75,9 +74,7 @@ echo -e "\n"
 # This command delete the comments:
 echo -e "Activing MultiLib"
 sudo sed -i '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
-echo -e ""
 echo -e "Upgrading system"
-echo -e ""
 sudo pacman --noconfirm -Syyu
 echo -e "\n"
 
@@ -85,7 +82,6 @@ echo -e "\n"
 #Color
 echo -e "Activing color option in pacman"
 sudo sed -i '/Color$/ s/^##*//' /etc/pacman.conf
-echo -e ""
 
 
 
@@ -94,80 +90,95 @@ echo -e ""
 # Retrieves the latest mirrorlist from the MirrorStatus page, filters
 # the most up-to-date mirrors, sorts them by speed and overwrites.
 echo -e "Installing reflector"
-echo -e ""
 sudo pacman -S --needed --noconfirm reflector
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-bck-$(date +%Y-%m-%d)
 echo -e "\n"
 
 echo -e "Upgrading mirror list"
-echo -e ""
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 echo -e "\n"
 
 echo -e "Upgrading system"
-echo -e ""
 sudo pacman --noconfirm -Syyu
 echo -e "\n"
 
 # Update Arch Linux automatically every day
-echo -e "Setting up automate for daily system upgrade"
-echo -e ""
-upgradeSystemService=/etc/systemd/system/upgrade_system.service
-sudo rm -f $upgradeSystemService
-sudo touch $upgradeSystemService
-sudo chmod 755 $upgradeSystemService
-echo -e "[Unit]" | sudo tee -a $upgradeSystemService
-echo -e "Description=Pacman upgrade the system\n" | sudo tee -a $upgradeSystemService
-echo -e "[Service]" | sudo tee -a $upgradeSystemService
-echo -e "Type=oneshot" | sudo tee -a $upgradeSystemService
-echo -e "ExecStart=/usr/bin/pacman --noconfirm -Syyu" | sudo tee -a $upgradeSystemService
+echo -e "Setting up automate job for daily system upgrade"
+upgrade_system_service=/etc/systemd/system/upgrade_system.service
 
-upgradeSystemTimer=/etc/systemd/system/upgrade_system.timer
-sudo rm -f $upgradeSystemTimer
-sudo touch $upgradeSystemTimer
-sudo chmod 755 $upgradeSystemTimer
-echo -e "[Unit]" | sudo tee -a $upgradeSystemTimer
-echo -e "Description=Run pacman system upgrade daily" | sudo tee -a $upgradeSystemTimer
-echo -e "Requires=network-online.target" | sudo tee -a $upgradeSystemTimer
-echo -e "After=network-online.target\n" | sudo tee -a $upgradeSystemTimer
-echo -e "[Timer]" | sudo tee -a $upgradeSystemTimer
-echo -e "OnCalendar=daily" | sudo tee -a $upgradeSystemTimer
-echo -e "RandomizedDelaySec=12h" | sudo tee -a $upgradeSystemTimer
-echo -e "Persistent=true\n" | sudo tee -a $upgradeSystemTimer
-echo -e "[Install]" | sudo tee -a $upgradeSystemTimer
-echo -e "WantedBy=timers.target" | sudo tee -a $upgradeSystemTimer
+sudo rm -f ${upgrade_system_service}
+sudo touch ${upgrade_system_service}
+sudo chmod 755 ${upgrade_system_service}
+
+echo -e \
+'[Unit]
+Description=Pacman upgrade the system
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/pacman --noconfirm -Syyu' | sudo tee -a ${upgrade_system_service}
+
+
+upgrade_system_timer=/etc/systemd/system/upgrade_system.timer
+
+sudo rm -f ${upgrade_system_timer}
+sudo touch ${upgrade_system_timer}
+sudo chmod 755 ${upgrade_system_timer}
+
+echo -e \
+'[Unit]
+Description=Run pacman system upgrade daily
+Requires=network-online.target
+After=network-online.target
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=12h
+Persistent=true
+
+[Install]
+WantedBy=timers.target' | sudo tee -a ${upgrade_system_timer}
 echo -e "\n"
 
 sudo systemctl enable upgrade_system.timer
 
 
-# Update the servers links for packages automatically every day
-echo -e "Setting up automate for daily reflector updates"
-echo -e ""
-reflectorService=/etc/systemd/system/reflector.service
-sudo rm -f $reflectorService
-sudo touch $reflectorService
-sudo chmod 755 $reflectorService
-echo -e "[Unit]" | sudo tee -a $reflectorService
-echo -e "Description=Pacman mirrorlist update with reflector\n" | sudo tee -a $reflectorService
-echo -e "[Service]" | sudo tee -a $reflectorService
-echo -e "Type=oneshot" | sudo tee -a $reflectorService
-echo -e "ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist" | sudo tee -a $reflectorService
+# Update the servers links for packages automatically every 5 minutes
+echo -e "Setting up automate job for update servers with reflector every 5 minutes"
+reflector_service=/etc/systemd/system/reflector.service
 
-reflectorTimer=/etc/systemd/system/reflector.timer
-sudo rm -f $reflectorTimer
-sudo touch $reflectorTimer
-sudo chmod 755 $reflectorTimer
-echo -e "[Unit]" | sudo tee -a $reflectorTimer
-echo -e "Description=Run reflector minutely" | sudo tee -a $reflectorTimer
-echo -e "Requires=network-online.target" | sudo tee -a $reflectorTimer
-echo -e "After=network-online.target\n" | sudo tee -a $reflectorTimer
-echo -e "[Timer]" | sudo tee -a $reflectorTimer
-echo -e "OnCalendar=hourly" | sudo tee -a $reflectorTimer
-echo -e "RandomizedDelaySec=5min" | sudo tee -a $reflectorTimer
-echo -e "Persistent=true\n" | sudo tee -a $reflectorTimer
-echo -e "[Install]" | sudo tee -a $reflectorTimer
-echo -e "WantedBy=timers.target" | sudo tee -a $reflectorTimer
+sudo rm -f ${reflector_service}
+sudo touch ${reflector_service}
+sudo chmod 755 ${reflector_service}
+
+echo -e \
+'[Unit]
+Description=Pacman mirrorlist update with reflector
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist' | sudo tee -a ${reflector_service}
+
+
+reflector_timer=/etc/systemd/system/reflector.timer
+
+sudo rm -f ${reflector_timer}
+sudo touch ${reflector_timer}
+sudo chmod 755 ${reflector_timer}
+
+echo -e \
+'[Unit]
+Description=Run reflector minutely
+Requires=network-online.target
+After=network-online.target
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target' | sudo tee -a ${reflector_timer}
 echo -e "\n"
 
 sudo systemctl enable reflector.timer
@@ -243,7 +254,6 @@ sudo pacman -S --needed --noconfirm bash-completion
 echo -e "\n"
 
 echo -e "Installing upower"
-echo -e ""
 sudo pacman -S --needed --noconfirm upower #Show information about your laptop battery
 echo -e "\n"
 

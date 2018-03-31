@@ -143,18 +143,21 @@ echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
 echo -e ""
 
-#echo -e "Xorg with Nvidia"
-#nvidiaConfigFile=/etc/X11/xorg.conf.d/20-nvidia.conf
-#sudo rm -f $nvidiaConfigFile
-#sudo touch $nvidiaConfigFile
-#echo -e "Section \"Device\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "    Identifier     \"Nvidia Graphic Card\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "    Driver         \"nvidia\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "    VendorName     \"NVIDIA Corporation\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "    BoardName      \"GeForce GTX 1080 Mobile\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "    BusID          \"PCI:1:0:0\"\n" | sudo tee -a $nvidiaConfigFile
-#echo -e "EndSection\n" | sudo tee -a $nvidiaConfigFile
-#echo -e ""
+#~ echo -e "Xorg with Nvidia"
+#~ nvidia_config_file=/etc/X11/xorg.conf.d/20-nvidia.conf
+
+#~ sudo rm -f ${nvidia_config_file}
+#~ sudo touch ${nvidia_config_file}
+
+#~ echo -e \
+#~ 'Section "Device"
+    #~ Identifier     "Nvidia Graphic Card"
+    #~ Driver         "nvidia"
+    #~ VendorName     "NVIDIA Corporation"
+    #~ BoardName      "GeForce GTX 1080 Mobile"
+    #~ BusID          "PCI:1:0:0"
+#~ EndSection' | sudo tee -a ${nvidia_config_file}
+#~ echo -e ""
 
 
 # Comment the Nvidia value for is primary GPU

@@ -141,14 +141,20 @@ echo -e "\n"
 #~ sudo pacman -S --needed --noconfirm bluez bluez-utils
 #~ sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
 #~ #sudo pacman -S --needed --noconfirm bluez-firmware
+
 #~ sudo usermod -a -G lp $(whoami)
-#~ audioBluetooth=/etc/bluetooth/audio.conf
-#~ sudo rm -f $audioBluetooth
-#~ sudo touch $audioBluetooth
-#~ echo -e "[General]" | sudo tee -a $audioBluetooth
-#~ echo -e "Enable=Source,Sink,Media,Socket" | sudo tee -a $audioBluetooth
+
+#~ audio_bluetooth=/etc/bluetooth/audio.conf
+
+#~ sudo rm -f ${audio_bluetooth}
+#~ sudo touch ${audio_bluetooth}
+
+#~ echo -e \
+#~ '[General]
+#~ Enable=Source,Sink,Media,Socket' | sudo tee -a ${audio_bluetooth}
+
 #~ modprobe btusb
-#~ #systemctl start bluetooth.service
+#~ #sudo systemctl start bluetooth.service
 #~ echo -e "\n"
 
 
