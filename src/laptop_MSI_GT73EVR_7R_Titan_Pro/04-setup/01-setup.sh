@@ -203,20 +203,33 @@ echo -e "Adding audio into the user group"
 sudo usermod -a -G audio $(whoami)
 echo -e "\n"
 
-# Useful commands
-#speaker-test -c2 -twav -l1
-#aplay -L
-#aplay --list-devices
-#amixer controls | grep Master
-#cat /sys/class/sound/card*/id
-#cat /proc/asound/card0/pcm0p/info
-#cat /proc/asound/card0/pcm3p/info
-
 
 # Pulse audio
 echo -e "Installing Pulse audio"
 sudo pacman -S --needed --noconfirm pulseaudio
 echo -e "\n"
+
+echo -e "Configure pulseaudio to recognize the woofer"
+
+ehco -e "Configuring the daemon.conf file"
+cp /etc/pulse/daemon.conf ~/.config/pulse/
+sed -i '/; enable-lfe-remixing = no/ s/^;;* *//' ~/.config/pulse/daemon.conf
+sed -i 's/enable-lfe-remixing = no/enable-lfe-remixing = yes/g' ~/.config/pulse/daemon.conf
+
+ehco -e "Configuring the default.pa file"
+cp /etc/pulse/default.pa ~/.config/pulse/
+sed -i "\$a\\\n\nload-module module-combine channels=6 channel_map=front-left,front-right,rear-left,rear-right,front-center,lfe" ~/.config/pulse/default.pa
+echo -e "\n"
+
+# Useful commands
+#speaker-test -c2 -twav -l1
+#speaker-test -c6 -twav -l1
+#aplay --list-devices
+#aplay -L
+#amixer controls | grep Master
+#cat /sys/class/sound/card*/id
+#cat /proc/asound/card0/pcm0p/info
+#cat /proc/asound/card0/pcm3p/info
 
 
 # Bash completion
