@@ -18,3 +18,14 @@ yourUserName="wolf"
 # ----------------------------------------------------------------------
 sourceDirectory=$(dirname $BASH_SOURCE)/
 source "$sourceDirectory"00-functions.sh
+
+PS4=\
+'
+
+
+Line #${LINENO}
+BASH_COMMAND: ${BASH_COMMAND}
+--------------------------------------------------------------------------------
+'
+
+set -x

@@ -82,3 +82,14 @@ funcIsEfiBios() {
 		exit -1
 	fi
 }
+
+PS4=\
+'
+
+
+Line #${LINENO}
+BASH_COMMAND: ${BASH_COMMAND}
+--------------------------------------------------------------------------------
+'
+
+set -x
