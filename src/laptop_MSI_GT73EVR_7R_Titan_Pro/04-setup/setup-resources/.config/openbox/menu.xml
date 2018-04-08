@@ -45,7 +45,7 @@
   <separator />
   <item label="Log Out">
     <action name="Exit">
-      <prompt>yes</prompt>
+      <prompt>no</prompt>
     </action>
   </item>
 </menu>
