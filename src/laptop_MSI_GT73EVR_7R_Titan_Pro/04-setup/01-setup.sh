@@ -245,6 +245,7 @@ echo -e "\n"
 
 
 # Bash completion
+#-----------------------------------------------------------------------
 echo -e "Installing Bash completion"
 sudo pacman -S --needed --noconfirm bash-completion
 echo -e "\n"
