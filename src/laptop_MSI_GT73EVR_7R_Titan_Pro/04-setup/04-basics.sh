@@ -65,7 +65,7 @@ echo -e "\n"
 
 echo -e "Installing spotify"
 #gpg --recv-keys 13B00F1FD2C19886 # This is the public key for Spotify AUR
-#yaourt -S --needed --noconfirm spotify-stable # Spotify
+yaourt -S --needed --noconfirm spotify # Spotify
 echo -e "\n"
 
 # Web browsers
