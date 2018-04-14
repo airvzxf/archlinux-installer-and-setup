@@ -146,6 +146,7 @@ echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
 echo -e ""
 
+# TODO: Check if this config file is necessary.
 #~ echo -e "Xorg with Nvidia"
 #~ nvidia_config_file=/etc/X11/xorg.conf.d/20-nvidia.conf
 

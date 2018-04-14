@@ -280,6 +280,7 @@ alias clninspector='rmf ~/Downloads/clionInspectorOutpu && clion-inspector $(pwd
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
+# TODO: Looks like it's not necessary anymore, double check before delete.
 #~ alias wifi='sudo netctl stop-all && sudo netctl start'
 #~ _completion_loader netctl
 #~ make_completion_wrapper _netctl _netctl_start netctl start
