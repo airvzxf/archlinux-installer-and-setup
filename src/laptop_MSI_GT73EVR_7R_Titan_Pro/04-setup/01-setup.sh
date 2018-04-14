@@ -121,13 +121,13 @@ upgrade_system_timer=/etc/systemd/system/upgrade_system.timer
 
 echo -e \
 '[Unit]
-Description=Run pacman upgrade system every 12 hours
+Description=Run pacman upgrade system every 5 minutes
 Requires=network-online.target
 After=network-online.target
 
 [Timer]
 OnCalendar=daily
-RandomizedDelaySec=12h
+RandomizedDelaySec=5min
 Persistent=true
 
 [Install]
