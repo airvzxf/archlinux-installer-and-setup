@@ -137,22 +137,22 @@ sudo pacman -S --needed --noconfirm iperf #Command line interface for testing in
 echo -e "\n"
 
 
-#~ echo -e "Installing Bluetooth"
-#~ sudo pacman -S --needed --noconfirm bluez bluez-utils
-#~ sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
-#~ #sudo pacman -S --needed --noconfirm bluez-firmware
+echo -e "Installing Bluetooth"
+sudo pacman -S --needed --noconfirm bluez bluez-utils
+sudo pacman -S --needed --noconfirm bluez-libs pulseaudio-bluetooth pulseaudio-alsa pavucontrol rfkill
+#sudo pacman -S --needed --noconfirm bluez-firmware
 
-#~ sudo usermod -a -G lp $(whoami)
+sudo usermod -a -G lp $(whoami)
 
-#~ audio_bluetooth=/etc/bluetooth/audio.conf
+audio_bluetooth=/etc/bluetooth/audio.conf
 
-#~ echo -e \
-#~ '[General]
-#~ Enable=Source,Sink,Media,Socket' | sudo tee ${audio_bluetooth}
+echo -e \
+'[General]
+Enable=Source,Sink,Media,Socket' | sudo tee ${audio_bluetooth}
 
-#~ modprobe btusb
-#~ #sudo systemctl start bluetooth.service
-#~ echo -e "\n"
+modprobe btusb
+#sudo systemctl start bluetooth.service
+echo -e "\n"
 
 
 echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
