@@ -49,10 +49,6 @@ echo -e ""
 steam
 echo -e "\n"
 
-#~ echo -e "Installing Steam native runtime"
-#~ echo -e ""
-#~ sudo pacman -S --needed --noconfirm steam-native-runtime
-#~ echo -e "\n"
 
 # Setup controller
 # ----------------------------------------------------------------------
