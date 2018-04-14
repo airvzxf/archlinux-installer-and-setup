@@ -115,6 +115,20 @@ sudo pacman -S --needed --noconfirm tmux
 echo -e "\n"
 
 
+# Turn on the numlock
+#-----------------------------------------------------------------------
+echo -e "Installing numlock which turns on the numlock key in X11"
+sudo pacman -S --needed --noconfirm numlockx
+echo -e "\n"
+
+
+# Backlighting manager for MSI steelseries keyboards
+#-----------------------------------------------------------------------
+echo -e "Installing a backlighting manager for MSI steelseries keyboards"
+yaourt -S --needed --noconfirm msiklm-git
+echo -e "\n"
+
+
 # If you try to run the command xinit your screen freezen to solve this
 # problem you need to install nvidia-xrun which avoid this problem and
 # you need to create a file to setup enviorement in this example we have
@@ -131,7 +145,15 @@ echo -e \
 'xrandr --newmode "1920x1080_120.00"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync
 xrandr --addmode DP-0 "1920x1080_120.00"
 xrandr --output DP-0 --primary --mode "1920x1080_120.00" --dpi 130
+
 xbacklight -set 90
+
+# <color_left>,<color_middle>,<color_right>,<color_logo>,<color_front_left>,<color_front_right>,<color_mouse>]
+sudo msiklm normal
+sudo msiklm green,blue,red,white,yellow,green,sky
+
+numlockx &
+
 openbox-session' | sudo tee ~/.xinitrc
 echo -e ""
 
