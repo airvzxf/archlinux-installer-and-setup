@@ -214,6 +214,8 @@ echo -e "Installing Pulse audio"
 sudo pacman -S --needed --noconfirm pulseaudio
 echo -e "\n"
 
+# TODO: Uncomment these lines if the woofer is not working in the next instllation form scratch.
+
 #~ echo -e "Configure pulseaudio to recognize the woofer"
 
 #~ ehco -e "Configuring the daemon.conf file"
