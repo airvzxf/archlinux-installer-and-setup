@@ -182,6 +182,45 @@ echo -e ""
 #~ echo -e ""
 
 
+#~ # This guide setup the keyboard to la-latin1, keylayout spanish-Mexico.
+#~ # If you have Nvidia card I have some script to setup it.
+
+#~ echo -e "Installing Xorg set xkb map"
+#~ echo -e ""
+#~ sudo pacman -S --needed --noconfirm xorg-setxkbmap
+#~ echo -e "\n"
+
+#~ # Keyboard configuration in Xorg
+#~ # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
+#~ # Dislpay information
+#~ echo -e "Setting up the keyword map to Latin America"
+#~ setxkbmap -print -verbose 10
+#~ localectl list-x11-keymap-variants latam
+#~ echo -e ""
+
+#~ # Setup the configuration
+#~ echo -e "Setting up the local keyboard to Latin America"
+#~ localectl --no-convert set-x11-keymap latam pc105 ,deadtilde
+#~ echo -e ""
+
+#~ # Xbindkeys
+#~ # https://wiki.archlinux.org/index.php/Xbindkeys
+#~ echo -e "Installing Xbind keys"
+#~ echo -e ""
+#~ sudo pacman -S --needed --noconfirm xbindkeys
+#~ echo -e "\n"
+
+#~ echo -e "Setting up the xbin keys"
+#~ # touch ~/.xbindkeysrc
+#~ xbindkeys -d > ~/.xbindkeysrc
+#~ # Identifying keycodes
+#~ xbindkeys -k
+#~ # Reload the configuration file and apply the changes
+#~ xbindkeys -p
+#~ xbindkeys
+#~ echo -e "\n"
+
+
 # Comment the Nvidia value for is primary GPU
 echo -e "Comment the Nvidia value for is primary GPU"
 sudo sed -i '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
