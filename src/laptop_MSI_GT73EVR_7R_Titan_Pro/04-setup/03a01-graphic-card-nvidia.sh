@@ -139,21 +139,21 @@ echo -e "\n"
 # 3. openbox open the window manager (desktop)
 echo -e "Adding to setup to the xinit file"
 echo -e \
-'[[ -f ~/.Xresources ]] && xrdb -merge -I'${HOME}'' | sudo tee-a ~/.Xresources
+'[[ -f ~/.Xresources ]] && xrdb -merge -I'${HOME}'' | tee -a ~/.Xresources
 
 echo -e \
 'xrandr --newmode "1920x1080_120.00"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync
 xrandr --addmode DP-0 "1920x1080_120.00"
 xrandr --output DP-0 --primary --mode "1920x1080_120.00" --dpi 130
 
-xbacklight -set 90
+xbacklight -set 100
 
 # msiklm <color_left>,<color_middle>,<color_right>,<color_logo>,<color_front_left>,<color_front_right>,<color_mouse>
 sudo msiklm green,blue,red,white,yellow,green,sky
 
 numlockx &
 
-openbox-session' | sudo tee ~/.xinitrc
+openbox-session' | tee ~/.xinitrc
 echo -e ""
 
 # Install xterm before run openbox window manager
@@ -182,43 +182,38 @@ echo -e ""
 #~ echo -e ""
 
 
-#~ # This guide setup the keyboard to la-latin1, keylayout spanish-Mexico.
-#~ # If you have Nvidia card I have some script to setup it.
+# Xbindkeys
+# https://wiki.archlinux.org/index.php/Xbindkeys
+echo -e "Installing Xbind keys"
+echo -e ""
+sudo pacman -S --needed --noconfirm xbindkeys
+echo -e "\n"
 
-#~ echo -e "Installing Xorg set xkb map"
-#~ echo -e ""
-#~ sudo pacman -S --needed --noconfirm xorg-setxkbmap
-#~ echo -e "\n"
+echo -e "Setting up the Xbind keys"
+echo -e \
+'# Increase volume
+"pactl set-sink-volume 0 +1000"
+   XF86AudioRaiseVolume
 
-#~ # Keyboard configuration in Xorg
-#~ # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg
-#~ # Dislpay information
-#~ echo -e "Setting up the keyword map to Latin America"
-#~ setxkbmap -print -verbose 10
-#~ localectl list-x11-keymap-variants latam
-#~ echo -e ""
+# Decrease volume
+"pactl set-sink-volume 0 -1000"
+   XF86AudioLowerVolume
 
-#~ # Setup the configuration
-#~ echo -e "Setting up the local keyboard to Latin America"
-#~ localectl --no-convert set-x11-keymap latam pc105 ,deadtilde
-#~ echo -e ""
+# Mute
+"amixer set Master toggle"
+   XF86AudioMute
 
-#~ # Xbindkeys
-#~ # https://wiki.archlinux.org/index.php/Xbindkeys
-#~ echo -e "Installing Xbind keys"
-#~ echo -e ""
-#~ sudo pacman -S --needed --noconfirm xbindkeys
-#~ echo -e "\n"
+# Increase brightness
+"xbacklight -5"
+   XF86MonBrightnessDown
 
-#~ echo -e "Setting up the xbin keys"
-#~ # touch ~/.xbindkeysrc
-#~ xbindkeys -d > ~/.xbindkeysrc
-#~ # Identifying keycodes
-#~ xbindkeys -k
-#~ # Reload the configuration file and apply the changes
-#~ xbindkeys -p
-#~ xbindkeys
-#~ echo -e "\n"
+# Decrease brightness
+"xbacklight +5"
+   XF86MonBrightnessUp' | tee ~/.xbindkeysrc
+
+# Refresh the bind keys
+xbindkeys -p
+echo -e ""
 
 
 # Comment the Nvidia value for is primary GPU
