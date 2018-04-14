@@ -108,6 +108,15 @@ echo -e "The sudo password is requested one time per session"
 sed -i "\$a\\\n\nDefaults:${yourUserName} timestamp_timeout=-1\n" /etc/sudoers
 echo -e ""
 
+echo -e "Disabling WiFi 11n, it fix the slow internet download"
+echo -e 'options iwlwifi 11n_disable=1 bt_coex_active=0 power_save=0 auto_agg=0 swcrypto=0' | tee /etc/modprobe.d/iwlwifi.conf
+echo -e ""
+
+echo -e "Disabling the power save into the WiFi card"
+echo -e 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off"' | tee /etc/udev/rules.d/70-wifi-powersave.rules
+echo -e ""
+
+
 # Move the archLinux project into the user folder.
 echo -e "Moving the archLinux project into the user workspace directory"
 mkdir -p /home/${yourUserName}/workspace/projects
