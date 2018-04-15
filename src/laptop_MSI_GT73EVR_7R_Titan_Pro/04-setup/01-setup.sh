@@ -51,13 +51,9 @@ echo -e "\n"
 # Set up the config files into home folder.
 echo -e "Setting up the config files into home folder."
 curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.bash_git
-cp ./setup-resources/.bash_profile ~/
 # TODO: Change permissions to 644 for all this files.
-cp ./setup-resources/.bashrc ~/
-cp ./setup-resources/.toprc ~/
-cp ./setup-resources/.Xresources ~/
-cp ./setup-resources/.tmux.conf ~/
-cp -R ./setup-resources/.config/openbox ~/.config/
+cp -R ./setup-resources/.[^.]* ~/
+sed -i -- 's/wolf/'${yourUserName}'/g' ~/.xinitrc
 echo -e "\n"
 
 # Pacman config

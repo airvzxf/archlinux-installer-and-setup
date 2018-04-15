@@ -129,33 +129,6 @@ yaourt -S --needed --noconfirm msiklm-git
 echo -e "\n"
 
 
-# If you try to run the command xinit your screen freezen to solve this
-# problem you need to install nvidia-xrun which avoid this problem and
-# you need to create a file to setup enviorement in this example we have
-# three lines:
-# 1. xrandr setup your display appropriated
-# 2. setxkbmap setup your keyword map and layout because xrun avoid all
-# the xorg configs, every Xorg setup you need to put in this file.
-# 3. openbox open the window manager (desktop)
-echo -e "Adding to setup to the xinit file"
-echo -e \
-'[[ -f ~/.Xresources ]] && xrdb -merge -I'${HOME}'' | tee -a ~/.Xresources
-
-echo -e \
-'xrandr --newmode "1920x1080_120.00"  368.76  1920 2072 2288 2656  1080 1081 1084 1157  -HSync +Vsync
-xrandr --addmode DP-0 "1920x1080_120.00"
-xrandr --output DP-0 --primary --mode "1920x1080_120.00" --dpi 130
-
-xbacklight -set 100
-
-# msiklm <color_left>,<color_middle>,<color_right>,<color_logo>,<color_front_left>,<color_front_right>,<color_mouse>
-sudo msiklm green,blue,red,white,yellow,green,sky
-
-numlockx &
-
-openbox-session' | tee ~/.xinitrc
-echo -e ""
-
 # Install xterm before run openbox window manager
 echo -e "Installing xterm before run openbox window manager"
 echo -e ""
