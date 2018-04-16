@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Custom Bootable USB
@@ -59,10 +59,35 @@ cd ${archiso_directory}
 echo -e ""
 
 echo -e "Adding packages into 'packages.both'"
-echo -e \
+echo \
 '
-git' | sudo tee -a ./packages.both
+git
+bash-completion
+xorg
+xorg-xinit
+xorg-fonts-type1
+xorg-fonts-misc
+ttf-freefont
+noto-fonts-emoji
+xorg-xrandr
+xorg-xdpyinfo
+openbox
+xterm
+simplescreenrecorder' | sudo tee -a ./packages.both
 echo -e ""
+
+
+echo -e "Copying the setup files"
+sudo sed -i -- 's|cp -af ${script_path}/airootfs ${work_dir}/${arch}|cp -af ${script_path}/airootfs ${work_dir}/${arch}\
+\
+    cp -r '${current_directory}'/../04-setup/setup-resources/.[^.]* ${work_dir}/${arch}/airootfs/root/\
+\
+    sed -i -- "s/wolf/root/g" ${work_dir}/${arch}/airootfs/root/.xinitrc\
+\
+    echo -e \"options iwlwifi 11n_disable=1 bt_coex_active=0 power_save=0 auto_agg=0 swcrypto=0\" \| tee ${work_dir}/${arch}/airootfs/etc/modprobe.d/iwlwifi.conf\
+\
+    echo -e '\''ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off'\'' \| tee ${work_dir}/${arch}/airootfs/etc/udev/rules.d/70-wifi-powersave.rules|g' ./build.sh
+
 
 echo -e "Copying mkarchiso into a temporary file"
 sudo cp /usr/bin/mkarchiso ${mkarchiso_file}
