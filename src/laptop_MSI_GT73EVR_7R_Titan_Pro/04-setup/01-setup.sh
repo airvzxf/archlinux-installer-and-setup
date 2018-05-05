@@ -114,7 +114,7 @@ Description=Pacman upgrading the system
 Type=oneshot
 ExecStart=/usr/bin/pacman --noconfirm -Syyu' | sudo tee ${upgrade_system_service}
 
-sudo chmod 755 ${upgrade_system_service}
+sudo chmod 644 ${upgrade_system_service}
 
 
 upgrade_system_timer=/etc/systemd/system/upgrade_system.timer
@@ -133,7 +133,7 @@ Persistent=true
 [Install]
 WantedBy=timers.target' | sudo tee ${upgrade_system_timer}
 
-sudo chmod 755 ${upgrade_system_timer}
+sudo chmod 644 ${upgrade_system_timer}
 
 echo -e "\n"
 
@@ -153,7 +153,7 @@ Description=Pacman mirrorlist updated with reflector
 Type=oneshot
 ExecStart=/usr/bin/reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist' | sudo tee ${reflector_service}
 
-sudo chmod 755 ${reflector_service}
+sudo chmod 644 ${reflector_service}
 
 
 reflector_timer=/etc/systemd/system/reflector.timer
@@ -172,7 +172,7 @@ Persistent=true
 [Install]
 WantedBy=timers.target' | sudo tee ${reflector_timer}
 
-sudo chmod 755 ${reflector_timer}
+sudo chmod 644 ${reflector_timer}
 
 echo -e "\n"
 
@@ -191,7 +191,7 @@ Description=Turn on the keyboard backlights
 Type=oneshot
 ExecStart=/usr/bin/msiklm green,blue,red,white,yellow,green,sky' | sudo tee ${keyboard_backlight_service}
 
-sudo chmod 755 ${keyboard_backlight_service}
+sudo chmod 644 ${keyboard_backlight_service}
 
 
 keyboard_backlight_timer=/etc/systemd/system/steel_series_keyboard_backlight.timer
@@ -206,7 +206,7 @@ OnBootSec=1
 [Install]
 WantedBy=timers.target' | sudo tee ${keyboard_backlight_timer}
 
-sudo chmod 755 ${keyboard_backlight_timer}
+sudo chmod 644 ${keyboard_backlight_timer}
 
 echo -e "\n"
 
@@ -225,6 +225,8 @@ for tty in /dev/tty{1..6}
 do
     /usr/bin/setleds -D +num < ${tty};
 done' | sudo tee ${numlock_bin}
+
+sudo chmod 755 ${numlock_bin}
 
 
 numeric_keyboard_service=/etc/systemd/system/numeric_keyboard.service
