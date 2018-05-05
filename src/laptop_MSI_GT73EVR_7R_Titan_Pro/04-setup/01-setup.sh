@@ -98,7 +98,11 @@ echo -e "Upgrading system"
 sudo pacman --noconfirm -Syyu
 echo -e "\n"
 
-# Update Arch Linux automatically every day
+
+# Added units into the Systemd
+
+#-------------------------------------------------------------------------------
+
 echo -e "Setting up automated job for daily system upgrade"
 upgrade_system_service=/etc/systemd/system/upgrade_system.service
 
@@ -135,6 +139,7 @@ echo -e "\n"
 
 sudo systemctl enable ${upgrade_system_timer}
 
+#-------------------------------------------------------------------------------
 
 # Update the servers links for packages automatically every 5 minutes
 echo -e "Setting up automated job for update servers with reflector every 5 minutes"
@@ -173,7 +178,41 @@ echo -e "\n"
 
 sudo systemctl enable ${reflector_timer}
 
+#-------------------------------------------------------------------------------
 
+echo -e "Setting up automated job for turn on the keyboard backlights after the boot on"
+keyboard_backlight_service=/etc/systemd/system/steel_series_keyboard_backlight.service
+
+echo -e \
+'[Unit]
+Description=Turn on the keyboard backlights
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/msiklm green,blue,red,white,yellow,green,sky' | sudo tee ${keyboard_backlight_service}
+
+sudo chmod 755 ${keyboard_backlight_service}
+
+
+keyboard_backlight_timer=/etc/systemd/system/steel_series_keyboard_backlight.timer
+
+echo -e \
+'[Unit]
+Description=Turn on the keyboard backlights after the boot on
+
+[Timer]
+OnBootSec=1
+
+[Install]
+WantedBy=timers.target' | sudo tee ${keyboard_backlight_timer}
+
+sudo chmod 755 ${keyboard_backlight_timer}
+
+echo -e "\n"
+
+sudo systemctl enable ${keyboard_backlight_timer}
+
+#-------------------------------------------------------------------------------
 
 
 # Yaourt
