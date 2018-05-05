@@ -122,8 +122,8 @@ Requires=network-online.target
 After=network-online.target
 
 [Timer]
-OnCalendar=daily
-RandomizedDelaySec=5min
+OnCalendar=hourly
+RandomizedDelaySec=30min
 Persistent=true
 
 [Install]
