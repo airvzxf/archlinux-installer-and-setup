@@ -133,7 +133,7 @@ sudo chmod 755 ${upgrade_system_timer}
 
 echo -e "\n"
 
-sudo systemctl enable upgrade_system.timer
+sudo systemctl enable ${upgrade_system_timer}
 
 
 # Update the servers links for packages automatically every 5 minutes
@@ -171,7 +171,7 @@ sudo chmod 755 ${reflector_timer}
 
 echo -e "\n"
 
-sudo systemctl enable reflector.timer
+sudo systemctl enable ${reflector_timer}
 
 
 
