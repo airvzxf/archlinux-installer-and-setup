@@ -214,6 +214,53 @@ sudo systemctl enable ${keyboard_backlight_timer}
 
 #-------------------------------------------------------------------------------
 
+echo -e "Setting up automated job for turn on the numeric keyboard"
+
+numlock_bin=/usr/bin/numlock
+
+echo -e \
+'#!/bin/bash
+
+for tty in /dev/tty{1..6}
+do
+    /usr/bin/setleds -D +num < ${tty};
+done' | sudo tee ${numlock_bin}
+
+
+numeric_keyboard_service=/etc/systemd/system/numeric_keyboard.service
+
+echo -e \
+'[Unit]
+Description=Turn on the numeric keyboard
+
+[Service]
+ExecStart=/usr/bin/numlock
+StandardInput=tty
+RemainAfterExit=yes' | sudo tee ${numeric_keyboard_service}
+
+sudo chmod 644 ${numeric_keyboard_service}
+
+
+numeric_keyboard_timer=/etc/systemd/system/numeric_keyboard.timer
+
+echo -e \
+'[Unit]
+Description=Turn on the numeric keyboard after the boot on
+
+[Timer]
+OnBootSec=1
+
+[Install]
+WantedBy=timers.target' | sudo tee ${numeric_keyboard_timer}
+
+sudo chmod 644 ${numeric_keyboard_timer}
+
+echo -e "\n"
+
+sudo systemctl enable ${numeric_keyboard_timer}
+
+#-------------------------------------------------------------------------------
+
 
 # Yaourt
 # ----------------------------------------------------------------------
