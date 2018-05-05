@@ -99,7 +99,7 @@ sudo pacman --noconfirm -Syyu
 echo -e "\n"
 
 # Update Arch Linux automatically every day
-echo -e "Setting up automate job for daily system upgrade"
+echo -e "Setting up automated job for daily system upgrade"
 upgrade_system_service=/etc/systemd/system/upgrade_system.service
 
 echo -e \
@@ -137,7 +137,7 @@ sudo systemctl enable upgrade_system.timer
 
 
 # Update the servers links for packages automatically every 5 minutes
-echo -e "Setting up automate job for update servers with reflector every 5 minutes"
+echo -e "Setting up automated job for update servers with reflector every 5 minutes"
 reflector_service=/etc/systemd/system/reflector.service
 
 echo -e \
