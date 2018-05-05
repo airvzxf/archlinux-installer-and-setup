@@ -73,20 +73,24 @@ xorg-xrandr
 xorg-xdpyinfo
 openbox
 xterm
+tmux
+chromium
+geany
+vlc
 simplescreenrecorder' | sudo tee -a ./packages.both
 echo -e ""
 
 
 echo -e "Copying the setup files"
-sudo sed -i -- 's|cp -af ${script_path}/airootfs ${work_dir}/${arch}|cp -af ${script_path}/airootfs ${work_dir}/${arch}\
+sudo sed -i -- 's|rm ${work_dir}/${arch}/airootfs/root/customize_airootfs.sh|rm ${work_dir}/${arch}/airootfs/root/customize_airootfs.sh\
 \
     cp -r '${current_directory}'/../04-setup/setup-resources/.[^.]* ${work_dir}/${arch}/airootfs/root/\
 \
     sed -i -- "s/wolf/root/g" ${work_dir}/${arch}/airootfs/root/.xinitrc\
-\
-    echo -e \"options iwlwifi 11n_disable=1 bt_coex_active=0 power_save=0 auto_agg=0 swcrypto=0\" \| tee ${work_dir}/${arch}/airootfs/etc/modprobe.d/iwlwifi.conf\
-\
-    echo -e '\''ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off'\'' \| tee ${work_dir}/${arch}/airootfs/etc/udev/rules.d/70-wifi-powersave.rules|g' ./build.sh
+    sed -i -- "s-home\/wolf-root-g" ${work_dir}/${arch}/airootfs/root/.config/geany/geany.conf\
+    sed -i -- "s-home\/wolf-root-g" ${work_dir}/${arch}/airootfs/root/.config/transmission/settings.json\
+    sed -i "s/geteuid/getppid/" ${work_dir}/${arch}/airootfs/usr/bin/vlc\
+|g' ./build.sh
 
 
 echo -e "Copying mkarchiso into a temporary file"
