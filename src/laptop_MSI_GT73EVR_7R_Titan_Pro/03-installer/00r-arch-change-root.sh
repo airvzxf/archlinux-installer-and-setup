@@ -94,6 +94,10 @@ echo -e "Please change your user password:"
 passwd ${yourUserName}
 echo -e ""
 
+echo -e "Add your user (${yourUserName}) to the video group"
+gpasswd -a ${yourUserName} video
+echo -e ""
+
 # Add sudo permissions for your user
 # This is the same if you edit the file "/etc/sudoers"
 #EDITOR=nano visudo
