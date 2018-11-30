@@ -55,6 +55,10 @@ echo -e "Installing screanshooter"
 sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
 echo -e "\n"
 
+echo -e "Installing galculator"
+sudo pacman -S --needed --noconfirm galculator # Calculator
+echo -e "\n"
+
 echo -e "Installing hdd parameters"
 sudo pacman -S --needed --noconfirm hdparm #List brand and properties for your hard disk
 echo -e "\n"

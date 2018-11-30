@@ -174,7 +174,7 @@ alias memoryclean='sudo sh -c "echo 3 >/proc/sys/vm/drop_caches && swapoff -a &&
 function set_brightness_at() {
 	is_number=^[0-9]+$
 	default_brightness=90
-	max_brightness=$(cat /sys/class/backlight/acpi_video0/max_brightness)
+	max_brightness=$(cat /sys/class/backlight/nvidia_0/max_brightness)
 	brightness=${default_brightness}
 
 	if [[ ${1} =~ ${is_number} ]]
@@ -185,7 +185,7 @@ function set_brightness_at() {
 		fi
 	fi
 
-	sudo echo ${brightness} > /sys/class/backlight/acpi_video0/brightness
+	sudo echo ${brightness} > /sys/class/backlight/nvidia_0/brightness
 
 	echo -e "Max brightness: ${max_brightness}"
 	echo -e "Set the brightness at ${brightness}"
@@ -193,7 +193,7 @@ function set_brightness_at() {
 
 DECL=`declare -f set_brightness_at`
 alias setbrightness='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
-alias getbrightness='cat /sys/class/backlight/acpi_video0/brightness'
+alias getbrightness='cat /sys/class/backlight/nvidia_0/brightness'
 
 alias pingfast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
 
@@ -269,6 +269,7 @@ alias desktop='cd ~/Desktop'
 alias workspace='cd ~/workspace'
 alias p='cd ~/workspace/projects'
 alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
+alias calculator='galculator &'
 
 alias pyc='pycharm.sh >/dev/null 2>&1 &'
 alias pycformatter='pyf(){ pycharm-formatter -r $(pwd)/$1; unset -f pyf; }; pyf'
@@ -279,13 +280,6 @@ alias clnformatter='clnf(){ clion-formatter -r $(pwd)/$1; unset -f clnf; }; clnf
 alias clninspector='rmf ~/Downloads/clionInspectorOutpu && clion-inspector $(pwd)/ $(pwd)/.idea/inspectionProfiles/clion_inspector.xml ~/Downloads/clionInspectorOutpu -v2 && geany ~/Downloads/clionInspectorOutpu/*'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
-
-# TODO: Looks like it's not necessary anymore, double check before delete.
-#~ alias wifi='sudo netctl stop-all && sudo netctl start'
-#~ _completion_loader netctl
-#~ make_completion_wrapper _netctl _netctl_start netctl start
-#~ complete -F _netctl_start wifi
-
 
 function try_to_connect_to_my_internet() {
 	wifi_name=$1
@@ -319,10 +313,8 @@ function try_to_connect_to_my_internet() {
 		sleep 1
 	done
 }
-alias uvwifi='try_to_connect_to_my_internet wlp2s0-Brutus5GHz'
-alias uvwifi2G='try_to_connect_to_my_internet wlp2s0-Brutus24GHz'
-alias homewifi='try_to_connect_to_my_internet wlp2s0-MySpectrumWiFi20-5G'
-alias homewifi2G='try_to_connect_to_my_internet wlp2s0-MySpectrumWiFi20-2G'
+
+alias homewifi='try_to_connect_to_my_internet wlp2s0-home-5GHz'
+alias homewifi2G='try_to_connect_to_my_internet wlp2s0-home-2GHz'
 alias starbuckswifi='try_to_connect_to_my_internet wlp2s0-GoogleStarbucks'
-alias htcwifi='try_to_connect_to_my_internet wlp2s0-IsraelRoldanHTC'
 alias usbethernet='try_to_connect_to_my_internet enp0s20u1u4-Home'
