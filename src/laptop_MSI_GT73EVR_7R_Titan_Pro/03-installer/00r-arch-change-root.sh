@@ -18,7 +18,11 @@ echo -e ""
 
 # Set the time zone
 echo -e "Setting the time zone"
-ln -sf /usr/share/zoneinfo/${zoneInfo} /etc/localtime
+pacman -S --needed --noconfirm ntp
+
+timedatectl set-timezone ${zoneInfo}
+ntpd -qg
+timedatectl set-ntp true
 hwclock --systohc
 echo -e ""
 
