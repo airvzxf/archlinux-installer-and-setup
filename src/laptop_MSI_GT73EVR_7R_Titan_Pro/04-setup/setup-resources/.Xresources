@@ -1,4 +1,7 @@
 ! The default values are in: /usr/share/X11/app-defaults/XTerm
+! Resources:
+! https://forum.manjaro.org/t/how-to-which-font-is-used-by-xterm-i-didnt-set-font-for-xterm-in-xresourses/60112
+! https://emacspeak.blogspot.com/2015/09/setting-up-x-environment-for-using-with.html
 
 XTerm.termName: xterm-256color
 
@@ -18,9 +21,11 @@ XTerm.vt100.faceSize: 9
 
 XTerm.vt100.loginShell: true
 
+XTerm.vt100.on4Clicks: all
 XTerm.vt100.selectToClipboard:true
 
-XTerm.vt100.printerCommand: xterm -T History -e sh -c 'less -r <&3' 3<&0
+XTerm.vt100.printAttributes: 0
+XTerm.vt100.printerCommand: xterm -maximized -T History -e sh -c 'less -r <&3' 3<&0
 
 ! For toogle between full screen use Alt-Enter
 ! Replace Ctrl-C SIGINT/interrupt for Ctrl-Shift-C 
