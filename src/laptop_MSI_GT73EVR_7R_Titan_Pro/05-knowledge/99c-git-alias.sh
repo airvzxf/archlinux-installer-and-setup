@@ -31,6 +31,7 @@ git config --global alias.ad '! git add "$@" && echo -e "\n" && git status'
 git config --global alias.adp '! git add -p "$@" && echo -e "\n" && git status'
 git config --global alias.alias "! git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /"
 git config --global alias.br 'branch'
+git config --global alias.cl '! git reset --hard && git clean -dfx && echo -e "\n" && git status'
 git config --global alias.cm '! git commit -m "$@" && echo -e "\n" && git status'
 git config --global alias.cma '! git commit -a -m "$@" && echo -e "\n" && git status'
 git config --global alias.cmamend '! git commit --amend && echo -e "\n" && git status'
