@@ -246,9 +246,9 @@ alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'
 alias clr='clear && printf "\E[3J"'
 
-alias piplist='pip list --format=columns'
-alias pipoutdate='pip list --outdated --format=legacy'
-alias pipupgrade="pip list --outdated --format legacy | sed 's/(.*//g' | xargs -n1 sudo pip install -U"
+alias piplist='pip list --format columns'
+alias pipoutdate='pip list --outdated --format freeze'
+alias pipupgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -n1 sudo pip install -U"
 alias pipsearch='pps(){ pip search $1 | sort; unset -f pps; }; pps'
 alias pipinstall='ppi(){ sudo pip install $1; unset -f ppi; }; ppi'
 
@@ -270,6 +270,7 @@ alias workspace='cd ~/workspace'
 alias p='cd ~/workspace/projects'
 alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
+alias localnetstat="netstat -tulpn"
 
 alias pyc='pycharm.sh >/dev/null 2>&1 &'
 alias pycformatter='pyf(){ pycharm-formatter -r $(pwd)/$1; unset -f pyf; }; pyf'
@@ -280,6 +281,11 @@ alias clnformatter='clnf(){ clion-formatter -r $(pwd)/$1; unset -f clnf; }; clnf
 alias clninspector='rmf ~/Downloads/clionInspectorOutpu && clion-inspector $(pwd)/ $(pwd)/.idea/inspectionProfiles/clion_inspector.xml ~/Downloads/clionInspectorOutpu -v2 && geany ~/Downloads/clionInspectorOutpu/*'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
+
+alias docker-clean-service="docker service rm $(docker service ls -q)"
+alias docker-clean-network="docker network rm $(docker network ls -q -f name=python_ecommerce_app_dev_service_webnet)"
+alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
+alias docker-ls="docker container ls --all && echo '' && docker image ls && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
 
 function try_to_connect_to_my_internet() {
 	wifi_name=$1
@@ -315,6 +321,5 @@ function try_to_connect_to_my_internet() {
 }
 
 alias homewifi='try_to_connect_to_my_internet wlp2s0-home-5GHz'
-alias homewifi2G='try_to_connect_to_my_internet wlp2s0-home-2GHz'
 alias starbuckswifi='try_to_connect_to_my_internet wlp2s0-GoogleStarbucks'
 alias usbethernet='try_to_connect_to_my_internet enp0s20u1u4-Home'
