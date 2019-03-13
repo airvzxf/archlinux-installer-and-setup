@@ -239,7 +239,7 @@ alias findall='fa(){ sudo find / -iname *"$@"* 2>/dev/null; unset -f fa; }; fa'
 alias findallfile='faf(){ sudo find / -type f -iname *"$@"* 2>/dev/null; unset -f faf; }; faf'
 alias findalldir='fad(){ sudo find / -type d -iname *"$@"* 2>/dev/null; unset -f fad; }; fad'
 
-alias delete='dl(){ find ./ -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dl; }; dl'
+alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dl; }; dl'
 alias deleteall='dla(){ sudo find / -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dla; }; dla'
 
 alias x='exit'
@@ -272,13 +272,7 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
 alias localnetstat="netstat -tulpn"
 
-alias pyc='pycharm.sh >/dev/null 2>&1 &'
-alias pycformatter='pyf(){ pycharm-formatter -r $(pwd)/$1; unset -f pyf; }; pyf'
-alias pycinspector='rmf ~/Downloads/pyInspectorOutpu && pycharm-inspector $(pwd)/ $(pwd)/.idea/inspectionProfiles/python_inspector.xml ~/Downloads/pyInspectorOutpu -v2 && geany ~/Downloads/pyInspectorOutpu/*'
-
-alias cln='clion.sh >/dev/null 2>&1 &'
-alias clnformatter='clnf(){ clion-formatter -r $(pwd)/$1; unset -f clnf; }; clnf'
-alias clninspector='rmf ~/Downloads/clionInspectorOutpu && clion-inspector $(pwd)/ $(pwd)/.idea/inspectionProfiles/clion_inspector.xml ~/Downloads/clionInspectorOutpu -v2 && geany ~/Downloads/clionInspectorOutpu/*'
+alias ij='/home/wolf/workspace/apps/jetbrains-toolbox/jetbrains-toolbox'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
