@@ -272,7 +272,7 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
 alias localnetstat="netstat -tulpn"
 
-alias ij='/home/wolf/workspace/apps/jetbrains-toolbox/jetbrains-toolbox'
+alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
