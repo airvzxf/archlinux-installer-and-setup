@@ -260,12 +260,12 @@ bluetoothctl
 
 # If you had setted up your device you only need these
 modprobe btusb
-systemctl restart bluetooth.service
+sudo systemctl restart bluetooth.service
 bluetoothctl
 power on
 agent on
 default-agent
-connect 30:23:57:A2:71:59
+connect 45:DA:91:0D:14:69
 exit
 
 # If you have problems with the sound try to close pulseaudio and open again
