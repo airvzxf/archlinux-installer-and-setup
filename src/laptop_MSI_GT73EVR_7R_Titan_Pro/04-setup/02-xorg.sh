@@ -31,6 +31,7 @@ echo -e "\n"
 
 echo -e "Installing TTF free font"
 sudo pacman -S --needed --noconfirm ttf-freefont
+# if it not works try: ttf-dejavu
 echo -e "\n"
 
 echo -e "Installing emojis font"

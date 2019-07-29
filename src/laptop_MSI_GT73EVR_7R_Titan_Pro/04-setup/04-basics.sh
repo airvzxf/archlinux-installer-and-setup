@@ -79,6 +79,7 @@ echo -e "\n"
 # Chromium the most standar in Linux
 echo -e "Installing TTF free font"
 sudo pacman -S --needed --noconfirm ttf-freefont
+# if it not works try: ttf-dejavu
 echo -e "\n"
 
 echo -e "Installing firefox"
@@ -128,6 +129,10 @@ echo -e "\n"
 
 echo -e "Installing System tools"
 sudo pacman -S --needed --noconfirm lshw #ls hardware
+echo -e "\n"
+
+echo -e "Installing lsof. LiSt Open Files"
+sudo pacman -S --needed --noconfirm lsof #'LiSt Open Files' is used to find out which files are open by which process
 echo -e "\n"
 
 echo -e "Installing Network tools"
