@@ -132,7 +132,7 @@ function $function_name {
 
 
 alias sudo='sudo '
-alias watch='watch '
+alias watching='watch -n 1 '
 
 alias src='source ~/.bash_profile'
 
@@ -231,6 +231,8 @@ alias now='date +"%T"'
 alias nowdate='date +"%m-%d-%Y"'
 
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|energy\:|time|percentage"'
+alias battery_details='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
+alias battery_watching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep -E \"state|energy\:|time|percentage\""'
 
 alias findhere='fh(){ sudo find ./ -iname *"$@"* 2>/dev/null; unset -f fh; }; fh'
 alias findherefile='fhf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null; unset -f fhf; }; fhf'
