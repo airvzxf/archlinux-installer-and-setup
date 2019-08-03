@@ -132,6 +132,7 @@ function $function_name {
 
 
 alias sudo='sudo '
+alias watch='watch '
 
 alias src='source ~/.bash_profile'
 
@@ -246,6 +247,17 @@ alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'
 alias clr='clear && printf "\E[3J"'
 
+alias systemctl-enabled='systemctl list-unit-files --state enabled'
+pidbyname(){ ps -a | grep -i ${1} | cut -d' ' -f2; }
+alias pid-by-name='pidbyname'
+pidsf(){ sudo lsof -p `pid-by-name ${1}` | grep -i ${2}; }
+alias process-search-files='pidsf'
+
+alias upgrade='sudo pacman -Syyu --noconfirm'
+alias upgrade-logs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
+alias upgrade-reflector='sudo reflector --verbose --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist'
+alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
+
 alias piplist='pip list --format columns'
 alias pipoutdate='pip list --outdated --format freeze'
 alias pipupgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -n1 sudo pip install -U"
@@ -255,9 +267,6 @@ alias pipinstall='ppi(){ sudo pip install $1; unset -f ppi; }; ppi'
 alias o='chromium >/dev/null 2>&1 & firefox >/dev/null 2>&1 & geany >/dev/null 2>&1 &'
 alias m='spotify >/dev/null 2>&1 &'
 alias web='chromium >/dev/null 2>&1 &'
-alias upgrade='sudo pacman -Syyu --noconfirm'
-alias upgradelogs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
-alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
 alias myip='curl icanhazip.com'
 alias boinc='cd ~/workspace/boinc/ && /usr/bin/boinc'
 alias boincmgr='cd ~/workspace/boinc/ && boincmgr &'
