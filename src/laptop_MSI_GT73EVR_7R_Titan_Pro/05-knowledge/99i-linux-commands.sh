@@ -347,3 +347,8 @@ virtualbox
 #-------------------------------------------------------------------------------
 # A feature-rich screen recorder that supports X11 and OpenGL.
 sudo pacman -S simplescreenrecorder
+
+
+# PDF Information and Encryption
+# ------------------------------------------------------------------------------
+exiftool -a -G1 file.pdf

@@ -288,10 +288,10 @@ alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
-alias docker-clean-service="docker service rm $(docker service ls -q)"
-alias docker-clean-network="docker network rm $(docker network ls -q -f name=python_ecommerce_app_dev_service_webnet)"
-alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
-alias docker-ls="docker container ls --all && echo '' && docker image ls && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
+#alias docker-clean-service="docker service rm $(docker service ls -q)"
+#alias docker-clean-network="docker network rm $(docker network ls -q -f name=python_ecommerce_app_dev_service_webnet)"
+#alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
+#alias docker-ls="docker container ls --all && echo '' && docker image ls && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
 
 function try_to_connect_to_my_internet() {
 	wifi_name=$1
