@@ -193,8 +193,8 @@ function set_brightness_at() {
 }
 
 DECL=`declare -f set_brightness_at`
-alias setbrightness='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
-alias getbrightness='cat /sys/class/backlight/nvidia_0/brightness'
+alias brightness_at='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
+alias brightness_is='cat /sys/class/backlight/nvidia_0/brightness'
 
 alias pingfast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
 
