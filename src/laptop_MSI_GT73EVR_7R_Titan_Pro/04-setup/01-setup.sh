@@ -121,6 +121,7 @@ do
 		echo -e "*** Yes! The Internet is available. ***"
 		echo -e "*** $(date)  |  $(date -u) ***"
 		/usr/bin/reflector --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
+		/usr/bin/pacman -Syyu --noconfirm
 		break
 	fi
 
