@@ -255,7 +255,7 @@ alias pid-by-name='pidbyname'
 pidsf(){ sudo lsof -p `pid-by-name ${1}` | grep -i ${2}; }
 alias process-search-files='pidsf'
 
-alias upgrade='sudo pacman -Syyu --noconfirm'
+alias upgrade='sudo pacman -Syyu --noconfirm && yaourt -Sau --noconfirm'
 alias upgrade-logs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
 alias upgrade-reflector='sudo reflector --verbose --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist'
 alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'

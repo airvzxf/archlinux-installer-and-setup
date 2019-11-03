@@ -123,7 +123,7 @@ do
 		/usr/bin/reflector --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
 		/usr/bin/pacman -Syyu --noconfirm
 		/usr/bin/pacman -Rns $(/usr/bin/pacman -Qtdq) --noconfirm
-		/usr/bin/yaourt -Sau --noconfirm
+		runuser -l '${yourUserName}' -c "/usr/bin/yaourt -Sau --noconfirm"
 		break
 	fi
 
