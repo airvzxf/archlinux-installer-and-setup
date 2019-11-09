@@ -19,7 +19,7 @@ yes | sudo pacman -S --needed gcc-multilib
 echo -e "\n"
 
 echo -e "Installing wine gaming"
-yaourt -S --needed --noconfirm wine-gaming-nine
+yay -S --needed --noconfirm wine-gaming-nine
 echo -e "\n"
 
 echo -e "Ready! The next step is run './07-steam.sh'.\n"

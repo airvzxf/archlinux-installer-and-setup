@@ -18,7 +18,7 @@ funcIsConnectedToInternet
 # Install packages
 echo -e "Installing lib openssl"
 echo -e ""
-#yaourt -S --needed lib32-libopenssl-1.0-compat
+#yay -S --needed lib32-libopenssl-1.0-compat
 echo -e "\n"
 
 echo -e "Installing nvidia"

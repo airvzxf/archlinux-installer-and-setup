@@ -61,17 +61,17 @@ pactree -r [package_name]
 # highly recommended.
 
 # There are two ways to install, the first is manually and the second
-# is using yaourt.
+# is using yay.
 
 # Manually means you need to clone the git project and build the version
 # for your Arch Linux, the problem is that if it needs sub libriries for
 # this AUR, prepare to spend a lot of time searching and installing this dependencies.
 
-# Yaourt solved this problem, you only need to say the name of package
+# Yay solved this problem, you only need to say the name of package
 # then download and build the dependencies and checks if exists problems
 # with other versions of this dependencies.
 
 # Install package
 # Note: You don't need call sudo
-# Note: Normally yaourt use the same options like pacman for example -Qs, -Qi, etc.
-yaourt -S [package_name]
+# Note: Normally yay use the same options like pacman for example -Qs, -Qi, etc.
+yay -S [package_name]

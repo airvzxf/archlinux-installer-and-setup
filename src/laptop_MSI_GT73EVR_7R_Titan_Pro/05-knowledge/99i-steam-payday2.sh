@@ -14,7 +14,7 @@
 
 # https://aur.archlinux.org/packages/blt4l-runtime-bin/
 # https://github.com/blt4linux/blt4l
-yaourt -S --needed --noconfirm blt4l-runtime-bin
+yay -S --needed --noconfirm blt4l-runtime-bin
 
 # No audio
 sudo pacman -S --needed --noconfirm pulseaudio

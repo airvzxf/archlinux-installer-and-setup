@@ -87,7 +87,7 @@ echo -e "\n"
 
 #echo -e "Installing Nvidia xrun"
 #echo -e ""
-#yaourt -S --needed --noconfirm nvidia-xrun
+#yay -S --needed --noconfirm nvidia-xrun
 #echo -e "\n"
 
 
@@ -125,7 +125,7 @@ echo -e "\n"
 # Backlighting manager for MSI steelseries keyboards
 #-----------------------------------------------------------------------
 echo -e "Installing a backlighting manager for MSI steelseries keyboards"
-yaourt -S --needed --noconfirm msiklm-git
+yay -S --needed --noconfirm msiklm-git
 echo -e "\n"
 
 

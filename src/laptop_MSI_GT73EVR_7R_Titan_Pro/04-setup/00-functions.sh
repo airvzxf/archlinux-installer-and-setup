@@ -60,21 +60,19 @@ funcMkdir() {
 	return 1
 }
 
-funcInstallAur() {
+funcInstallYay() {
 	directory=~/Downloads/temp/
 	funcMkdir $directory
 
-	if ! funcIsEmptyString $1; then
-		cd $directory
-		git clone https://aur.archlinux.org/$1.git
+	cd $directory
+	git clone https://aur.archlinux.org/yay.git
 
-		cd $1
-		makepkg -si --needed --noconfirm
+	cd yay
+	makepkg -si --needed --noconfirm
 
-		cd ..
-		rm -fR $1
-	fi
-	
+	cd ..
+	rm -fR yay
+
 	rm -fR $directory
 
 	return 0

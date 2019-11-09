@@ -250,20 +250,16 @@ sudo systemctl enable ${numeric_keyboard_timer}
 #-------------------------------------------------------------------------------
 
 
-# Yaourt
+# Yay
 # ----------------------------------------------------------------------
 
-# Install yaourt: a pacman frontend which install the AUR packages.
+# Install yay: a pacman frontend which install the AUR packages.
 echo -e "Installing git"
 sudo pacman -S --needed --noconfirm git
 echo -e "\n"
 
-echo -e "Installing package-query"
-funcInstallAur package-query
-echo -e "\n"
-
-echo -e "Installing yaourt"
-funcInstallAur yaourt
+echo -e "Installing yay"
+funcInstallYay
 echo -e "\n"
 
 
