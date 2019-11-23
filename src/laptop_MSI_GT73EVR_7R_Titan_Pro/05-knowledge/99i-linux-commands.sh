@@ -352,3 +352,33 @@ sudo pacman -S simplescreenrecorder
 # PDF Information and Encryption
 # ------------------------------------------------------------------------------
 exiftool -a -G1 file.pdf
+
+
+# Convert Images to PDF. If you need to rotate the images use the option: -rotate -90
+# ------------------------------------------------------------------------------
+
+convert IMAGES*.png \
+	-gravity center \
+	-density 150 \
+	-units PixelsPerInch \
+	OUT.pdf
+
+
+# Convert Images to PDF with other command.
+# ------------------------------------------------------------------------------
+
+# First clean the PNG alpha transparency.
+convert \
+	IMAGES*.png \
+	-background white \
+	-alpha remove \
+	-alpha off \
+	-set filename:new 'cleaned_%t' %[filename:new].png
+
+# Then convert.
+img2pdf \
+	--pagesize A4 \
+	--auto-orient \
+	--border 1cm:1cm \
+	-o OUT.pdf \
+	cleaned_IMAGES*.png
