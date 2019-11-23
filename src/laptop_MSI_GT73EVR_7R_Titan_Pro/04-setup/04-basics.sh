@@ -31,6 +31,10 @@ echo -e "Installing bc terminal calculator"
 sudo pacman -S --needed --noconfirm bc # Terminal calculator
 echo -e "\n"
 
+echo -e "Installing galculator"
+sudo pacman -S --needed --noconfirm galculator # Calculator
+echo -e "\n"
+
 echo -e "Installing ePDF viewer"
 sudo pacman -S --needed --noconfirm epdfview # PDF Viewer
 echo -e "\n"
@@ -53,10 +57,6 @@ echo -e "\n"
 
 echo -e "Installing screanshooter"
 sudo pacman -S --needed --noconfirm xfce4-screenshooter # Screenshots
-echo -e "\n"
-
-echo -e "Installing galculator"
-sudo pacman -S --needed --noconfirm galculator # Calculator
 echo -e "\n"
 
 echo -e "Installing hdd parameters"
