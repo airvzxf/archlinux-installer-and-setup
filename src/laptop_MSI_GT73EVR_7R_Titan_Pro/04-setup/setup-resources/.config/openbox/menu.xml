@@ -32,6 +32,14 @@
       </startupnotify>
     </action>
   </item>
+  <item label="Firefox">
+    <action name="Execute">
+      <command>firefox</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
   <item label="Geany">
     <action name="Execute">
       <command>geany</command>

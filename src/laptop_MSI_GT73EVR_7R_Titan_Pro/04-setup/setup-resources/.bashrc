@@ -293,11 +293,12 @@ alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 #alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
 #alias docker-ls="docker container ls --all && echo '' && docker image ls && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
 
-function try_to_connect_to_my_internet() {
-	wifi_name=$1
+function connect_to_the_internet() {
+	configuration_name=$1
 	max_retrys=20
+	target_domain='www.google.com'
 
-	ping='ping -c 1 -q www.google.com'
+	ping='ping -c 1 -q $target_domain >> /dev/null 2>&1'
 	counter=0
 	first_time=true
 
@@ -307,16 +308,17 @@ function try_to_connect_to_my_internet() {
 	do
 		let "counter++"
 
-		if ! ping -c 1 google.com >> /dev/null 2>&1
+		eval $ping
+		if [ $? -ne 0 ]
 		then
-			echo -n $(date "+%a, %T%t")"> " && $ping
+			echo "Try to PING: "$(date "+%a, %T%t")
 
 			if [[ $counter == $max_retrys || $first_time == true ]]
 			then
 				counter=0
 				first_time=false
 
-				sudo netctl restart $wifi_name
+				sudo netctl restart $configuration_name
 			fi
 		else
 			break
@@ -326,6 +328,7 @@ function try_to_connect_to_my_internet() {
 	done
 }
 
-alias homewifi='try_to_connect_to_my_internet wlp2s0-home-5GHz'
-alias starbuckswifi='try_to_connect_to_my_internet wlp2s0-GoogleStarbucks'
-alias usbethernet='try_to_connect_to_my_internet enp0s20u1u4-Home'
+alias homewifi='connect_to_the_internet wlp2s0-home-5GHz'
+alias starbuckswifi='connect_to_the_internet wlp2s0-GoogleStarbucks'
+alias usbethernet='connect_to_the_internet enp0s20u1u4-Home'
+alias homeethernet='connect_to_the_internet ethernet-dhcp'
