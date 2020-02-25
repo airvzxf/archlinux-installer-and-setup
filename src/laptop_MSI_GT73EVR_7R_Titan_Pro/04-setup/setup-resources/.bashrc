@@ -142,9 +142,9 @@ alias rs='sudo reboot'
 alias off='sudo poweroff'
 
 alias ls='ls --color=auto'
-alias l='ls --color=auto -lh'
-alias l.='ls --color=auto -lhad .*'
-alias ll='ls --color=auto -lha'
+alias l='ls --color=auto -lhi'
+alias l.='ls --color=auto -lhadi .*'
+alias ll='ls --color=auto -lhai'
 alias llp='stat -c "%a (%A) %n" *'
 
 alias diff='colordiff'
