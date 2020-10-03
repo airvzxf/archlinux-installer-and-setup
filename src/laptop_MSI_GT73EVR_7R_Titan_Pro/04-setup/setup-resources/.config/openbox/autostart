@@ -18,6 +18,6 @@
 
 # Startups
 redshift &
-chromium &
+firefox &
 geany &
 xterm -fullscreen tmux &
