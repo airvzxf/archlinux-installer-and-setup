@@ -266,6 +266,8 @@ alias pipupgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -
 alias pipsearch='pps(){ pip search $1 | sort; unset -f pps; }; pps'
 alias pipinstall='ppi(){ sudo pip install $1; unset -f ppi; }; ppi'
 
+alias attach_process='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+
 alias o='chromium >/dev/null 2>&1 & firefox >/dev/null 2>&1 & geany >/dev/null 2>&1 &'
 alias m='spotify >/dev/null 2>&1 &'
 alias web='chromium >/dev/null 2>&1 &'
@@ -282,9 +284,9 @@ alias workspace='cd ~/workspace'
 alias p='cd ~/workspace/projects'
 alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
-alias localnetstat="netstat -tulpn"
-
+alias localnetstat='netstat -tulpn'
 alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
+alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --fullscreen --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --turn-screen-off --show-touches --verbosity debug'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
