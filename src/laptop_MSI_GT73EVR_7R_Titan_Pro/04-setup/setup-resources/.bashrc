@@ -259,6 +259,8 @@ alias upgrade='sudo pacman -Syyu --noconfirm && yay -Sau --noconfirm'
 alias upgrade-logs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
 alias upgrade-reflector='sudo reflector --verbose --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist'
 alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
+pacmanbysize(){ pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25; }
+alias pacman-by-size='pacmanbysize'
 
 alias piplist='pip list --format columns'
 alias pipoutdate='pip list --outdated --format freeze'
@@ -286,7 +288,7 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
 alias localnetstat='netstat -tulpn'
 alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
-alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --fullscreen --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --turn-screen-off --show-touches --verbosity debug'
+alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --fullscreen --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
