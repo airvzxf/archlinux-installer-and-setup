@@ -257,7 +257,7 @@ alias process-search-files='pidsf'
 
 alias upgrade='sudo pacman -Syyu --noconfirm && yay -Sau --noconfirm'
 alias upgrade-logs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
-alias upgrade-reflector='sudo reflector --verbose --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist'
+alias upgrade-reflector='sudo ~/.reflector_service.sh'
 alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
 pacmanbysize(){ pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25; }
 alias pacman-by-size='pacmanbysize'

@@ -103,39 +103,15 @@ echo -e "\n"
 
 #-------------------------------------------------------------------------------
 
-# Update the servers links for packages automatically every 12 hours after available Internet connection
-echo -e "Setting up automated job for update servers with reflector every 12 hours after the available Internet connection"
-reflector_script=/home/${yourUserName}/.reflector_service.sh
+# Setting up automated job for update servers with reflector after the available Internet connection
+echo -e "Setting up automated job for update servers with reflector after the available Internet connection"
 reflector_service=/etc/systemd/system/reflector.service
-
-echo -e \
-'#!/bin/bash
-
-echo -e "~~~~~~~~~~~ START THE SERVICE TO RUN REFLECTOR ~~~~~~~~~~~"
-
-while [ 1 ]
-do
-	if ping -c 1 google.com >> /dev/null 2>&1
-	then
-		echo -e "~~~~~~~~~~~ RUN THE REFLECTOR PACKAGE ~~~~~~~~~~~"
-		echo -e "*** Yes! The Internet is available. ***"
-		echo -e "*** $(date)  |  $(date -u) ***"
-		reflector --fastest 15 --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
-		pacman -Syyu --noconfirm
-		pacman -Rns $(pacman -Qtdq) --noconfirm
-		sudo -u ${yourUserName} yay -Sau --noconfirm
-		break
-	fi
-
-	echo "systemctl service, reflector: No internet available."
-	sleep 1
-done' | tee ${reflector_script}
-
+reflector_script=/home/${yourUserName}/.reflector_service.sh
 chmod +x ${reflector_script}
 
 echo -e \
 '[Unit]
-Description=Run Reflector service every 6 hours after the available Internet connection
+Description=Run Reflector update after the available Internet connection.
 
 [Service]
 Type=oneshot
@@ -148,11 +124,11 @@ reflector_timer=/etc/systemd/system/reflector.timer
 
 echo -e \
 '[Unit]
-Description=Run Reflector timer every 6 hours after the available Internet connection.
+Description=Update Reflector every 2 hours.
 
 [Timer]
 OnBootSec=5s
-OnCalendar=0/6:00:00
+OnCalendar=0/2:00:00
 Persistent=true
 
 [Install]
