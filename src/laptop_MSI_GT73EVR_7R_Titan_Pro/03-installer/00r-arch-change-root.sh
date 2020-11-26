@@ -113,7 +113,14 @@ sed -i '/%wheel ALL=(ALL) ALL/ s/^##* *//' /etc/sudoers
 echo -e ""
 
 echo -e "The sudo password is requested one time per session"
-sed -i "\$a\\\n\nDefaults:${yourUserName} timestamp_timeout=-1\n" /etc/sudoers
+echo \
+'
+
+# Custom Permissions
+'${yourUserName}' ALL = NOPASSWD: /bin/yay
+
+Defaults:'${yourUserName}' timestamp_timeout=-1
+' | tee -a /etc/sudoers
 echo -e ""
 
 echo -e "Disabling WiFi 11n, it fix the slow internet download"

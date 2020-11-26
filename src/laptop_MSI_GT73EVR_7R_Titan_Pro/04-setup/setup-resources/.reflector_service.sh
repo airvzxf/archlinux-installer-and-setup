@@ -19,7 +19,7 @@ do
     # Reflector: Request the servers and
     #   stores to the temporal folder.
     # --------------------------------------
-    reflector --verbose --threads 8 --country "United States" --protocol https --completion-percent 100 --age 72 --score 8 --sort rate --save "${FILE_TEMP}"
+    reflector --verbose --threads 1 --country "United States" --protocol https --completion-percent 100 --age 48 --score 8 --sort rate --save "${FILE_TEMP}"
     echo ""
     echo ""
 
@@ -35,15 +35,11 @@ do
     do
       if [[ "${LINE}" == Server* ]]
       then
-        echo "${LINE}"
         echo "${LINE}" > "${FILE}"
         SERVERS[${INDEX}]=$(echo "${LINE}")
         TIME=$({ time pacman -Syy --noconfirm ; } 2>&1 | grep real | sed "s/real\s*//")
         TIMER[${INDEX}]=${TIME}
-        echo "INDEX: ${INDEX}"
-        echo "SERVERS[${INDEX}]: ${SERVERS[${INDEX}]}"
-        echo "TIMER[${INDEX}]: ${TIMER[${INDEX}]}"
-        echo ""
+        echo "${TIMER[${INDEX}]}  ${SERVERS[${INDEX}]}" | sed -e "s/Server = //" | sed -e "s/\$repo\/os\/\$arch//"
         INDEX=$((INDEX+1))
       fi
     done < "${FILE_TEMP}"
@@ -53,7 +49,6 @@ do
     echo ""
     echo "No. of SERVERS: ${#SERVERS[@]}"
     echo "TIMER:          ${TIMER[@]}"
-    echo ""
     echo ""
 
     # --------------------------------------
@@ -70,15 +65,12 @@ do
       MINUTES=()
 
       echo "# Get minutes:"
-      echo ""
       for TIME in "${TIMER[@]}"
       do
         echo "$TIME"
         MINUTES[${INDEX}]=$(echo "$TIME" | sed -E "s/([0-9]*)m.*/\1/")
         INDEX=$(( INDEX + 1 ))
       done
-      echo ""
-      echo "MINUTES:   ${MINUTES[@]}"
 
       # --------------------------------------
       # Real Time: Get the smallest minute and
@@ -94,7 +86,6 @@ do
             SMALLEST="${MINUTE}"
           fi
       done
-      echo "SMALLEST:  ${SMALLEST}"
 
       INDEX=0
       NEW_SERVERS=()
@@ -112,8 +103,6 @@ do
       done
       SERVERS=("${NEW_SERVERS[@]}")
       TIMER=("${NEW_TIMER[@]}")
-      echo "TIMER:     ${TIMER[@]}"
-      echo""
       echo""
 
       # --------------------------------------
@@ -124,15 +113,12 @@ do
       SECONDS=()
 
       echo "# Get seconds:"
-      echo ""
       for TIME in "${TIMER[@]}"
       do
         echo "$TIME"
         SECONDS[${INDEX}]=$(echo "$TIME" | sed -E "s/.*m([0-9]*)\..*/\1/")
         INDEX=$(( INDEX + 1 ))
       done
-      echo ""
-      echo "SECONDS:   ${SECONDS[@]}"
 
       # --------------------------------------
       # Real Time: Get the smallest second and
@@ -148,7 +134,6 @@ do
             SMALLEST="${SECOND}"
           fi
       done
-      echo "SMALLEST:  ${SMALLEST}"
 
       INDEX=0
       NEW_SERVERS=()
@@ -166,8 +151,6 @@ do
       done
       SERVERS=("${NEW_SERVERS[@]}")
       TIMER=("${NEW_TIMER[@]}")
-      echo "TIMER:     ${TIMER[@]}"
-      echo""
       echo""
 
       # --------------------------------------
@@ -178,15 +161,12 @@ do
       MILLISECONDS=()
 
       echo "# Get milliseconds:"
-      echo ""
       for TIME in "${TIMER[@]}"
       do
         echo "$TIME"
         MILLISECONDS[${INDEX}]=$(echo "$TIME" | sed -E "s/.*\.([0-9]*)s/\1/")
         INDEX=$(( INDEX + 1 ))
       done
-      echo ""
-      echo "MILLISECONDS: ${MILLISECONDS[@]}"
 
       # --------------------------------------
       # Real Time: Get the smallest milliseconds
@@ -202,7 +182,6 @@ do
             SMALLEST="${MILLISECOND}"
           fi
       done
-      echo "SMALLEST:  ${SMALLEST}"
 
       INDEX=0
       NEW_SERVERS=()
@@ -220,8 +199,6 @@ do
       done
       SERVERS=("${NEW_SERVERS[@]}")
       TIMER=("${NEW_TIMER[@]}")
-      echo "TIMER:     ${TIMER[@]}"
-      echo""
       echo""
 
       # --------------------------------------
@@ -233,6 +210,7 @@ do
         echo "${SERVER}" >> "${FILE}"
       done
       echo "SERVERS:   ${SERVERS[@]}"
+      echo "TIMER:     ${TIMER[@]}"
       echo""
 
       # --------------------------------------
@@ -249,6 +227,9 @@ do
 
       echo ""
       sudo -u wolf yay -Sau --noconfirm
+
+      echo ""
+      sudo -u wolf yay -Yc
     fi
 
     break
