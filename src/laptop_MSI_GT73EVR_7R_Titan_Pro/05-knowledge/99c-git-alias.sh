@@ -13,15 +13,18 @@
 #git config --global user.name "your_name"
 #git config --global -l
 
-# Store your password and specify the time on cache
-git config --global credential.helper cache
-git config --global credential.helper "cache --timeout=604800" # 7 days
-
-# Store your credentials
-git config credential.helper store
-
 # Change the git editor to vim
 git config --global core.editor "vim"
+
+# Store your credentials
+git config --global credential.helper store
+
+# Store your password and specify the time on cache
+#git config --global credential.helper cache
+#git config --global credential.helper "cache --timeout=31536000" # 365 days
+
+# Set the rebase the default option in the pull action.
+git config --global pull.rebase true
 
 # Create alias to write easy command like git cm thats means git commit -m
 # These configurations will be save in this file ~/.gitconfig
@@ -55,9 +58,10 @@ git config --global alias.st '! git status'
 git config --global alias.sts '! git status -s'
 git config --global alias.un '! git reset HEAD~ "$@" && echo -e "\n" && git status'
 git config --global alias.uns '! git reset --soft HEAD~ "$@" && echo -e "\n" && git status'
+git config --global alias.unstage '! git restore --staged * && echo -e "\n" && git status'
 git config --global alias.unh '! git reset --hard HEAD~ "$@" && echo -e "\n" && git status'
 git config --global alias.undo 'reset HEAD --'
 git config --global alias.untrack 'ls-files . --exclude-standard --others'
 
 # Show the config file
-git config --global -l
+git config --global --list
