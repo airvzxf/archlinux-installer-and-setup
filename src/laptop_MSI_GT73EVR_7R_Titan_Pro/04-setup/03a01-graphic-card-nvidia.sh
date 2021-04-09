@@ -115,6 +115,12 @@ sudo pacman -S --needed --noconfirm tmux
 echo -e "\n"
 
 
+# Battery discharging beep
+echo -e "Installing a Battery Discharging Deep"
+yay -S --needed --noconfirm battery-discharging-beep-git
+echo -e "\n"
+
+
 # Turn on the numlock
 #-----------------------------------------------------------------------
 echo -e "Installing numlock which turns on the numlock key in X11"
