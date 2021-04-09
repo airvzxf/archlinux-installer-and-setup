@@ -155,7 +155,7 @@ alias fgrepi='fgp(){ sudo fgrep --color=always -nirs $1 $2./; unset -f fgp; }; f
 alias pgrepi='pgp(){ sudo pgrep -il $1; unset -f pgp; }; pgp'
 
 alias h='history'
-alias hg='history | grep'
+alias hgrep='history | grep'
 alias j='jobs -l'
 alias dufast='du -had 1 | sort -rh'
 alias dudirfast='du -hd 1 | sort -rh'
@@ -193,8 +193,8 @@ function set_brightness_at() {
 }
 
 DECL=`declare -f set_brightness_at`
-alias brightness_at='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
-alias brightness_is='cat /sys/class/backlight/nvidia_0/brightness'
+alias brightnessat='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
+alias brightnessis='cat /sys/class/backlight/nvidia_0/brightness'
 
 alias pingfast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
 
@@ -231,8 +231,8 @@ alias now='date +"%T"'
 alias nowdate='date +"%m-%d-%Y"'
 
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|energy\:|time|percentage"'
-alias battery_details='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
-alias battery_watching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep -E \"state|energy\:|time|percentage\""'
+alias batterydetails='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
+alias batterywatching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep -E \"state|energy\:|time|percentage\""'
 
 alias findhere='fh(){ sudo find ./ -iname *"$@"* 2>/dev/null; unset -f fh; }; fh'
 alias findherefile='fhf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null; unset -f fhf; }; fhf'
@@ -268,7 +268,7 @@ alias pipupgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -
 alias pipsearch='pps(){ pip search $1 | sort; unset -f pps; }; pps'
 alias pipinstall='ppi(){ sudo pip install $1; unset -f ppi; }; ppi'
 
-alias attach_process='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+alias attach-process='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
 
 alias o='chromium >/dev/null 2>&1 & firefox >/dev/null 2>&1 & geany >/dev/null 2>&1 &'
 alias m='spotify >/dev/null 2>&1 &'
