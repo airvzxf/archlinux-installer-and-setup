@@ -113,7 +113,9 @@ pre_invoke_exec () {
 	fi
 }
 
-trap 'pre_invoke_exec' DEBUG
+if [ $(whoami) != "root" ]; then
+	trap 'pre_invoke_exec' DEBUG
+fi
 
 function make_completion_wrapper () {
 	local function_name="$2"
