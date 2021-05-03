@@ -60,7 +60,7 @@ git config --global alias.un '! git reset HEAD~ "$@" && echo -e "\n" && git stat
 git config --global alias.uns '! git reset --soft HEAD~ "$@" && echo -e "\n" && git status'
 git config --global alias.unstage '! git restore --staged * && echo -e "\n" && git status'
 git config --global alias.unh '! git reset --hard HEAD~ "$@" && echo -e "\n" && git status'
-git config --global alias.undo 'reset HEAD --'
+git config --global alias.undo '! git reset HEAD~ && echo -e "\n" && git status'
 git config --global alias.untrack 'ls-files . --exclude-standard --others'
 
 # Show the config file
