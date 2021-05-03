@@ -17,7 +17,7 @@ XTerm.vt100.foreground: white
 XTerm.vt100.background: black
 
 XTerm.vt100.faceName: Monospace:antialias=true
-XTerm.vt100.faceSize: 12
+XTerm.vt100.faceSize: 18
 
 XTerm.vt100.loginShell: true
 
