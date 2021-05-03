@@ -30,6 +30,11 @@ echo -e "Copying this project into the root directory"
 cp -R ../../../../archLinux-installer-and-setup /mnt/
 echo -e ""
 
+# Copy root user configurations into the root home
+echo -e "Copying this project into the root directory"
+cp -R ../04-setup/setup-resources/.* /mnt/root/
+echo -e ""
+
 # Go to the main Linux partition like a root user.
 echo -e "Going to the main Linux partition like a root user"
 echo -e ""
