@@ -142,6 +142,15 @@ sudo pacman -S --needed --noconfirm xterm # Terminal / Console window
 echo -e "\n"
 
 
+# Install kitty and fonts before run openbox window manager
+echo -e "Installing kitty and fonts before run openbox window manager"
+echo -e ""
+sudo pacman -S --needed --noconfirm kitty # Terminal emulator
+cp -p ~/.config/kitty/kitty.conf ~/.config/kitty/kitty.bck.conf
+sudo pacman -S --needed --noconfirm noto-fonts-emoji # Fonts with emojis
+echo -e "\n"
+
+
 echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
 echo -e ""

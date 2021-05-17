@@ -16,23 +16,41 @@
 </menu>
 
 <menu id="root-menu" label="Openbox 3">
-  <item label="Xterm">
+  <item label="Kitty - Terminal">
     <action name="Execute">
-      <command>xterm -fullscreen tmux</command>
+      <command>kitty --start-as fullscreen --title "Kitty"</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
     </action>
   </item>
-  <item label="Chromium">
+  <item label="Tmux - Terminal">
     <action name="Execute">
-      <command>chromium</command>
+      <command>xterm -fullscreen -T "Tmux" tmux</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
     </action>
   </item>
-  <item label="Firefox">
+  <item label="Xterm - Terminal">
+    <action name="Execute">
+      <command>xterm -fullscreen -T "xTerm"</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <separator />
+  <item label="Geany - Editor">
+    <action name="Execute">
+      <command>geany</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <separator />
+  <item label="Firefox - Web browser">
     <action name="Execute">
       <command>firefox</command>
       <startupnotify>
@@ -40,9 +58,9 @@
       </startupnotify>
     </action>
   </item>
-  <item label="Geany">
+  <item label="Chromium - Web browser">
     <action name="Execute">
-      <command>geany</command>
+      <command>chromium</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>

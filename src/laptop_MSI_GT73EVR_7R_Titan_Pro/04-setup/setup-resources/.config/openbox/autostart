@@ -13,11 +13,10 @@
 #fi
 
 # If you want to use XFCE config tools...
-#
 #xfce-mcs-manager &
 
 # Startups
 redshift &
 firefox &
 geany &
-xterm -fullscreen tmux &
+kitty --start-as fullscreen --title "Terminal" &
