@@ -274,6 +274,31 @@ pulseaudio -k
 pulseaudio --start
 
 
+
+# Bose the volume is very low at maximum volume in Alsamixer.
+pip install avrcp-volume
+sudo -E avrcp-volume --install-service
+systemctl --user start avrcp-volume.service
+systemctl --user enable avrcp-volume.service
+# Then open alsamixer and tap the PgUp key until the max,
+# and keep tapping. It set the high volume in the speaker.
+alsamixer
+
+# How to see the volumen of the devices
+pacmd list-sinks | grep -e "index:" -e "name:" -e "base volume:" -e "volume:"
+VOLUME="+5%"
+INDEX=$(pactl list short sinks | grep "bluez_sink" | awk '{ print $1 }' | head -n1)
+echo "INDEX: ${INDEX}"
+# Repeat this command to increase or decrease the volume.
+# Needs to rebase the max volume to set the volume of the speaker or headset to 127.
+pactl set-sink-volume "${INDEX}" "${VOLUME}"
+pacmd list-sinks | grep -e "name:" -e "index:" -e "base volume:" -e "volume:"
+# The volume is increasing not the base volume wich is the Alsamixer
+# volume: front-left: 32768 /  50% / -18.06 dB,   front-right: 32768 /  50% / -18.06 dB balance 0.00
+# base volume: 65536 / 100% / 0.00 dB
+
+
+
 # Search commands in the the packages
 pkgfile [package]
 
