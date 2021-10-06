@@ -140,9 +140,6 @@ alias src='source ~/.bash_profile'
 
 alias xtermtmux='xterm -fullscreen tmux >/dev/null 2>&1 &'
 
-alias rs='sudo reboot'
-alias off='sudo poweroff'
-
 alias ls='ls --color=always'
 alias l='ls --color=always -lhi'
 alias l.='ls --color=always -lhadi .*'
@@ -264,6 +261,9 @@ alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
 pacmanbysize(){ pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25; }
 alias pacman-by-size='pacmanbysize'
 
+alias rs='upgrade && sudo reboot'
+alias off='upgrade && sudo poweroff'
+
 alias piplist='pip list --format columns'
 alias pipoutdate='pip list --outdated --format freeze'
 alias pipupgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -n1 sudo pip install -U"
@@ -336,7 +336,6 @@ function connect_to_the_internet() {
 	done
 }
 
-alias homewifi='connect_to_the_internet wlp2s0-home-5GHz'
-alias starbuckswifi='connect_to_the_internet wlp2s0-GoogleStarbucks'
-alias usbethernet='connect_to_the_internet enp0s20u1u4-Home'
+alias homewifi='connect_to_the_internet wlp2s0-Castillo_Grayskull_PA_5G'
 alias homeethernet='connect_to_the_internet ethernet-dhcp'
+alias usbethernet='connect_to_the_internet enp0s20u1u4-Home'
