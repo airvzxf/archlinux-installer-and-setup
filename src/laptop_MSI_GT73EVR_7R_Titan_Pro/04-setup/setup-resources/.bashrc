@@ -290,9 +290,10 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
 alias localnetstat='netstat -tulpn'
 alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
-alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --fullscreen --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity error &>/dev/null &'
-alias phone-screencast-record='scrcpy --bit-rate 8M --disable-screensaver --fullscreen --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug --no-display --record phone_record_$(date +"%Y%m%d").mp4'
-alias network-monitor='sudo bmon -b -p enp4s0'
+alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --window-borderless --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug'
+alias phone-screencast-record='scrcpy --bit-rate 8M --disable-screensaver --window-borderless --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug --no-display --record phone_record_$(date +"%Y%m%d").mp4'
+alias network-monitor-ethernet='sudo bmon -b -p enp4s0'
+alias network-monitor-wifi='sudo bmon -b -p wlp2s0'
 
 alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 
