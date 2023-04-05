@@ -142,6 +142,39 @@ sudo pacman -S --needed --noconfirm xterm # Terminal / Console window
 echo -e "\n"
 
 
+# Install Locate
+echo -e "Installing locate"
+echo -e ""
+sudo pacman -S --needed --noconfirm plocate
+echo -e "\n"
+
+
+# Install ZSH
+echo -e "Installing ZSH"
+echo -e ""
+sudo pacman -S --needed --noconfirm zsh lsd bat
+sudo pacman -S --needed --noconfirm zsh-syntax-highlighting zsh-autosuggestions zsh-theme-powerlevel10k
+yay -S --needed --noconfirm nerd-fonts-hack nerd-fonts-meslo
+#yay -S --needed --noconfirm nerd-fonts-complete
+cp ./setup-resources/.zshrc ~/
+cp ./setup-resources/.p10k.zsh ~/
+sudo usermod --shell /usr/bin/zsh
+sudo ln -s -f ~/.zshrc /root/.zshrc
+sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
+sudo usermod --shell /usr/bin/zsh root
+echo -e "\n"
+
+
+# Install Black Arch repository
+echo -e "Installing Black Arch repository"
+curl -L https://blackarch.org/strap.sh > ~/blackarch-repo.sh
+chmod a+x ~/blackarch-repo.sh
+sudo ~/blackarch-repo.sh
+rm -f ~/blackarch-repo.sh
+sudo pacman -Syy
+echo -e "\n"
+
+
 # Install kitty and fonts before run openbox window manager
 echo -e "Installing kitty and fonts before run openbox window manager"
 echo -e ""
@@ -153,7 +186,8 @@ echo -e "\n"
 
 echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
-echo -e ""
+echo -e "\n"
+
 
 # TODO: Check if this config file is necessary.
 #~ echo -e "Xorg with Nvidia"
