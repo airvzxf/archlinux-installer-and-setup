@@ -290,8 +290,9 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.sh'
 alias calculator='galculator &'
 alias localnetstat='netstat -tulpn'
 alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
-alias phone-screencast='scrcpy --bit-rate 8M --disable-screensaver --window-borderless --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug'
-alias phone-screencast-record='scrcpy --bit-rate 8M --disable-screensaver --window-borderless --max-fps 260 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --verbosity debug --no-display --record phone_record_$(date +"%Y%m%d").mp4'
+alias phone-screenshot='adb exec-out screencap -p > "cellphone-screenshot-$(date +"%Y%m%d-%H%M%S-%N").png"'
+alias phone-screencast='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --serial '
+alias phone-screencast-record='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --record cellphone_record_$(date +"%Y%m%d").mp4 --serial '
 alias network-monitor-ethernet='sudo bmon -b -p enp4s0'
 alias network-monitor-wifi='sudo bmon -b -p wlp2s0'
 
@@ -301,6 +302,7 @@ alias dddfix="sed '/not set/d' -i $HOME/.ddd/init"
 #alias docker-clean-network="docker network rm $(docker network ls -q -f name=python_ecommerce_app_dev_service_webnet)"
 #alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
 #alias docker-ls="docker container ls --all && echo '' && docker image ls --all && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
+alias oc="oc4"
 
 function connect_to_the_internet() {
 	configuration_name=$1
@@ -340,3 +342,8 @@ function connect_to_the_internet() {
 alias homewifi='connect_to_the_internet wlp2s0-Castillo_Grayskull_PA_5G'
 alias homeethernet='connect_to_the_internet ethernet-dhcp'
 alias usbethernet='connect_to_the_internet enp0s20u1u4-Home'
+alias villas='connect_to_the_internet wlp2s0-INFINITUMh75z'
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
