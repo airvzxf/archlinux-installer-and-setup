@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------
 # Arch Linux :: Information
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ----------------------------------------------------------------------
 # CLion

@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Install inside of the Arch Change Root                   #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ---------------- #
 # ARCH CHANGE ROOT #
@@ -210,7 +210,7 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 #echo 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off"' | tee /etc/udev/rules.d/70-wifi-powersave.rules
 
 # Move configuration files from the project to the user folder.
-cp --recursive /archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
+cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
 # Download and set the Git prompt for the user.
@@ -224,9 +224,9 @@ chown --recursive "${userId}":users /home/"${userId}"/.git-prompt.sh
 # Move the ArchLinux project into the user folder.
 mkdir --parents /home/"${userId}"/workspace/projects
 cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
-mv /archLinux-installer-and-setup ./
-chown --recursive "${userId}" ./archLinux-installer-and-setup
-chgrp --recursive users ./archLinux-installer-and-setup
+mv /archlinux-installer-and-setup ./
+chown --recursive "${userId}" ./archlinux-installer-and-setup
+chgrp --recursive users ./archlinux-installer-and-setup
 
 # ---------- #
 # Set up Git #
@@ -235,7 +235,7 @@ chgrp --recursive users ./archLinux-installer-and-setup
 # Set up Git.
 git config --global user.name "${userName}"
 git config --global user.email "${userEmail}"
-./archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
+./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
 
 # -------- #
 # Finished #

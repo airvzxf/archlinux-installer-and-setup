@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Installation                                             #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ------------------------------------------- #
 # INSTALL ARCH LINUX IN YOUR HARD DISK DEVICE #

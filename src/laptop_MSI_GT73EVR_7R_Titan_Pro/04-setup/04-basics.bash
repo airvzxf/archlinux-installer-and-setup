@@ -4,7 +4,7 @@ source 00-config.bash
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ----------------------------------------------------------------------
 # Basics

@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Custom Bootable USB from ArchLinux                       #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # --------------------- #
 # CREATE A BOOTABLE USB #
@@ -58,7 +58,7 @@ cp "${currentDirectory}"/../00-configuration.bash ./airootfs/root/"${project_pat
 cp "${currentDirectory}"/../02-init/01-init-custom-iso.bash ./airootfs/root/"${project_path}"/02-init/
 
 # Compress ArchLinux project and add into the root directory in Arch ISO.
-tar --create --gzip --file ./airootfs/root/"${project_path}"/archLinux-installer-and-setup.tar "${currentDirectory}"/../../../../archLinux-installer-and-setup
+tar --create --gzip --file ./airootfs/root/"${project_path}"/archlinux-installer-and-setup.tar "${currentDirectory}"/../../../../archlinux-installer-and-setup
 
 funcSetupPacmanConfiguration ./
 sed --in-place --regexp-extended "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" ./pacman.conf

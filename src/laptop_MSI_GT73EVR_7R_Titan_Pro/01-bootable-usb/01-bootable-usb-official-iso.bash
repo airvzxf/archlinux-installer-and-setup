@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Bootable USB with official ISO                           #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # --------------------- #
 # CREATE A BOOTABLE USB #
@@ -89,7 +89,7 @@ rm --force ~/"${archlinuxISO}"
 # -------- #
 
 # The next step is restart your computer and init the system with your USB.
-# Go to 'https://github.com/airvzxf/archLinux-installer-and-setup'
+# Go to 'https://github.com/airvzxf/archlinux-installer-and-setup'
 # Download the script 'src/laptop_MSI_GT73EVR_7R_Titan_Pro/00-configuration.bash'
 # Download the script 'src/laptop_MSI_GT73EVR_7R_Titan_Pro/02-init/01-init-official-iso.bash'
 # Then execute './01-init-official-iso.bash'.

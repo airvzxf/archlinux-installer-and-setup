@@ -4,7 +4,7 @@ source 00-config.bash
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup - NVIDIA step 1 / 3
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 source ./../00-configuration.bash
 

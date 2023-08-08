@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Pre installation                                         #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ---------------------- #
 # PRE-INSTALLATION (EFI) #

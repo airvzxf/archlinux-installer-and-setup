@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Install with Arch Change Root                            #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ------------------------------------ #
 # LOGIN AS ARCH ROOT IN YOUR PARTITION #
@@ -33,7 +33,7 @@ cp ./../00-configuration.bash /mnt
 cp 99-arch-change-root.bash /mnt
 
 # Copy this project into the root directory
-cp --recursive ../../../../archLinux-installer-and-setup /mnt/
+cp --recursive ../../../../archlinux-installer-and-setup /mnt/
 
 # Copy root user configurations into the root home
 cp --recursive ../04-setup/setup-resources/. /mnt/root/
@@ -67,7 +67,7 @@ eject --no-unmount
 # The machine will be rebooted, then enter with the created user.
 
 # In the directory 'cd ~/workspace/projects/'.
-# Go inside 'cd archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
+# Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 04-setup/'.
 # and execute the file './01-setup.bash'.
 

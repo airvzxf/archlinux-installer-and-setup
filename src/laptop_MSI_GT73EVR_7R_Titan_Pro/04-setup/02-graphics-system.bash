@@ -4,7 +4,7 @@ set -ve
 # ----------------------------------------------------------------------
 # Arch Linux :: Set up - Graphics system
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 source ./../00-configuration.bash
 

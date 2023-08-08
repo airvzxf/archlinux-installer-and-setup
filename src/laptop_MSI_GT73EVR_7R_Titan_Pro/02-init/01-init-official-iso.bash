@@ -4,7 +4,7 @@ set -ve
 # ---------------------------------------------------------------------- #
 # Arch Linux :: Init                                                     #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # -------------------------------- #
 # INIT THE ARCH LINUX INSTALLATION #
@@ -62,21 +62,21 @@ pacman --sync --needed --noconfirm asciinema
 # -------------------------- #
 
 # Cleaning the older downloaded project.
-rm --force --recursive ~/workspace/projects/archLinux-installer-and-setup*
+rm --force --recursive ~/workspace/projects/archlinux-installer-and-setup*
 
 # Create workspace and projects directory.
 mkdir --parents ~/workspace/projects
 cd ~/workspace/projects || funcDirectoryNotExist
 
 # Clone the git project in your computer.
-git clone https://github.com/airvzxf/archLinux-installer-and-setup.git
-cd ./archLinux-installer-and-setup/ || funcDirectoryNotExist
+git clone https://github.com/airvzxf/archlinux-installer-and-setup.git
+cd ./archlinux-installer-and-setup/ || funcDirectoryNotExist
 
 # -------- #
 # Finished #
 # -------- #
 
 # In the directory 'cd /home/root/workspace/projects/'.
-# Go inside 'cd archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
+# Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 03-installer/'.
 # and execute the file './01-pre-installation-efi.bash'.

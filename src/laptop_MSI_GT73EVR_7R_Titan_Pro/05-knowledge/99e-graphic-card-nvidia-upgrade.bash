@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ----------------------------------------------------------------------
 # Upgrade Nvidia when you upgrade pacman packages

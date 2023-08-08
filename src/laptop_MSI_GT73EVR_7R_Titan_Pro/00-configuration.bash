@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------- #
 # Arch Linux :: General configuration                                    #
 # ---------------------------------------------------------------------- #
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ---------- #
 # 00 General #
@@ -43,7 +43,7 @@ consoleFont="ter-122n"
 archlinuxImageURL="https://arch.jsc.mx/iso/latest/" # (◠‿◠)
 
 archIsoProfile="releng"
-archIsoFolder="archLinuxLiveIso"
+archIsoFolder="archlinuxLiveIso"
 archIsoFile="archlinux-x86_64.iso"
 currentDirectory="$(pwd)"
 archIsoDirectory="/home/$(whoami)/${archIsoFolder}"

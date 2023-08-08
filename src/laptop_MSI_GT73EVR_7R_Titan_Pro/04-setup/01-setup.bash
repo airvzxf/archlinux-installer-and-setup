@@ -4,7 +4,7 @@ set -ve
 # ----------------------------------------------------------------------
 # Arch Linux :: Set up - Basic
 # ----------------------------------------------------------------------
-# https://github.com/airvzxf/archLinux-installer-and-setup
+# https://github.com/airvzxf/archlinux-installer-and-setup
 
 # ----------------------------------------- #
 # BASIC SET UP AFTER ARCHLINUX INSTALLATION #
@@ -213,7 +213,7 @@ sudo mkinitcpio --preset linux
 # The machine will be reboot, then enter with the created user.
 
 # In the directory 'cd ~/workspace/projects/'.
-# Go inside 'cd archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
+# Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 04-setup/'.
 # The next step is run './02-graphics-system.bash'.
 
