@@ -178,7 +178,7 @@ systemctl list-unit-files --state=disabled
 systemctl | grep running
 
 # Debug the bash file
-# In the bash scripts xxx.sh you are able to add 'set -x' to debug the script
+# In the bash scripts xxx.sh or xxx.bash you are able to add 'set -x' to debug the script
 #!/bin/bash
 set -x # Enable debug output
 set +x # Disable debug output

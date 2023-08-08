@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -34,7 +34,7 @@ sudo gpasswd -a boinc video
 echo -e ""
 
 
-echo -e "Ready! The next step is run './05b-boinc-after-install.sh'.\n"
+echo -e "Ready! The next step is run './05b-boinc-after-install.bash'.\n"
 
 # You need logout and login again from your windows manager
 read -n 1 -s -r -p "Press any key to reboot"

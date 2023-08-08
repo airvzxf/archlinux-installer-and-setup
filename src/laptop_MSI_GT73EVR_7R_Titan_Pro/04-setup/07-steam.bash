@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -14,6 +14,18 @@ source 00-config.sh
 # https://wiki.archlinux.org/index.php/Steam/Game-specific_troubleshooting
 # https://wiki.archlinux.org/index.php/Gamepad
 funcIsConnectedToInternet
+
+# Enable MultiLib in Pacman.
+# Run and build 32-bit applications on 64-bit installations of Arch Linux.
+# https://wiki.archlinux.org/index.php/Multilib
+# TODO: Remove pacman search and sleeps after the tests.
+pacman -Ss steam
+sleep 5
+sudo sed -i '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
+cat /etc/pacman.conf
+sleep 15
+pacman -Ss steam
+sleep 5
 
 # Install packages
 echo -e "Installing lib openssl"

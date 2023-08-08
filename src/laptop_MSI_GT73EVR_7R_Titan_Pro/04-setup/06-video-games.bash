@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -22,6 +22,6 @@ echo -e "Installing wine gaming"
 yay -S --needed --noconfirm wine-gaming-nine
 echo -e "\n"
 
-echo -e "Ready! The next step is run './07-steam.sh'.\n"
+echo -e "Ready! The next step is run './07-steam.bash'.\n"
 echo -e "Finished successfully!"
 echo -e ""

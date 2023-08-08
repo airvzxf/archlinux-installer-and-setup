@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -20,6 +20,6 @@ echo -e ""
 #sudo nvidia-xconfig
 #echo -e ""
 
-echo -e "Ready! The next step is run './04-basics.sh'.\n"
+echo -e "Ready! The next step is run './04-basics.bash'.\n"
 echo -e "Finished successfully!"
 echo -e ""

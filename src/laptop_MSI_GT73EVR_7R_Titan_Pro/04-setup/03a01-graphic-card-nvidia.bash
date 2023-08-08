@@ -1,188 +1,46 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
-# Arch Linux :: Setup
+# Arch Linux :: Setup - NVIDIA step 1 / 3
 # ----------------------------------------------------------------------
 # https://github.com/airvzxf/archLinux-installer-and-setup
 
-# ----------------------------------------------------------------------
-# Nvidia graphic card
-# ----------------------------------------------------------------------
-# When upgrade pacman some time we lost the nvidia drivers we need to
-# re-install that.
+source ./../00-configuration.bash
+
 funcIsConnectedToInternet
 
-echo -e ""
+# -------------------------- #
+# SET UP NVIDIA GRAPHIC CARD #
+# -------------------------- #
 
-# Check what graphic cards have in your computer
-echo -e "Checking the installed graphic card"
-echo -e ""
+# ------------------- #
+# Set up the generals #
+# ------------------- #
+
+# Check the installed graphic cards in your computer.
 lspci -k | grep -A 2 -E "(VGA|3D)"
-echo -e "\n"
 
-# Install basic packages
-echo -e "Installing Linux headers"
-echo -e ""
-sudo pacman -S --needed --noconfirm linux-headers
-echo -e "\n"
+# Install the Kernel module allowing to switch dedicated graphics card on Optimus laptops.
+funcInstallPacmanPackageAndDependencies bbswitch
 
-echo -e "Installing Xorg xrandr"
-echo -e ""
-sudo pacman -S --needed --noconfirm xorg-xrandr
-echo -e "\n"
+# Install NVIDIA.
+funcInstallPacmanPackageAndDependencies nvidia
 
-echo -e "Installing Xorg xdisplay info"
-echo -e ""
-sudo pacman -S --needed --noconfirm xorg-xdpyinfo
-echo -e "\n"
+# Install the NVIDIA drivers utilities.
+funcInstallPacmanPackageAndDependencies nvidia-utils
 
-echo -e "Installing Xorg fonts type 1"
-echo -e ""
-sudo pacman -S --needed --noconfirm xorg-fonts-type1
-sudo pacman -S --needed --noconfirm xorg-fonts-misc
-echo -e "\n"
+# Install OpenCL ICD Bindings.
+#funcInstallPacmanPackageAndDependencies ocl-icd
 
-echo -e "Installing bbSwitch"
-echo -e ""
-sudo pacman -S --needed --noconfirm bbswitch
-echo -e "\n"
+# Install OpenCL Info.
+#funcInstallPacmanPackageAndDependencies clinfo
 
+# Install the NVIDIA's GPU programming toolkit.
+funcInstallPacmanPackageAndDependencies cuda
 
-# Install nvidia packages
-echo -e "Installing Nvidia utils"
-echo -e ""
-sudo pacman -S --needed --noconfirm nvidia-utils
-echo -e "\n"
-
-echo -e "Installing Nvidia"
-echo -e ""
-sudo pacman -S --needed --noconfirm nvidia
-echo -e "\n"
-
-echo -e "Installing Nvidia settings"
-echo -e ""
-sudo pacman -S --needed --noconfirm nvidia-settings
-echo -e "\n"
-
-echo -e "Installing Nvidia OpenCL"
-echo -e ""
-sudo pacman -S --needed --noconfirm opencl-nvidia
-echo -e "\n"
-
-echo -e "Installing OpenCL ICD Bindings"
-echo -e ""
-sudo pacman -S --needed --noconfirm ocl-icd
-echo -e "\n"
-
-echo -e "Installing OpenCL Info"
-echo -e ""
-sudo pacman -S --needed --noconfirm clinfo
-echo -e "\n"
-
-echo -e "Installing Cuda"
-echo -e ""
-sudo pacman -S --needed --noconfirm cuda
-echo -e "\n"
-
-#echo -e "Installing Nvidia xrun"
-#echo -e ""
-#yay -S --needed --noconfirm nvidia-xrun
-#echo -e "\n"
-
-
-# Install the windows manager
-echo -e "Installing Openbox"
-echo -e ""
-sudo pacman --needed --noconfirm -S openbox
-echo -e "\n"
-
-echo -e "Installing AcpID"
-echo -e ""
-sudo pacman --needed --noconfirm -S acpid
-echo -e "\n"
-
-echo -e "Installing redshift"
-# Automatically adjusts the color temperature of your screen avoiding the blue light.
-echo -e ""
-sudo pacman -S --needed --noconfirm redshift
-echo -e "\n"
-
-
-# Tmux: A terminal multiplexer
-echo -e "Installing Tmux terminal multiplexer"
-sudo pacman -S --needed --noconfirm tmux
-echo -e "\n"
-
-
-# Battery discharging beep
-echo -e "Installing a Battery Discharging Deep"
-yay -S --needed --noconfirm battery-discharging-beep-git
-echo -e "\n"
-
-
-# Turn on the numlock
-#-----------------------------------------------------------------------
-echo -e "Installing numlock which turns on the numlock key in X11"
-sudo pacman -S --needed --noconfirm numlockx
-echo -e "\n"
-
-
-# Backlighting manager for MSI steelseries keyboards
-#-----------------------------------------------------------------------
-echo -e "Installing a backlighting manager for MSI steelseries keyboards"
-yay -S --needed --noconfirm msiklm-git
-echo -e "\n"
-
-
-# Install xterm before run openbox window manager
-echo -e "Installing xterm before run openbox window manager"
-echo -e ""
-sudo pacman -S --needed --noconfirm xterm # Terminal / Console window
-echo -e "\n"
-
-
-# Install Locate
-echo -e "Installing locate"
-echo -e ""
-sudo pacman -S --needed --noconfirm plocate
-echo -e "\n"
-
-
-# Install ZSH
-echo -e "Installing ZSH"
-echo -e ""
-sudo pacman -S --needed --noconfirm zsh lsd bat
-sudo pacman -S --needed --noconfirm zsh-syntax-highlighting zsh-autosuggestions zsh-theme-powerlevel10k
-yay -S --needed --noconfirm nerd-fonts-hack nerd-fonts-meslo
-#yay -S --needed --noconfirm nerd-fonts-complete
-cp ./setup-resources/.zshrc ~/
-cp ./setup-resources/.p10k.zsh ~/
-sudo usermod --shell /usr/bin/zsh
-sudo ln -s -f ~/.zshrc /root/.zshrc
-sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
-sudo usermod --shell /usr/bin/zsh root
-echo -e "\n"
-
-
-# Install Black Arch repository
-echo -e "Installing Black Arch repository"
-curl -L https://blackarch.org/strap.sh > ~/blackarch-repo.sh
-chmod a+x ~/blackarch-repo.sh
-sudo ~/blackarch-repo.sh
-rm -f ~/blackarch-repo.sh
-sudo pacman -Syy
-echo -e "\n"
-
-
-# Install kitty and fonts before run openbox window manager
-echo -e "Installing kitty and fonts before run openbox window manager"
-echo -e ""
-sudo pacman -S --needed --noconfirm kitty # Terminal emulator
-cp -p ~/.config/kitty/kitty.conf ~/.config/kitty/kitty.bck.conf
-sudo pacman -S --needed --noconfirm noto-fonts-emoji # Fonts with emojis
-echo -e "\n"
-
+# TODO: Keep cleaning this code in below lines.
+exit 1
 
 echo -e "Run nvidia xconfig"
 sudo nvidia-xconfig
@@ -200,69 +58,18 @@ echo -e "\n"
     #~ VendorName     "NVIDIA Corporation"
     #~ BoardName      "GeForce GTX 1080 Mobile"
     #~ BusID          "PCI:1:0:0"
-#~ EndSection' | sudo tee ${nvidia_config_file}
-#~ echo -e ""
-
-
-# Xbindkeys
-# https://wiki.archlinux.org/index.php/Xbindkeys
-echo -e "Installing Xbind keys"
-echo -e ""
-sudo pacman -S --needed --noconfirm xbindkeys
-echo -e "\n"
-
-echo -e "Setting up the Xbind keys"
-echo -e \
-'# Increase volume
-"pactl set-sink-volume 0 +1000"
-   XF86AudioRaiseVolume
-
-# Decrease volume
-"pactl set-sink-volume 0 -1000"
-   XF86AudioLowerVolume
-
-# Mute
-"amixer set Master toggle"
-   XF86AudioMute
-
-# Increase brightness
-"xbacklight -5"
-   XF86MonBrightnessDown
-
-# Decrease brightness
-"xbacklight +5"
-   XF86MonBrightnessUp' | tee ~/.xbindkeysrc
-
-# Refresh the bind keys
-xbindkeys -p
-echo -e ""
-
+#~ EndSection
+#~ ' | sudo tee ${nvidia_config_file}
 
 # Comment the Nvidia value for is primary GPU
-echo -e "Comment the Nvidia value for is primary GPU"
 sudo sed -i '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
-echo -e "\n"
 
-
-echo -e "=== Solving Xorg warnings ==="
-echo -e "mkfontdir in font dpis"
-sudo mkfontdir /usr/share/fonts/100dpi/
-sudo mkfontdir /usr/share/fonts/75dpi/
-echo -e ""
-echo -e "Enable ACPID service"
-sudo systemctl enable --now acpid
-echo -e ""
-
-
-
-echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.sh'.\n"
+echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.bash'.\n"
 
 # Reboot
 read -n 1 -s -r -p "Press any key to reboot"
-reboot
 
-
-
+sudo reboot
 
 # Avoid errors in the log
 # ----------------------------------------------------------------------

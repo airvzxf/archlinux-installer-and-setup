@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup

@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -58,6 +58,6 @@ cd ~/
 # https://www.mankier.com/1/boinccmd
 # https://boinc.berkeley.edu/wiki/Boinccmd_tool
 
-echo -e "Ready! The next step is run './06-video-games.sh'.\n"
+echo -e "Ready! The next step is run './06-video-games.bash'.\n"
 echo -e "Finished successfully!"
 echo -e ""

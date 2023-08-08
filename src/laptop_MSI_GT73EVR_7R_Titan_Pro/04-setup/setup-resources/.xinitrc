@@ -7,7 +7,9 @@ xrandr --output DP-3 --mode 1920x1080 --rate 240.00
 
 xbacklight -set 100
 
-numlockx &
+numlockx on
+
+xbindkeys
 
 battery-discharging-beep &
 

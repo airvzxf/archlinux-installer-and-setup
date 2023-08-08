@@ -1,5 +1,5 @@
 #!/bin/bash
-source 00-config.sh
+source 00-config.bash
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup
@@ -23,8 +23,8 @@ echo -e "\n"
 echo -e "Installing geany"
 sudo pacman -S --needed --noconfirm geany geany-plugins # Text editor
 cp -R ./setup-resources/.config/geany ~/.config/
-sed -i -- 's/wolfMachine/'${yourComputerName}'/g' ~/.config/geany/geany.conf
-sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/geany/geany.conf
+sed -i -- 's/wolfMachine/'${computerName}'/g' ~/.config/geany/geany.conf
+sed -i -- 's/wolf/'${userId}'/g' ~/.config/geany/geany.conf
 echo -e "\n"
 
 echo -e "Installing bc terminal calculator"
@@ -41,10 +41,6 @@ echo -e "\n"
 
 echo -e "Installing lximage viewer"
 sudo pacman -S --needed --noconfirm lximage-qt # Image viewer
-echo -e "\n"
-
-echo -e "Installing reflector"
-sudo pacman -S --needed --noconfirm reflector # Sorted mirrors in Arch Linux
 echo -e "\n"
 
 echo -e "Installing vlc"
@@ -104,7 +100,7 @@ echo -e "\n"
 echo -e "Installing transmission"
 sudo pacman -S --needed --noconfirm transmission-gtk # Torrents
 cp -R ./setup-resources/.config/transmission ~/.config/
-sed -i -- 's/wolf/'${yourUserName}'/g' ~/.config/transmission/settings.json
+sed -i -- 's/wolf/'${userId}'/g' ~/.config/transmission/settings.json
 echo -e "\n"
 
 #~ echo -e "Installing LibreOffice"
@@ -164,6 +160,6 @@ modprobe btusb
 echo -e "\n"
 
 
-echo -e "Ready! The next step is run './05a-boinc.sh'.\n"
+echo -e "Ready! The next step is run './05a-boinc.bash'.\n"
 echo -e "Finished successfully!"
 echo -e ""

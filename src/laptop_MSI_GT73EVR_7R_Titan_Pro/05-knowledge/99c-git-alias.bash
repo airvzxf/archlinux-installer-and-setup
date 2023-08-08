@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ve
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Configuration
@@ -9,9 +10,9 @@
 # Git
 # ----------------------------------------------------------------------
 # Manually set up these two options
-#git config --global user.email "your_email"
 #git config --global user.name "your_name"
-#git config --global -l
+#git config --global user.email "your_email"
+#git config --global --list --show-origin
 
 # Change the git editor to vim
 git config --global core.editor "vim"
@@ -28,7 +29,7 @@ git config --global pull.rebase true
 
 # Create alias to write easy command like git cm thats means git commit -m
 # These configurations will be save in this file ~/.gitconfig
-git config --global --remove-section alias
+git config --global --remove-section alias || true
 
 git config --global alias.ad '! git add "$@" && echo -e "\n" && git status'
 git config --global alias.adp '! git add -p "$@" && echo -e "\n" && git status'
@@ -64,4 +65,7 @@ git config --global alias.undo '! git reset HEAD~ && echo -e "\n" && git status'
 git config --global alias.untrack 'ls-files . --exclude-standard --others'
 
 # Show the config file
-git config --global --list
+#git config --global --list --show-origin
+git config --get user.name
+git config --get user.email
+git config --get core.editor
