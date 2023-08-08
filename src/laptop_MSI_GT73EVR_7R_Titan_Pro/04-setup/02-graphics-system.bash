@@ -34,10 +34,10 @@ funcInstallPacmanPackageAndDependencies xorg-fonts-misc
 funcInstallPacmanPackageAndDependencies xorg-fonts-type1
 
 # Install a backward-compatible xbacklight replacement based on ACPI.
-sudo pacman -S --needed --noconfirm acpilight
+sudo pacman --sync --needed --noconfirm acpilight
 
 # Install Xorg.
-sudo pacman -S --needed --noconfirm xorg
+sudo pacman --sync --needed --noconfirm xorg
 
 # Install the X.Org initialisation program.
 funcInstallPacmanPackageAndDependencies xorg-xinit
@@ -49,7 +49,7 @@ funcInstallPacmanPackageAndDependencies xorg-xrandr
 funcInstallPacmanPackageAndDependencies xorg-xdpyinfo
 
 # Install the Highly configurable and lightweight X11 window manager.
-sudo pacman -S --needed --noconfirm openbox
+sudo pacman --sync --needed --noconfirm openbox
 
 # Install the turns on the numlock key in X11.
 funcInstallPacmanPackageAndDependencies numlockx

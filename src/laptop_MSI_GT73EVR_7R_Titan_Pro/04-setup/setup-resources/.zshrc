@@ -88,7 +88,7 @@ alias chx='sudo chmod 755'
 alias chxdirectories='sudo find ./ -type d -exec chmod 755 {} \;'
 alias chr='sudo chmod 644'
 alias chrfiles='sudo find ./ -type f -exec chmod 644 {} \;'
-alias rmf='rm -rf'
+alias rmf='rm --force --recursive'
 alias tgzc='tar -zcvf'
 alias tbzc='tar -jcvf'
 alias txzc='tar -Jcvf'
@@ -105,17 +105,17 @@ alias mountfat32='fh(){ sudo mount -t vfat $1 $2 -o rw,uid=$(id -u),gid=$(id -g)
 alias d='date'
 alias now='date +"%T"'
 alias nowdate='date +"%m-%d-%Y"'
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|energy\:|time|percentage"'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep --extended-regexp "state|energy\:|time|percentage"'
 alias batterydetails='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
-alias batterywatching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep -E \"state|energy\:|time|percentage\""'
+alias batterywatching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep --extended-regexp \"state|energy\:|time|percentage\""'
 alias findhere='fh(){ sudo find ./ -iname *"$@"* 2>/dev/null; unset -f fh; }; fh'
 alias findherefile='fhf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null; unset -f fhf; }; fhf'
 alias findheredir='fhd(){ sudo find ./ -type d -iname *"$@"* 2>/dev/null; unset -f fhd; }; fhd'
 alias findall='fa(){ sudo find / -iname *"$@"* 2>/dev/null; unset -f fa; }; fa'
 alias findallfile='faf(){ sudo find / -type f -iname *"$@"* 2>/dev/null; unset -f faf; }; faf'
 alias findalldir='fad(){ sudo find / -type d -iname *"$@"* 2>/dev/null; unset -f fad; }; fad'
-alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dl; }; dl'
-alias deleteall='dla(){ sudo find / -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dla; }; dla'
+alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dl; }; dl'
+alias deleteall='dla(){ sudo find / -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dla; }; dla'
 alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'
 alias clr='clear && printf "\E[3J"'
@@ -214,7 +214,7 @@ function mkt(){
 # Extract nmap information
 function extractPorts(){
 	ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
-	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
+	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head --lines 1)"
 	echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
 	echo -e "\t[*] IP Address: $ip_address"  >> extractPorts.tmp
 	echo -e "\t[*] Open ports: $ports\n"  >> extractPorts.tmp

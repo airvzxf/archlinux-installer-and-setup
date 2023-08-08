@@ -13,7 +13,7 @@
 # https://wiki.archlinux.org/index.php/Steam/Troubleshooting#Steam_runtime_issues
 
 # If you are looking for what libraries are missing
-# Install steam without UI, then if you run steam-native it show the missing libraries
+# Installation steam without UI, then if you run steam-native it show the missing libraries
 steam -textclient
 
 # Error with cannot connect with Steam
@@ -41,8 +41,8 @@ sudo pacman -Rsc steam
 
 
 # Can't set the specified locale! Check LANG, LC_CTYPE, LC_ALL.
-# Uncomment en_US.UTF-8 UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:
-sudo sed -i '/en_US.UTF-8 UTF-8/ s/^##*//' /etc/locale.gen
+# Uncomment en_US.UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:
+sudo sed --in-place '/en_US.UTF-8 UTF-8/ s/^##*//' /etc/locale.gen
 sudo locale-gen
 
 

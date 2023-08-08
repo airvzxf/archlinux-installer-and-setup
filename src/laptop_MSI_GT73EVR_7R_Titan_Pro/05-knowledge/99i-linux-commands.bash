@@ -10,20 +10,20 @@
 # [DON'T EXECUTE THIS SCRIPT, IS ONLY INFORMATIVE]
 # ----------------------------------------------------------------------
 
-# Search the proccess in your system
+# Search the process in your system
 ps aux | grep proccess_name
 # PS do not show itself processor, put brackets in the first letter
 ps aux | grep [p]roccess_name
 
 
 # Add comments in lines between 2 and 4
-sed -i '2,4 s/^/#/' test.conf
+sed --in-place '2,4 s/^/#/' test.conf
 # Delete comments in lines between 1 and 2
-sed -i '2,4 s/^##*//' test.conf
+sed --in-place '2,4 s/^##*//' test.conf
 # Delete hastag comments between the match A to B
-sed -i '/query_string_a/,/query_string_b/ s/^##*//' [filePath]
+sed --in-place '/query_string_a/,/query_string_b/ s/^##*//' [filePath]
 # Add comment at the star of this line if the string match
-sed -i '/searching_string/ s/^#*/#/' [filePath]
+sed --in-place '/searching_string/ s/^#*/#/' [filePath]
 
 
 # Search files or directories in this directory and sub directories
@@ -37,7 +37,7 @@ sudo find / -type d -iname *query_string* 2>/dev/null
 
 # Search files and do specific actions
 find ./ -iname *query_string* -exec chmod +x {} \;
-find ./ -type f -iname *query_string* -exec rm -f {} \;
+find ./ -type f -iname *query_string* -exec rm --force {} \;
 
 # Search words inside of the files
 grep -rnw [directory] -e [pattern]
@@ -82,14 +82,14 @@ sudo cfdisk /dev/sdb
 sudo mkfs.vfat /dev/sdb1
 
 # Mount and umount USB
-sudo mkdir -p /mnt/usbstick
+sudo mkdir --parents /mnt/usbstick
 sudo mount -o gid=users,fmask=113,dmask=002 /dev/sdb1 /mnt/usbstick
-sudo umount -R /mnt/usbstick
+sudo umount --recursive /mnt/usbstick
 
 # Mount and umount USB, other way
 grep $USER /etc/passwd
 sudo mount -o uid=1000,gid=1000,utf8,fmask=137,dmask=027 /dev/sdb1 /mnt/usbstick/
-sudo umount -R /mnt/usbstick
+sudo umount --recursive /mnt/usbstick
 
 # Git
 # Undo a "public" change
@@ -102,12 +102,12 @@ sudo git config --system http.sslcainfo "/etc/ca-certificates/extracted/ca-bundl
 
 # Battery status
 upower -i /org/freedesktop/UPower/devices/battery_BAT0
-upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|energy\:|time|percentage"
+upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep --extended-regexp "state|energy\:|time|percentage"
 
 # Wifi menu
 # Delete or modify a specific wifi
 ls -lha /etc/netctl/
-sudo rm -f /etc/netctl/[network-name]
+sudo rm --force /etc/netctl/[network-name]
 
 # Enabling and disabling network interfaces
 ip link
@@ -203,11 +203,11 @@ xrandr --output LVDS-1-1 --primary --mode 1366x768 --rate 60 --dpi 112
 # Connect bluetooth headset
 # https://purplepalmdash.github.io/2013/12/19/bluetooth-headset-on-archlinux/
 # https://wiki.archlinux.org/index.php/Bluetooth_headset#Headset_via_Bluez5.2FPulseAudio
-sudo pacman -S --needed --noconfirm pulseaudio-alsa
-sudo pacman -S --needed --noconfirm pulseaudio-bluetooth
-sudo pacman -S --needed --noconfirm bluez
-sudo pacman -S --needed --noconfirm bluez-libs
-sudo pacman -S --needed --noconfirm bluez-utils
+sudo pacman --sync --needed --noconfirm pulseaudio-alsa
+sudo pacman --sync --needed --noconfirm pulseaudio-bluetooth
+sudo pacman --sync --needed --noconfirm bluez
+sudo pacman --sync --needed --noconfirm bluez-libs
+sudo pacman --sync --needed --noconfirm bluez-utils
 
 # This package not work properly in my laptop.
 # yay -S bluez-utils-compat
@@ -287,7 +287,7 @@ alsamixer
 # How to see the volumen of the devices
 pacmd list-sinks | grep -e "index:" -e "name:" -e "base volume:" -e "volume:"
 VOLUME="+5%"
-INDEX=$(pactl list short sinks | grep "bluez_sink" | awk '{ print $1 }' | head -n1)
+INDEX=$(pactl list short sinks | grep "bluez_sink" | awk '{ print $1 }' | head --lines 1)
 echo "INDEX: ${INDEX}"
 # Repeat this command to increase or decrease the volume.
 # Needs to rebase the max volume to set the volume of the speaker or headset to 127.
@@ -339,7 +339,7 @@ nmap
 
 # In your local machine
 
-mkdir -p ssh_keys
+mkdir --parents ssh_keys
 
 ssh-keygen -t rsa -b 4096 -f ./ssh_keys/free_access
 

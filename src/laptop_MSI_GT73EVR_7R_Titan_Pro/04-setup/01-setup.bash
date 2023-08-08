@@ -40,9 +40,9 @@ funcIsConnectedToInternet
 # ------------- #
 
 # Upgrade Arch Linux.
-sudo pacman --noconfirm -Syyu
+sudo pacman --sync --refresh --refresh --sysupgrade --noconfirmu
 
-# Install Yay. It installs the AUR packages.
+# Install Yay. This package installs the AUR packages.
 funcInstallYay
 
 # ------------------- #
@@ -50,11 +50,11 @@ funcInstallYay
 # ------------------- #
 
 # Create a directories for the next scripts.
-mkdir -p ~/.config
-mkdir -p ~/workspace
+mkdir --parents ~/.config
+mkdir --parents ~/workspace
 
 # Change user for the xinitrc file.
-sed -i -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
+sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
 # Intall fonts.
 funcInstallPacmanPackageAndDependencies fontconfig
@@ -158,11 +158,11 @@ funcInstallPacmanPackageAndDependencies speech-dispatcher
 # Configure pulseaudio to recognize the woofer.
 # Configuring the daemon.conf file.
 #cp /etc/pulse/daemon.conf ~/.config/pulse/
-#sed -i '/; enable-lfe-remixing = no/ s/^;;* *//' ~/.config/pulse/daemon.conf
-#sed -i 's/enable-lfe-remixing = no/enable-lfe-remixing = yes/g' ~/.config/pulse/daemon.conf
+#sed --in-place '/; enable-lfe-remixing = no/ s/^;;* *//' ~/.config/pulse/daemon.conf
+#sed --in-place 's/enable-lfe-remixing = no/enable-lfe-remixing = yes/g' ~/.config/pulse/daemon.conf
 #ehco -e "Configuring the default.pa file"
 #cp /etc/pulse/default.pa ~/.config/pulse/
-#sed -i "\$a\\\n\nload-module module-combine channels=6 channel_map=front-left,front-right,rear-left,rear-right,front-center,lfe" ~/.config/pulse/default.pa
+#sed --in-place "\$a\\\n\nload-module module-combine channels=6 channel_map=front-left,front-right,rear-left,rear-right,front-center,lfe" ~/.config/pulse/default.pa
 #echo -e "\n"
 # Try to test the woofer.
 #speaker-test -c6 -s6 -twav
@@ -180,10 +180,10 @@ funcInstallPacmanPackageAndDependencies speech-dispatcher
 #cat /proc/asound/card0/pcm3p/info
 
 # Install Black Arch repository
-# curl -L https://blackarch.org/strap.sh > ~/blackarch-repo.sh
+# curl --location https://blackarch.org/strap.sh > ~/blackarch-repo.sh
 # chmod a+x ~/blackarch-repo.sh
 # sudo ~/blackarch-repo.sh
-# rm -f ~/blackarch-repo.sh
+# rm --force ~/blackarch-repo.sh
 # sudo pacman -Syy
 
 # ----------------- #
@@ -203,7 +203,7 @@ yay -S --needed --noconfirm wd719x-firmware
 yay -S --needed --noconfirm upd72020x-fw
 
 # Initramfs, create an initial ramdisk environment.
-sudo mkinitcpio -p linux
+sudo mkinitcpio --preset linux
 
 # -------- #
 # Finished #

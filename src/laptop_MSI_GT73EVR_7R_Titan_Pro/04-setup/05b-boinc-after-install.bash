@@ -32,8 +32,8 @@ echo -e ""
 # in your home directory ~/
 echo -e "Setting up the boinc config to run boinc in the workspace directory ~/workspace/boinc"
 
-mkdir -p ~/workspace/boinc
-cd ~/workspace/boinc
+mkdir --parents ~/workspace/boinc
+cd ~/workspace/boinc || funcDirectoryNotExist
 
 cp /var/lib/boinc/gui_rpc_auth.cfg gui_rpc_auth.cfg
 sudo chown $(whoami) gui_rpc_auth.cfg
@@ -43,7 +43,7 @@ sudo chmod 640 gui_rpc_auth.cfg
 /usr/bin/boinc_client &
 boincmgr &
 
-cd ~/
+cd ~/ || funcDirectoryNotExist
 
 
 # Suggested projects

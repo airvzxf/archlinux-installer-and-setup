@@ -21,7 +21,7 @@ funcIsConnectedToInternet
 # TODO: Remove pacman search and sleeps after the tests.
 pacman -Ss steam
 sleep 5
-sudo sed -i '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
+sudo sed --in-place '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
 cat /etc/pacman.conf
 sleep 15
 pacman -Ss steam
@@ -35,27 +35,27 @@ echo -e "\n"
 
 echo -e "Installing nvidia"
 echo -e ""
-sudo pacman -S --needed --noconfirm nvidia
+sudo pacman --sync --needed --noconfirm nvidia
 echo -e "\n"
 
 echo -e "Installing nvidia"
 echo -e ""
-sudo pacman -S --needed --noconfirm nvidia-utils
+sudo pacman --sync --needed --noconfirm nvidia-utils
 echo -e "\n"
 
 echo -e "Installing nvidia lib32 LG"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-nvidia-libgl
+sudo pacman --sync --needed --noconfirm lib32-nvidia-libgl
 echo -e "\n"
 
 echo -e "Installing nvidia lib GL"
 echo -e ""
-sudo pacman -S --needed --noconfirm nvidia-libgl
+sudo pacman --sync --needed --noconfirm nvidia-libgl
 echo -e "\n"
 
 echo -e "Installing Steam"
 echo -e ""
-sudo pacman -S --needed --noconfirm steam
+sudo pacman --sync --needed --noconfirm steam
 echo -e "Open steam package wait to lunch the app and login into your account, please close when you finished"
 echo -e ""
 steam
@@ -90,14 +90,14 @@ KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"' | sudo tee ${steam_controlle
 # libGL error: failed to load driver: swrast
 echo -e "Installing nvidia lib32 utils"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-nvidia-utils
+sudo pacman --sync --needed --noconfirm lib32-nvidia-utils
 echo -e "\n"
 
 # Steam has a good commands to check all the missing libraries
 # All this libraries should be there in MultiLib repositories
 echo -e "Show missing libraries in Steam"
 echo -e ""
-cd ~/.local/share/Steam/ubuntu12_32
+cd ~/.local/share/Steam/ubuntu12_32 || funcDirectoryNotExist
 chmod +x libx264.so.142
 file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
 echo -e "\n"
@@ -105,7 +105,7 @@ echo -e "\n"
 # libXtst.so.6 => not found
 echo -e "Installing lib32 Xtst"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libxtst
+sudo pacman --sync --needed --noconfirm lib32-libxtst
 echo -e "\n"
 
 # libgio-2.0.so.0 => not found
@@ -113,63 +113,63 @@ echo -e "\n"
 # libgobject-2.0.so.0 => not found
 echo -e "Installing lib32  bus menu GLib"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libdbusmenu-glib
+sudo pacman --sync --needed --noconfirm lib32-libdbusmenu-glib
 echo -e "\n"
 
 # libfontconfig.so.1 => not found
 # libfreetype.so.6 => not found
 echo -e "Installing lib32 font config"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-fontconfig
+sudo pacman --sync --needed --noconfirm lib32-fontconfig
 echo -e "\n"
 
 # libgdk_pixbuf-2.0.so.0 => not found
 echo -e "Installing lib32 pix buf"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-gdk-pixbuf2
+sudo pacman --sync --needed --noconfirm lib32-gdk-pixbuf2
 echo -e "\n"
 
 # libopenal.so.1 => not found
 echo -e "Installing lib32 openal"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-openal
+sudo pacman --sync --needed --noconfirm lib32-openal
 echo -e "\n"
 
 # libXrandr.so.2 => not found
 echo -e "Installing lib32 xrandr"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libxrandr
+sudo pacman --sync --needed --noconfirm lib32-libxrandr
 echo -e "\n"
 
 # libXinerama.so.1 => not found
 echo -e "Installing lib32 xinerama"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libxinerama
+sudo pacman --sync --needed --noconfirm lib32-libxinerama
 echo -e "\n"
 
 # libusb-1.0.so.0 => not found
 echo -e "Installing spotify"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libusb
+sudo pacman --sync --needed --noconfirm lib32-libusb
 echo -e "\n"
 
 # libudev.so.0 => not found
 echo -e "Installing lib32 udev"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libudev0-shim
+sudo pacman --sync --needed --noconfirm lib32-libudev0-shim
 echo -e "\n"
 
 # libICE.so.6 => not found
 # libSM.so.6 => not found
 echo -e "Installing spotify"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libsm
+sudo pacman --sync --needed --noconfirm lib32-libsm
 echo -e "\n"
 
 # libpulse.so.0 => not found
 echo -e "Installing lib32 pulse"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libpulse
+sudo pacman --sync --needed --noconfirm lib32-libpulse
 echo -e "\n"
 
 # libdbus-glib-1.so.2 => not found
@@ -177,39 +177,39 @@ echo -e "\n"
 # libnm-util.so.2 => not found
 echo -e "Installing lib32 NM"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libnm-glib
+sudo pacman --sync --needed --noconfirm lib32-libnm-glib
 echo -e "\n"
 
 # libgtk-x11-2.0.so.0 => not found
 echo -e "Installing lib32 GTK2"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-gtk2
+sudo pacman --sync --needed --noconfirm lib32-gtk2
 echo -e "\n"
 
 # Others
 echo -e "Installing lib32 Xft"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libxft
+sudo pacman --sync --needed --noconfirm lib32-libxft
 echo -e "\n"
 
 echo -e "Installing lib32 free type"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-freetype2
+sudo pacman --sync --needed --noconfirm lib32-freetype2
 echo -e "\n"
 
 echo -e "Installing lib32 png12"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libpng12
+sudo pacman --sync --needed --noconfirm lib32-libpng12
 echo -e "\n"
 
 echo -e "Installing lib32 libva"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libva
+sudo pacman --sync --needed --noconfirm lib32-libva
 echo -e "\n"
 
 echo -e "Installing lib32 libvdpau"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-libvdpau
+sudo pacman --sync --needed --noconfirm lib32-libvdpau
 echo -e "\n"
 
 

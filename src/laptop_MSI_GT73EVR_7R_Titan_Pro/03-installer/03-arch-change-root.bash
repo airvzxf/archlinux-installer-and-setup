@@ -12,6 +12,7 @@ set -ve
 
 source ./../00-configuration.bash
 
+# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 # The arch-chroot command emulate that you are login in the mount device
@@ -27,15 +28,15 @@ funcIsConnectedToInternet
 
 funcMountSystem
 
-# Copy the arch change sripts into the root directory
+# Copy the arch change scripts into the root directory
 cp ./../00-configuration.bash /mnt
 cp 99-arch-change-root.bash /mnt
 
 # Copy this project into the root directory
-cp -R ../../../../archLinux-installer-and-setup /mnt/
+cp --recursive ../../../../archLinux-installer-and-setup /mnt/
 
 # Copy root user configurations into the root home
-cp -R ../04-setup/setup-resources/. /mnt/root/
+cp --recursive ../04-setup/setup-resources/. /mnt/root/
 
 # -------------------- #
 # Run Arch Change Root #
@@ -48,22 +49,22 @@ arch-chroot /mnt /99-arch-change-root.bash
 # Clean the resources for Arch Change Root #
 # ---------------------------------------- #
 
-# Delete the arch change sripts from the root directory
-rm -f /mnt/00-configuration.bash
-rm -f /mnt/99-arch-change-root.bash
+# Delete the arch change scripts from the root directory
+rm --force /mnt/00-configuration.bash
+rm --force /mnt/99-arch-change-root.bash
 
 # Unmount partitions
 funcUmountSystem
 
 # Eject the ISO.
-eject -m
+eject --no-unmount
 
 # -------- #
 # Finished #
 # -------- #
 
 # The next step is set up all the operative system.
-# The machine will be reboot, then enter with the created user.
+# The machine will be rebooted, then enter with the created user.
 
 # In the directory 'cd ~/workspace/projects/'.
 # Go inside 'cd archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.

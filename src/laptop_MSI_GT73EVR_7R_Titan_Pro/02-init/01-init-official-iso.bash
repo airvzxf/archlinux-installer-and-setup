@@ -10,7 +10,7 @@ set -ve
 # INIT THE ARCH LINUX INSTALLATION #
 # -------------------------------- #
 
-source ./00-configuration.bash
+source ./../00-configuration.bash
 
 funcIsConnectedToInternet
 
@@ -18,8 +18,9 @@ funcIsConnectedToInternet
 # Set up Pacman #
 # ------------- #
 
+# shellcheck disable=SC2119
 funcSetupPacmanConfiguration
-sed -i -E "s/SigLevel \s?= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
+sed --in-place --regexp-extended "s/SigLevel \s?= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 
 # Stop the automatic system service that updates the mirror list with Reflector. 
 systemctl disable --now reflector
@@ -30,10 +31,11 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup-"$(date +%Y-%m-%d-%H
 # Set the mirror list of Pacman.
 reflector --verbose --score 10 --sort score --protocol https --completion-percent 95 --country "${countryCode}" --connection-timeout 600 --save /etc/pacman.d/mirrorlist
 
+# shellcheck disable=SC2119
 funcCheckPacmanMirror
 
 # Update the database sources in Arch Linux.
-pacman --noconfirm -Syy
+pacman --sync --refresh --refresh --noconfirm
 
 # Ensure the Pacman keyring is properly initialized.
 pacman-key --init
@@ -43,31 +45,32 @@ pacman-key --init
 # ---------------------------- #
 
 # Install the monospace bitmap font (for X11 and console).
-pacman -S --needed --noconfirm terminus-font
+pacman --sync --needed --noconfirm terminus-font
+# shellcheck disable=SC2119
 funcChangeConsoleFont
 # Install the fast distributed version control system.
-pacman -S --needed --noconfirm git
+pacman --sync --needed --noconfirm git
 # Install the Vi Improved, a highly configurable, improved version of the vi text editor.
-pacman -S --needed --noconfirm vim
+pacman --sync --needed --noconfirm vim
 # Install a Python 3 module and script to retrieve and filter the latest Pacman mirror list.
-pacman -S --needed --noconfirm reflector
+pacman --sync --needed --noconfirm reflector
 # Install the record and share terminal sessions.
-pacman -S --needed --noconfirm asciinema
+pacman --sync --needed --noconfirm asciinema
 
 # -------------------------- #
 # Extract Arch Linux project #
 # -------------------------- #
 
 # Cleaning the older downloaded project.
-rm -fR ~/workspace/projects/archLinux-installer-and-setup*
+rm --force --recursive ~/workspace/projects/archLinux-installer-and-setup*
 
-# Create workspace and projects direcotory.
-mkdir -p ~/workspace/projects
-cd ~/workspace/projects
+# Create workspace and projects directory.
+mkdir --parents ~/workspace/projects
+cd ~/workspace/projects || funcDirectoryNotExist
 
 # Clone the git project in your computer.
 git clone https://github.com/airvzxf/archLinux-installer-and-setup.git
-cd ./archLinux-installer-and-setup/
+cd ./archLinux-installer-and-setup/ || funcDirectoryNotExist
 
 # -------- #
 # Finished #

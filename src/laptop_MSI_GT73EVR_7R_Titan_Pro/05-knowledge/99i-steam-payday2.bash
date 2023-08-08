@@ -17,7 +17,7 @@
 yay -S --needed --noconfirm blt4l-runtime-bin
 
 # No audio
-sudo pacman -S --needed --noconfirm pulseaudio
+sudo pacman --sync --needed --noconfirm pulseaudio
 # And reboot to make effect.
 
 # Wikis

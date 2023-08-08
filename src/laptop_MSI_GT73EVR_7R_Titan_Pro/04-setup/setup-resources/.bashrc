@@ -44,7 +44,7 @@ bakwht='\e[47m\]' # White
 txtrst='\e[0m\]' # Text Reset
 
 if [ ! -f ~/.git-prompt.sh ]; then
-  curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
+  curl --location https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
 fi
 
 source ~/.git-prompt.sh
@@ -210,7 +210,7 @@ alias chx-directories='sudo find ./ -type d -exec chmod 755 {} \;'
 alias chr='sudo chmod 644'
 alias chr-files='sudo find ./ -type f -exec chmod 644 {} \;'
 
-alias rmf='rm -rf'
+alias rmf='rm --force --recursive'
 
 alias tar-gzc='tar -zcvf'
 alias tar-bzc='tar -jcvf'
@@ -231,9 +231,9 @@ alias d='date'
 alias now='date +"%T"'
 alias now-date='date +"%m-%d-%Y"'
 
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -E "state|energy\:|time|percentage"'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep --extended-regexp "state|energy\:|time|percentage"'
 alias battery-details='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
-alias battery-watching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep -E \"state|energy\:|time|percentage\""'
+alias battery-watching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep --extended-regexp \"state|energy\:|time|percentage\""'
 
 alias find-here='fh(){ sudo find ./ -iname *"$@"* 2>/dev/null; unset -f fh; }; fh'
 alias find-here-file='fhf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null; unset -f fhf; }; fhf'
@@ -243,8 +243,8 @@ alias find-all='fa(){ sudo find / -iname *"$@"* 2>/dev/null; unset -f fa; }; fa'
 alias find-all-file='faf(){ sudo find / -type f -iname *"$@"* 2>/dev/null; unset -f faf; }; faf'
 alias find-all-dir='fad(){ sudo find / -type d -iname *"$@"* 2>/dev/null; unset -f fad; }; fad'
 
-alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dl; }; dl'
-alias delete-all='dla(){ sudo find / -iname *"$@"* -exec rm -fR {} \; 2>/dev/null; unset -f dla; }; dla'
+alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dl; }; dl'
+alias delete-all='dla(){ sudo find / -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dla; }; dla'
 
 alias x='exit'
 alias cls='printf "\E[\E[2J" && printf "\E[H"'

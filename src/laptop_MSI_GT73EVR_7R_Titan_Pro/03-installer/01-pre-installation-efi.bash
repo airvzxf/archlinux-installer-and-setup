@@ -18,6 +18,7 @@ source ./../00-configuration.bash
 # please change the hard disk vars into the configuration
 # file (./../00-configuration.bash).
 
+# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 funcIsConnectedToInternet
@@ -26,8 +27,9 @@ funcIsConnectedToInternet
 # Set up Pacman #
 # ------------- #
 
+# shellcheck disable=SC2119
 funcSetupPacmanConfiguration
-sed -i -E "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
+sed --in-place --regexp-extended "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 
 # Stop the automatic system service that updates the mirror list with Reflector. 
 systemctl disable --now reflector
@@ -38,10 +40,11 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup-"$(date +%Y-%m-%d-%H
 # Set the mirror list of Pacman.
 reflector --verbose --score 10 --sort score --protocol https --completion-percent 95 --country "${countryCode}" --connection-timeout 600 --save /etc/pacman.d/mirrorlist
 
+# shellcheck disable=SC2119
 funcCheckPacmanMirror
 
-# Updat the database sources in Arch Linux.
-pacman --noconfirm -Syy
+# Update the database sources in Arch Linux.
+pacman --sync --refresh --refresh --noconfirm
 
 # Ensure the Pacman keyring is properly initialized.
 pacman-key --init
@@ -64,25 +67,19 @@ funcIsEfiBios
 # -------------------- #
 
 # Show partitions on the target device.
-fdisk -l "${hardDiskDevice}"
+fdisk --list "${hardDiskDevice}"
 
-# Delete all partitions
-# If you need to clean all your disk and start from zero
-# otherwise skip to the gdisk command.
-# In other case this command is an "UI" to delete, create, edit partitions
-# in your hard disk or USB, it's very useful.
-#cfdisk ${hardDiskDevice}
-
+# Delete all partitions.
 # Warning: This script delete all partitions and data from the selected device.
 
-read -n 1 -r -p "Is this '${hardDiskDevice}' the Hard Disk Device device? [y/N]: " isThisTheHdd
+read -n 1 -r -p "Is this '${hardDiskDevice}' the Hard Disk Device to erase? [y/N]: " isThisTheHdd
 
 funcContinue "${isThisTheHdd}"
 
 # Umount system partitions
 funcUmountSystem
 
-# Erease the hard disk
+# Erase the hard disk
 dd if=/dev/zero of="${hardDiskDevice}" bs=512 count=1 conv=notrunc
 
 # Format the Hard Disk / Device.
@@ -122,13 +119,13 @@ dd if=/dev/zero of="${hardDiskDevice}" bs=512 count=1 conv=notrunc
 funcUmountSystem
 
 # Format the partitions
-mkfs.fat -F32 "${hardDiskDeviceBoot}"
+mkfs.fat -F 32 "${hardDiskDeviceBoot}"
 mkswap "${hardDiskDeviceSwap}"
 mkfs.ext4 -F "${hardDiskDeviceOtherLinux}"
 mkfs.ext4 -F "${hardDiskDeviceArchLinux}"
 
-# Show formated hard disk
-fdisk -l "${hardDiskDevice}"
+# Show formatted hard disk
+fdisk --list "${hardDiskDevice}"
 
 # Mount the file systems
 funcMountSystem

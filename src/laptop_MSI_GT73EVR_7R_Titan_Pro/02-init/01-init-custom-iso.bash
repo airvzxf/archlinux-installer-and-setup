@@ -10,17 +10,18 @@ set -ve
 # INIT THE ARCH LINUX INSTALLATION #
 # -------------------------------- #
 
-source ./00-configuration.bash
+source ./../00-configuration.bash
 
+# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 # -------------------------- #
 # Extract Arch Linux project #
 # -------------------------- #
 
-# Clon the git project in your computer.
-tar -xzf archLinux-installer-and-setup.tar
-cd ./archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/
+# Clone the git project in your computer.
+tar --extract --gzip --file archLinux-installer-and-setup.tar
+cd ./archLinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/ || funcDirectoryNotExist
 
 # -------- #
 # Finished #

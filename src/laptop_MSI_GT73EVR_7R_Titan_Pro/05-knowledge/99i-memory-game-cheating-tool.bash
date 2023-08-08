@@ -11,8 +11,8 @@
 
 git clone https://github.com/scanmem/scanmem
 
-sudo pacman -S --needed --noconfirm libtool
-sudo pacman -S --needed --noconfirm readline
-sudo pacman -S --needed --noconfirm intltool
-sudo pacman -S --needed --noconfirm python
-sudo pacman -S --needed --noconfirm python-gobject
+sudo pacman --sync --needed --noconfirm libtool
+sudo pacman --sync --needed --noconfirm readline
+sudo pacman --sync --needed --noconfirm intltool
+sudo pacman --sync --needed --noconfirm python
+sudo pacman --sync --needed --noconfirm python-gobject

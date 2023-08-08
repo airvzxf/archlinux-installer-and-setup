@@ -62,7 +62,7 @@ echo -e "\n"
 #~ ' | sudo tee ${nvidia_config_file}
 
 # Comment the Nvidia value for is primary GPU
-sudo sed -i '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
 
 echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.bash'.\n"
 
@@ -93,7 +93,7 @@ sudo reboot
 # (WW) The directory "/usr/share/fonts/Type1/" does not exist.
 #sudo pacman -S --needed xorg-fonts-type1
 # (WW) The directory "/usr/share/fonts/OTF/" does not exist.
-#sudo pacman -S --needed --noconfirm xorg-fonts-misc
+#sudo pacman --sync --needed --noconfirm xorg-fonts-misc
 
 # Change the font type
 # https://wiki.archlinux.org/index.php/Font_configuration

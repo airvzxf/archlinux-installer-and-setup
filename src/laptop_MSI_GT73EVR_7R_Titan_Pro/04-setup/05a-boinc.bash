@@ -18,19 +18,19 @@ echo -e ""
 
 echo -e "Installing boinc"
 echo -e ""
-sudo pacman -S --needed --noconfirm boinc
+sudo pacman --sync --needed --noconfirm boinc
 echo -e "\n"
 
 # Install libraries
 echo -e "Installing libraries"
 echo -e ""
-sudo pacman -S --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu lib32-opencl-nvidia xorg-xhost
+sudo pacman --sync --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu lib32-opencl-nvidia xorg-xhost
 echo -e "\n"
 
 # Add your user to the boinc group and settin up
 echo -e "Adding user to boinc group and settin up"
 sudo usermod -a -G boinc $(whoami)
-sudo gpasswd -a boinc video
+sudo gpasswd --add boinc video
 echo -e ""
 
 

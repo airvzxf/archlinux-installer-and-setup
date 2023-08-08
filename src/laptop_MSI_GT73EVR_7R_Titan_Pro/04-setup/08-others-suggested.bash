@@ -16,7 +16,7 @@ funcIsConnectedToInternet
 echo -e ""
 echo -e "Installing Mind maps"
 echo -e ""
-sudo pacman -S --needed --noconfirm freemind
+sudo pacman --sync --needed --noconfirm freemind
 echo -e "\n"
 
 
