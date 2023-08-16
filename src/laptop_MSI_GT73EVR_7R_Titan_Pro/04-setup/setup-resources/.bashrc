@@ -1,6 +1,4 @@
-#
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -9,327 +7,323 @@ if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 
 #~ PS1='[\u@\h \W]\$ '
 
-txtblk='\e[0;30m\]' # Black - Regular
-txtred='\e[0;31m\]' # Red
-txtgrn='\e[0;32m\]' # Green
-txtylw='\e[0;33m\]' # Yellow
-txtblu='\e[0;34m\]' # Blue
-txtpur='\e[0;35m\]' # Purple
-txtcyn='\e[0;36m\]' # Cyan
-txtwht='\e[0;37m\]' # White
-bldblk='\e[1;30m\]' # Black - Bold
-bldred='\e[1;31m\]' # Red
-bldgrn='\e[1;32m\]' # Green
-bldylw='\e[1;33m\]' # Yellow
-bldblu='\e[1;34m\]' # Blue
-bldpur='\e[1;35m\]' # Purple
-bldcyn='\e[1;36m\]' # Cyan
-bldwht='\e[1;37m\]' # White
-unkblk='\e[4;30m\]' # Black - Underline
-undred='\e[4;31m\]' # Red
-undgrn='\e[4;32m\]' # Green
-undylw='\e[4;33m\]' # Yellow
-undblu='\e[4;34m\]' # Blue
-undpur='\e[4;35m\]' # Purple
-undcyn='\e[4;36m\]' # Cyan
-undwht='\e[4;37m\]' # White
-bakblk='\e[40m\]' # Black - Background
-bakred='\e[41m\]' # Red
-bakgrn='\e[42m\]' # Green
-bakylw='\e[43m\]' # Yellow
-bakblu='\e[44m\]' # Blue
-bakpur='\e[45m\]' # Purple
-bakcyn='\e[46m\]' # Cyan
-bakwht='\e[47m\]' # White
-txtrst='\e[0m\]' # Text Reset
+# Terminal
+# Decorations ~ \e[X;30m
+# 0 - Regular text
+# 1 - Bold text
+# 4 - Underline text
+# Colors ~ \e[1;XXm
+# 30 - Black
+# 31 - Red
+# 32 - Green
+# 33 - Yellow
+# 34 - Blue
+# 35 - Purple
+# 36 - Cyan
+# 37 - White
+# Background ~ \e[XXm
+# 40 - Black
+# 41 - Red
+# 42 - Green
+# 43 - Yellow
+# 44 - Blue
+# 45 - Purple
+# 46 - Cyan
+# 47 - White
+# Reset text color and decoration
+text_color_reset='\e[0m'
 
-if [ ! -f ~/.git-prompt.sh ]; then
-  curl --location https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
-fi
+color_my_prompt() {
+  local _git
+  _git=""
 
-source ~/.git-prompt.sh
+  local _red_color
+  _red_color='\e[0;31m'
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWUPSTREAM="auto"
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWCOLORHINTS=1
+  local _green_color
+  _green_color='\e[0;32m'
 
-function color_my_prompt {
-  local __user_and_host="${bldylw}\u${bldwht}@${bldgrn}\h ${txtwht}| ${bldwht}\t (\d)\n"
-  local __cur_location="${txtcyn}\w"
-  local __git_branch='$(__git_ps1 "\n(%s)")'
-  local __prompt_tail="\n$"
-  local __last_color="${txtrst}"
+  local _yellow_color
+  _yellow_color='\e[0;33m'
 
-  # Capture the output of the "git status" command.
-  git_status="$(git status 2> /dev/null)"
+  local _cyan_color
+  _cyan_color='\e[0;36m'
 
-  # Set color based on clean/staged/dirty.
-  if [[ ${git_status} =~ "othing to commit" ]]; then
-    state="${bldgrn}"
-  elif [[ ${git_status} =~ "Changes to be committed" ]]; then
-    state="${bldylw}"
-  else
-    state="${bldred}"
+  local _white_color
+  _white_color='\e[0;37m'
+
+  local _red_color_bold
+  _red_color_bold='\e[1;31m'
+
+  local _green_color_bold
+  _green_color_bold='\e[1;32m'
+
+  local _yellow_color_bold
+  _yellow_color_bold='\e[1;33m'
+
+  local _white_color_bold
+  _white_color_bold='\e[1;37m'
+
+  # Check if Git project is present in the folder.
+  if [[ -d .git ]]; then
+    _git+="\n${text_color_reset}Git:"
+
+    local _text_color
+    local _identifier
+    _identifier="DELETE_THIS_LINE"
+
+    # Get staged changes.
+    local _staged_changes
+    _staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^ [ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
+    _text_color="${text_color_reset}"
+    if [[ ${_staged_changes} != "0" ]]; then
+      _text_color="${_green_color}"
+    fi
+    _git+=" ${_text_color}${_staged_changes} staged ${text_color_reset}|"
+
+    # Get not staged changes.
+    local _not_staged_changes
+    _not_staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^[ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
+    _text_color="${text_color_reset}"
+    if [[ ${_not_staged_changes} != "0" ]]; then
+      _text_color="${_yellow_color}"
+    fi
+    _git+=" ${_text_color}${_not_staged_changes} not staged ${text_color_reset}|"
+
+    # Get untracked changes.
+    local _untracked_changes
+    _untracked_changes=$(\git status --short | \sed "s|^[^??].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
+    _text_color="${text_color_reset}"
+    if [[ ${_untracked_changes} != "0" ]]; then
+      _text_color="${_red_color}"
+    fi
+    _git+=" ${_text_color}${_untracked_changes} untracked ${text_color_reset}|"
   fi
 
-  # Collect the number of commits ahead or behind origin.
-  sym="$(echo \"${git_status}\" | sed -r 's/.*by[[:blank:]]([0-9]*)[[:blank:]]commit.*/\1/' | grep '[0-9]' 2> /dev/null)"
-
-  # Add marker for origin status with number of commits ahead (+) or behind (-)
-  if [[ ${git_status} =~ "branch is ahead of" ]]; then
-    sym="[+"${sym}"]"
-  elif [[ ${git_status} =~ "branch is behind" ]]; then
-    sym="[-"${sym}"]"
-  else
-    sym=""
+  # User color.
+  local _user_text_color
+  _user_text_color="${_yellow_color_bold}"
+  if [[ "$(whoami)" == "root" ]]; then
+    _user_text_color="${_red_color_bold}"
   fi
 
-  export PS1="${__user_and_host}${__cur_location}${state}${__git_branch}${sym}${__last_color}${__prompt_tail} "
+  # User prompt tail.
+  local _prompt_tail
+  _prompt_tail="\n"
+  if [[ "$(whoami)" == "root" ]]; then
+    _prompt_tail+="${_red_color}#${text_color_reset}"
+  else
+    _prompt_tail+="${_yellow_color}\$${text_color_reset}"
+  fi
+
+  # Get max number of columns and create a division line.
+  local _terminal_max_columns
+  _terminal_max_columns="$(tput cols)"
+  local _division_color
+  _division_color="\e[45;35m"
+  local _split_prompt
+  _split_prompt="${text_color_reset}${_division_color}"
+  local i
+  for ((i = 0; i < _terminal_max_columns; i++)); do
+    _split_prompt+="-"
+  done
+  _split_prompt+="${text_color_reset}\n\n"
+
+  # Generate the user and path information.
+  local _user_and_host="${_user_text_color}\u${_white_color_bold}@${_green_color_bold}\h ${_white_color}| ${_white_color_bold}\t (\d)\n"
+  local _cur_location="${_cyan_color}\w"
+
+  # Set the prompt.
+  export PS1="${_split_prompt}${_user_and_host}${_cur_location}${_git}${_prompt_tail} "
 }
 
-PROMPT_COMMAND=color_my_prompt
+error_handler() {
+  local exit_code
+  exit_code="${1}"
 
-is_prompted=false
+  local error_color
+  error_color="\e[41;33m"
 
-pre_invoke_exec () {
+  echo -e "${text_color_reset}${error_color}ERROR | Exit code: ${1}${text_color_reset}"
+  echo ""
+}
+
+pre_invoke_exec() {
   [ -n "$COMP_LINE" ] && return
 
-  if [ "$BASH_COMMAND" == "clear" ] || [[ "$BASH_COMMAND" == 'printf "'* ]]
-  then
-    is_prompted=false
-    return
-  fi
+  if [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ]; then
+    local last_command_history
+    last_command_history="$(history 1)"
 
-  if [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ]
-  then
-    if $is_prompted
-    then
-      echo -e "\n\n"
+    local last_word_command
+    last_word_command=$(echo "$last_command_history" | awk '{print $NF}')
+
+    if [[ ${last_word_command} =~ "clear" ]]; then
+      return
     fi
 
-    is_prompted=true
+    echo ""
+    echo ""
+  else
+    local command_color
+    command_color="\e[44;37m"
+
+    echo -e "\n${text_color_reset}${command_color}BASH COMMAND | ${BASH_COMMAND}${text_color_reset}"
   fi
 }
 
-if [ $(whoami) != "root" ]; then
-  trap 'pre_invoke_exec' DEBUG
-fi
-
-function make_completion_wrapper () {
-  local function_name="${2}"
-  local arg_count=$(($#-3))
-  local comp_function_name="${1}"
-  shift 2
-  local function="
-function $function_name {
-  ((COMP_CWORD+=$arg_count))
-  COMP_WORDS=( "$@" \${COMP_WORDS[@]:1} )
-  "$comp_function_name"
-  return 0
-}"
-  eval "$function"
-}
-
+# Alias to make easier the life.
 alias sudo='sudo '
-alias watching='watch -n 0.1 '
-
+alias ..........='cd ../../../../../'
+alias ........='cd ../../../../'
+alias ......='cd ../../../'
+alias ....='cd ../../'
+alias ..='cd ../'
+alias battery-details='upower --show-info /org/freedesktop/UPower/devices/battery_BAT1'
+alias battery-watching='watch --interval 1 upower --show-info /org/freedesktop/UPower/devices/battery_BAT1 "| grep --extended-regexp \"state:|energy:|time:|percentage:\""'
+alias battery='upower --show-info /org/freedesktop/UPower/devices/battery_BAT1 | grep --extended-regexp "state:|energy:|time:|percentage:"'
+alias c='galculator &'
+alias chr-directories='sudo find ./ -type d -exec chmod 644 {} \;'
+alias chr-files='sudo find ./ -type f -exec chmod 644 {} \;'
+alias chr='sudo chmod 644'
+alias chx-directories='sudo find ./ -type d -exec chmod 755 {} \;'
+alias chx-files='sudo find ./ -type f -exec chmod 755 {} \;'
+alias chx='sudo chmod 755'
+alias clr='clear && printf "\E[3J"'
+alias cls='printf "\E[\E[2J" && printf "\E[H"'
+alias column-table='column --table'
+alias cpu-info='lscpu'
+alias cpu-temperature='sensors | grep --color=always Core'
+alias d='date'
+alias desktop='cd ~/Desktop'
+alias df-table='df --human-readable --portability --print-type | column --table'
+alias docker-clean-network='docker network rm "$(docker network ls --quiet --filter name=NAME_OF_THE_NETWORK)"'
+alias docker-clean-service='docker service rm "$(docker service ls --quiet)"'
+alias docker-clean='docker container stop "$(docker ps --all --quiet)" && docker container rm "$(docker ps -aq)"'
+alias docker-ls='docker container ls --all; echo ""; docker image ls --all; echo ""; docker service ls; echo ""; docker network ls; echo ""; docker node ls'
+alias downloads='cd ~/Downloads'
+alias du-dir-sorted='du --human-readable --max-depth 1 | sort --human-numeric-sort'
+alias du-sorted='du --all --human-readable --max-depth 1 | sort --human-numeric-sort'
+alias enable-attach-process='echo "0" | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+alias gpu-memory-info='grep --color=always --ignore-case memory /var/log/Xorg.0.log'
+alias grep-color='grep --color=always'
+alias h-search='history | grep --color=always'
+alias h='history'
+alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
+alias j='jobs -l'
+alias l='ls --color=always --human-readable --all'
+alias ld.='ls --color=always --human-readable --all --directory .*'
+alias ld='ls --color=always --human-readable --all --directory */'
+alias ldi.='ls --color=always --human-readable --all --inode --directory .*'
+alias ldi='ls --color=always --human-readable --all --inode --directory */'
+alias li='ls --color=always --human-readable --all --inode'
+alias ll='ls --color=always -l --human-readable --all'
+alias lld.='ls --color=always -l --human-readable --all --directory .*'
+alias lld='ls --color=always -l --human-readable --all --directory */'
+alias lldi.='ls --color=always -l --human-readable --all --inode --directory .*'
+alias lldi='ls --color=always -l --human-readable --all --inode --directory */'
+alias lli='ls --color=always -l --human-readable --all --inode'
+alias llp='stat --format "%a (%A) %n" *'
+alias m='spotify >/dev/null 2>&1 &'
+alias memory-clean='sudo bash -c "echo 3 >/proc/sys/vm/drop_caches; swapoff --all; swapon --all; echo \"RAM cache and SWAP were cleared.\""'
+alias memory-info='free --human --mebi --lohi --total'
+alias mount-table='mount | column --table'
+alias my-public-ip='curl icanhazip.com'
+alias netstat-local='netstat --tcp --udp --listening --program --numeric'
+alias network-monitor-ethernet='sudo bmon --use-bit --policy enp4s0'
+alias network-monitor-wifi='sudo bmon --use-bit --policy wlp2s0'
+alias now-date='date +"%m-%d-%Y"'
+alias now-time='date +"%T"'
+alias nvs='nvidia-settings >/dev/null 2>&1 &'
+alias oc="oc4"
+alias off='sudo poweroff'
+alias p='cd ~/workspace/projects'
+alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
+alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.bash'
+alias phone-screencast-record='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --record android-record-$(date +"%Y%m%d-%H%M%S-%N").mp4 --serial '
+alias phone-screencast='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --serial '
+alias phone-screenshot='adb exec-out screencap -p > "android-screenshot-$(date +"%Y%m%d-%H%M%S-%N").png"'
+alias ping-fast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
+alias pip-list='pip list --format columns'
+alias pip-outdate='pip list --outdated'
+alias pip-upgrade="pip list --outdated 2> /dev/null | tail --lines +3 | cut --fields 1 --delimiter ' ' | xargs --max-args 1 pip install --upgrade"
+alias ps-cpu='ps auxf | sort --numeric-sort --reverse --key 3 | head --lines 5'
+alias ps-memory='ps auxf | sort --numeric-sort --reverse --key 4 | head --lines 5'
+alias psg="ps aux | grep --invert-match grep | grep --color=always --ignore-case --line-number --regexp VSZ --regexp"
+alias rmf='rm --force --recursive'
+alias rm-special-characters='rm --force --recursive --'
+alias rs='sudo reboot'
+alias screenshot='xfce4-screenshooter'
 alias src='source ~/.bash_profile'
-
+alias systemctl-list-enabled='sudo systemctl list-unit-files --state enabled'
+alias tar-bz-create='tar --bzip2 --create --verbose --file'
+alias tar-bz-extract='tar --bzip2 --extract --verbose --file'
+alias tar-bz-list='tar --bzip2 --list --verbose --file'
+alias tar-gz-create='tar --gzip --create --verbose --file'
+alias tar-gz-extract='tar --gzip --extract --verbose --file'
+alias tar-gz-list='tar --gzip --list --verbose --file'
+alias tar-xz-create='tar --xz --create --verbose --file'
+alias tar-xz-extract='tar --xz --extract --verbose --file'
+alias tar-xz-list='tar --xz --list --verbose --file'
+alias top-cpu='top --sort-override %CPU'
+alias top-memory='top --sort-override %MEM'
+alias upgrade-logs='cat /var/log/pacman.log | grep --color=always --extended-regexp "\[ALPM\]\s+(upgraded|installed|removed|warning|downgraded)"'
+alias upgrade-logs-short='cat /var/log/pacman.log | grep --color=always --extended-regexp "\[ALPM\]\s+(upgraded|installed|removed|warning|downgraded)" | tail --lines 200'
+alias upgrade='sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm && yay --sync --aur --sysupgrade --answerclean All --noconfirm && yay --sync --clean --noconfirm'
+alias v='alsamixer'
+alias watching='watch --interval 0.1 '
+alias web='firefox >/dev/null 2>&1 &'
+alias workspace='cd ~/workspace'
+alias x='exit'
 alias xterm-tmux='xterm -fullscreen tmux >/dev/null 2>&1 &'
 
-alias ls='ls --color=always'
-alias l='ls --color=always -lh'
-alias li='ls --color=always -lhi'
-alias l.='ls --color=always -lhadi .*'
-alias li.='ls --color=always -lhadi .*'
-alias ll='ls --color=always -lha'
-alias lli='ls --color=always -lhai'
-alias llp='stat -c "%a (%A) %n" *'
+# Functions that act as aliases.
+delete-all-permanent() { sudo find / -iname "*${*}*" -exec rm --force --recursive {} \; 2> /dev/null; }
+delete-here-permanent() { sudo find ./ -iname "*${*}*" -exec rm --force --recursive {} \; 2> /dev/null; }
+find-all() { sudo find / -iname "*${*}*" 2> /dev/null; }
+find-all-directory() { sudo find / -type d -iname "*${*}*" 2> /dev/null; }
+find-all-file() { sudo find / -type f -iname "*${*}*" 2> /dev/null; }
+find-here() { sudo find ./ -iname "*${*}*" 2> /dev/null; }
+find-here-directory() { sudo find ./ -type d -iname "*${*}*" 2> /dev/null; }
+find-here-file() { sudo find ./ -type f -iname "*${*}*" 2> /dev/null; }
+packages-installed-by-size() { pacman --query --info | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort --human-numeric-sort; }
+pid-by-name() { pgrep --full "${*}"; }
+pid-search-files() { sudo lsof -p "$(pgrep --full --delimiter ',' "${*}")"; }
+pid-search-files-filtered() { sudo lsof -p "$(pgrep --full --delimiter ',' "${1}")" | grep --color=always --ignore-case "${2}"; }
+pip-install() { pip install "${*}"; }
+pip-uninstall() { pip uninstall --yes "${*}"; }
 
-# alias diff='colordiff'
-
-alias grep='grep --color=always'
-# alias grepi='gp(){ sudo grep --color=always -nirs $1 $2./; unset -f gp; }; gp'
-# alias egrepi='egp(){ sudo egrep --color=always -nirs $1 $2./; unset -f egp; }; egp'
-# alias fgrepi='fgp(){ sudo fgrep --color=always -nirs $1 $2./; unset -f fgp; }; fgp'
-# alias pgrepi='pgp(){ sudo pgrep -il $1; unset -f pgp; }; pgp'
-
-alias h='history'
-alias h-grep='history | grep'
-alias j='jobs -l'
-alias du-fast='du -had 1 | sort -rh'
-alias du-dir-fast='du -hd 1 | sort -rh'
-alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-
-alias cpu='top -o %CPU'
-alias mem='top -o %MEM'
-alias cpu-temp='sensors | grep Core'
-alias memory-info='free -mlt'
-alias ps-mem='ps auxf | sort -nr -k 4 | head -5'
-alias ps-cpu='ps auxf | sort -nr -k 3 | head -5'
-alias cpu-info='lscpu'
-alias gpu-memory-info='grep -i --color memory /var/log/Xorg.0.log'
-
-alias memory-clean='sudo sh -c "echo 3 >/proc/sys/vm/drop_caches && swapoff -a && swapon -a && printf \"\n%s\n\" \"Ram-cache and Swap Cleared\""'
-
-function set_brightness_at() {
-  is_number=^[0-9]+$
-  default_brightness=90
-  max_brightness=$(cat /sys/class/backlight/nvidia_0/max_brightness)
-  brightness=${default_brightness}
-
-  if [[ ${1} =~ ${is_number} ]]
-  then
-    if [ ${1} -gt "-1" ] && [ ${1} -lt $((${max_brightness} + 1)) ]
-    then
-      brightness=${1}
-    fi
-  fi
-
-  sudo echo ${brightness} > /sys/class/backlight/nvidia_0/brightness
-
-  echo -e "Max brightness: ${max_brightness}"
-  echo -e "Set the brightness at ${brightness}"
-}
-
-DECL=`declare -f set_brightness_at`
-alias brightness-at='sbrgss(){ sudo bash -c "$DECL; set_brightness_at ${1}"; unset -f sbrgss; }; sbrgss'
-alias brightness-is='cat /sys/class/backlight/nvidia_0/brightness'
-
-alias ping-fast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
-
-alias ..='cd ../'
-alias ....='cd ../../'
-alias ......='cd ../../../'
-alias ........='cd ../../../../'
-alias ..........='cd ../../../../../'
-
-alias chx='sudo chmod 755'
-alias chx-directories='sudo find ./ -type d -exec chmod 755 {} \;'
-alias chr='sudo chmod 644'
-alias chr-files='sudo find ./ -type f -exec chmod 644 {} \;'
-
-alias rmf='rm --force --recursive'
-
-alias tar-gzc='tar -zcvf'
-alias tar-bzc='tar -jcvf'
-alias tar-xzc='tar -Jcvf'
-alias tar-gzx='tar -zxvf'
-alias tar-bzx='tar -jxvf'
-alias tar-xzx='tar -Jxvf'
-alias tar-gz-list='tar -ztvf'
-alias tar-bz-list='tar -jtvf'
-alias tar-xz-list='tar -Jtvf'
-
-alias ct='column -t'
-alias df-fast='df -hPT | column -t'
-alias mount-info='mount | column -t'
-alias mount-fat32='fh(){ sudo mount -t vfat $1 $2 -o rw,uid=$(id -u),gid=$(id -g); unset -f fh; }; fh'
-
-alias d='date'
-alias now='date +"%T"'
-alias now-date='date +"%m-%d-%Y"'
-
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep --extended-regexp "state|energy\:|time|percentage"'
-alias battery-details='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
-alias battery-watching='watch -n 1 upower -i /org/freedesktop/UPower/devices/battery_BAT1 "| grep --extended-regexp \"state|energy\:|time|percentage\""'
-
-alias find-here='fh(){ sudo find ./ -iname *"$@"* 2>/dev/null; unset -f fh; }; fh'
-alias find-here-file='fhf(){ sudo find ./ -type f -iname *"$@"* 2>/dev/null; unset -f fhf; }; fhf'
-alias find-here-dir='fhd(){ sudo find ./ -type d -iname *"$@"* 2>/dev/null; unset -f fhd; }; fhd'
-
-alias find-all='fa(){ sudo find / -iname *"$@"* 2>/dev/null; unset -f fa; }; fa'
-alias find-all-file='faf(){ sudo find / -type f -iname *"$@"* 2>/dev/null; unset -f faf; }; faf'
-alias find-all-dir='fad(){ sudo find / -type d -iname *"$@"* 2>/dev/null; unset -f fad; }; fad'
-
-alias delete='dl(){ sudo find ./ -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dl; }; dl'
-alias delete-all='dla(){ sudo find / -iname *"$@"* -exec rm --force --recursive {} \; 2>/dev/null; unset -f dla; }; dla'
-
-alias x='exit'
-alias cls='printf "\E[\E[2J" && printf "\E[H"'
-alias clr='clear && printf "\E[3J"'
-
-alias systemctl-enabled='systemctl list-unit-files --state enabled'
-pidbyname(){ ps -a | grep -i ${1} | cut -d' ' -f2; }
-alias pid-by-name='pidbyname'
-pidsf(){ sudo lsof -p `pid-by-name ${1}` | grep -i ${2}; }
-alias process-search-files='pidsf'
-
-alias upgrade='sudo powerpill -Syyu --noconfirm && yay -Sau --noconfirm && yay -Yc --noconfirm'
-alias upgrade-logs='cat /var/log/pacman.log | fgrep "[ALPM] upgraded" | tail -100'
-alias pacman-unlock='sudo rm /var/lib/pacman/db.lck'
-pacmanbysize(){ pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -hr | head -25; }
-alias pacman-by-size='pacmanbysize'
-
-alias rs='upgrade && sudo reboot'
-alias off='upgrade && sudo poweroff'
-
-alias pip-list='pip list --format columns'
-alias pip-outdate='pip list --outdated --format freeze'
-alias pip-upgrade="pip list --outdated --format freeze | sed 's/=.*//g' | xargs -n1 sudo pip install -U"
-alias pip-search='pps(){ pip search $1 | sort; unset -f pps; }; pps'
-alias pip-install='ppi(){ sudo pip install $1; unset -f ppi; }; ppi'
-
-alias attach-process='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
-
-alias m='spotify >/dev/null 2>&1 &'
-alias web='firefox >/dev/null 2>&1 &'
-alias myip='curl icanhazip.com'
-alias boinc='cd ~/workspace/boinc/ && /usr/bin/boinc'
-alias boinc-mgr='cd ~/workspace/boinc/ && boincmgr &'
-alias screenshot='xfce4-screenshooter'
-alias nv='nvidia-settings >/dev/null 2>&1 &'
-alias ph='phoronix-test-suite'
-alias v='alsamixer'
-alias downloads='cd ~/Downloads'
-alias desktop='cd ~/Desktop'
-alias workspace='cd ~/workspace'
-alias p='cd ~/workspace/projects'
-alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.bash'
-alias calculator='galculator &'
-alias local-netstat='netstat -tulpn'
-alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
-alias phone-screenshot='adb exec-out screencap -p > "cellphone-screenshot-$(date +"%Y%m%d-%H%M%S-%N").png"'
-alias phone-screencast='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --serial '
-alias phone-screencast-record='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --record cellphone_record_$(date +"%Y%m%d").mp4 --serial '
-alias network-monitor-ethernet='sudo bmon -b -p enp4s0'
-alias network-monitor-wifi='sudo bmon -b -p wlp2s0'
-
-alias ddd-fix="sed '/not set/d' -i $HOME/.ddd/init"
-
-#alias docker-clean-service="docker service rm $(docker service ls -q)"
-#alias docker-clean-network="docker network rm $(docker network ls -q -f name=python_ecommerce_app_dev_service_webnet)"
-#alias docker-clean="docker container stop $(docker ps -aq) && docker container rm $(docker ps -aq)"
-#alias docker-ls="docker container ls --all && echo '' && docker image ls --all && echo ''  && docker service ls && echo ''  && docker network ls && echo '' && docker node ls"
-alias oc="oc4"
-
-function connect_to_the_internet() {
+connect_to_the_internet() {
+  local configuration_name
   configuration_name=$1
-  max_retrys=20
+
+  local max_retries
+  max_retries=20
+
+  local target_domain
   target_domain='www.google.com'
 
-  ping='ping -c 1 -q $target_domain >> /dev/null 2>&1'
+  local ping_command
+  ping_command="ping -c 1 -q ${target_domain} >> /dev/null 2>&1"
+
+  local counter
   counter=0
+
+  local first_time
   first_time=true
 
   sudo netctl stop-all
 
-  while true
-  do
-    let "counter++"
+  while true; do
+    counter+=1
 
-    eval $ping
-    if [ $? -ne 0 ]
-    then
-      echo "Try to PING: "$(date "+%a, %T%t")
+    if eval "${ping_command}"; then
+      echo "Try to PING: $(date '+%a, %T%t')"
 
-      if [[ $counter == $max_retrys || $first_time == true ]]
-      then
+      if [[ ${counter} == "${max_retries}" || ${first_time} == "true" ]]; then
         counter=0
         first_time=false
-
-        sudo netctl restart $configuration_name
+        sudo netctl restart "${configuration_name}"
       fi
     else
       break
@@ -344,6 +338,9 @@ alias home-ethernet='connect_to_the_internet ethernet-dhcp'
 alias usb-ethernet='connect_to_the_internet enp0s20u1u4-Home'
 alias villas='connect_to_the_internet wlp2s0-INFINITUMh75z'
 
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
+PROMPT_COMMAND=color_my_prompt
+
+#if [ "$(whoami)" != "root" ]; then
+trap 'error_handler ${?}' ERR
+trap 'pre_invoke_exec' DEBUG
+#fi
