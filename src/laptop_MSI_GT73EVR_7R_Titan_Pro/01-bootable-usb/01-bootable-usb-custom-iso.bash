@@ -46,25 +46,25 @@ reflector
 asciinema
 ' >> ./packages.x86_64
 
-# Workspace and projects directory.
+# Workspace and projects directory path.
 project_path="workspace/projects"
 
 # Create the workspace directory into the work directory.
 mkdir --parents ./airootfs/root/"${project_path}"
-mkdir --parents ./airootfs/root/"${project_path}"/02-init
 
 # Copy the Arch Linux script in the workspace directory.
-cp "${currentDirectory}"/../00-configuration.bash ./airootfs/root/"${project_path}"/
-cp "${currentDirectory}"/../02-init/01-init-custom-iso.bash ./airootfs/root/"${project_path}"/02-init/
+cp --recursive "${currentDirectory}"/../../../../archlinux-installer-and-setup ./airootfs/root/"${project_path}"/
 
-# Compress ArchLinux project and add into the root directory in Arch ISO.
-tar --create --gzip --file ./airootfs/root/"${project_path}"/archlinux-installer-and-setup.tar "${currentDirectory}"/../../../../archlinux-installer-and-setup
-
+# Function to change some parameters in the pacman.conf file.
 funcSetupPacmanConfiguration ./
+
+# Change the pacman.conf file to trust all packages, even if the signature is not correct.
 sed --in-place --regexp-extended "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" ./pacman.conf
 
-# Set up the Profile configuration file.
-sed --in-place "s/  \[\"\/root\/.automated_script.sh\"\]=\"0:0:755\"/  \[\"\/root\/.automated_script.sh\"\]=\"0:0:755\"\n  \[\"\/root\/workspace\/projects\/01-init-custom-iso.bash\"\]=\"0:0:755\"/g" ./profiledef.sh
+# Configure the profile to grant execute permissions to project scripts.
+word_match='  \["/root/.automated_script.sh"\]="0:0:755"'
+installer_path='  \["/root/workspace/projects/archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/"\]="0:0:755"'
+\sed --in-place "s|${word_match}|${word_match}\n${installer_path}|" ./profiledef.sh
 
 # Build the ISO file.
 sudo mkarchiso -v ./
@@ -74,6 +74,16 @@ for filename in ./out/*.iso; do
   echo "Rename: ${filename} to ./out/${archIsoFile}"
   sudo mv "${filename}" ./out/"${archIsoFile}"
 done
+
+# -------- #
+# Finished #
+# -------- #
+
+# The next step is restart your computer and init the system with your USB.
+# In the directory 'cd /home/root/workspace/projects/'.
+# Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
+# Go to the folder 'cd 03-installer/'.
+# and execute the file './01-pre-installation-efi.bash'.
 
 # ------------------- #
 # Create the USB Live #
@@ -97,10 +107,10 @@ read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheU
 funcContinue "${isThisTheUsb}"
 
 # Umount the USB device.
-sudo umount --recursive /dev/"${usbDevice}" &>/dev/null || true
+sudo umount --recursive /dev/"${usbDevice}" &> /dev/null || true
 
 # Delete all the partitions in the selected USB.
-dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &>/dev/null
+dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
 
 # Create all partitions and formatting your USB properly.
 (
@@ -112,7 +122,7 @@ dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &>/dev/null
   echo   # Last sector (Accept default: varies)
   echo a # Toggle a bootable flag
   echo w # Write changes
-) | sudo fdisk /dev/"${usbDevice}" &>/dev/null
+) | sudo fdisk /dev/"${usbDevice}" &> /dev/null
 
 # Upload Arch Linux ISO into the USB.
 cat "${archIsoFilePath}" > /dev/"${usbDevice}"
@@ -127,7 +137,7 @@ read -n 1 -r -p "Do you want to remove the work directory for Arch ISO? [Y/n]: "
 # Clean Arch ISO creation #
 # ----------------------- #
 
-if ! [[ "${isArchIsoDirectoryRemoved}" =~ ^([nN])+$ ]]; then
+if ! [[ ${isArchIsoDirectoryRemoved} =~ ^([nN])+$ ]]; then
   sudo rm --force --recursive "${archIsoDirectory}"
   echo "The work directory for Arch ISO was deleted."
 fi
@@ -137,6 +147,7 @@ fi
 # -------- #
 
 # The next step is restart your computer and init the system with your USB.
-# In the directory '/home/root/'.
-# Go to the directory 'cd workspace/projects/'.
-# Then execute './01-init-custom-iso.bash'.
+# In the directory 'cd /home/root/workspace/projects/'.
+# Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
+# Go to the folder 'cd 03-installer/'.
+# and execute the file './01-pre-installation-efi.bash'.

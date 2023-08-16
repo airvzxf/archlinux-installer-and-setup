@@ -10,6 +10,8 @@ set -ve
 # ARCH CHANGE ROOT #
 # ---------------- #
 
+cd /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/ || funcDirectoryNotExist
+
 source ./../00-configuration.bash
 
 # shellcheck disable=SC2119
@@ -92,8 +94,7 @@ echo "127.0.0.1    localhost" >> /etc/hosts
 echo "::1          localhost" >> /etc/hosts
 
 # Set up the Ethernet connection
-echo \
-'[Match]
+echo '[Match]
 Name=en*
 Name=eth*
 
@@ -110,8 +111,7 @@ RouteMetric=100
 ' | tee /usr/lib/systemd/network/50-ethernet.network
 
 # Set up the Wi-Fi connection
-echo \
-'[Match]
+echo '[Match]
 Name=wl*
 
 [Network]
@@ -127,8 +127,7 @@ RouteMetric=600
 ' | tee /usr/lib/systemd/network/50-wlan.network
 
 # Set up the Mobile connection
-echo \
-'[Match]
+echo '[Match]
 Name=ww*
 
 [Network]
@@ -147,9 +146,6 @@ ln --symbolic /usr/lib/systemd/system/systemd-networkd.service /usr/lib/systemd/
 
 # Enable the system services for network resolved.
 ln --symbolic /usr/lib/systemd/system/systemd-resolved.service /usr/lib/systemd/system/multi-user.target.wants/systemd-resolved.service
-
-# Download and set the Git prompt.
-curl --location https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
 
 # -------------------------- #
 # Set up Grub configurations #
@@ -174,7 +170,7 @@ grub-mkconfig --output /boot/grub/grub.cfg
 # Install the firmware files for Linux - qlogic / Firmware for QLogic devices.
 pacman --sync --needed --noconfirm linux-firmware-qlogic
 
-# Initramfs, create an initial ramdisk environment.
+# Create an initial ramdisk environment.
 mkinitcpio --preset linux
 
 # ---------------------------- #
@@ -197,8 +193,7 @@ gpasswd --add "${userId}" video
 sed --in-place '/%wheel ALL=(ALL:ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # The sudo password is requested one time per session.
-echo \
-'
+echo '
 # Once the password is entered in the console, it is not requesting anymore.
 Defaults:'"${userId}"' timestamp_timeout=-1
 ' | tee --append /etc/sudoers
@@ -213,10 +208,6 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
-# Download and set the Git prompt for the user.
-curl --location https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > /home/"${userId}"/.git-prompt.sh
-chown --recursive "${userId}":users /home/"${userId}"/.git-prompt.sh
-
 # ----------------------- #
 # Copy Arch Linux project #
 # ----------------------- #
@@ -224,7 +215,7 @@ chown --recursive "${userId}":users /home/"${userId}"/.git-prompt.sh
 # Move the ArchLinux project into the user folder.
 mkdir --parents /home/"${userId}"/workspace/projects
 cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
-mv /archlinux-installer-and-setup ./
+cp --recursive /archlinux-installer-and-setup ./
 chown --recursive "${userId}" ./archlinux-installer-and-setup
 chgrp --recursive users ./archlinux-installer-and-setup
 

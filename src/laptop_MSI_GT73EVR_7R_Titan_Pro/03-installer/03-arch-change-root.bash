@@ -28,32 +28,30 @@ funcIsConnectedToInternet
 
 funcMountSystem
 
-# Copy the arch change scripts into the root directory
-cp ./../00-configuration.bash /mnt
-cp 99-arch-change-root.bash /mnt
+# Clean Arch Linux project in target device.
+rm --force --recursive /mnt/archlinux-installer-and-setup
 
-# Copy this project into the root directory
-cp --recursive ../../../../archlinux-installer-and-setup /mnt/
+# Copy this project into the root directory.
+cp --recursive ./../../../../archlinux-installer-and-setup /mnt/
 
-# Copy root user configurations into the root home
-cp --recursive ../04-setup/setup-resources/. /mnt/root/
+# Copy root user configurations into the root home.
+cp --recursive ./../04-setup/setup-resources/. /mnt/root/
 
 # -------------------- #
 # Run Arch Change Root #
 # -------------------- #
 
 # Go to the main Linux partition like a root user.
-arch-chroot /mnt /99-arch-change-root.bash
+arch-chroot /mnt /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/99-arch-change-root.bash
 
 # ---------------------------------------- #
 # Clean the resources for Arch Change Root #
 # ---------------------------------------- #
 
-# Delete the arch change scripts from the root directory
-rm --force /mnt/00-configuration.bash
-rm --force /mnt/99-arch-change-root.bash
+# Delete the arch change scripts from the root directory.
+rm --force --recursive /mnt/archlinux-installer-and-setup
 
-# Unmount partitions
+# Unmount partitions.
 funcUmountSystem
 
 # Eject the ISO.
@@ -69,7 +67,7 @@ eject --no-unmount
 # In the directory 'cd ~/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 04-setup/'.
-# and execute the file './01-setup.bash'.
+# and execute the file './01-basic.bash'.
 
 read -n 1 -s -r -p "Press any key to reboot"
 

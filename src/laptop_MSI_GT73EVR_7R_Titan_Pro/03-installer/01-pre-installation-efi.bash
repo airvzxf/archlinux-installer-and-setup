@@ -29,9 +29,11 @@ funcIsConnectedToInternet
 
 # shellcheck disable=SC2119
 funcSetupPacmanConfiguration
+
+# Change the pacman.conf file to trust all packages, even if the signature is not correct.
 sed --in-place --regexp-extended "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 
-# Stop the automatic system service that updates the mirror list with Reflector. 
+# Stop the automatic system service that updates the mirror list with Reflector.
 systemctl disable --now reflector
 
 # Back up the mirror list of Pacman.
@@ -84,36 +86,36 @@ dd if=/dev/zero of="${hardDiskDevice}" bs=512 count=1 conv=notrunc
 
 # Format the Hard Disk / Device.
 (
-  echo g     # Create a new empty GPT partition table
-  echo n     # Add a new partition for Boot
-  echo 1     # Partition number
-  echo       # First sector (Accept default: 1)
-  echo "${hardDiskDeviceBootSize}"  # Last sector (Accept default: varies)
-  echo t     # Change a partition type
-  echo 1     # EFI (FAT-12/16/32)
-  echo n     # Add a new partition for swap (RAM)
-  echo 2     # Partition number
-  echo       # First sector (Accept default: 1)
-  echo "${hardDiskDeviceSwapSize}"  # Last sector (Accept default: varies)
-  echo t     # Change a partition type
-  echo 2     # Select partition number
-  echo 19    # Linux swap
-  echo n     # Add a new partition for other O.S
-  echo 3     # Partition number
-  echo       # First sector (Accept default: 1)
-  echo "${hardDiskDeviceOtherLinuxSize}"  # Last sector (Accept default: varies)
-  echo t     # Change a partition type
-  echo 3     # Select partition number
-  echo 20    # Linux filesystem
-  echo n     # Add a new partition for ArchLinux
-  echo 4     # Partition number
-  echo       # First sector (Accept default: 1)
+  echo g                                 # Create a new empty GPT partition table
+  echo n                                 # Add a new partition for Boot
+  echo 1                                 # Partition number
+  echo                                   # First sector (Accept default: 1)
+  echo "${hardDiskDeviceBootSize}"       # Last sector (Accept default: varies)
+  echo t                                 # Change a partition type
+  echo 1                                 # EFI (FAT-12/16/32)
+  echo n                                 # Add a new partition for swap (RAM)
+  echo 2                                 # Partition number
+  echo                                   # First sector (Accept default: 1)
+  echo "${hardDiskDeviceSwapSize}"       # Last sector (Accept default: varies)
+  echo t                                 # Change a partition type
+  echo 2                                 # Select partition number
+  echo 19                                # Linux swap
+  echo n                                 # Add a new partition for other O.S
+  echo 3                                 # Partition number
+  echo                                   # First sector (Accept default: 1)
+  echo "${hardDiskDeviceOtherLinuxSize}" # Last sector (Accept default: varies)
+  echo t                                 # Change a partition type
+  echo 3                                 # Select partition number
+  echo 20                                # Linux filesystem
+  echo n                                 # Add a new partition for ArchLinux
+  echo 4                                 # Partition number
+  echo                                   # First sector (Accept default: 1)
   echo "${hardDiskDeviceArchLinuxSize}"  # Last sector (Accept default: varies)
-  echo t     # Change a partition type
-  echo 4     # Select partition number
-  echo 20    # Linux filesystem
-  echo w     # Write changes
-) | fdisk "${hardDiskDevice}" &>/dev/null
+  echo t                                 # Change a partition type
+  echo 4                                 # Select partition number
+  echo 20                                # Linux filesystem
+  echo w                                 # Write changes
+) | fdisk "${hardDiskDevice}" &> /dev/null
 
 # Umount partitions
 funcUmountSystem

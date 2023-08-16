@@ -125,7 +125,7 @@ funcContinueDefaultYes() {
   fi
 }
 
-# Function to change the Pacman.conf file.
+# Function to change some parameters in the pacman.conf file.
 funcSetupPacmanConfiguration() {
   local etcDirectory
   etcDirectory="/etc"

@@ -56,8 +56,12 @@ mkdir --parents ~/workspace
 # Change user for the xinitrc file.
 sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
-# Intall fonts.
-funcInstallPacmanPackageAndDependencies fontconfig
+#TODO: Install these packages.
+yay -S optional-packages
+yay -S brightness-xrandr
+
+# Install fonts.
+optional-packages fontconfig
 funcInstallPacmanPackageAndDependencies awesome-terminal-fonts
 funcInstallPacmanPackageAndDependencies gnu-free-fonts
 funcInstallPacmanPackageAndDependencies noto-fonts
@@ -221,4 +225,3 @@ read -n 1 -s -r -p "Press any key to reboot"
 
 # Reboot
 sudo reboot
-
