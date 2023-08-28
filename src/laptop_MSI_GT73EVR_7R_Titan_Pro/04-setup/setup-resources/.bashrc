@@ -211,18 +211,18 @@ alias h-search='history | grep --color=always'
 alias h='history'
 alias ij='~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox'
 alias j='jobs -l'
-alias l='ls --color=always --human-readable --all'
-alias ld.='ls --color=always --human-readable --all --directory .*'
-alias ld='ls --color=always --human-readable --all --directory */'
-alias ldi.='ls --color=always --human-readable --all --inode --directory .*'
-alias ldi='ls --color=always --human-readable --all --inode --directory */'
-alias li='ls --color=always --human-readable --all --inode'
-alias ll='ls --color=always -l --human-readable --all'
-alias lld.='ls --color=always -l --human-readable --all --directory .*'
-alias lld='ls --color=always -l --human-readable --all --directory */'
-alias lldi.='ls --color=always -l --human-readable --all --inode --directory .*'
-alias lldi='ls --color=always -l --human-readable --all --inode --directory */'
-alias lli='ls --color=always -l --human-readable --all --inode'
+alias l='lsd --human-readable --all'
+alias ld.='lsd --human-readable --all --directory-only .*'
+alias ld='lsd --human-readable --all --directory-only */'
+alias ldi.='lsd --human-readable --all --inode --directory-only .*'
+alias ldi='lsd --human-readable --all --inode --directory-only */'
+alias li='lsd --human-readable --all --inode'
+alias ll='lsd -l --human-readable --all'
+alias lld.='lsd -l --human-readable --all --directory-only .*'
+alias lld='lsd -l --human-readable --all --directory-only */'
+alias lldi.='lsd -l --human-readable --all --inode --directory-only .*'
+alias lldi='lsd -l --human-readable --all --inode --directory-only */'
+alias lli='lsd -l --human-readable --all --inode'
 alias llp='stat --format "%a (%A) %n" *'
 alias m='spotify >/dev/null 2>&1 &'
 alias memory-clean='sudo bash -c "echo 3 >/proc/sys/vm/drop_caches; swapoff --all; swapon --all; echo \"RAM cache and SWAP were cleared.\""'
@@ -296,26 +296,32 @@ pip-uninstall() { pip uninstall --yes "${*}"; }
 connect_to_the_internet() {
   local configuration_name
   configuration_name=$1
+  echo "configuration_name: ${configuration_name}"
 
   local max_retries
   max_retries=20
+  echo "max_retries: ${max_retries}"
 
   local target_domain
   target_domain='www.google.com'
+  echo "target_domain: ${target_domain}"
 
   local ping_command
   ping_command="ping -c 1 -q ${target_domain} >> /dev/null 2>&1"
 
   local counter
   counter=0
+  echo "counter: ${counter}"
 
   local first_time
   first_time=true
+  echo "first_time: ${first_time}"
 
   sudo netctl stop-all
 
   while true; do
     counter+=1
+    echo "counter: ${counter}"
 
     if eval "${ping_command}"; then
       echo "Try to PING: $(date '+%a, %T%t')"
@@ -323,9 +329,12 @@ connect_to_the_internet() {
       if [[ ${counter} == "${max_retries}" || ${first_time} == "true" ]]; then
         counter=0
         first_time=false
+        echo "counter: ${counter}"
+        echo "first_time: ${first_time}"
         sudo netctl restart "${configuration_name}"
       fi
     else
+      echo "SUCCESS: The ping works good."
       break
     fi
 
