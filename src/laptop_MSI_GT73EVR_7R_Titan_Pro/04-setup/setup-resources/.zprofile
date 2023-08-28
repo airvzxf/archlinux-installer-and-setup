@@ -1,5 +1,0 @@
-#
-# ~/.zprofile
-#
-
-[[ -f ~/.bashrc ]] && . ~/.bashrc
