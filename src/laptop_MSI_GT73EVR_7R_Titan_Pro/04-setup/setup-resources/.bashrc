@@ -61,8 +61,8 @@ color_my_prompt() {
   local _yellow_color_bold
   _yellow_color_bold='\e[1;33m'
 
-  local _black_color_bold
-  _black_color_bold='\e[1;37m'
+  local _white_color_bold
+  _white_color_bold='\e[1;30m'
 
   # Check if the Git project is present in the folder.
   if [[ -d .git ]]; then
@@ -130,7 +130,7 @@ color_my_prompt() {
   _split_prompt+="${text_color_reset}\n\n"
 
   # Generate the user and path information.
-  local _user_and_host="${_user_text_color}\u${_black_color_bold}@${_green_color_bold}\h ${_white_color}| ${_black_color_bold}\t (\d)\n"
+  local _user_and_host="${_user_text_color}\u${_white_color_bold}@${_green_color_bold}\h ${_white_color}| ${_white_color_bold}\t (\d)\n"
   local _cur_location="${_cyan_color}\w"
 
   # Set the prompt.
@@ -166,7 +166,7 @@ pre_invoke_exec() {
     echo ""
   else
     local command_color
-    command_color="\e[44;37m"
+    command_color="\e[44;30m"
 
     echo -e "\n${text_color_reset}${command_color}BASH COMMAND | ${BASH_COMMAND}${text_color_reset}"
   fi
@@ -334,7 +334,7 @@ connect_to_the_internet() {
         sudo netctl restart "${configuration_name}"
       fi
     else
-      echo "SUCCESS: The ping works good."
+      echo "SUCCESS: The ping works well."
       break
     fi
 
