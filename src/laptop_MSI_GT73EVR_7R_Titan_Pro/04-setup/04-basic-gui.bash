@@ -56,7 +56,10 @@ optional-packages --install yes transmission-gtk
 sed --in-place -- 's/wolf/'${userId}'/g' ~/.config/transmission/settings.json
 
 # Install the LibreOffice branch which contains new features and program enhancements.
-#optional-packages --install yes libreoffice-fresh
+optional-packages --install yes libreoffice-fresh
+
+# Install Spanish language pack for LibreOffice Fresh.
+optional-packages --install yes libreoffice-fresh-es
 
 # Install a GTK+ based configuration tool for the Openbox windowmanager.
 optional-packages --install yes obconf
