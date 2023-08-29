@@ -210,7 +210,7 @@ sudo pacman --sync --needed --noconfirm bluez-libs
 sudo pacman --sync --needed --noconfirm bluez-utils
 
 # This package not work properly in my laptop.
-# yay -S bluez-utils-compat
+# yay --sync --needed bluez-utils-compat
 # gpg --recv-keys 06CA9F5D1DCF2659
 
 
@@ -315,9 +315,9 @@ sudo lynis audit system
 
 # rkhunter
 sudo pacman -S lsof
-yay -S skdet
-yay -S tripwire-git
-yay -S net-tools-debian-ifconfig
+yay --sync --needed skdet
+yay --sync --needed tripwire-git
+yay --sync --needed net-tools-debian-ifconfig
 
 sudo rkhunter --propupd
 sudo rkhunter --check --skip-keypress
@@ -355,7 +355,7 @@ ssh -i ./ssh_keys/free_access user@IP
 #-------------------------------------------------------------------------------
 sudo pacman -S virtualbox-host-modules-arch
 sudo pacman -S virtualbox
-yay -S virtualbox-ext-oracle
+yay --sync virtualbox-ext-oracle
 
 # VirtualBox recognize USB.
 sudo vboxmanage internalcommands createrawvmdk -filename  ~/VirtualBoxVMs/usb.vmdk -rawdisk /dev/sdz

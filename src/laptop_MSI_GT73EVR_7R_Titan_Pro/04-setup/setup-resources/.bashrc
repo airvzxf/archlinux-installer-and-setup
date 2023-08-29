@@ -13,29 +13,32 @@ if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 # 1 - Bold text
 # 4 - Underline text
 # Colors ~ \e[1;XXm
-# 30 - Black
+# 30 - White
 # 31 - Red
 # 32 - Green
 # 33 - Yellow
 # 34 - Blue
 # 35 - Purple
 # 36 - Cyan
-# 37 - White
+# 37 - Black
 # Background ~ \e[XXm
-# 40 - Black
+# 40 - White
 # 41 - Red
 # 42 - Green
 # 43 - Yellow
 # 44 - Blue
 # 45 - Purple
 # 46 - Cyan
-# 47 - White
+# 47 - Black
 # Reset text color and decoration
 text_color_reset='\e[0m'
 
 color_my_prompt() {
   local _git
   _git=""
+
+  local _white_color
+  _white_color='\e[0;30m'
 
   local _red_color
   _red_color='\e[0;31m'
@@ -49,9 +52,6 @@ color_my_prompt() {
   local _cyan_color
   _cyan_color='\e[0;36m'
 
-  local _white_color
-  _white_color='\e[0;37m'
-
   local _red_color_bold
   _red_color_bold='\e[1;31m'
 
@@ -61,10 +61,10 @@ color_my_prompt() {
   local _yellow_color_bold
   _yellow_color_bold='\e[1;33m'
 
-  local _white_color_bold
-  _white_color_bold='\e[1;37m'
+  local _black_color_bold
+  _black_color_bold='\e[1;37m'
 
-  # Check if Git project is present in the folder.
+  # Check if the Git project is present in the folder.
   if [[ -d .git ]]; then
     _git+="\n${text_color_reset}Git:"
 
@@ -120,7 +120,7 @@ color_my_prompt() {
   local _terminal_max_columns
   _terminal_max_columns="$(tput cols)"
   local _division_color
-  _division_color="\e[45;35m"
+  _division_color="\e[8;45m"
   local _split_prompt
   _split_prompt="${text_color_reset}${_division_color}"
   local i
@@ -130,7 +130,7 @@ color_my_prompt() {
   _split_prompt+="${text_color_reset}\n\n"
 
   # Generate the user and path information.
-  local _user_and_host="${_user_text_color}\u${_white_color_bold}@${_green_color_bold}\h ${_white_color}| ${_white_color_bold}\t (\d)\n"
+  local _user_and_host="${_user_text_color}\u${_black_color_bold}@${_green_color_bold}\h ${_white_color}| ${_black_color_bold}\t (\d)\n"
   local _cur_location="${_cyan_color}\w"
 
   # Set the prompt.
@@ -346,6 +346,10 @@ alias home-wifi='connect_to_the_internet wlp2s0-Castillo_Grayskull_PA_5G'
 alias home-ethernet='connect_to_the_internet ethernet-dhcp'
 alias usb-ethernet='connect_to_the_internet enp0s20u1u4-Home'
 alias villas='connect_to_the_internet wlp2s0-INFINITUMh75z'
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+#if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
 
 PROMPT_COMMAND=color_my_prompt
 

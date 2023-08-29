@@ -57,106 +57,140 @@ mkdir --parents ~/workspace
 sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
 #TODO: Install these packages.
-yay -S optional-packages
-yay -S brightness-xrandr
+yay --sync --needed optional-packages
+yay --sync --needed brightness-xrandr
 
 # Install fonts.
-optional-packages fontconfig
-funcInstallPacmanPackageAndDependencies awesome-terminal-fonts
-funcInstallPacmanPackageAndDependencies gnu-free-fonts
-funcInstallPacmanPackageAndDependencies noto-fonts
-funcInstallPacmanPackageAndDependencies ttf-bitstream-vera
-funcInstallPacmanPackageAndDependencies ttf-croscore
-funcInstallPacmanPackageAndDependencies ttf-dejavu
-funcInstallPacmanPackageAndDependencies ttf-droid
-funcInstallPacmanPackageAndDependencies ttf-ibm-plex
-funcInstallPacmanPackageAndDependencies ttf-liberation
-funcInstallPacmanPackageAndDependencies ttf-hack
-funcInstallPacmanPackageAndDependencies ttf-nerd-fonts-symbols
-funcInstallPacmanPackageAndDependencies ttf-nerd-fonts-symbols-common
-funcInstallPacmanPackageAndDependencies ttf-nerd-fonts-symbols-mono
+optional-packages --install yes fontconfig
+optional-packages --install yes awesome-terminal-fonts
+optional-packages --install yes gnu-free-fonts
+optional-packages --install yes noto-fonts
+optional-packages --install yes ttf-bitstream-vera
+optional-packages --install yes ttf-croscore
+optional-packages --install yes ttf-dejavu
+optional-packages --install yes ttf-freefont
+optional-packages --install yes ttf-droid
+optional-packages --install yes ttf-ibm-plex
+optional-packages --install yes ttf-liberation
+optional-packages --install yes ttf-hack
+optional-packages --install yes ttf-nerd-fonts-symbols
+optional-packages --install yes ttf-nerd-fonts-symbols-common
+optional-packages --install yes ttf-nerd-fonts-symbols-mono
 
 # Install GNU Bourne Again shell.
-funcInstallPacmanPackageAndDependencies bash
-
-# Install the programmable completion for the bash shell.
-funcInstallPacmanPackageAndDependencies bash-completion
+optional-packages --install yes bash
 
 # Install the GNU Debugger.
-funcInstallPacmanPackageAndDependencies gdb
+optional-packages --install yes gdb
 
 # Install the next generation, high-performance debugger.
-funcInstallPacmanPackageAndDependencies lldb
+optional-packages --install yes lldb
 
 # Install Linux headers
-funcInstallPacmanPackageAndDependencies linux-headers
+optional-packages --install yes linux-headers
 
-# Intall a highly capable, feature-rich programming language .
-funcInstallPacmanPackageAndDependencies perl
+# Install a highly capable, feature-rich programming language.
+optional-packages --install yes perl
 
-# Install the systems programming language focused on safety, speed and concurrency.
-funcInstallPacmanPackageAndDependencies rust
+# Install the systems programming language focused on safety, speed, and concurrency.
+optional-packages --install yes rust
 
 # Install a C library that implements an SQL database engine.
-funcInstallPacmanPackageAndDependencies sqlite
+optional-packages --install yes sqlite
 
 # Install the next generation of the python high-level scripting language.
-funcInstallPacmanPackageAndDependencies python
+optional-packages --install yes python
 
 # Install the screen fetch for ASCII logo in Linux.
-funcInstallPacmanPackageAndDependencies screenfetch
+optional-packages --install yes screenfetch
 
 # Install the Vi Improved, a highly configurable, improved version of the vi text editor.
-funcInstallPacmanPackageAndDependencies vim
+optional-packages --install yes vim
 
 # Install the fast distributed version control system.
-funcInstallPacmanPackageAndDependencies git
+optional-packages --install yes git
 
 # Install the record and share terminal sessions.
-funcInstallPacmanPackageAndDependencies asciinema
+optional-packages --install yes asciinema
 
-# Install the Cat clone with syntax highlighting and git integration.
-funcInstallPacmanPackageAndDependencies bat
+# Install the cat clone with syntax highlighting and git integration.
+optional-packages --install yes bat
 
-# Install the alternative to locate, faster and compatible with mlocate's database.
-funcInstallPacmanPackageAndDependencies lsd
+# Install a modern ls with a lot of pretty colors and awesome icons.
+optional-packages --install yes lsd
 
 # Install the abstraction for enumerating power devices, listening to device events and querying history and statistics.
-funcInstallPacmanPackageAndDependencies upower
+optional-packages --install yes upower
+
+# Install the package to list open files for running Unix processes.
+optional-packages --install yes lsof
 
 # Install the US English hunspell dictionaries.
-funcInstallPacmanPackageAndDependencies hunspell-en_us
+optional-packages --install yes hunspell-en_us
 
 # Install the Spanish (Mexico) hunspell dictionary.
-funcInstallPacmanPackageAndDependencies hunspell-es_mx
+optional-packages --install yes hunspell-es_mx
 
 # Install a daemon for delivering ACPI power management events with netlink support.
-funcInstallPacmanPackageAndDependencies acpid
+optional-packages --install yes acpid
 # Enable ACPID service.
 sudo systemctl enable --now acpid
 
 # Install the terminal multiplexer.
-funcInstallPacmanPackageAndDependencies tmux
+optional-packages --install yes tmux
 
 # Install the alternative to locate, faster and compatible with mlocate's database.
-funcInstallPacmanPackageAndDependencies plocate
+optional-packages --install yes plocate
 
-# Install the Generate a sound when the battery is discharging..
-yay -S --needed --noconfirm battery-discharging-beep-git
+# Install an arbitrary precision calculator language.
+optional-packages --install yes bc
+
+# Install a Perl script wrapper for 'diff' that produces the same output but with pretty 'syntax' highlighting.
+optional-packages --install yes colordiff
+
+# Install a shell utility for manipulating Linux IDE drive/driver parameters.
+optional-packages --install yes hdparm
+
+# Install a directory listing program displaying a depth indented list of files.
+optional-packages --install yes tree
+
+# Install a diagnostic, debugging, and instructional userspace tracer.
+optional-packages --install yes strace
+
+# Install the utility for network discovery and security auditing.
+optional-packages --install yes nmap
+
+# Install a console-based network traffic monitor.
+optional-packages --install yes vnstat
+
+# Install a command line interface for testing internet bandwidth using speedtest.net.
+optional-packages --install yes speedtest-cli
+
+# Install a tool to measure maximum TCP bandwidth.
+optional-packages --install yes iperf
+
+# # Install the daemons for the bluetooth protocol stack.
+optional-packages --install yes bluez
+
+# Install the development and debugging utilities for the bluetooth protocol stack.
+optional-packages --install yes bluez-utils
+
+# Install the Generate a sound when the battery is discharging.
+yay --sync --needed --noconfirm battery-discharging
 
 # Audio Alsa.
 # https://wiki.gentoo.org/wiki/ALSA
 # Install Alsa utils.
-funcInstallPacmanPackageAndDependencies alsa-utils
+optional-packages --install yes alsa-utils
 # Adding audio into the user group.
 sudo usermod -a -G audio "$(whoami)"
 
 # Install Pulse audio.
 # Install a featureful, general-purpose sound server
-funcInstallPacmanPackageAndDependencies pulseaudio
+optional-packages --install yes pulseaudio
 
 # Install speech synthesis.
-funcInstallPacmanPackageAndDependencies speech-dispatcher
+optional-packages --install yes speech-dispatcher
 
 # TODO: Uncomment these lines if the woofer is not working in the next instllation form scratch.
 # Configure pulseaudio to recognize the woofer.
@@ -198,13 +232,13 @@ funcInstallPacmanPackageAndDependencies speech-dispatcher
 # Mkinitcpio: Possibly missing firmware for module XXXX.
 # ------------------------------------------------------
 # Install the adaptec SAS 44300, 48300, 58300 Sequencer Firmware for AIC94xx driver.
-yay -S --needed --noconfirm aic94xx-firmware
+yay --sync --needed --noconfirm aic94xx-firmware
 # Install the aspeed VGA module from the IPMI.
-yay -S --needed --noconfirm ast-firmware
+yay --sync --needed --noconfirm ast-firmware
 # Install the driver for Western Digital WD7193, WD7197 and WD7296 SCSI cards.
-yay -S --needed --noconfirm wd719x-firmware
+yay --sync --needed --noconfirm wd719x-firmware
 # Install the renesas uPD720201 / uPD720202 USB 3.0 chipsets firmware.
-yay -S --needed --noconfirm upd72020x-fw
+yay --sync --needed --noconfirm upd72020x-fw
 
 # Initramfs, create an initial ramdisk environment.
 sudo mkinitcpio --preset linux
@@ -214,14 +248,14 @@ sudo mkinitcpio --preset linux
 # -------- #
 
 # The next step is set up Graphic interface.
-# The machine will be reboot, then enter with the created user.
+# The machine will be rebooted, then enter with the created user.
 
 # In the directory 'cd ~/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 04-setup/'.
 # The next step is run './02-graphics-system.bash'.
 
-read -n 1 -s -r -p "Press any key to reboot"
+read -n 1 -s -r -p "Press any key to reboot."
 
 # Reboot
 sudo reboot

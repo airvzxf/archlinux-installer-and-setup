@@ -1,5 +1,5 @@
-#!/bin/bash
-source 00-config.bash
+#!/usr/bin/env bash
+set -ve
 
 # ----------------------------------------------------------------------
 # Arch Linux :: Setup - NVIDIA step 1 / 3
@@ -22,36 +22,34 @@ funcIsConnectedToInternet
 lspci -k | grep -A 2 -E "(VGA|3D)"
 
 # Install the Kernel module allowing to switch dedicated graphics card on Optimus laptops.
-funcInstallPacmanPackageAndDependencies bbswitch
+optional-packages --install yes bbswitch
 
 # Install NVIDIA.
-funcInstallPacmanPackageAndDependencies nvidia
+optional-packages --install yes nvidia
 
 # Install the NVIDIA drivers utilities.
-funcInstallPacmanPackageAndDependencies nvidia-utils
+optional-packages --install yes nvidia-utils
 
+# TODO: Check if it will remove or not.
 # Install OpenCL ICD Bindings.
-#funcInstallPacmanPackageAndDependencies ocl-icd
+#optional-packages --install yes ocl-icd
 
+# TODO: Check if it will remove or not.
 # Install OpenCL Info.
-#funcInstallPacmanPackageAndDependencies clinfo
+#optional-packages --install yes clinfo
 
 # Install the NVIDIA's GPU programming toolkit.
-funcInstallPacmanPackageAndDependencies cuda
+optional-packages --install yes cuda
 
-# TODO: Keep cleaning this code in below lines.
-exit 1
-
-echo -e "Run nvidia xconfig"
+# Run NVIDIA X-configuration.
 sudo nvidia-xconfig
-echo -e "\n"
 
 
 # TODO: Check if this config file is necessary.
 #~ echo -e "Xorg with Nvidia"
 #~ nvidia_config_file=/etc/X11/xorg.conf.d/20-nvidia.conf
 
-#~ echo -e \
+# ~ echo -e \
 #~ 'Section "Device"
     #~ Identifier     "Nvidia Graphic Card"
     #~ Driver         "nvidia"
@@ -61,13 +59,19 @@ echo -e "\n"
 #~ EndSection
 #~ ' | sudo tee ${nvidia_config_file}
 
+# TODO: Check if this config file is necessary.
 # Comment the Nvidia value for is primary GPU
-sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+#sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
 
-echo -e "Ready! The next step is run './03a02-graphic-card-nvidia-startx.bash'.\n"
+# -------- #
+# Finished #
+# -------- #
+
+# The next step is start X11 with NVIDIA.
+# Execute './03a02-graphic-card-nvidia-startx.bash'.
 
 # Reboot
-read -n 1 -s -r -p "Press any key to reboot"
+read -n 1 -s -r -p "Press any key to reboot."
 
 sudo reboot
 
@@ -75,16 +79,16 @@ sudo reboot
 # ----------------------------------------------------------------------
 
 # Needs to solve
-#~ [   161.208] (WW) Falling back to old probe method for modesetting
-#~ [   161.599] (WW) NVIDIA(0): Unable to get display device for DPI computation.
-#~ [   161.657] (WW) NVIDIA(0): Option "PrimaryGPU" is not used
+#~ [ 161.208] (WW) Falling back to old probe method for modesetting
+#~ [ 161.599] (WW) NVIDIA(0): Unable to get display device for DPI computation.
+#~ [ 161.657] (WW) NVIDIA(0): Option "PrimaryGPU" is not used
 
 
 # (WW) NVIDIA(0): Unable to get display device for DPI computation
 # NVIDIA(0): DPI set to (75, 75); computed from built-in default
 #sudo nvidia-xconfig
 
-# If you are on laptop, it might be a good idea to install and enable the acpid daemon instead.
+# If you are on a laptop, it might be a good idea to install and enable the acpid daemon instead.
 # https://wiki.archlinux.org/index.php/NVIDIA/Tips_and_tricks#Manual_configuration
 # https://wiki.archlinux.org/index.php/Acpid
 #sudo pacman -S --needed acpid
@@ -123,7 +127,7 @@ sudo reboot
 # Some 6xx & 7xx series cards are from the NVC0 family instead.
 
 # NVE0 family (Kepler)
-# First family to support using 4 monitors simultaneously on one GPU, older generations had only 2 CRTCs.
+# First family to support using four monitors simultaneously on one GPU, older generations had only 2 CRTCs.
 # NVE7 (GK107)
 # GeForce GT (640[M], 645M, 650M, 710M, 720M, 730M, 740[M], ...
 
@@ -153,20 +157,23 @@ sudo reboot
 # ---------------------------------------------------
 
 # Install the appropriate driver for your card:
-# - For GeForce 400 series cards and newer [NVCx and newer], install the nvidia or nvidia-lts package. If these packages do not work, nvidia-betaAUR may have a newer driver version that offers support.
+# - For GeForce 400-series cards and newer [NVCx and newer], install the nvidia or nvidia-lts package. If these packages do not work, nvidia-betaAUR may have a newer driver version that offers support.
 # https://www.archlinux.org/packages/extra/x86_64/nvidia/
 # https://www.archlinux.org/packages/extra/x86_64/nvidia-lts/
 # https://aur.archlinux.org/packages/nvidia-beta/
 
-# NOTE: In my personal opinion I should install the nvidia-beta because we have more options, checks "Required by (15)" section, for example:
-# - ffmpeg-nvenc. Complete solution to record, convert and stream audio and video with Nvidia CUDA Hardware Acceleration
+# NOTE:
+# In my personal opinion, I should install the nvidia-beta because we have more options,
+# checks "Required by (15)" section, for example,
+# - ffmpeg-nvenc.
+# Complete solution to record, convert and stream audio and video with Nvidia CUDA Hardware Acceleration
 # - cpyrit-cuda: Pyrit support for Nvidia-CUDA.
 # - hoomd-blue: A general-purpose particle simulation toolkit using GPUs with CUDA.
 
 # 3. Set up nvidia-xinitrc
 # ---------------------------------------------------
 # Before set this values you need to get the number of dpis for your
-# display. There some explanation in the next step.
+# display. There is some explanation in the next step.
 # Add this lines:
 #xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112
 #setxkbmap -model pc105 -layout latam -variant ,deadtilde
@@ -182,7 +189,7 @@ sudo reboot
 # 4. Get DPIs
 # ---------------------------------------------------
 #xrandr | grep -w connected
-# LVDS-1-1 connected 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
+# LVDS-1-1 connected 1366x768+0+0 (normal left inverted right x-axis y-axis) 309mm x 173mm
 
 # Use the information, get the size in millimeters and convert to cm,
 # 309 mm x 173 mm
@@ -202,7 +209,8 @@ sudo reboot
 # Create your xrandr configurations, right now you have all the information.
 #xrandr --output LVDS-1-1 --mode 1366x768 --rate 60 --dpi 112
 
-# Check the output. IMPORTANT: At this point you wouldn't see any changes.
+# Check the output.
+# IMPORTANT: At this point, you wouldn't see any changes.
 #xdpyinfo | grep -B2 resolution
 # screen #0:
 #  dimensions:    1366x768 pixels (309x174 millimeters)

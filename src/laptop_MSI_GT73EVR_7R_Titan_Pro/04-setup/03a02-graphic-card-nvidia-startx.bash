@@ -1,27 +1,28 @@
-#!/bin/bash
-source 00-config.bash
+#!/usr/bin/env bash
+set -ve
 
 # ----------------------------------------------------------------------
-# Arch Linux :: Setup
+# Arch Linux :: Setup - NVIDIA step 2 / 3
 # ----------------------------------------------------------------------
 # https://github.com/airvzxf/archlinux-installer-and-setup
 
-# ----------------------------------------------------------------------
-# Sart the openbox window manager
-# ----------------------------------------------------------------------
+source ./../00-configuration.bash
 
-# Close all the startX with 'killall -15 Xorg', then you shouldn't use
-# startx any more you need nvidia-xrun
 funcIsConnectedToInternet
 
-echo -e ""
-echo -e "Kill Xorg if it's opened"
-sudo killall -15 Xorg
-echo -e ""
+# -------------------------------- #
+# START THE OPENBOX WINDOW MANAGER #
+# -------------------------------- #
 
-echo -e "Run Openbox with Nvidia drivers"
+# Kill Xorg if it's opened.
+sudo killall -15 Xorg
+
+# Run Openbox with Nvidia drivers.
 xinit
 
-echo -e "Ready! The next step is run './03a03-graphic-card-nvidia-gui.bash'.\n"
-echo -e "Finished successfully!"
-echo -e ""
+# -------- #
+# Finished #
+# -------- #
+
+# The next step is set up basic packages in GUI Desktop.
+# Execute './04-basic-gui.bash'.

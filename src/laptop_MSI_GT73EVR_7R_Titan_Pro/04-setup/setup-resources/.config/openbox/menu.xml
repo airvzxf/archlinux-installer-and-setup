@@ -26,7 +26,7 @@
   </item>
   <item label="Tmux - Terminal">
     <action name="Execute">
-      <command>xterm -fullscreen -T "Tmux" tmux</command>
+      <command>xterm -fullscreen -T "Tmux" tmux </command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>

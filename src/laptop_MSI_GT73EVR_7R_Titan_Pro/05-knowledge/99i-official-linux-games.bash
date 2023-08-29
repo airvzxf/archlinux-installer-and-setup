@@ -19,7 +19,7 @@ sudo pacman --sync --needed --noconfirm openmw
 sudo pacman --sync --needed --noconfirm sauerbraten
 
 # Urban Terror — Modern multiplayer FPS based on the ioquake3 engine.
-yay -S --needed --noconfirm urbanterror
+yay --sync --needed --noconfirm urbanterror
 
 # Flight Gear — Open-source, multi-platform flight simulator.
 sudo pacman --sync --needed --noconfirm flightgear
@@ -43,16 +43,16 @@ sudo pacman --sync --needed --noconfirm openttd
 sudo pacman --sync --needed --noconfirm lincity-ng
 
 # Dofus — Free, manga inspired, Massively Multiplayer Online Role-playing Game (MMORPG) for Adobe AIR
-yay -S --needed --noconfirm dofus #AUR
+yay --sync --needed --noconfirm dofus #AUR
 
 #      Savage 2: A Tortured Soul — Fantasy themed online multiplayer team-based FPS/RTS/RPG hybrid. Free-to-play as of December 2008. Pay for premium accounts providing crucial game elements such as extra inventory slots, access to clans and removal of the Hellbourne unit restrictions (per-account), as well as access to replays and stats.
-yay -S --needed --noconfirm savage2 #AUR
+yay --sync --needed --noconfirm savage2 #AUR
 
 # Planeshift — Role Playing Game immersed into a 3D virtual fantasy world which is FULLY FREE to play. Fully free means you will have no surprises of premium content which will limit your gameplay or unbalance the game. There are no limitations in skills, ranks, abilities, items you can gain with your free account
-yay -S --needed --noconfirm planeshift #AUR
+yay --sync --needed --noconfirm planeshift #AUR
 
 # RuneScape — Massive online adventure game by Jagex
-yay -S --needed --noconfirm runescape-launcher #AUR (new NXT client)
+yay --sync --needed --noconfirm runescape-launcher #AUR (new NXT client)
 
 # Ryzom — 3D Fantasy MMORPG
-yay -S --needed --noconfirm ryzom-client #AUR
+yay --sync --needed --noconfirm ryzom-client #AUR

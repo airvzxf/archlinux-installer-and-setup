@@ -74,4 +74,4 @@ pactree -r [package_name]
 # Install package
 # Note: You don't need call sudo
 # Note: Normally yay use the same options like pacman for example -Qs, -Qi, etc.
-yay -S [package_name]
+yay --sync --needed [package_name]

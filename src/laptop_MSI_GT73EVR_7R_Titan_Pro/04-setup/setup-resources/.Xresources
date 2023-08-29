@@ -3,18 +3,24 @@
 ! https://forum.manjaro.org/t/how-to-which-font-is-used-by-xterm-i-didnt-set-font-for-xterm-in-xresourses/60112
 ! https://emacspeak.blogspot.com/2015/09/setting-up-x-environment-for-using-with.html
 
+! To update this settings run: 'xrdb .Xresources'
+
+*.vt100.reverseVideo: true
+
 XTerm.termName: xterm-256color
 
-XTerm.vt100.locale: true
+! XTerm.vt100.locale: true
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
 
-!XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.metaSendsEscape: true
 
 XTerm.vt100.scrollBar: true
 XTerm.vt100.scrollbar.width: 16
 XTerm.vt100.saveLines: 10000000
 
-XTerm.vt100.foreground: white
-XTerm.vt100.background: black
+XTerm.vt100.foreground: black
+XTerm.vt100.background: white
 
 XTerm.vt100.faceName: Monospace:antialias=true
 XTerm.vt100.faceSize: 18
@@ -27,15 +33,11 @@ XTerm.vt100.selectToClipboard:true
 XTerm.vt100.printAttributes: 0
 XTerm.vt100.printerCommand: xterm -maximized -T History -e sh -c 'less -r <&3' 3<&0
 
-! For toogle between full screen use Alt-Enter
-! Replace Ctrl-C SIGINT/interrupt for Ctrl-Shift-C 
-
+! For toggle between full screen use Alt-Enter
 XTerm.vt100.translations: #override \n\
     Ctrl <Key>M: maximize() \n\
     Ctrl <Key>R: restore() \n\
     Ctrl Shift <Key>F: fullscreen() \n\
-    Ctrl Shift <Key>C: string(0x03) \n\
     Ctrl <Key>F: print-everything() \n\
-    Ctrl <Key>slash: print-everything() \n\
-    Ctrl <Key>C: copy-selection(CLIPBOARD) \n\
-    Ctrl <Key>V: insert-selection(CLIPBOARD)
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)

@@ -15,5 +15,5 @@
 # this doesn't work then you need to follow this commands.
 sudo pacman -S --noconfirm linux-headers
 
-yay -S --noconfirm nvidia-utils
-yay -S --noconfirm nvidia
+yay --sync --needed --noconfirm nvidia-utils
+yay --sync --needed --noconfirm nvidia

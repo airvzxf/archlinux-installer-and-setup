@@ -69,7 +69,7 @@ eject --no-unmount
 # Go to the folder 'cd 04-setup/'.
 # and execute the file './01-basic.bash'.
 
-read -n 1 -s -r -p "Press any key to reboot"
+read -n 1 -s -r -p "Press any key to reboot."
 
 # Reboot
 reboot

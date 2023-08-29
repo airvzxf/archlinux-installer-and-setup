@@ -138,46 +138,6 @@ funcSetupPacmanConfiguration() {
   sed --in-place --regexp-extended "s/[#]?ParallelDownloads = 5/ParallelDownloads = 15/g" "${etcDirectory}"/pacman.conf
 }
 
-# Function to install Pacman package and dependencies.
-funcInstallPacmanPackageAndDependencies() {
-  local package
-  package="${1}"
-  echo "Package: ${package}"
-
-  local previousPackages
-  previousPackages="${2}"
-  echo "Previous packages: ${previousPackages}"
-
-  if [ -z "${package}" ]; then
-    echo "The argument '${1}' is empty."
-    return 1
-  fi
-
-  echo "Install ${package}"
-  sudo pacman --sync --needed --noconfirm "${package}"
-  previousPackages="${2} ${1}"
-
-  local getOptionalPackages
-  getOptionalPackages=$(pacman -Qi "${package}" | sed -n '/^Optional/,$p' | sed '/^Required/q' | head --lines -1 | cut -c19- | cut -d: -f1 | cut -d' ' -f1)
-  echo "Get optional packages:"
-  echo "${getOptionalPackages}"
-
-  local optionalPackage
-  while IFS= read -r optionalPackage; do
-    echo "Optional package: ${optionalPackage}"
-    if [[ ${optionalPackage} == "None" ]]; then
-      continue
-    fi
-
-    pacman -Qi "${optionalPackage}" || {
-      sudo pacman -S --asdeps --needed --noconfirm "${optionalPackage}"
-      echo "Search for more optional packages: ${optionalPackage}"
-      funcInstallPacmanPackageAndDependencies "${optionalPackage}"
-    }
-
-  done <<< "${getOptionalPackages}"
-}
-
 # Umount system in the device which will be installed.
 funcUmountSystem() {
   echo "Unmounting the file systems"

@@ -11,6 +11,6 @@ numlockx on
 
 xbindkeys
 
-battery-discharging-beep &
+battery-discharging &
 
 openbox-session

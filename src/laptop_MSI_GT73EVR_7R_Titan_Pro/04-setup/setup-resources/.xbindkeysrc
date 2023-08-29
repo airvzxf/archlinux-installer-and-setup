@@ -1,0 +1,35 @@
+# Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +2%"
+  XF86AudioRaiseVolume
+"pactl set-sink-volume @DEFAULT_SINK@ +2%"
+  Mod4 + Up
+
+# Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -2%"
+  XF86AudioLowerVolume
+"pactl set-sink-volume @DEFAULT_SINK@ -2%"
+  Mod4 + Down
+
+# Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+# Mute microphone
+"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+  XF86AudioMicMute
+
+# Calculator
+"galculator"
+XF86Calculator
+
+# Increase brightness
+"~/.config/brightness-xrandr.bash --monitor DP-3 --increase 2"
+  XF86MonBrightnessUp
+"~/.config/brightness-xrandr.bash --monitor DP-3 --increase 2"
+  Mod4 + Right
+
+# Decrease brightness
+"~/.config/brightness-xrandr.bash --monitor DP-3 --decrease 2"
+  XF86MonBrightnessDown
+"~/.config/brightness-xrandr.bash --monitor DP-3 --decrease 2"
+  Mod4 + Left
