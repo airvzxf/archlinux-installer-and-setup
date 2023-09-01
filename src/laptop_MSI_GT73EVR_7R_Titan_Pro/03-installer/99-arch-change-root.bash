@@ -226,7 +226,8 @@ chgrp --recursive users ./archlinux-installer-and-setup
 # Set up Git.
 git config --global user.name "${userName}"
 git config --global user.email "${userEmail}"
-./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
+# TODO: An error displayed when execute this line. The error is related to root stuff.
+#./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
 
 # -------- #
 # Finished #
