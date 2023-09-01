@@ -42,6 +42,9 @@ funcIsConnectedToInternet
 # Upgrade Arch Linux.
 sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
+# Create a back up
+sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf /etc/resolv.conf.backup
+
 # Set up the local DNS.
 echo '
 # Google DNS
@@ -53,6 +56,10 @@ nameserver 2001:4860:4860::8844
 
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
+
+# Restore the DNS
+sudo mv /etc/resolv.conf /etc/resolv.conf.google
+sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf.backup /etc/resolv.conf
 
 # ------------------- #
 # Set up the generals #
