@@ -56,9 +56,8 @@ mkdir --parents ~/workspace
 # Change user for the xinitrc file.
 sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
-#TODO: Install these packages.
-yay --sync --needed optional-packages
-yay --sync --needed brightness-xrandr
+yay --sync --needed --noconfirm optional-packages
+yay --sync --needed --noconfirm brightness-xrandr
 
 # Install fonts.
 optional-packages --install yes fontconfig
