@@ -222,8 +222,8 @@ chown --recursive "${userId}":users /home/"${userId}"/.
 mkdir --parents /home/"${userId}"/workspace/projects
 cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
 cp --recursive /archlinux-installer-and-setup ./
-chown --recursive "${userId}" ./archlinux-installer-and-setup
-chgrp --recursive users ./archlinux-installer-and-setup
+chown --recursive "${userId}" /home/"${userId}"/workspace
+chgrp --recursive users /home/"${userId}"/workspace
 
 # ---------- #
 # Set up Git #
