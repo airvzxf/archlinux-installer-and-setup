@@ -15,7 +15,7 @@ funcIsConnectedToInternet
 # -------------------------------- #
 
 # Kill Xorg if it's opened.
-sudo killall -15 Xorg
+sudo killall -15 Xorg || true
 
 # Run Openbox with Nvidia drivers.
 xinit
