@@ -42,6 +42,21 @@ funcIsConnectedToInternet
 # Upgrade Arch Linux.
 sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
+# Set up the local DNS.
+# TODO: Check if the file exists.
+ls -lha /etc/resolv.conf || echo "ERROR #1"
+sleep 5
+cat /etc/resolv.conf || echo "ERROR #2"
+sleep 5
+echo '
+# Google DNS
+nameserver 8.8.8.8
+' | sudo tee --append /etc/resolv.conf.d/dns-google.conf
+ls -lha /etc/resolv.conf || echo "ERROR #3"
+sleep 5
+cat /etc/resolv.conf || echo "ERROR #4"
+sleep 10
+
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
 
