@@ -33,10 +33,6 @@ optional-packages --install yes xorg-fonts-encodings
 optional-packages --install yes xorg-fonts-misc
 optional-packages --install yes xorg-fonts-type1
 
-# TODO: xorg-xbacklight and acpilight are in conflict. Remove acpilight? [y/N]
-# Install a backward-compatible xbacklight replacement based on ACPI.
-#optional-packages --install yes acpilight
-
 # Install Xorg.
 sudo pacman --sync --needed --noconfirm xorg
 
