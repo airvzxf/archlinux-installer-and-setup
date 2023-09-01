@@ -62,11 +62,6 @@ optional-packages --install yes xbindkeys
 xbindkeys --poll-rc
 
 # TODO: Check if it is necessary.
-# Solving Xorg warnings: mkfontdir in font dpis.
-#sudo mkfontdir /usr/share/fonts/100dpi/
-#sudo mkfontdir /usr/share/fonts/75dpi/
-
-# TODO: Check if it is necessary.
 # Install a modern, hackable, featureful, OpenGL-based terminal emulator.
 #optional-packages --install yes --exclude imagemagick libcanberra --packages kitty
 #cp -p ~/.config/kitty/kitty.conf ~/.config/kitty/kitty-backup.conf
