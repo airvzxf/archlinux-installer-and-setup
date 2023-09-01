@@ -96,25 +96,6 @@ echo "${computerName}" > /etc/hostname
 echo "127.0.0.1    localhost" >> /etc/hosts
 echo "::1          localhost" >> /etc/hosts
 
-# Set up the local DNS.
-# TODO: Check if the file exists.
-ls -lha /etc/resolv.conf || echo "ERROR #1"
-#mkdir --parents /etc/resolv.conf.d
-#ls -lha /etc/resolv.conf.d
-sleep 5
-#echo '
-## Google DNS
-#nameserver 8.8.8.8
-#' | tee /etc/resolv.conf.d/dns-google.conf
-# TODO: Check if the file exists.
-#sleep 10
-#ls -lha /etc/resolv.conf || echo "ERROR #2"
-#ls -lha /etc/resolv.conf.d || echo "ERROR #3"
-#sleep 10
-cat /etc/resolv.conf || echo "ERROR #4"
-#cat /etc/resolv.conf.d/dns-google.conf || echo "ERROR #5"
-sleep 15
-
 # Set up the Ethernet connection
 echo '[Match]
 Name=en*
