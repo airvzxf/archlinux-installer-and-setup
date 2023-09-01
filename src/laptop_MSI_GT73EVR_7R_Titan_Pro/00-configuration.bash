@@ -170,7 +170,8 @@ funcIsEfiBios() {
 # Install Yay using git.
 funcInstallYay() {
   local directory
-  directory=~/tmp/yay-installation
+  directory=~/yay-installation
+  rm --force --recursive "${directory}"
   mkdir --parents "${directory}"
   cd "${directory}" || funcDirectoryNotExist
   git clone https://aur.archlinux.org/yay.git
