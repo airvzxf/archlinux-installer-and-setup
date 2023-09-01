@@ -67,6 +67,9 @@ optional-packages --install yes obconf
 # Install a command-line program to download videos from YouTube.com and a few more sites.
 optional-packages --install yes youtube-dl
 
+# Install the image viewer for Wayland and X11.
+optional-packages --install yes imv
+
 # Install a cross-platform open-source make system.
 optional-packages --install yes cmake
 
