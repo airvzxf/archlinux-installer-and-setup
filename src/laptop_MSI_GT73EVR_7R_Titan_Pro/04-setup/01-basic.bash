@@ -43,19 +43,13 @@ funcIsConnectedToInternet
 sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # Set up the local DNS.
-# TODO: Check if the file exists.
-ls -lha /etc/resolv.conf || echo "ERROR #1"
-sleep 5
-cat /etc/resolv.conf || echo "ERROR #2"
-sleep 5
 echo '
 # Google DNS
 nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 2001:4860:4860::8888
+nameserver 2001:4860:4860::8844
 ' | sudo tee --append /etc/resolv.conf
-ls -lha /etc/resolv.conf || echo "ERROR #3"
-sleep 5
-cat /etc/resolv.conf || echo "ERROR #4"
-sleep 10
 
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
