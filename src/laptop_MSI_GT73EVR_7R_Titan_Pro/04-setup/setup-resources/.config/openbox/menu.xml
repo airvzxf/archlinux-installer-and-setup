@@ -16,14 +16,6 @@
 </menu>
 
 <menu id="root-menu" label="Openbox 3">
-  <item label="Kitty - Terminal">
-    <action name="Execute">
-      <command>kitty --start-as fullscreen --title "Kitty"</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-      </startupnotify>
-    </action>
-  </item>
   <item label="Tmux - Terminal">
     <action name="Execute">
       <command>xterm -fullscreen -T "Tmux" tmux </command>
