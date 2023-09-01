@@ -226,7 +226,7 @@ cp ./99-user-setup.bash /home/"${userId}"/
 chmod +x /home/"${userId}"/99-user-setup.bash
 chown "${userId}":users /home/"${userId}"/99-user-setup.bash
 
-su --login -c "EXPORT userName='${userName' userEmail='${userEmail}' /home/${userId}/99-user-setup.bash" "${userId}"
+su --login -c "export userName='${userName}' userEmail='${userEmail}'; /home/${userId}/99-user-setup.bash" "${userId}"
 
 # -------- #
 # Finished #
