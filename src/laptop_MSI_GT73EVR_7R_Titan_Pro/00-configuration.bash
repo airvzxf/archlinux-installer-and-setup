@@ -179,6 +179,8 @@ funcInstallYay() {
   makepkg --syncdeps --install --needed --noconfirm
   cd ./../../ || funcDirectoryNotExist
   rm --force --recursive "${directory}"
+  yay --version
+  yay --save --answerclean All
 
   return 0
 }
