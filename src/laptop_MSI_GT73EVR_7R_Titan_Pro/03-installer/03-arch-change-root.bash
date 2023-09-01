@@ -54,8 +54,9 @@ rm --force --recursive /mnt/archlinux-installer-and-setup
 # Unmount partitions.
 funcUmountSystem
 
+# TODO: Remove this command, it is not necessary.
 # Eject the ISO.
-eject --no-unmount
+#eject --no-unmount
 
 # -------- #
 # Finished #
