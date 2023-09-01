@@ -19,9 +19,6 @@ timezone="America/Mexico_City"
 languageCode="en_US.UTF-8"
 keyboardLayout="us"
 # --------------------------------------------------
-# TODO: Check if I am using this variable. Otherwise, remove it.
-# networkInterface="enp0s3" # enp4s0
-# --------------------------------------------------
 consoleFont="ter-122n"
 
 # -------- #
@@ -60,7 +57,7 @@ hardDiskDeviceSwap="/dev/nvme0n1p2"       # (◠‿◠)
 hardDiskDeviceOtherLinux="/dev/nvme0n1p3" # (◠‿◠)
 hardDiskDeviceArchLinux="/dev/nvme0n1p4"  # (◠‿◠)
 # --------------------------------------------------
-# TODO: Delete the below variables of hardDiskDevice
+# NOTE: Uncomment and change the following values for testing purposes.
 #hardDiskDevice="/dev/sda"            # (◠‿◠)
 #hardDiskDeviceBoot="/dev/sda1"       # (◠‿◠)
 #hardDiskDeviceSwap="/dev/sda2"       # (◠‿◠)
