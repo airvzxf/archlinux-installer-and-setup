@@ -222,46 +222,15 @@ chown --recursive "${userId}":users /home/"${userId}"/.
 # -------------------- #
 
 # Login as the user.
-su --login "${userId}"
+cp ./99-user-setup.bash /home/"${userId}"/
+chmod +x /home/"${userId}"/99-user-setup.bash
+chown "${userId}":users /home/"${userId}"/99-user-setup.bash
 
-# Create Vim folder.
-mkdir -p /home/"${userId}"/.vim
-
-# -------------------------- #
-# Create workspace directory #
-# -------------------------- #
-
-# Move the ArchLinux project into the user folder.
-mkdir --parents /home/"${userId}"/workspace/projects
-# TODO: since it is logged with the user, these two lines are not necessary.
-ls -lhaR /home/"${userId}"/
-sleep 10
-#chown --recursive "${userId}" /home/"${userId}"/workspace
-#chgrp --recursive users /home/"${userId}"/workspace
-cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
-
-# ------------------------ #
-# Clone Arch Linux project #
-# ------------------------ #
-
-git clone https://github.com/airvzxf/archlinux-installer-and-setup.git
-
-# ---------- #
-# Set up Git #
-# ---------- #
-
-# Set up Git.
-git config --global user.name "${userName}"
-git config --global user.email "${userEmail}"
-# TODO: An error displayed when execute this line. The error is related to root stuff.
-./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
+su --login -c "EXPORT "userName='${userName' userEmail='${userEmail}' /home/${userId}/99-user-setup.bash" "${userId}"
 
 # -------- #
 # Finished #
 # -------- #
-
-# Exit from logged user.
-exit 0
 
 # Exit from Arch change root
 exit 0
