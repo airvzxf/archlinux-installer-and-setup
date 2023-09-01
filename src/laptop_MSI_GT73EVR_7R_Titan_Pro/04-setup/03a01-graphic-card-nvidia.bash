@@ -22,7 +22,8 @@ funcIsConnectedToInternet
 lspci -k | grep -A 2 -E "(VGA|3D)"
 
 # Install the Kernel module allowing to switch dedicated graphics card on Optimus laptops.
-optional-packages --install yes bbswitch
+# TODO: Check if I really need it. Since my laptop don't have Intel GPU and NVIDIA.
+#optional-packages --install yes bbswitch
 
 # Install NVIDIA.
 optional-packages --install yes nvidia
