@@ -51,7 +51,7 @@ sleep 5
 echo '
 # Google DNS
 nameserver 8.8.8.8
-' | sudo tee --append /etc/resolv.conf.d/dns-google.conf
+' | sudo tee --append /etc/resolv.conf
 ls -lha /etc/resolv.conf || echo "ERROR #3"
 sleep 5
 cat /etc/resolv.conf || echo "ERROR #4"
