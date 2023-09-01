@@ -73,7 +73,6 @@ mkdir --parents ~/workspace
 sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
 # Install the command-line tool that finds all the optional packages of the packages that were pointed by you. It can install the packages.
-gpg --recv-keys 63ADA633FE7468630D9BC56175530B8B9F74CF3A
 yay --sync --needed --noconfirm optional-packages
 
 # Install the command-line tool that changes the brightness using the xrandr command.
