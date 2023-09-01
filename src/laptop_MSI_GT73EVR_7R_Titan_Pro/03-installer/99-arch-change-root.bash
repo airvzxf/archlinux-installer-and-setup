@@ -67,6 +67,9 @@ pacman --sync --needed --noconfirm bat
 # Set up the generals #
 # ------------------- #
 
+# Create Vim folder.
+mkdir -p /home/root/.vim
+
 # Set up the keyboard layout.
 loadkeys "${keyboardLayout}"
 
@@ -214,8 +217,15 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
+# -------------------- #
+# Log in with the user #
+# -------------------- #
+
 # Login as the user.
 su --login "${userId}"
+
+# Create Vim folder.
+mkdir -p /home/"${userId}"/.vim
 
 # -------------------------- #
 # Create workspace directory #
