@@ -68,7 +68,7 @@ pacman --sync --needed --noconfirm bat
 # ------------------- #
 
 # Create Vim folder.
-mkdir -p /home/root/.vim
+mkdir -p /root/.vim
 
 # Set up the keyboard layout.
 loadkeys "${keyboardLayout}"
