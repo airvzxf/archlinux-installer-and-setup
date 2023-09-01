@@ -93,6 +93,12 @@ echo "${computerName}" > /etc/hostname
 echo "127.0.0.1    localhost" >> /etc/hosts
 echo "::1          localhost" >> /etc/hosts
 
+# Set up the local DNS.
+echo '
+# Google DNS
+nameserver 8.8.8.8
+' | tee /etc/resolv.conf
+
 # Set up the Ethernet connection
 echo '[Match]
 Name=en*
