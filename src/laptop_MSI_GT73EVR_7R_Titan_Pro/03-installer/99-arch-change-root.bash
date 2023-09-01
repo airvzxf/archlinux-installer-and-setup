@@ -214,27 +214,27 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
+# Login as the user.
+su --login "${userId}"
+
 # -------------------------- #
 # Create workspace directory #
 # -------------------------- #
 
 # Move the ArchLinux project into the user folder.
 mkdir --parents /home/"${userId}"/workspace/projects
-chown --recursive "${userId}" /home/"${userId}"/workspace
-chgrp --recursive users /home/"${userId}"/workspace
-cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
-# TODO: Is better to clone the project? Otherwise, remove this line.
-#cp --recursive /archlinux-installer-and-setup ./
+# TODO: since it is logged with the user, these two lines are not necessary.
+ls -lhaR /home/"${userId}"/
+sleep 10
 #chown --recursive "${userId}" /home/"${userId}"/workspace
 #chgrp --recursive users /home/"${userId}"/workspace
+cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
 
 # ------------------------ #
 # Clone Arch Linux project #
 # ------------------------ #
 
 git clone https://github.com/airvzxf/archlinux-installer-and-setup.git
-# TODO: This line is uneccessary. But, let's check it.
-#cd ./archlinux-installer-and-setup || funcDirectoryNotExist
 
 # ---------- #
 # Set up Git #
@@ -249,6 +249,9 @@ git config --global user.email "${userEmail}"
 # -------- #
 # Finished #
 # -------- #
+
+# Exit from logged user.
+exit 0
 
 # Exit from Arch change root
 exit 0
