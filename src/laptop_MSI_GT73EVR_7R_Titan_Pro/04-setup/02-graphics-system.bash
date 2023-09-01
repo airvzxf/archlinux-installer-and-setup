@@ -61,11 +61,6 @@ optional-packages --install yes xbindkeys
 # Refresh the bind keys
 xbindkeys --poll-rc
 
-# TODO: Check if it is necessary.
-# Install a modern, hackable, featureful, OpenGL-based terminal emulator.
-#optional-packages --install yes --exclude imagemagick libcanberra --packages kitty
-#cp -p ~/.config/kitty/kitty.conf ~/.config/kitty/kitty-backup.conf
-
 # -------- #
 # Finished #
 # -------- #
