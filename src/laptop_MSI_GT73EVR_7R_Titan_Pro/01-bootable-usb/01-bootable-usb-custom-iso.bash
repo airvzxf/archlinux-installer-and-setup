@@ -55,6 +55,9 @@ mkdir --parents ./airootfs/root/"${project_path}"
 # Copy the Arch Linux script in the workspace directory.
 cp --recursive "${currentDirectory}"/../../../../archlinux-installer-and-setup ./airootfs/root/"${project_path}"/
 
+# Compress the Arch Linux script in the workspace directory.
+tar --create --file ./airootfs/root/"${project_path}"/archlinux-installer-and-setup.tar "${currentDirectory}"/../../../../archlinux-installer-and-setup
+
 # Function to change some parameters in the pacman.conf file.
 funcSetupPacmanConfiguration ./
 
