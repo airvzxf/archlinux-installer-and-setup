@@ -16,7 +16,6 @@
 #xfce-mcs-manager &
 
 # Startups
-redshift &
-firefox &
-geany &
-kitty --start-as fullscreen --title "Terminal" &
+#firefox &
+#geany &
+#kitty --start-as fullscreen --title "Terminal" &
