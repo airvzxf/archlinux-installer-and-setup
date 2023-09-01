@@ -214,16 +214,27 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
-# ----------------------- #
-# Copy Arch Linux project #
-# ----------------------- #
+# -------------------------- #
+# Create workspace directory #
+# -------------------------- #
 
 # Move the ArchLinux project into the user folder.
 mkdir --parents /home/"${userId}"/workspace/projects
-cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
-cp --recursive /archlinux-installer-and-setup ./
 chown --recursive "${userId}" /home/"${userId}"/workspace
 chgrp --recursive users /home/"${userId}"/workspace
+cd /home/"${userId}"/workspace/projects || funcDirectoryNotExist
+# TODO: Is better to clone the project? Otherwise, remove this line.
+#cp --recursive /archlinux-installer-and-setup ./
+#chown --recursive "${userId}" /home/"${userId}"/workspace
+#chgrp --recursive users /home/"${userId}"/workspace
+
+# ------------------------ #
+# Clone Arch Linux project #
+# ------------------------ #
+
+git clone https://github.com/airvzxf/archlinux-installer-and-setup.git
+# TODO: This line is uneccessary. But, let's check it.
+#cd ./archlinux-installer-and-setup || funcDirectoryNotExist
 
 # ---------- #
 # Set up Git #
@@ -233,7 +244,7 @@ chgrp --recursive users /home/"${userId}"/workspace
 git config --global user.name "${userName}"
 git config --global user.email "${userEmail}"
 # TODO: An error displayed when execute this line. The error is related to root stuff.
-#./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
+./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
 
 # -------- #
 # Finished #
