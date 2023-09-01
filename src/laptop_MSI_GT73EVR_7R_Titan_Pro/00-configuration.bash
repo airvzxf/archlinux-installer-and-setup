@@ -178,6 +178,7 @@ funcInstallYay() {
   rm --force --recursive "${directory}"
   yay --version
   yay --save --answerclean All
+  yay --sync --noconfirm yay
 
   return 0
 }
