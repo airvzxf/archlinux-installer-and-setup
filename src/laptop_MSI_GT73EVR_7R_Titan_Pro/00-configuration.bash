@@ -61,11 +61,11 @@ hardDiskDeviceOtherLinux="/dev/nvme0n1p3" # (◠‿◠)
 hardDiskDeviceArchLinux="/dev/nvme0n1p4"  # (◠‿◠)
 # --------------------------------------------------
 # TODO: Delete the below variables of hardDiskDevice
-hardDiskDevice="/dev/sda"            # (◠‿◠)
-hardDiskDeviceBoot="/dev/sda1"       # (◠‿◠)
-hardDiskDeviceSwap="/dev/sda2"       # (◠‿◠)
-hardDiskDeviceOtherLinux="/dev/sda3" # (◠‿◠)
-hardDiskDeviceArchLinux="/dev/sda4"  # (◠‿◠)
+#hardDiskDevice="/dev/sda"            # (◠‿◠)
+#hardDiskDeviceBoot="/dev/sda1"       # (◠‿◠)
+#hardDiskDeviceSwap="/dev/sda2"       # (◠‿◠)
+#hardDiskDeviceOtherLinux="/dev/sda3" # (◠‿◠)
+#hardDiskDeviceArchLinux="/dev/sda4"  # (◠‿◠)
 # --------------------------------------------------
 hardDiskDeviceBootSize="+512M"      # (◠‿◠)
 hardDiskDeviceSwapSize="+16G"       # (◠‿◠)
@@ -170,7 +170,7 @@ funcIsEfiBios() {
 # Install Yay using git.
 funcInstallYay() {
   local directory
-  directory=~/temp/yay-installation
+  directory=~/tmp/yay-installation
   mkdir --parents "${directory}"
   cd "${directory}" || funcDirectoryNotExist
   git clone https://aur.archlinux.org/yay.git
