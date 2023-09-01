@@ -40,7 +40,7 @@ funcIsConnectedToInternet
 # ------------- #
 
 # Upgrade Arch Linux.
-sudo pacman --sync --refresh --refresh --sysupgrade --noconfirmu
+sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
