@@ -98,7 +98,7 @@ read -n 1 -r -p "Do you want to crete a USB Live? [Y/n]: " isUsbLive
 funcContinueDefaultYes "${isUsbLive}"
 
 # Display a disk partition table.
-fdisk --list
+sudo fdisk --list
 
 # This is the list with all devices (disks and USB) connected in your computer.
 # Warning: This script will delete all partitions and data from the selected device.
@@ -113,7 +113,7 @@ funcContinue "${isThisTheUsb}"
 sudo umount --recursive /dev/"${usbDevice}" &> /dev/null || true
 
 # Delete all the partitions in the selected USB.
-dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
+sudo dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
 
 # Create all partitions and formatting your USB properly.
 (
@@ -128,10 +128,10 @@ dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
 ) | sudo fdisk /dev/"${usbDevice}" &> /dev/null
 
 # Upload Arch Linux ISO into the USB.
-cat "${archIsoFilePath}" > /dev/"${usbDevice}"
+sudo cp "${archIsoFilePath}" /dev/"${usbDevice}"
 
 # This is your formatted USB.
-fdisk --list /dev/"${usbDevice}"
+sudo fdisk --list /dev/"${usbDevice}"
 
 # Ask if the work directory for Arch ISO should be deleted.
 read -n 1 -r -p "Do you want to remove the work directory for Arch ISO? [Y/n]: " isArchIsoDirectoryRemoved
