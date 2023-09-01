@@ -210,7 +210,10 @@ optional-packages --install yes pulseaudio
 # Install speech synthesis.
 optional-packages --install yes speech-dispatcher
 
-# TODO: Uncomment these lines if the woofer is not working in the next instllation form scratch.
+# ------------------------ #
+# Set up the laptop woofer #
+# ------------------------ #
+
 # Configure pulseaudio to recognize the woofer.
 # Configuring the daemon.conf file.
 #cp /etc/pulse/daemon.conf ~/.config/pulse/
@@ -235,18 +238,21 @@ optional-packages --install yes speech-dispatcher
 #cat /proc/asound/card0/pcm0p/info
 #cat /proc/asound/card0/pcm3p/info
 
+# ------------------------------- #
+# Install Black Arch repositories #
+# ------------------------------- #
+
 # Install Black Arch repository
-# curl --location https://blackarch.org/strap.sh > ~/blackarch-repo.sh
-# chmod a+x ~/blackarch-repo.sh
-# sudo ~/blackarch-repo.sh
-# rm --force ~/blackarch-repo.sh
-# sudo pacman -Syy
+#curl --location https://blackarch.org/strap.sh > ~/blackarch-repo.sh
+#chmod a+x ~/blackarch-repo.sh
+#sudo ~/blackarch-repo.sh
+#rm --force ~/blackarch-repo.sh
+#sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # ----------------- #
 # Set up Mkinitcpio #
 # ----------------- #
 
-# TODO: Install all the package to avoid warning during the init.
 # Mkinitcpio: Possibly missing firmware for module XXXX.
 # ------------------------------------------------------
 # Install the adaptec SAS 44300, 48300, 58300 Sequencer Firmware for AIC94xx driver.
