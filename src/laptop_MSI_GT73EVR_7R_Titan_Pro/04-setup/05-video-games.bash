@@ -72,14 +72,6 @@ KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"
 # Install the NVIDIA drivers utilities (32-bit).
 optional-packages --install yes lib32-nvidia-utils
 
-# Steam has a good commands to check all the missing libraries.
-# All these libraries should be there in MultiLib repositories.
-
-# Show missing libraries in Steam.
-cd ~/.local/share/Steam/ubuntu12_32 || funcDirectoryNotExist
-chmod +x libx264.so.142
-file ./* | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
-
 # Install the X11 Testing -- Resource extension library (32-bit).
 # libXtst.so.6 => not found.
 optional-packages --install yes lib32-libxtst
@@ -156,6 +148,17 @@ optional-packages --install yes lib32-libva
 
 # Install the NVIDIA VDPAU library.
 optional-packages --install yes lib32-libvdpau
+
+# ---------------------- #
+# Scan missing libraries #
+# ---------------------- #
+
+# Steam has a good commands to check all the missing libraries.
+# All these libraries should be there in MultiLib repositories.
+# Show missing libraries in Steam.
+cd ~/.local/share/Steam/ubuntu12_32 || funcDirectoryNotExist
+chmod +x libx264.so.142
+file ./* | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
 
 # -------- #
 # Finished #
