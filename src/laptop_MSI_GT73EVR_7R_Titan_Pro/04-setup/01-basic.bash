@@ -193,6 +193,15 @@ optional-packages --install yes bluez
 # Install the development and debugging utilities for the bluetooth protocol stack.
 optional-packages --install yes bluez-utils
 
+# Install the compressor/archiver for creating and modifying zipfiles.
+optional-packages --install yes zip
+
+# Install the package for extracting and viewing files in .zip archives.
+optional-packages --install yes unzip
+
+# Install the GPUs process monitoring for AMD, Intel and NVIDIA.
+optional-packages --install yes nvtop
+
 # Install the Generate a sound when the battery is discharging.
 yay --sync --needed --noconfirm battery-discharging
 
