@@ -61,6 +61,9 @@ optional-packages --install yes xbindkeys
 # Refresh the bind keys
 xbindkeys --poll-rc
 
+# Add the user into the TTY group.
+sudo gpasswd -a "${userId}" tty
+
 # -------- #
 # Finished #
 # -------- #
