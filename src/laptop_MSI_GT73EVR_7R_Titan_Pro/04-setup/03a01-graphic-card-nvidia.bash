@@ -55,13 +55,19 @@ sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/
 
 # Set to yes the module decompress.
 sudo sed --in-place '/MODULES_DECOMPRESS="yes"/ s/^#//' /etc/mkinitcpio.conf
-cat /etc/mkinitcpio.conf
-sleep 10
 
 # Set to cat the compression of the initramfs image.
 sudo sed --in-place 's/#COMPRESSION="lz4"/&\nCOMPRESSION="cat"/#/' /etc/mkinitcpio.conf
+
+# Duplicate the hooks and remove the KMS.
+sed --in-place '/^HOOKS=(/p' /etc/mkinitcpio.conf
+sed --in-place '2s/^HOOKS=/xxxxxxxx/' /etc/mkinitcpio.conf
+
 cat /etc/mkinitcpio.conf
 sleep 10
+
+# Create an initial ramdisk environment.
+#mkinitcpio --preset linux
 
 # -------- #
 # Finished #
