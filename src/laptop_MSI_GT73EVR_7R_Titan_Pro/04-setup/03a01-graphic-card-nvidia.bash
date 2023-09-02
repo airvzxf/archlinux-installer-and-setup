@@ -60,8 +60,9 @@ sudo sed --in-place '/MODULES_DECOMPRESS="yes"/ s/^#//' /etc/mkinitcpio.conf
 sudo sed --in-place 's/#COMPRESSION="lz4"/&\nCOMPRESSION="cat"/#/' /etc/mkinitcpio.conf
 
 # Duplicate the hooks and remove the KMS.
-sed --in-place '/^HOOKS=(/p' /etc/mkinitcpio.conf
-sed --in-place '2s/^HOOKS=/xxxxxxxx/' /etc/mkinitcpio.conf
+sudo sed --in-place '/^HOOKS=/p' /etc/mkinitcpio.conf
+sudo sed --in-place '0,/^HOOKS=/ s//#&/' /etc/mkinitcpio.conf
+sudo sed --in-place '/^HOOKS=/ s/\s*kms\s*/ /' /etc/mkinitcpio.conf
 
 cat /etc/mkinitcpio.conf
 sleep 10
