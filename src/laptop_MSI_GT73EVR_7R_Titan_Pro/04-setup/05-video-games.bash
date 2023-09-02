@@ -30,7 +30,7 @@ funcIsConnectedToInternet
 sudo sed --in-place '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
 
 # Upgrade Arch Linux.
-sudo pacman --sync --refresh --refresh --sysupgrade --noconfirmu
+sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # Install the NVIDIA drivers utilities.
 optional-packages --install yes nvidia-libgl
