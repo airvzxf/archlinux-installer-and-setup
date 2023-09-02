@@ -150,11 +150,11 @@ sudo reboot
 # If you are on a laptop, it might be a good idea to install and enable the acpid daemon instead.
 # https://wiki.archlinux.org/index.php/NVIDIA/Tips_and_tricks#Manual_configuration
 # https://wiki.archlinux.org/index.php/Acpid
-#sudo pacman -S --needed acpid
+#sudo pacman --sync --needed acpid
 #systemctl start acpid.service
 
 # (WW) The directory "/usr/share/fonts/Type1/" does not exist.
-#sudo pacman -S --needed xorg-fonts-type1
+#sudo pacman --sync --needed xorg-fonts-type1
 # (WW) The directory "/usr/share/fonts/OTF/" does not exist.
 #sudo pacman --sync --needed --noconfirm xorg-fonts-misc
 
