@@ -45,21 +45,6 @@ optional-packages --install yes cuda
 # Run NVIDIA X-configuration.
 sudo nvidia-xconfig
 
-
-# TODO: Check if this config file is necessary.
-#~ echo -e "Xorg with Nvidia"
-#~ nvidia_config_file=/etc/X11/xorg.conf.d/20-nvidia.conf
-
-# ~ echo -e \
-#~ 'Section "Device"
-    #~ Identifier     "Nvidia Graphic Card"
-    #~ Driver         "nvidia"
-    #~ VendorName     "NVIDIA Corporation"
-    #~ BoardName      "GeForce GTX 1080 Mobile"
-    #~ BusID          "PCI:1:0:0"
-#~ EndSection
-#~ ' | sudo tee ${nvidia_config_file}
-
 # TODO: Check if this config file is necessary.
 # Comment the Nvidia value for is primary GPU
 #sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
