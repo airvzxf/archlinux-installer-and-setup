@@ -150,6 +150,34 @@ ln --symbolic /usr/lib/systemd/system/systemd-networkd.service /usr/lib/systemd/
 # Enable the system services for network resolved.
 ln --symbolic /usr/lib/systemd/system/systemd-resolved.service /usr/lib/systemd/system/multi-user.target.wants/systemd-resolved.service
 
+# Create a script to enable the number lock in the keyboard.
+echo '#!/bin/bash
+
+for tty in /dev/tty{1..6}
+do
+    /usr/bin/setleds -D +num < "$tty";
+done
+' | tee /usr/local/bin/numlock
+
+# Make this script executable.
+chmod +x /usr/local/bin/numlock
+
+# Create the system service for enable of the number lock.
+echo '[Unit]
+Description=numlock
+
+[Service]
+ExecStart=/usr/local/bin/numlock
+StandardInput=tty
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+' | tee /usr/lib/systemd/system/numlock.service
+
+# Enable the system services for enable of the number lock.
+ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/multi-user.target.wants/numlock.service
+
 # -------------------------- #
 # Set up Grub configurations #
 # -------------------------- #
