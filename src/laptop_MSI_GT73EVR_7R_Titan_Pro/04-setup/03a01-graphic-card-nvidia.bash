@@ -45,9 +45,9 @@ optional-packages --install yes cuda
 # Run NVIDIA X-configuration.
 sudo nvidia-xconfig
 
-# TODO: Check if this config file is necessary.
 # Comment the Nvidia value for is primary GPU
-#sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+# https://superuser.com/questions/1590416/how-to-get-x-to-ignore-my-primary-gpu
+sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
 
 # -------- #
 # Finished #
