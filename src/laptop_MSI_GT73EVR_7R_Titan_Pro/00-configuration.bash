@@ -205,6 +205,7 @@ funcCheckPacmanMirror() {
 
 PS4='
 
+PS4
 Line #${LINENO}
 BASH_COMMAND: ${BASH_COMMAND}
 --------------------------------------------------------------------------------
