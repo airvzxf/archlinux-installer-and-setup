@@ -19,7 +19,7 @@ funcIsConnectedToInternet
 # --------------------- #
 
 # Update the repositories
-sudo pacman --sync --refresh --refresh --sysupgrade --noconfirmu
+sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # Install a fast and lightweight IDE.
 optional-packages --install yes geany
