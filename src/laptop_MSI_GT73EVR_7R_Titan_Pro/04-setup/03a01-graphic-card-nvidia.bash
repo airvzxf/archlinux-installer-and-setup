@@ -64,11 +64,16 @@ sudo sed --in-place '/^HOOKS=/p' /etc/mkinitcpio.conf
 sudo sed --in-place '0,/^HOOKS=/ s//#&/' /etc/mkinitcpio.conf
 sudo sed --in-place '/^HOOKS=/ s/\s*kms\s*/ /' /etc/mkinitcpio.conf
 
-cat /etc/mkinitcpio.conf
-sleep 10
+# Duplicate the hooks and remove the KMS.
+sudo sed --in-place '/^MODULES=/p' /etc/mkinitcpio.conf
+sudo sed --in-place '0,/^MODULES=/ s//#&/' /etc/mkinitcpio.conf
+sudo sed --in-place 's/^MODULES=/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+
+head --lines 20 /etc/mkinitcpio.conf
+exit 0
 
 # Create an initial ramdisk environment.
-#mkinitcpio --preset linux
+mkinitcpio --preset linux
 
 # -------- #
 # Finished #
