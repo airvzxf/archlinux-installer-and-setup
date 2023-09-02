@@ -67,7 +67,7 @@ sudo sed --in-place '/^HOOKS=/ s/\s*kms\s*/ /' /etc/mkinitcpio.conf
 # Duplicate the hooks and remove the KMS.
 sudo sed --in-place '/^MODULES=/p' /etc/mkinitcpio.conf
 sudo sed --in-place '0,/^MODULES=/ s//#&/' /etc/mkinitcpio.conf
-sudo sed --in-place 's/^MODULES=/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+sudo sed --in-place 's/^MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 
 head --lines 20 /etc/mkinitcpio.conf
 exit 0
