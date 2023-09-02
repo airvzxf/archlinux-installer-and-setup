@@ -44,10 +44,10 @@ optional-packages --install yes steam
 # --------------------- #
 # Set up the controller #
 # --------------------- #
-steam_controller_rules=/lib/udev/rules.d/99-steam-controller-perms.rules
 
-echo -e \
-  '# Valve USB devices.
+# Added the controller in UDev.
+echo -e '
+# Valve USB devices.
 SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
 
 # Steam Controller udev write access.
@@ -60,7 +60,7 @@ KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666"
 
 # Valve HID devices over bluetooth hidraw.
 KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"
-' | sudo tee ${steam_controller_rules}
+' | sudo tee /lib/udev/rules.d/99-steam-controller-perms.rules
 
 # ----------------- #
 # Missing libraries #
@@ -70,7 +70,7 @@ KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"
 # - libGL error: No matching fbConfigs or visuals found.
 # - libGL error: failed to load a driver: swrast.
 # Install the NVIDIA drivers utilities (32-bit).
-optional-packages --install yes  lib32-nvidia-utils
+optional-packages --install yes lib32-nvidia-utils
 
 # Steam has a good commands to check all the missing libraries.
 # All these libraries should be there in MultiLib repositories.
