@@ -121,7 +121,7 @@ sudo sed --in-place '0,/^MODULES=/ s//#&/' /etc/mkinitcpio.conf
 sudo sed --in-place 's/^MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 
 # Create an initial ramdisk environment.
-mkinitcpio --preset linux
+sudo mkinitcpio --preset linux
 
 # -------- #
 # Finished #
