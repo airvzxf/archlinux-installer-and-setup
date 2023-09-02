@@ -2,7 +2,7 @@
 set -ve
 
 # ----------------------------------------------------------------------
-# Arch Linux :: Set up - Basics GUI
+# Arch Linux :: Set up - Suggested packages
 # ----------------------------------------------------------------------
 # https://github.com/airvzxf/archlinux-installer-and-setup
 
@@ -17,6 +17,10 @@ funcIsConnectedToInternet
 # -------- #
 # Packages #
 # -------- #
+
+# Install the pack, ship and run any application as a lightweight container.
+optional-packages --install yes docker
+sudo usermod -aG docker "${userId}"
 
 # Install a proprietary music streaming service.
 #gpg --recv-keys 13B00F1FD2C19886 # This is the public key for Spotify AUR
