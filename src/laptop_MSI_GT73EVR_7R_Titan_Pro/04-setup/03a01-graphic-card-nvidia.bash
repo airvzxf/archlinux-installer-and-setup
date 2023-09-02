@@ -60,7 +60,7 @@ sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/
 sudo mkdir --parents /etc/pacman.d/hooks
 
 # Add trigger for pacman.
-echo '
+echo "
 [Trigger]
 Operation=Install
 Operation=Upgrade
@@ -74,8 +74,8 @@ Description=Update NVIDIA module in initcpio
 Depends=mkinitcpio
 When=PostTransaction
 NeedsTargets
-Exec=/bin/sh -c \'while read -r trg; do case $trg in linux*) exit 0; esac; done; /usr/bin/mkinitcpio -P\'
-' | sudo tee /etc/pacman.d/hooks/nvidia.hook
+Exec=/bin/sh -c 'while read -r trg; do case \$trg in linux*) exit 0; esac; done; /usr/bin/mkinitcpio -P'
+" | sudo tee /etc/pacman.d/hooks/nvidia.hook
 
 # -------------- #
 # Kernel modules #
