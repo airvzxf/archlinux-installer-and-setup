@@ -25,11 +25,14 @@ lspci -k | grep -A 2 -E "(VGA|3D)"
 # TODO: Check if I really need it. Since my laptop don't have Intel GPU and NVIDIA.
 #optional-packages --install yes bbswitch
 
-# Install NVIDIA.
+# Install the NVIDIA drivers for linux.
 optional-packages --install yes nvidia
 
 # Install the NVIDIA drivers utilities.
 optional-packages --install yes nvidia-utils
+
+# Install the NVIDIA open kernel modules.
+optional-packages --install yes nvidia-open
 
 # TODO: Check if it will remove or not.
 # Install OpenCL ICD Bindings.
@@ -48,6 +51,54 @@ sudo nvidia-xconfig
 # Comment the Nvidia value for is primary GPU
 # https://superuser.com/questions/1590416/how-to-get-x-to-ignore-my-primary-gpu
 sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+
+# ----------- #
+# Pacman Hook #
+# ----------- #
+
+# Create directory.
+sudo mkdir --parents /etc/pacman.d/hooks
+
+# Add trigger for pacman.
+echo '
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Operation=Remove
+Type=Package
+Target=nvidia
+Target=usr/lib/modules/*/vmlinuz
+
+[Action]
+Description=Update NVIDIA module in initcpio
+Depends=mkinitcpio
+When=PostTransaction
+NeedsTargets
+Exec=/bin/sh -c \'while read -r trg; do case $trg in linux*) exit 0; esac; done; /usr/bin/mkinitcpio -P\'
+' | sudo tee /etc/pacman.d/hooks/nvidia.hook
+
+# -------------- #
+# Kernel modules #
+# -------------- #
+
+# Add parameters to the kernel.
+echo '
+# NVIDIA kernel parameters.
+options nouveau modeset=0
+options nvidia_drm modeset=1
+' | sudo tee /etc/modprobe.d/nvidia.conf
+
+# ----------------- #
+# Kernel parameters #
+# ----------------- #
+
+# Duplicate the default command line and add NVIDIA.
+sudo sed --in-place '/^GRUB_CMDLINE_LINUX_DEFAULT=/p' /etc/default/grub
+sudo sed --in-place '0,/^GRUB_CMDLINE_LINUX_DEFAULT=/ s//#&/' /etc/default/grub
+sudo sed --in-place 's/^GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet nouveau.modeset=0 nvidia_drm.modeset=1"/' /etc/default/grub
+
+# Build GRUB.
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # ---------------------- #
 # Change initial ramdisk #
@@ -68,9 +119,6 @@ sudo sed --in-place '/^HOOKS=/ s/\s*kms\s*/ /' /etc/mkinitcpio.conf
 sudo sed --in-place '/^MODULES=/p' /etc/mkinitcpio.conf
 sudo sed --in-place '0,/^MODULES=/ s//#&/' /etc/mkinitcpio.conf
 sudo sed --in-place 's/^MODULES=()/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-
-head --lines 20 /etc/mkinitcpio.conf
-exit 0
 
 # Create an initial ramdisk environment.
 mkinitcpio --preset linux
