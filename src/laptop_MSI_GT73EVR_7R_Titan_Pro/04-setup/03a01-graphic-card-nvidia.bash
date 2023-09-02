@@ -54,7 +54,7 @@ sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/
 # ---------------------- #
 
 # Set to yes the module decompress.
-sudo sed --in-place '/MODULES_DECOMPRESS/ s/^#*/#/' /etc/mkinitcpio.conf
+sudo sed --in-place '/MODULES_DECOMPRESS="yes"/ s/^#*/#/' /etc/mkinitcpio.conf
 cat /etc/mkinitcpio.conf
 sleep 10
 
