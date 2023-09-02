@@ -49,6 +49,20 @@ sudo nvidia-xconfig
 # https://superuser.com/questions/1590416/how-to-get-x-to-ignore-my-primary-gpu
 sudo sed --in-place '/Option "PrimaryGPU"/ s/^#*/#/' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
 
+# ---------------------- #
+# Change initial ramdisk #
+# ---------------------- #
+
+# Set to yes the module decompress.
+sudo sed --in-place '/#MODULES_DECOMPRESS/ s/^#*/#/' /etc/mkinitcpio.conf
+cat /etc/mkinitcpio.conf
+sleep 10
+
+# Set to cat the compression of the initramfs image.
+sudo sed --in-place 's/#COMPRESSION="lz4"/^\nCOMPRESSION="cat"/#/' /etc/mkinitcpio.conf
+cat /etc/mkinitcpio.conf
+sleep 10
+
 # -------- #
 # Finished #
 # -------- #
