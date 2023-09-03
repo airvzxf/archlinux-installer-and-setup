@@ -5,36 +5,36 @@
 
 ! To update this settings run: 'xrdb .Xresources'
 
-*.vt100.reverseVideo: true
+!*.vt100.reverseVideo: true
 
-XTerm.termName: xterm-256color
+!XTerm.termName: xterm-256color
 
-! XTerm.vt100.locale: true
-XTerm.vt100.locale: false
-XTerm.vt100.utf8: true
+!XTerm*locale: true
+XTerm*locale: false
+XTerm*utf8: true
 
-XTerm.vt100.metaSendsEscape: true
+XTerm*metaSendsEscape: true
 
-XTerm.vt100.scrollBar: true
-XTerm.vt100.scrollbar.width: 16
-XTerm.vt100.saveLines: 10000000
+XTerm*scrollBar: true
+XTerm*scrollbar.width: 16
+XTerm*saveLines: 10000000
 
-XTerm.vt100.foreground: black
-XTerm.vt100.background: white
+XTerm*background: black
+XTerm*foreground: white
 
-XTerm.vt100.faceName: Monospace:antialias=true
-XTerm.vt100.faceSize: 12
+XTerm*faceName: Monospace:antialias=true
+XTerm*faceSize: 12
 
-XTerm.vt100.loginShell: true
+XTerm*loginShell: true
 
-XTerm.vt100.on4Clicks: all
-XTerm.vt100.selectToClipboard:true
+XTerm*on4Clicks: all
+XTerm*selectToClipboard:true
 
-XTerm.vt100.printAttributes: 0
-XTerm.vt100.printerCommand: xterm -maximized -T History -e sh -c 'less -r <&3' 3<&0
+XTerm*printAttributes: 0
+XTerm*printerCommand: xterm -maximized -T History -e sh -c 'less -r <&3' 3<&0
 
 ! For toggle between full screen use Alt-Enter
-XTerm.vt100.translations: #override \n\
+XTerm*translations: #override \n\
     Ctrl <Key>M: maximize() \n\
     Ctrl <Key>R: restore() \n\
     Ctrl Shift <Key>F: fullscreen() \n\
