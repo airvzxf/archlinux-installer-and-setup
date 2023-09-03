@@ -68,7 +68,7 @@ pacman --sync --needed --noconfirm bat
 # ------------------- #
 
 # Create Vim folder.
-mkdir -p /root/.vim
+mkdir --parents /root/.vim
 
 # Set up the keyboard layout.
 loadkeys "${keyboardLayout}"
@@ -88,6 +88,10 @@ echo "LANG=${languageCode}" > /etc/locale.conf
 # Set up the vconsole configuration file.
 echo "KEYMAP=${keyboardLayout}" > /etc/vconsole.conf
 echo "FONT=${consoleFont}" >> /etc/vconsole.conf
+
+# ------------------ #
+# Set up the network #
+# ------------------ #
 
 # Set up the hostname.
 echo "${computerName}" > /etc/hostname
@@ -144,11 +148,15 @@ RouteMetric=700
 RouteMetric=700
 ' | tee /usr/lib/systemd/network/50-wwan.network
 
-# Enable the system services for network.
+# Enable the system service for network.
 ln --symbolic /usr/lib/systemd/system/systemd-networkd.service /usr/lib/systemd/system/multi-user.target.wants/systemd-networkd.service
 
-# Enable the system services for network resolved.
+# Enable the system service for network resolved.
 ln --symbolic /usr/lib/systemd/system/systemd-resolved.service /usr/lib/systemd/system/multi-user.target.wants/systemd-resolved.service
+
+# ---------------------- #
+# Set up the number lock #
+# ---------------------- #
 
 # Create a script to enable the number lock in the keyboard.
 echo '#!/bin/bash
@@ -175,8 +183,21 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 ' | tee /usr/lib/systemd/system/numlock.service
 
-# Enable the system services for enable of the number lock.
+# Enable the system service for enable of the number lock.
 ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/multi-user.target.wants/numlock.service
+
+# -------------------------------- #
+# Set up the automatic user log in #
+# -------------------------------- #
+
+# Create the folder.
+mkdir --parents /etc/systemd/system/getty@tty1.service.d/
+
+# Create the system service for log in automatically.
+echo "[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${TERM}
+" | tee /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
 # -------------------------- #
 # Set up Grub configurations #
@@ -225,6 +246,12 @@ sed --in-place '/%wheel ALL=(ALL:ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # The sudo password is requested one time per session.
 echo '
+# Enable to the user to power off the computer.
+'"${userId}"' ALL=NOPASSWD:/sbin/poweroff
+
+# Enable to the user to power off the computer.
+'"${userId}"' ALL=NOPASSWD:/sbin/reboot
+
 # Once the password is entered in the console, it is not requesting anymore.
 Defaults:'"${userId}"' timestamp_timeout=-1
 ' | tee --append /etc/sudoers
