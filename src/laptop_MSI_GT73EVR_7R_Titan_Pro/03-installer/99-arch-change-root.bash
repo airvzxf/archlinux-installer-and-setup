@@ -199,6 +199,17 @@ ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${TERM}
 " | tee /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
+# ----------------------------- #
+# Set up the laptop lid actions #
+# ----------------------------- #
+
+sed --in-place '/HandleLidSwitch=/ s/#*/#/' /etc/systemd/logind.conf
+
+echo '
+# Prevent to suspend when the lid is closing.
+HandleLidSwitch=ignore
+' | tee --append /etc/systemd/logind.conf
+
 # -------------------------- #
 # Set up Grub configurations #
 # -------------------------- #
