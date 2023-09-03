@@ -17,5 +17,5 @@
 # Startups
 firefox &
 geany &
-xterm -fullscreen -T "Tmux" tmux
+xterm -fullscreen -T "TMux" tmux &
 #kitty --start-as fullscreen --title "Terminal" &
