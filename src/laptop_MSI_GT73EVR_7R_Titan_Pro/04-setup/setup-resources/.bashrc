@@ -8,28 +8,28 @@ if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
 #~ PS1='[\u@\h \W]\$ '
 
 # Terminal
-# Decorations ~ \e[X;30m
+# Decorations ~ \e[X;37m
 # 0 - Regular text
 # 1 - Bold text
 # 4 - Underline text
 # Colors ~ \e[1;XXm
-# 30 - White
+# 30 - Black
 # 31 - Red
 # 32 - Green
 # 33 - Yellow
 # 34 - Blue
 # 35 - Purple
 # 36 - Cyan
-# 37 - Black
+# 37 - White
 # Background ~ \e[XXm
-# 40 - White
+# 40 - Black
 # 41 - Red
 # 42 - Green
 # 43 - Yellow
 # 44 - Blue
 # 45 - Purple
 # 46 - Cyan
-# 47 - Black
+# 47 - White
 # Reset text color and decoration
 text_color_reset='\e[0m'
 
@@ -38,7 +38,7 @@ color_my_prompt() {
   _git=""
 
   local _white_color
-  _white_color='\e[0;30m'
+  _white_color='\e[0;37m'
 
   local _red_color
   _red_color='\e[0;31m'
@@ -62,7 +62,7 @@ color_my_prompt() {
   _yellow_color_bold='\e[1;33m'
 
   local _white_color_bold
-  _white_color_bold='\e[1;30m'
+  _white_color_bold='\e[1;37m'
 
   # Check if the Git project is present in the folder.
   if [[ -d .git ]]; then
@@ -120,7 +120,7 @@ color_my_prompt() {
   local _terminal_max_columns
   _terminal_max_columns="$(tput cols)"
   local _division_color
-  _division_color="\e[8;45m"
+  _division_color="\e[35;45m"
   local _split_prompt
   _split_prompt="${text_color_reset}${_division_color}"
   local i
@@ -166,7 +166,7 @@ pre_invoke_exec() {
     echo ""
   else
     local command_color
-    command_color="\e[44;30m"
+    command_color="\e[44;37m"
 
     echo -e "\n${text_color_reset}${command_color}BASH COMMAND | ${BASH_COMMAND}${text_color_reset}"
   fi
