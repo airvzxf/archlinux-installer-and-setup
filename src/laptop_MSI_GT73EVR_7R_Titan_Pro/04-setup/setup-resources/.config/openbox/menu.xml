@@ -18,7 +18,7 @@
 <menu id="root-menu" label="Openbox 3">
   <item label="Tmux - Terminal">
     <action name="Execute">
-      <command>xterm -fullscreen -T "Tmux" tmux</command>
+      <command>xterm -fullscreen -T "TMux" tmux</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -26,7 +26,7 @@
   </item>
   <item label="Xterm - Terminal">
     <action name="Execute">
-      <command>xterm -fullscreen -T "xTerm"</command>
+      <command>xterm -fullscreen -T "XTerm"</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -61,6 +61,18 @@
   <separator />
   <menu id="system-menu"/>
   <separator />
+  <item label="Power off">
+    <action name="Execute">
+      <command>sudo poweroff</command>
+      <prompt>Reboot?</prompt>
+    </action>
+  </item>
+  <item label="Reboot">
+    <action name="Execute">
+      <command>sudo reboot</command>
+      <prompt>Shutdown?</prompt>
+    </action>
+  </item>
   <item label="Log Out">
     <action name="Exit">
       <prompt>no</prompt>
