@@ -64,13 +64,13 @@
   <item label="Power off">
     <action name="Execute">
       <command>sudo poweroff</command>
-      <prompt>Reboot?</prompt>
+      <prompt>Power off?</prompt>
     </action>
   </item>
   <item label="Reboot">
     <action name="Execute">
       <command>sudo reboot</command>
-      <prompt>Shutdown?</prompt>
+      <prompt>Reboot?</prompt>
     </action>
   </item>
   <item label="Log Out">
