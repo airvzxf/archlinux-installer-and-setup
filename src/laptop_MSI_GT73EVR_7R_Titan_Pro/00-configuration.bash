@@ -177,7 +177,7 @@ funcInstallYay() {
   cd ./../../ || funcDirectoryNotExist
   rm --force --recursive "${directory}"
   yay --version
-  yay --save --answerclean All
+  yay --save --answerclean All --answerdiff None
   yay --sync --noconfirm yay
 
   return 0
