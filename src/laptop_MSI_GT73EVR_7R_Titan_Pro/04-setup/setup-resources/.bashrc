@@ -351,12 +351,10 @@ alias villas='connect_to_the_internet wlp2s0-INFINITUMh75z'
 #if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
 
-PS4='
-
-PS4
-Line #${LINENO}
-BASH_COMMAND: ${BASH_COMMAND}
---------------------------------------------------------------------------------
+export PS4='# -------------------------------------------------------------------------------
+# Line #${LINENO}
+# BASH_COMMAND: ${BASH_COMMAND}
+# -------------------------------------------------------------------------------
 '
 
 PROMPT_COMMAND=color_my_prompt
