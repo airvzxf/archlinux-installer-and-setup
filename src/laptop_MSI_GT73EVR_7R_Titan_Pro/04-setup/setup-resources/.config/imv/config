@@ -1,0 +1,9 @@
+[options]
+fullscreen = true
+overlay = true
+overlay_font =  Monospace:12
+scaling_mode = shrink
+upscaling_method = nearest_neighbour
+
+[binds]
+zxc = exec echo "Deleting image: $imv_current_file" && ls -lh "$imv_current_file"; exec rm --force "$imv_current_file"; close; next
