@@ -202,6 +202,9 @@ optional-packages --install yes unzip
 # Install the GPUs process monitoring for AMD, Intel and NVIDIA.
 optional-packages --install yes nvtop
 
+# Install the Android platform tools.
+optional-packages --install yes android-tools
+
 # Install the Generate a sound when the battery is discharging.
 yay --sync --needed --noconfirm battery-discharging
 
@@ -213,8 +216,11 @@ optional-packages --install yes alsa-utils
 sudo usermod -a -G audio "$(whoami)"
 
 # Install Pulse audio.
-# Install a featureful, general-purpose sound server
+# Install a featureful, general-purpose sound server.
 optional-packages --install yes pulseaudio
+
+# Install the CLI and curses mixer for pulseaudio.
+optional-packages --install yes pulsemixer
 
 # Install speech synthesis.
 optional-packages --install yes speech-dispatcher
