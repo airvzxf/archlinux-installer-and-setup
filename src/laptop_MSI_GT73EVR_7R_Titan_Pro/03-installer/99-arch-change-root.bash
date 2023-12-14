@@ -115,6 +115,10 @@ RouteMetric=100
 
 [IPv6AcceptRA]
 RouteMetric=100
+
+[Route]
+InitialCongestionWindow=6
+InitialAdvertisedReceiveWindow=6
 ' | tee /usr/lib/systemd/network/50-ethernet.network
 
 # Set up the Wi-Fi connection

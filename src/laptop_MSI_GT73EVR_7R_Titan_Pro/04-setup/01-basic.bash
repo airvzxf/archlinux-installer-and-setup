@@ -47,11 +47,18 @@ sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf /etc/resol
 
 # Set up the local DNS.
 echo '
+# DNS from your ISP (Internet company).
+# Go to the Web interface from your ISP modem and get the DNS information.
+nameserver 10.0.56.130
+nameserver 189.194.28.50
+nameserver 2806:260:1005:101:200:52:196:196
+nameserver 2806:260:1007:100:189:194:28:50
+
 # Google DNS
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-nameserver 2001:4860:4860::8888
-nameserver 2001:4860:4860::8844
+#nameserver 8.8.8.8
+#nameserver 8.8.4.4
+#nameserver 2001:4860:4860::8888
+#nameserver 2001:4860:4860::8844
 ' | sudo tee --append /etc/resolv.conf
 
 # Install Yay. This package installs the AUR packages.
