@@ -12,7 +12,7 @@
 userName="Israel Roldan"
 userEmail="israel.alberto.rv@gmail.com"
 userId="wolf"
-computerName="msi-gt73evr-7rf-archlinux-01"
+computerName="laptop-archlinux"
 # --------------------------------------------------
 countryCode="MX"
 timezone="America/Mexico_City"
