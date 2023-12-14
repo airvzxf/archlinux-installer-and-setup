@@ -153,7 +153,7 @@ optional-packages --install yes lib32-libvdpau
 # Scan missing libraries #
 # ---------------------- #
 
-# Run steam for first time.
+# Run steam for the first time.
 steam
 
 # Steam has a good commands to check all the missing libraries.

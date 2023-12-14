@@ -24,7 +24,7 @@ sudo pacman --sync --needed --noconfirm archiso
 # Arch ISO directory
 echo "archIsoDirectory: ${archIsoDirectory}"
 
-# Clean directory before make the Arch ISO.
+# Clean directory before makes the Arch ISO.
 sudo rm --force --recursive "${archIsoDirectory}"
 
 # Create a work directory for Arch ISO.
@@ -73,18 +73,18 @@ done
 # Finished #
 # -------- #
 
-# The next step is restart your computer and init the system with your USB.
+# Next step is restart your computer and init the system with your USB.
 # In the directory 'cd /home/root/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 03-installer/'.
-# and execute the file './01-pre-installation-efi.bash'.
+# And execute the file './01-pre-installation-efi.bash'.
 
 # ------------------- #
 # Create the USB Live #
 # ------------------- #
 
 # Ask if the user wants to create the USB live.
-read -n 1 -r -p "Do you want to crete a USB Live? [Y/n]: " isUsbLive
+read -n 1 -r -p "Do you want to create a USB Live? [Y/n]: " isUsbLive
 
 funcContinueDefaultYes "${isUsbLive}"
 
@@ -94,7 +94,7 @@ sudo fdisk --list
 # This is the list with all devices (disks and USB) connected in your computer.
 # Warning: This script will delete all partitions and data from the selected device.
 
-read -r -p "Write in lowercase the name for the USB device, e.g. sdb, sdc sdx: " usbDevice
+read -r -p "Write in lowercase the name for the USB device, e.g., sdb, sdc sdx: " usbDevice
 
 read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheUsb
 
@@ -140,8 +140,8 @@ fi
 # Finished #
 # -------- #
 
-# The next step is restart your computer and init the system with your USB.
+# Next step is restart your computer and init the system with your USB.
 # In the directory 'cd /home/root/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 03-installer/'.
-# and execute the file './01-pre-installation-efi.bash'.
+# And execute the file './01-pre-installation-efi.bash'.

@@ -15,9 +15,9 @@ source ./../00-configuration.bash
 # shellcheck disable=SC2119
 funcChangeConsoleFont
 
-# The arch-chroot command emulate that you are login in the mount device
+# The arch-chroot command emulates that you are login in the mount device
 # and every command affect your session. It means that if you config
-# your language, timezone, keyboard, etc., it will take effects when you
+# your language, timezone, keyboard, etc., it will take effect when you
 # reboot and login in your ArchLinux installed on your device.
 
 funcIsConnectedToInternet
@@ -67,7 +67,7 @@ funcUmountSystem
 # In the directory 'cd ~/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 04-setup/'.
-# and execute the file './01-basic.bash'.
+# And execute the file './01-basic.bash'.
 
 read -n 1 -s -r -p "Press any key to reboot."
 

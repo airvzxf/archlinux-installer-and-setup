@@ -42,7 +42,7 @@ funcIsConnectedToInternet
 # Upgrade Arch Linux.
 sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
-# Create a back up
+# Create a backup
 sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf /etc/resolv.conf.backup
 
 # Set up the local DNS.
@@ -255,7 +255,7 @@ optional-packages --install yes speech-dispatcher
 #speaker-test -c6 -twav -l1
 #aplay --list-devices
 #aplay -L
-#amixer controls | grep Master
+#amixer controls | grep -i master
 #cat /sys/class/sound/card*/id
 #cat /proc/asound/card0/pcm0p/info
 #cat /proc/asound/card0/pcm3p/info
@@ -275,7 +275,7 @@ optional-packages --install yes speech-dispatcher
 # Set up Mkinitcpio #
 # ----------------- #
 
-# Mkinitcpio: Possibly missing firmware for module XXXX.
+# Mkinitcpio: Possibly missing firmware for modules.
 # ------------------------------------------------------
 # Install the adaptec SAS 44300, 48300, 58300 Sequencer Firmware for AIC94xx driver.
 yay --sync --needed --noconfirm aic94xx-firmware
@@ -283,7 +283,7 @@ yay --sync --needed --noconfirm aic94xx-firmware
 yay --sync --needed --noconfirm ast-firmware
 # Install the driver for Western Digital WD7193, WD7197 and WD7296 SCSI cards.
 yay --sync --needed --noconfirm wd719x-firmware
-# Install the renesas uPD720201 / uPD720202 USB 3.0 chipsets firmware.
+# Install the renesas uPD720201 / uPD720202 USB 3.0-chipset firmware.
 yay --sync --needed --noconfirm upd72020x-fw
 
 # Initramfs, create an initial ramdisk environment.

@@ -9,7 +9,7 @@
 # Steam - Payday 2
 # ----------------------------------------------------------------------
 
-# Game does not start
+# The Game does not start
 # http://steamcommunity.com/app/218620/discussions/22/350544272215417292/
 
 # https://aur.archlinux.org/packages/blt4l-runtime-bin/

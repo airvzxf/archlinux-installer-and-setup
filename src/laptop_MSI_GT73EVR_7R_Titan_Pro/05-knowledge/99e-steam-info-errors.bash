@@ -13,12 +13,12 @@
 # https://wiki.archlinux.org/index.php/Steam/Troubleshooting#Steam_runtime_issues
 
 # If you are looking for what libraries are missing
-# Installation steam without UI, then if you run steam-native it show the missing libraries
+# Installation steam without UI, then, if you run steam-native it shows the missing libraries
 steam -textclient
 
 # Error with cannot connect with Steam
-# opensslconnection.cpp (1393) : Assertion Failed: unable to load trusted SSL root certificates
-# Assert( Assertion Failed: unable to load trusted SSL root certificates ):opensslconnection.cpp:1393
+# opensslconnection.cpp (1393): Assertion Failed: unable to load trusted SSL root certificates
+# Assert (Assertion Failed: unable to load trusted SSL root certificates):opensslconnection.cpp:1393
 sudo pacman -S --force ca-certificates-utils
 
 # Remove Steam
@@ -52,10 +52,14 @@ sudo locale-gen
 
 # ERROR: ld.so: object '~/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so' from LD_PRELOAD cannot be preloaded (wrong ELF class: ELFCLASS64): ignored.
 
-# This can be fixed, however, by forcing the game to use a later version of OpenGL than it wants. Right click on the game, select Properties. Then, click "Set Launch Options" in the "General" tab and paste the following:
+# This can be fixed, however, by forcing the game to use a later version of OpenGL than it wants.
+# Right-click on the game, select Properties.
+# Then, click "Set Launch Options" in the "General" tab and paste the following:
 # MESA_GL_VERSION_OVERRIDE=3.1 MESA_GLSL_VERSION_OVERRIDE=140 %command%
 
-# Setup with multiple monitors can cause error which will make game unable to start. If you stuck on this error and have multiple monitors, try to disable all additional displays, and then run a game. You can enable them after the game successfully started.
+# Setup with multiple monitors can cause error which will make the game unable to start.
+# If you stuck on this error and have multiple monitors, try to disable all additional displays, and then run a game.
+# You can enable them after the game successfully started.
 export LD_LIBRARY_PATH=/usr/lib32/nvidia:/usr/lib/nvidia:$LD_LIBRARY_PATH
 
 
@@ -66,5 +70,5 @@ export LD_LIBRARY_PATH=/usr/lib32/nvidia:/usr/lib/nvidia:$LD_LIBRARY_PATH
 # Play with any USB controller on Linux using Steam Big Picture
 # http://steamcommunity.com/app/221410/discussions/0/558748822569010381/
 
-# Play with any USB controller on Linux using xboxdrv to emulate a XBOX controller
+# Play with any USB controller on Linux using xboxdrv to emulate an XBOX controller
 # https://steamcommunity.com/app/221410/discussions/0/558748653738497361/

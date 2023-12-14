@@ -97,7 +97,7 @@ optional-packages --install yes util-linux
 #yay --sync --needed --noconfirm bluez-firmware
 
 # Add the user to the LP group.
-sudo usermod -a -G lp $(whoami)
+sudo usermod -a -G lp "$(whoami)"
 
 # Enable Bluetooth headset.
 echo -e \

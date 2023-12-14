@@ -47,4 +47,4 @@ cat /mnt/etc/fstab
 # Finished #
 # -------- #
 
-# The next step is execute the file './03-arch-change-root.bash'.
+# The next step is executing the file './03-arch-change-root.bash'.

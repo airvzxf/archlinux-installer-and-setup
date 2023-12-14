@@ -9,7 +9,7 @@
 # Official Linux Games
 # ----------------------------------------------------------------------
 
-# FreedroidRPG — Mature science fiction role playing game set in the future
+# FreedroidRPG — Mature science fiction role-playing game set in the future
 sudo pacman --sync --needed --noconfirm freedroidrpg
 
 # OpenMW — Attempt to reimplement the popular role-playing game Morrowind. OpenMW aims to be a fully playable, open source implementation of the game's engin
@@ -30,7 +30,7 @@ sudo pacman --sync --needed --noconfirm oolite
 # Globulation 2 — Multiplayer RTS with some "economic" elements minimizing the amount of micromanagement.
 sudo pacman --sync --needed --noconfirm glob2
 
-# The Battle for Wesnoth — Free, turn-based tactical strategy game with a high fantasy theme, featuring both single-player, and online/hotseat multiplayer combat.
+# The Battle for Wesnoth — Free, turn-based tactical strategy game with a high-fantasy theme, featuring both single-player, and online/hotseat multiplayer combat.
 sudo pacman --sync --needed --noconfirm wesnoth
 
 # Simutrans — Another Transport simulation that works on linux with sdl.
@@ -45,7 +45,7 @@ sudo pacman --sync --needed --noconfirm lincity-ng
 # Dofus — Free, manga inspired, Massively Multiplayer Online Role-playing Game (MMORPG) for Adobe AIR
 yay --sync --needed --noconfirm dofus #AUR
 
-#      Savage 2: A Tortured Soul — Fantasy themed online multiplayer team-based FPS/RTS/RPG hybrid. Free-to-play as of December 2008. Pay for premium accounts providing crucial game elements such as extra inventory slots, access to clans and removal of the Hellbourne unit restrictions (per-account), as well as access to replays and stats.
+# Savage 2: A Tortured Soul — Fantasy themed online multiplayer team-based FPS/RTS/RPG hybrid. Free-to-play as of December 2008. Pay for premium accounts providing crucial game elements such as extra inventory slots, access to clans and removal of the Hellbourne unit restrictions (per-account), as well as access to replays and stats.
 yay --sync --needed --noconfirm savage2 #AUR
 
 # Planeshift — Role Playing Game immersed into a 3D virtual fantasy world which is FULLY FREE to play. Fully free means you will have no surprises of premium content which will limit your gameplay or unbalance the game. There are no limitations in skills, ranks, abilities, items you can gain with your free account

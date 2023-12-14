@@ -24,7 +24,7 @@ fdisk --list
 # This is the list with all devices (disks and USB) connected in your computer.
 # Warning: This script will delete all partitions and data from the selected device.
 
-read -r -p "Write in lowercase the name for the USB device, e.g. sdb, sdc sdx: " usbDevice
+read -r -p "Write in lowercase the name for the USB device, e.g., sdb, sdc sdx: " usbDevice
 
 read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheUsb
 

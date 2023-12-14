@@ -28,15 +28,15 @@ git config --global credential.helper store
 git config --global pull.rebase true
 
 # Set to true the GPP Sign to sign all commits by default.
-# Set to false to commit without the .ssh private key.
+# Set to false for commit without the .ssh private key.
 # Follow the next URLs to set up this sign.
 # - https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 # - https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account
 git config --global user.signingKey AD66CD9F
 git config --global commit.gpgsign true
 
-# Create alias to write easy command like git cm thats means git commit -m
-# These configurations will be save in this file ~/.gitconfig
+# Create alias to write easy command like git cm that's means git commit -m
+# These configurations will be safe in this file ~/.gitconfig
 git config --global --remove-section alias || true
 
 git config --global alias.ad '! git add "$@" && echo -e "\n" && git status'

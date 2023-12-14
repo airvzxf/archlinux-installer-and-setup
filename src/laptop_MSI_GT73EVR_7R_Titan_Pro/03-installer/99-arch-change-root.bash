@@ -174,7 +174,7 @@ done
 # Make this script executable.
 chmod +x /usr/local/bin/numlock
 
-# Create the system service for enable of the number lock.
+# Create the system service for enabling of the number lock.
 echo '[Unit]
 Description=numlock
 
@@ -187,7 +187,7 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 ' | tee /usr/lib/systemd/system/numlock.service
 
-# Enable the system service for enable of the number lock.
+# Enable the system service for enabling of the number lock.
 ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/multi-user.target.wants/numlock.service
 
 # -------------------------------- #
@@ -197,7 +197,7 @@ ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/mu
 # Create the folder.
 mkdir --parents /etc/systemd/system/getty@tty1.service.d/
 
-# Create the system service for log in automatically.
+# Create the system service for log-in automatically.
 echo "[Service]
 ExecStart=
 ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${TERM}
@@ -210,7 +210,7 @@ ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${T
 sed --in-place '/HandleLidSwitch=/ s/#*/#/' /etc/systemd/logind.conf
 
 echo '
-# Prevent to suspend when the lid is closing.
+# Prevent suspending when the lid is closing.
 HandleLidSwitch=ignore
 ' | tee --append /etc/systemd/logind.conf
 
@@ -256,15 +256,15 @@ passwd "${userId}"
 # Add your user to the video group.
 gpasswd --add "${userId}" video
 
-# Allow members of group to execute any command.
+# Allow members of the group to execute any command.
 sed --in-place '/%wheel ALL=(ALL:ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # The sudo password is requested one time per session.
 echo '
-# Enable to the user to power off the computer.
+# Enable the user to power off the computer.
 '"${userId}"' ALL=NOPASSWD:/sbin/poweroff
 
-# Enable to the user to power off the computer.
+# Enable the user to power off the computer.
 '"${userId}"' ALL=NOPASSWD:/sbin/reboot
 
 # Once the password is entered in the console, it is not requesting anymore.

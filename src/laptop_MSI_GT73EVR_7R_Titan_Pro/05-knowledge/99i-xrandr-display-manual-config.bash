@@ -18,16 +18,16 @@ funcIsEmptyThenExit() {
 }
 
 # Step 1
-# Connect you screen and logout from the windows manager (go to terminal mode withot GUI)
+# Connect you screen and logout from the windows manager (go to terminal mode without GUI)
 
 # Step 2
 # Login again in your window manager 'nvidia-xrun'
 
 # Step 3
-# Looks for the screen at the end there are some mesures in millimeters
+# Looks for the screen at the end there are some measures in millimeters
 
 # Step 4
-# Let's to do some operations
+# Lets do some operations
 echo -e "screenWidthMillimeters: $screenWidthMillimeters"
 echo -e "screenHeightMillimeters: $screenHeightMillimeters"
 echo -e ""

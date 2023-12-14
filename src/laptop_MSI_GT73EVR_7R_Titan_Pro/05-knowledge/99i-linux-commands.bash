@@ -11,9 +11,9 @@
 # ----------------------------------------------------------------------
 
 # Search the process in your system
-ps aux | grep proccess_name
+ps aux | grep process_name
 # PS do not show itself processor, put brackets in the first letter
-ps aux | grep [p]roccess_name
+ps aux | grep [p]rocess_name
 
 
 # Add comments in lines between 2 and 4

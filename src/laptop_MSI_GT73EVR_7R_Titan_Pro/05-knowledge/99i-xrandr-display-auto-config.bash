@@ -17,7 +17,7 @@ funcIsEmptyThenExit() {
 }
 
 # Step 1
-# Connect you screen and logout from the windows manager (go to terminal mode withot GUI)
+# Connect you screen and logout from the windows manager (go to terminal mode without GUI)
 
 # Step 2
 # Login again in your window manager 'nvidia-xrun'
@@ -30,14 +30,14 @@ echo -e "Looking for screen: $screenName"
 echo -e "$xrandr"
 echo -e "\n"
 # Screen 0: minimum 8 x 8, current 1920 x 1080, maximum 16384 x 16384
-# LVDS-1-1 connected 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
-# HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x axis y axis) 853mm x 480mm
+# LVDS-1-1 connected 1366x768+0+0 (normal left inverted right x-axis y-axis) 309mm x 173mm
+# HDMI-1-1 connected 1920x1080+0+0 (normal left inverted right x-axis y-axis) 853mm x 480mm
 
 # Step 4
 # Looks for the screen at the end there are some mesures in millimeters
 
 # Step 5
-# Let's to do some operations
+# Lets do some operations
 screenXrandrMillimeters=$(xrandr | grep -w "$screenName.* $screenStatus" | grep -Eoi "[0-9]+mm" | grep -Eoi "[0-9]+")
 funcIsEmptyThenExit $screenXrandrMillimeters
 screenWidthMillimeters=$(echo $screenXrandrMillimeters | cut -d' ' -f1)
@@ -96,7 +96,7 @@ echo -e ""
 
 # Step 6
 # Put this into your .nvidia-xinitrc
-echo -e "Run this command'nano ~/.nvidia-xinitrc' and copy the line below."
+echo -e "Run this command 'nano ~/.nvidia-xinitrc' and copy the line below."
 echo -e "xrandr --output $screenName --mode ${screenResolutionWidth}x${screenResolutionHeight} --rate 60 --dpi ${screenDpis}"
 xrandr --output $screenName --mode ${screenResolutionWidth}x${screenResolutionHeight} --rate ${screenRate} --dpi ${screenDpis}
 echo -e "\n"

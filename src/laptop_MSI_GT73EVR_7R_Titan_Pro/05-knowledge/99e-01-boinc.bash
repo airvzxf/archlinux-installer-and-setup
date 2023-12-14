@@ -25,7 +25,7 @@ echo -e "\n"
 sudo pacman --sync --needed --noconfirm lib32-glibc lib32-glib2 lib32-pango lib32-libxi lib32-mesa lib32-libjpeg6-turbo lib32-libxmu lib32-opencl-nvidia xorg-xhost
 
 # Add your user to the boinc group and setting up
-sudo usermod -a -G boinc $(whoami)
+sudo usermod -a -G boinc "$(whoami)"
 sudo gpasswd --add boinc video
 
 

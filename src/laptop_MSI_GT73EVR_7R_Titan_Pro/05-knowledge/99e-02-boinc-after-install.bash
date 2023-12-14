@@ -14,7 +14,7 @@ funcIsConnectedToInternet
 echo -e ""
 
 # After logout and login again
-echo -e "Checks if 'boinc' is in your groups"
+echo -e "Check if 'boinc' is in your groups"
 groups
 groups boinc
 echo -e ""
@@ -28,7 +28,7 @@ echo -e ""
 #~ systemctl start boinc.service
 #~ echo -e "\n"
 
-# If you run the boinc manager you always needs to execute the command
+# If you run the boinc manager, you always need to execute the command
 # in your home directory ~/
 echo -e "Setting up the boinc config to run boinc in the workspace directory ~/workspace/boinc"
 
@@ -36,7 +36,7 @@ mkdir --parents ~/workspace/boinc
 cd ~/workspace/boinc || funcDirectoryNotExist
 
 cp /var/lib/boinc/gui_rpc_auth.cfg gui_rpc_auth.cfg
-sudo chown $(whoami) gui_rpc_auth.cfg
+sudo chown "$(whoami)" gui_rpc_auth.cfg
 sudo grp users gui_rpc_auth.cfg
 sudo chmod 640 gui_rpc_auth.cfg
 

@@ -22,13 +22,13 @@ sudo pacman -Syyu
 sudo pacman -S [package_name]
 # Not required confirmation
 sudo pacman -S --noconfirm
-# If the packages is alrady installed, doesn't install it
+# If the package is already installed, doesn't install it
 sudo pacman -S --needed
 
 # Uninstall package
 # Removes a single package, leaving all of its dependencies installed
 sudo pacman -R [package_name]
-# Removes a package and its dependencies which are not required by any other installed package
+# Removes a package and its dependencies, which are not required by any other installed package
 sudo pacman -Rs [package_name]
 
 # Search remote repositories (Arch Linux database)
@@ -57,21 +57,21 @@ pactree -r [package_name]
 
 
 # Exists two kind of packages the official and the AUR (Arch User Repository)
-# the last one is maintained by the community developers but they are
+# the last one is maintained by the community developers, but they are
 # highly recommended.
 
-# There are two ways to install, the first is manually and the second
+# There are two ways to install, the first is manual, and the second
 # is using yay.
 
 # Manually means you need to clone the git project and build the version
-# for your Arch Linux, the problem is that if it needs sub libriries for
-# this AUR, prepare to spend a lot of time searching and installing this dependencies.
+# for your Arch Linux, the problem is that if it needs sub libraries for
+# this AUR, prepare to spend a lot of time searching and installing these dependencies.
 
-# Yay solved this problem, you only need to say the name of package
+# Yay, solved this problem, you only need to say the name of package
 # then download and build the dependencies and checks if exists problems
-# with other versions of this dependencies.
+# with other versions of these dependencies.
 
 # Install package
 # Note: You don't need call sudo
-# Note: Normally yay use the same options like pacman for example -Qs, -Qi, etc.
+# Note: Normally yay use the same options as pacman, for example -Qs, -Qi, etc.
 yay --sync --needed [package_name]

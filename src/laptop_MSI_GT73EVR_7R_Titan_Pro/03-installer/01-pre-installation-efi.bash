@@ -14,7 +14,7 @@ source ./../00-configuration.bash
 
 # Note: This installation works only in EFI computers.
 
-# Note: If you want to install Arch Linux in other device,
+# Note: If you want to install Arch Linux in another device,
 # please change the hard disk vars into the configuration
 # file (./../00-configuration.bash).
 
@@ -72,7 +72,7 @@ funcIsEfiBios
 fdisk --list "${hardDiskDevice}"
 
 # Delete all partitions.
-# Warning: This script delete all partitions and data from the selected device.
+# Warning: This script deletes all partitions and data from the selected device.
 
 read -n 1 -r -p "Is this '${hardDiskDevice}' the Hard Disk Device to erase? [y/N]: " isThisTheHdd
 
@@ -136,4 +136,4 @@ funcMountSystem
 # Finished #
 # -------- #
 
-# The next step is execute the file './02-installation.bash'.
+# The next step is executing the file './02-installation.bash'.

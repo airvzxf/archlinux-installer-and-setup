@@ -79,4 +79,4 @@ cd ./archlinux-installer-and-setup/ || funcDirectoryNotExist
 # In the directory 'cd /home/root/workspace/projects/'.
 # Go inside 'cd archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/'.
 # Go to the folder 'cd 03-installer/'.
-# and execute the file './01-pre-installation-efi.bash'.
+# And execute the file './01-pre-installation-efi.bash'.

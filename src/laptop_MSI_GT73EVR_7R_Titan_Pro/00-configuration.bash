@@ -83,22 +83,22 @@ funcChangeConsoleFont() {
   setfont "${consoleFont}"
 }
 
-# Function which checks if your computer is connected to Internet.
+# Function which checks if your computer is connected to the Internet.
 funcIsConnectedToInternet() {
-  echo "Checking your Internet connection."
+  echo "Check your Internet connection."
   if ! ping -c 1 google.com >> /dev/null 2>&1; then
     echo "You have problems with your Internet."
     echo "Please check if:"
-    echo " - The Internet works properly."
-    echo " - The Internet cable is connected to your computer and modem."
-    echo " - You have Wi-Fi please execute this command: 'wifi-menu' and connect in your account."
+    echo " — The Internet works properly."
+    echo " — The Internet cable is connected to your computer and modem."
+    echo " — You have Wi-Fi, please execute this command: 'wifi-menu' and connect to your account."
     echo ""
     exit 1
   fi
-  echo "You have Internet!"
+  echo "You have the Internet!"
 }
 
-# Function to display error and exit when the directory not exist.
+# Function to display error and exit when the directory not exists.
 funcDirectoryNotExist() {
   echo "ERROR: Try to enter a directory that does not exist."
   exit 1
@@ -143,7 +143,7 @@ funcUmountSystem() {
   swapoff --all
 }
 
-# Mount system in the device which will be installed.
+# Mount the system in the device which will be installed.
 funcMountSystem() {
   funcUmountSystem
 
@@ -157,7 +157,7 @@ funcMountSystem() {
 funcIsEfiBios() {
   if ! [[ $(ls --almost-all /sys/firmware/efi/efivars) ]]; then
     echo ""
-    echo "This script only run the Arch Linux in EFI BIOS, sorry."
+    echo "This script only runs the Arch Linux in EFI BIOS, sorry."
     echo ""
     echo "The script has been FINISHED."
     exit 1
