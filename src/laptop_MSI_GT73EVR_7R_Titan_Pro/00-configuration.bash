@@ -186,7 +186,7 @@ funcInstallYay() {
 # Check if the Pacman mirror list has the expected mirrors.
 funcCheckPacmanMirror() {
   local MIRROR_LIST_PATH
-  MIRROR_LIST_PATH="/etc/pacman.d/mirrorlist"
+  MIRROR_LIST_PATH="/etc/xdg/reflector/reflector.conf"
   if [ -n "${1}" ]; then
     MIRROR_LIST_PATH="${1}"
   fi

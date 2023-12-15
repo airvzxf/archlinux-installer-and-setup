@@ -69,7 +69,7 @@ systemctl enable --now reflector
 # Restart the Reflector service.
 systemctl restart reflector
 
-funcCheckPacmanMirror "/etc/xdg/reflector/reflector.conf"
+funcCheckPacmanMirror
 
 # Update the database sources in Arch Linux.
 pacman --sync --refresh --refresh --noconfirm
