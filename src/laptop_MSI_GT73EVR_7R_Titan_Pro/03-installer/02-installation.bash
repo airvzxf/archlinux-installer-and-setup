@@ -29,9 +29,12 @@ funcCheckPacmanMirror
 # Note: The only configuration file which is copied is the '/etc/mirrorlist'.
 pacstrap -K /mnt/archlinux base base-devel linux linux-firmware terminus-font reflector
 
-funcCheckPacmanMirror
+# Create backup for the configuration file of the Reflector.
+cp /mnt/archlinux/etc/xdg/reflector/reflector.conf /mnt/archlinux/etc/xdg/reflector/reflector-"$(date +%Y-%m-%d-%H-%M-%S-%N)".conf
 
-funcCheckPacmanMirror /mnt/etc/pacman.d/mirrorlist
+# Copy the configuration file of the Reflector in the mounted partition.
+cp /etc/xdg/reflector/reflector.conf /mnt/archlinux/etc/xdg/reflector/reflector.conf
+
 funcCheckPacmanMirror "/mnt/archlinux/etc/xdg/reflector/reflector.conf"
 
 # ---------------------- #
