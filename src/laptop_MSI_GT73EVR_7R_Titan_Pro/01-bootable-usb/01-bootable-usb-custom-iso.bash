@@ -46,8 +46,11 @@ reflector
 asciinema
 ' >> ./packages.x86_64
 
+# Create the workspace folder in root.
+mkdir -p ./airootfs/root/workspace/projects
+
 # Copy the Arch Linux script in the workspace directory.
-cp --recursive "${currentDirectory}"/../../../../archlinux-installer-and-setup ./airootfs/root/
+cp --recursive "${currentDirectory}"/../../../../archlinux-installer-and-setup ./airootfs/root/workspace/projects/
 
 # Function to change some parameters in the pacman.conf file.
 funcSetupPacmanConfiguration ./
