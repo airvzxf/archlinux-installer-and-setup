@@ -88,7 +88,6 @@ done
 
 # Ask if the user wants to create the USB live.
 read -n 1 -r -p "Do you want to create a USB Live? [Y/n]: " isUsbLive
-
 funcContinueDefaultYes "${isUsbLive}"
 
 # Display a disk partition table.
@@ -100,7 +99,6 @@ sudo fdisk --list
 read -r -p "Write in lowercase the name for the USB device, e.g., sdb, sdc sdx: " usbDevice
 
 read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheUsb
-
 funcContinue "${isThisTheUsb}"
 
 # Umount the USB device.

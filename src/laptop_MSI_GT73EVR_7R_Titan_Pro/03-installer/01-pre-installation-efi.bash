@@ -98,9 +98,7 @@ fdisk --list "${hardDiskDevice}"
 
 # Delete all partitions.
 # Warning: This script deletes all partitions and data from the selected device.
-
 read -n 1 -r -p "Is this '${hardDiskDevice}' the Hard Disk Device to erase? [y/N]: " isThisTheHdd
-
 funcContinue "${isThisTheHdd}"
 
 # Umount system partitions
@@ -140,7 +138,7 @@ dd if=/dev/zero of="${hardDiskDevice}" bs=512 count=1 conv=notrunc
   echo 4                                 # Select partition number
   echo 20                                # Linux filesystem
   echo w                                 # Write changes
-) | fdisk "${hardDiskDevice}" &> /dev/null
+) | fdisk "${hardDiskDevice}" &>/dev/null
 
 # Umount partitions
 funcUmountSystem
