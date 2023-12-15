@@ -132,7 +132,7 @@ funcSetupPacmanConfiguration() {
 
   sed --in-place "s/#Color/Color/g" "${etcDirectory}"/pacman.conf
   sed --in-place "s/#VerbosePkgLists/VerbosePkgLists/g" "${etcDirectory}"/pacman.conf
-  sed --in-place --regexp-extended "s/[#]?ParallelDownloads = 5/ParallelDownloads = 15/g" "${etcDirectory}"/pacman.conf
+  sed --in-place --regexp-extended "s/[#]?ParallelDownloads = 5/ParallelDownloads = 35/g" "${etcDirectory}"/pacman.conf
 }
 
 # Umount system in the device which will be installed.
