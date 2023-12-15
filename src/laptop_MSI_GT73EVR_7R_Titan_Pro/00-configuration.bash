@@ -192,7 +192,7 @@ funcCheckPacmanMirror() {
   fi
 
   local EXPECTED_ARGUMENT
-  EXPECTED_ARGUMENT=" --country ${countryCode} "
+  EXPECTED_ARGUMENT="--country ${countryCode}"
   grep --color=always -- "${EXPECTED_ARGUMENT}" "${MIRROR_LIST_PATH}" || {
     cat "${MIRROR_LIST_PATH}"
     echo "ERROR: The mirror list does not match the expected mirrors."

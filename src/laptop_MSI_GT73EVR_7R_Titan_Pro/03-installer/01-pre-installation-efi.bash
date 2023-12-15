@@ -33,17 +33,42 @@ funcSetupPacmanConfiguration
 # Change the pacman.conf file to trust all packages, even if the signature is not correct.
 sed --in-place --regexp-extended "s/SigLevel \s*= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 
-# Stop the automatic system service that updates the mirror list with Reflector.
-systemctl disable --now reflector
-
 # Back up the mirror list of Pacman.
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup-"$(date +%Y-%m-%d-%H-%M-%S-%N)"
 
-# Set the mirror list of Pacman.
-reflector --verbose --score 10 --sort score --protocol https --completion-percent 95 --country "${countryCode}" --connection-timeout 600 --save /etc/pacman.d/mirrorlist
+# Back up the reflector configuration file.
+cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector-"$(date +%Y-%m-%d-%H-%M-%S-%N)".conf
 
-# shellcheck disable=SC2119
-funcCheckPacmanMirror
+# Set the mirror list of Pacman.
+echo "--verbose
+--protocol https
+--ipv4
+--completion-percent 100
+--country ${countryCode}
+--connection-timeout 600
+--score 100
+--sort score
+--save /etc/pacman.d/mirrorlist
+" | tee /etc/xdg/reflector/reflector.conf
+
+# Replace the Reflector timer to daily schedule and a delay for 6 hours.
+sed --in-place --regexp-extended "s/weekly with/every 12 hours with/g" /usr/lib/systemd/system/reflector.timer
+sed --in-place --regexp-extended "s/OnCalendar=weekly/OnCalendar=*-*-* 00,12:00:00/g" /usr/lib/systemd/system/reflector.timer
+sed --in-place --regexp-extended "s/RandomizedDelaySec=12h/RandomizedDelaySec=6h/g" /usr/lib/systemd/system/reflector.timer
+
+# Enable the system timer to start Reflector.
+systemctl enable --now reflector.timer
+
+# Start the system timer of the Reflector.
+systemctl restart reflector.timer
+
+# Enable the automatic system service that updates the mirror list with Reflector.
+systemctl enable --now reflector
+
+# Restart the Reflector service.
+systemctl restart reflector
+
+funcCheckPacmanMirror "/etc/xdg/reflector/reflector.conf"
 
 # Update the database sources in Arch Linux.
 pacman --sync --refresh --refresh --noconfirm
