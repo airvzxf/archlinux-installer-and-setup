@@ -28,9 +28,6 @@ funcIsConnectedToInternet
 
 funcMountSystem
 
-# Clean Arch Linux project in target device.
-rm --force --recursive /mnt/archlinux-installer-and-setup
-
 # Copy this project into the root directory.
 cp --recursive ./../../../../archlinux-installer-and-setup /mnt/archlinux/
 
