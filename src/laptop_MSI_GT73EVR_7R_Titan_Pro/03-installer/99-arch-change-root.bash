@@ -256,7 +256,7 @@ passwd "${userId}"
 # Add your user to the video group.
 gpasswd --add "${userId}" video
 
-# Allow members of the group to execute any command.
+# Allow members of the group wheel can execute any command.
 sed --in-place '/%wheel ALL=(ALL:ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # The sudo password is requested one time per session.
@@ -264,10 +264,10 @@ echo '
 # Enable the user to power off the computer.
 '"${userId}"' ALL=NOPASSWD:/sbin/poweroff
 
-# Enable the user to power off the computer.
+# Enable the user to reboot the computer.
 '"${userId}"' ALL=NOPASSWD:/sbin/reboot
 
-# Once the password is entered in the console, it is not requesting anymore.
+# Once the password is entered in the console, it is not requested anymore.
 Defaults:'"${userId}"' timestamp_timeout=-1
 ' | tee --append /etc/sudoers
 
