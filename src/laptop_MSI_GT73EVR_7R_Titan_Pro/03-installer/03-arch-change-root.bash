@@ -32,24 +32,24 @@ funcMountSystem
 rm --force --recursive /mnt/archlinux-installer-and-setup
 
 # Copy this project into the root directory.
-cp --recursive ./../../../../archlinux-installer-and-setup /mnt/
+cp --recursive ./../../../../archlinux-installer-and-setup /mnt/archlinux/
 
 # Copy root user configurations into the root home.
-cp --recursive ./../04-setup/setup-resources/. /mnt/root/
+cp --recursive ./../04-setup/setup-resources/. /mnt/archlinux/root/
 
 # -------------------- #
 # Run Arch Change Root #
 # -------------------- #
 
 # Go to the main Linux partition like a root user.
-arch-chroot /mnt /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/99-arch-change-root.bash
+arch-chroot /mnt/archlinux /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-installer/99-arch-change-root.bash
 
 # ---------------------------------------- #
 # Clean the resources for Arch Change Root #
 # ---------------------------------------- #
 
 # Delete the arch change scripts from the root directory.
-rm --force --recursive /mnt/archlinux-installer-and-setup
+rm --force --recursive /mnt/archlinux/archlinux-installer-and-setup
 
 # Unmount partitions.
 funcUmountSystem

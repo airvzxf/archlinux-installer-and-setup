@@ -138,8 +138,8 @@ funcSetupPacmanConfiguration() {
 # Umount system in the device which will be installed.
 funcUmountSystem() {
   echo "Unmounting the file systems"
-  fuser --kill /mnt || true
-  umount --recursive /mnt || true
+  fuser --kill /mnt/archlinux || true
+  umount --recursive /mnt/archlinux || true
   swapoff --all
 }
 
@@ -148,8 +148,9 @@ funcMountSystem() {
   funcUmountSystem
 
   echo "Mounting the file systems"
-  mount ${hardDiskDeviceArchLinux} /mnt
-  mount --mkdir ${hardDiskDeviceBoot} /mnt/boot/EFI
+  mkdir -p /mnt/archlinux
+  mount ${hardDiskDeviceArchLinux} /mnt/archlinux
+  mount --mkdir ${hardDiskDeviceBoot} /mnt/archlinux/boot/EFI
   swapon ${hardDiskDeviceSwap}
 }
 

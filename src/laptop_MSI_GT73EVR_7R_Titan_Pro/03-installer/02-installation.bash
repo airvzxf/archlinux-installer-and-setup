@@ -27,21 +27,22 @@ funcCheckPacmanMirror
 
 # Download and install the base packages in your Linux partition
 # Note: The only configuration file which is copied is the '/etc/mirrorlist'.
-pacstrap -K /mnt base base-devel linux linux-firmware terminus-font reflector
+pacstrap -K /mnt/archlinux base base-devel linux linux-firmware terminus-font reflector
 
 funcCheckPacmanMirror
 
 funcCheckPacmanMirror /mnt/etc/pacman.d/mirrorlist
+funcCheckPacmanMirror "/mnt/archlinux/etc/xdg/reflector/reflector.conf"
 
 # ---------------------- #
 # Create mount partition #
 # ---------------------- #
 
 # Create a file to mount partitions automatically in the boot
-genfstab -U -p /mnt > /mnt/etc/fstab
+genfstab -U -p /mnt/archlinux >/mnt/archlinux/etc/fstab
 
 # Check if all your partitions are in fstab file (boot, swap, linux)
-cat /mnt/etc/fstab
+cat /mnt/archlinux/etc/fstab
 
 # -------- #
 # Finished #
