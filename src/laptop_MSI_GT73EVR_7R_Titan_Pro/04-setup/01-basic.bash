@@ -19,23 +19,45 @@ funcIsConnectedToInternet
 # ---------------------- #
 
 # Create a backup
-sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf /etc/resolv.conf.backup
+sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf /etc/resolv-"$(date +%Y-%m-%d-%H-%M-%S-%N)".conf
 
 # Set up the local DNS.
-echo '
+echo "
 # DNS from your ISP (Internet company).
 # Go to the Web interface from your ISP modem and get the DNS information.
-nameserver 10.0.56.130
-nameserver 189.194.28.50
-nameserver 2806:260:1005:101:200:52:196:196
-nameserver 2806:260:1007:100:189:194:28:50
+${nameserverIPv4One}
+${nameserverIPv4Two}
+${nameserverIPv6One}
+${nameserverIPv6Two}
 
 # Google DNS
 #nameserver 8.8.8.8
 #nameserver 8.8.4.4
 #nameserver 2001:4860:4860::8888
 #nameserver 2001:4860:4860::8844
-' | sudo tee --append /etc/resolv.conf
+" | sudo tee /etc/resolv.conf
+
+# Flush all local DNS caches.
+sudo resolvectl flush-caches
+
+# ------------- #
+# Set up Pacman #
+# ------------- #
+
+# Enable the system timer to start Reflector.
+sudo systemctl enable reflector.timer
+
+# Start the system timer of the Reflector.
+sudo systemctl restart reflector.timer
+
+# Enable the automatic system service that updates the mirror list with Reflector.
+sudo systemctl enable reflector
+
+# Restart the Reflector service.
+sudo systemctl restart reflector
+
+# Upgrade Arch Linux.
+sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
