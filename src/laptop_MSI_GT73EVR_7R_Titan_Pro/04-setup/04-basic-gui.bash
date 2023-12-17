@@ -77,7 +77,7 @@ Enable=Source,Sink,Media,Socket" | sudo tee /etc/bluetooth/audio.conf
 sudo modprobe btusb
 
 # Start the Bluetooth service.
-sudo systemctl start bluetooth.service
+sudo systemctl enable --now bluetooth.service
 
 # -------- #
 # Finished #
