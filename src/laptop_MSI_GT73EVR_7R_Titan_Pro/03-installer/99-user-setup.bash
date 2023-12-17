@@ -21,12 +21,6 @@ mkdir -p ~/.vim
 mkdir --parents ~/workspace/projects
 cd ~/workspace/projects || funcDirectoryNotExist
 
-# ------------------------ #
-# Clone Arch Linux project #
-# ------------------------ #
-
-git clone https://github.com/airvzxf/archlinux-installer-and-setup.git
-
 # ---------- #
 # Set up Git #
 # ---------- #
