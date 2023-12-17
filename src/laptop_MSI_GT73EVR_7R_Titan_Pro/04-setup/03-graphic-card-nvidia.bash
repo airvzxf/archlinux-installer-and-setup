@@ -21,28 +21,21 @@ funcIsConnectedToInternet
 # Check the installed graphic cards in your computer.
 lspci -k | grep -A 2 -E "(VGA|3D)"
 
-# Install the Kernel module allowing to switch dedicated graphics card on Optimus laptops.
-#optional-packages --install yes bbswitch
-
 # Install the NVIDIA drivers for linux.
-optional-packages --install yes nvidia
-
 # Install the NVIDIA drivers utilities.
-optional-packages --install yes nvidia-utils
-
-# Install the NVIDIA open kernel modules.
-optional-packages --install yes nvidia-open
-
-# TODO: Check if it will remove or not.
-# Install OpenCL ICD Bindings.
-#optional-packages --install yes ocl-icd
-
-# TODO: Check if it will remove or not.
-# Install OpenCL Info.
-#optional-packages --install yes clinfo
-
+# Install the NVIDIA drivers utilities (32-bit).
 # Install the NVIDIA's GPU programming toolkit.
-optional-packages --install yes cuda
+sudo pacman --sync --needed --noconfirm \
+  nvidia nvidia-utils lib32-nvidia-utils cuda nvidia-settings opencl-nvidia lib32-opencl-nvidia \
+  opencl-headers opencl-clhpp glu
+
+# TODO: Check if I need this package.
+# Install OpenCL ICD Bindings.
+#sudo pacman --sync --needed --noconfirm ocl-icd
+
+# TODO: Check if I need this package.
+# Install OpenCL Info.
+#sudo pacman --sync --needed --noconfirm clinfo
 
 # Run NVIDIA X-configuration.
 sudo nvidia-xconfig
@@ -81,11 +74,11 @@ Exec=/bin/sh -c 'while read -r trg; do case \$trg in linux*) exit 0; esac; done;
 # -------------- #
 
 # Add parameters to the kernel.
-echo '
+echo "
 # NVIDIA kernel parameters.
 options nouveau modeset=0
 options nvidia_drm modeset=1
-' | sudo tee /etc/modprobe.d/nvidia.conf
+" | sudo tee /etc/modprobe.d/nvidia.conf
 
 # ----------------- #
 # Kernel parameters #
@@ -103,7 +96,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Change initial ramdisk #
 # ---------------------- #
 
-# Set to yes the module decompress.
+# Set the module decompress to yes.
 sudo sed --in-place '/MODULES_DECOMPRESS="yes"/ s/^#//' /etc/mkinitcpio.conf
 
 # Set to cat the compression of the initramfs image.
@@ -126,8 +119,8 @@ sudo mkinitcpio --preset linux
 # Finished #
 # -------- #
 
-# The next step is start X11 with NVIDIA.
-# Execute './03a02-graphic-card-nvidia-startx.bash'.
+# The next step is set up basic packages in GUI Desktop.
+# Execute './04-basic-gui.bash'.
 
 # Reboot
 read -n 1 -s -r -p "Press any key to reboot."
@@ -141,7 +134,6 @@ sudo reboot
 #~ [ 161.208] (WW) Falling back to old probe method for modesetting
 #~ [ 161.599] (WW) NVIDIA(0): Unable to get display device for DPI computation.
 #~ [ 161.657] (WW) NVIDIA(0): Option "PrimaryGPU" is not used
-
 
 # (WW) NVIDIA(0): Unable to get display device for DPI computation
 # NVIDIA(0): DPI set to (75, 75); computed from built-in default
@@ -165,8 +157,6 @@ sudo reboot
 # (WW) Open ACPI failed (/var/run/acpid.socket) (No such file or directory)
 # https://bbs.archlinux.org/viewtopic.php?id=64039
 
-
-
 # Detailed explanation about the Nvidia installation
 # ----------------------------------------------------------------------
 # https://wiki.archlinux.org/index.php/NVIDIA#Installation
@@ -174,7 +164,6 @@ sudo reboot
 # Check what graphic card do you have
 #lspci -k | grep -A 2 -E "(VGA|3D)"
 # 01:00.0 3D controller: NVIDIA Corporation GK107M [GeForce GT 740M] (rev a1)
-
 
 # 1. Check if your card is new or old
 # ---------------------------------------------------
@@ -211,7 +200,6 @@ sudo reboot
 # BUS: PCIe 3.0 x16
 # Core config: 384:32:16
 
-
 # 2. Check your appropriate driver
 # ---------------------------------------------------
 
@@ -243,7 +231,6 @@ sudo reboot
 # WARNING: libpng warning: iCCP: known incorrect sRGB profile
 # https://wiki.archlinux.org/index.php/Libpng_errors
 # convert -strip input_filename output_filename
-
 
 # 4. Get DPIs
 # ---------------------------------------------------
