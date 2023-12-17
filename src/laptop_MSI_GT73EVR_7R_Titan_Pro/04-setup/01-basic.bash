@@ -73,158 +73,94 @@ mkdir --parents ~/workspace
 # Change user for the xinitrc file.
 sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 
-# Install the command-line tool that finds all the optional packages of the packages that were pointed by you. It can install the packages.
-yay --sync --needed --noconfirm optional-packages
+# Install the fonts.
+# Install the GNU Bourne Again shell.
+# Install the programmable completion for the bash shell.
+# Install the GNU Debugger.
+# Install the next generation, high-performance debugger.
+# Install Linux headers
+# Install a highly capable, feature-rich programming language.
+# Install the systems programming language focused on safety, speed, and concurrency.
+# Install a C library that implements an SQL database engine.
+# Install a windowing toolkit for use with tcl.
+# Install the next generation of the python high-level scripting language.
+# Install the PyPA recommended tool for installing Python packages.
+# Install the virtual Python Environment builder.
+# Install the screen fetch for ASCII logo in Linux.
+# Install the Vi Improved, a highly configurable, improved version of the vi text editor.
+# Install the fast distributed version control system.
+# Install the SSH protocol implementation for remote login, command execution, and file transfer.
+# Install the library for storing and retrieving passwords and other secrets.
+# Install the record and share terminal sessions.
+# Install the cat clone with syntax highlighting and git integration.
+# Install a modern ls with a lot of pretty colors and awesome icons.
+# Install the abstraction for enumerating power devices, listening to device events and querying history and statistics.
+# Install the package to list open files for running Unix processes.
+# Install the spell checker and morphological analyzer library and program.
+# Install the US English hunspell dictionaries.
+# Install the Spanish (Mexico) hunspell dictionary.
+# Install a daemon for delivering ACPI power management events with netlink support.
+# Install the terminal multiplexer.
+# Install the alternative to locate, faster and compatible with mlocate's database.
+# Install an arbitrary precision calculator language.
+# Install the utility programs used for creating patch files.
+# Install a Perl script wrapper for 'diff' that produces the same output but with pretty 'syntax' highlighting.
+# Install a shell utility for manipulating Linux IDE drive/driver parameters.
+# Install a directory listing program displaying a depth indented list of files.
+# Install a diagnostic, debugging, and instructional userspace tracer.
+# Install the utility for network discovery and security auditing.
+# Install a command line interface for testing internet bandwidth using speedtest.net.
+# Install a tool to measure maximum TCP bandwidth.
+# Install the daemons for the bluetooth protocol stack.
+# Install the development and debugging utilities for the bluetooth protocol stack.
+# Install the compressor/archiver for creating and modifying zipfiles.
+# Install the package for extracting and viewing files in .zip archives.
+# Install the GPUs process monitoring for AMD, Intel and NVIDIA.
+# Install the Android platform tools.
+# Install Alsa utils.
+# Install a feature, general-purpose sound server.
+# Install the ALSA Configuration for PulseAudio.
+# Install the Bluetooth support for PulseAudio.
+# Install the graphical equalizer for PulseAudio.
+# Install the jack support for PulseAudio.
+# Install the CLI and curses mixer for pulseaudio.
+# Install the high-level device independent layer for speech synthesis interface.
+# Install the multilingual software speech synthesizer.
+# Install a general multilingual speech synthesis system.
+# Install the American male/female and scottish English male speaker.
+# Install the miscellaneous system utilities for Linux.
+sudo pacman --sync --needed --noconfirm \
+  fontconfig awesome-terminal-fonts gnu-free-fonts noto-fonts noto-fonts-extra noto-fonts-emoji \
+  noto-fonts-cjk ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-freefont ttf-droid ttf-ibm-plex \
+  ttf-liberation ttf-hack ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols \
+  ttf-nerd-fonts-symbols-mono \
+  bash bash-completion gdb lldb linux-headers perl rustup sqlite tk python python-pip \
+  python-virtualenv screenfetch vim git openssh libsecret asciinema bat lsd upower lsof hunspell \
+  hunspell-en_us hunspell-es_mx acpid tmux plocate bc diffutils colordiff hdparm tree strace \
+  nmap speedtest-cli iperf bluez bluez-utils zip unzip nvtop android-tools alsa-utils pulseaudio \
+  pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer pulseaudio-jack pulsemixer \
+  speech-dispatcher espeak-ng festival festival-us util-linux
 
 # Install the command-line tool that changes the brightness using the xrandr command.
-yay --sync --needed --noconfirm brightness-xrandr
+# Install the tool to generate a sound when the battery is discharging.
+# --------------------------------------------------
+# Mkinitcpio: Possibly missing firmware for modules.
+# --------------------------------------------------
+# Install the aic94xx-firmware adaptec SAS 44300, 48300, 58300 Sequencer Firmware for AIC94xx driver.
+# Install the ast-firmware aspeed VGA module from the IPMI.
+# Install the wd719x-firmware driver for Western Digital WD7193, WD7197 and WD7296 SCSI cards.
+# Install the upd72020x-fw renesas uPD720201 / uPD720202 USB 3.0-chipset firmware.
+# NOTE: This step is not necessary because the above firmwares executed the mkinitcpio for Linux.
+yay --sync --needed --noconfirm \
+  brightness-xrandr battery-discharging aic94xx-firmware ast-firmware wd719x-firmware upd72020x-fw
 
-# Install fonts.
-optional-packages --install yes fontconfig
-optional-packages --install yes awesome-terminal-fonts
-optional-packages --install yes gnu-free-fonts
-optional-packages --install yes noto-fonts
-optional-packages --install yes ttf-bitstream-vera
-optional-packages --install yes ttf-croscore
-optional-packages --install yes ttf-dejavu
-optional-packages --install yes ttf-freefont
-optional-packages --install yes ttf-droid
-optional-packages --install yes ttf-ibm-plex
-optional-packages --install yes ttf-liberation
-optional-packages --install yes ttf-hack
-optional-packages --install yes ttf-nerd-fonts-symbols
-optional-packages --install yes ttf-nerd-fonts-symbols-common
-optional-packages --install yes ttf-nerd-fonts-symbols-mono
-
-# Install GNU Bourne Again shell.
-optional-packages --install yes bash
-
-# Install the GNU Debugger.
-optional-packages --install yes gdb
-
-# Install the next generation, high-performance debugger.
-optional-packages --install yes lldb
-
-# Install Linux headers
-optional-packages --install yes linux-headers
-
-# Install a highly capable, feature-rich programming language.
-optional-packages --install yes perl
-
-# Install the systems programming language focused on safety, speed, and concurrency.
-optional-packages --install yes rust
-
-# Install a C library that implements an SQL database engine.
-optional-packages --install yes sqlite
-
-# Install the next generation of the python high-level scripting language.
-optional-packages --install yes python
-
-# Install the screen fetch for ASCII logo in Linux.
-optional-packages --install yes screenfetch
-
-# Install the Vi Improved, a highly configurable, improved version of the vi text editor.
-optional-packages --install yes vim
-
-# Install the fast distributed version control system.
-optional-packages --install yes git
-
-# Install the record and share terminal sessions.
-optional-packages --install yes asciinema
-
-# Install the cat clone with syntax highlighting and git integration.
-optional-packages --install yes bat
-
-# Install a modern ls with a lot of pretty colors and awesome icons.
-optional-packages --install yes lsd
-
-# Install the abstraction for enumerating power devices, listening to device events and querying history and statistics.
-optional-packages --install yes upower
-
-# Install the package to list open files for running Unix processes.
-optional-packages --install yes lsof
-
-# Install the US English hunspell dictionaries.
-optional-packages --install yes hunspell-en_us
-
-# Install the Spanish (Mexico) hunspell dictionary.
-optional-packages --install yes hunspell-es_mx
-
-# Install a daemon for delivering ACPI power management events with netlink support.
-optional-packages --install yes acpid
 # Enable ACPID service.
 sudo systemctl enable --now acpid
 
-# Install the terminal multiplexer.
-optional-packages --install yes tmux
-
-# Install the alternative to locate, faster and compatible with mlocate's database.
-optional-packages --install yes plocate
-
-# Install an arbitrary precision calculator language.
-optional-packages --install yes bc
-
-# Install a Perl script wrapper for 'diff' that produces the same output but with pretty 'syntax' highlighting.
-optional-packages --install yes colordiff
-
-# Install a shell utility for manipulating Linux IDE drive/driver parameters.
-optional-packages --install yes hdparm
-
-# Install a directory listing program displaying a depth indented list of files.
-optional-packages --install yes tree
-
-# Install a diagnostic, debugging, and instructional userspace tracer.
-optional-packages --install yes strace
-
-# Install the utility for network discovery and security auditing.
-optional-packages --install yes nmap
-
-# Install a console-based network traffic monitor.
-optional-packages --install yes vnstat
-
-# Install a command line interface for testing internet bandwidth using speedtest.net.
-optional-packages --install yes speedtest-cli
-
-# Install a tool to measure maximum TCP bandwidth.
-optional-packages --install yes iperf
-
-# # Install the daemons for the bluetooth protocol stack.
-optional-packages --install yes bluez
-
-# Install the development and debugging utilities for the bluetooth protocol stack.
-optional-packages --install yes bluez-utils
-
-# Install the compressor/archiver for creating and modifying zipfiles.
-optional-packages --install yes zip
-
-# Install the package for extracting and viewing files in .zip archives.
-optional-packages --install yes unzip
-
-# Install the GPUs process monitoring for AMD, Intel and NVIDIA.
-optional-packages --install yes nvtop
-
-# Install the Android platform tools.
-optional-packages --install yes android-tools
-
-# Install the Generate a sound when the battery is discharging.
-yay --sync --needed --noconfirm battery-discharging
-
 # Audio Alsa.
 # https://wiki.gentoo.org/wiki/ALSA
-# Install Alsa utils.
-optional-packages --install yes alsa-utils
 # Adding audio into the user group.
 sudo usermod -a -G audio "$(whoami)"
-
-# Install Pulse audio.
-# Install a featureful, general-purpose sound server.
-optional-packages --install yes pulseaudio
-
-# Install the CLI and curses mixer for pulseaudio.
-optional-packages --install yes pulsemixer
-
-# Install speech synthesis.
-optional-packages --install yes speech-dispatcher
 
 # ------------------------ #
 # Set up the laptop woofer #
@@ -264,24 +200,6 @@ optional-packages --install yes speech-dispatcher
 #sudo ~/blackarch-repo.sh
 #rm --force ~/blackarch-repo.sh
 #sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
-
-# ----------------- #
-# Set up Mkinitcpio #
-# ----------------- #
-
-# Mkinitcpio: Possibly missing firmware for modules.
-# ------------------------------------------------------
-# Install the adaptec SAS 44300, 48300, 58300 Sequencer Firmware for AIC94xx driver.
-yay --sync --needed --noconfirm aic94xx-firmware
-# Install the aspeed VGA module from the IPMI.
-yay --sync --needed --noconfirm ast-firmware
-# Install the driver for Western Digital WD7193, WD7197 and WD7296 SCSI cards.
-yay --sync --needed --noconfirm wd719x-firmware
-# Install the renesas uPD720201 / uPD720202 USB 3.0-chipset firmware.
-yay --sync --needed --noconfirm upd72020x-fw
-
-# Initramfs, create an initial ramdisk environment.
-sudo mkinitcpio --preset linux
 
 # -------- #
 # Finished #
