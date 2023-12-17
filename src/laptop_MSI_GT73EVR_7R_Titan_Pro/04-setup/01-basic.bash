@@ -64,10 +64,6 @@ nameserver 2806:260:1007:100:189:194:28:50
 # Install Yay. This package installs the AUR packages.
 funcInstallYay
 
-# Restore the DNS
-sudo mv /etc/resolv.conf /etc/resolv.conf.google
-sudo cp --force --preserve=mode,ownership,timestamps /etc/resolv.conf.backup /etc/resolv.conf
-
 # ------------------- #
 # Set up the generals #
 # ------------------- #
