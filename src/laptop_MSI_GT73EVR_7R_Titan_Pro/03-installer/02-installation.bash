@@ -26,7 +26,7 @@ funcCheckPacmanMirror
 
 # Download and install the base packages in your Linux partition
 # Note: The only configuration file which is copied is the '/etc/mirrorlist'.
-pacstrap -K /mnt/archlinux base base-devel linux linux-firmware terminus-font reflector
+pacstrap -K /mnt/archlinux base base-devel linux linux-firmware terminus-font reflector less
 
 # Create backup for the configuration file of the Reflector.
 cp /mnt/archlinux/etc/xdg/reflector/reflector.conf /mnt/archlinux/etc/xdg/reflector/reflector-"$(date +%Y-%m-%d-%H-%M-%S-%N)".conf
