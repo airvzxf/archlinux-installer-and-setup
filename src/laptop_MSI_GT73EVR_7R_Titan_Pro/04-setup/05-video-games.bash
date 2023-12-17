@@ -26,9 +26,6 @@ funcIsConnectedToInternet
 # Run and build 32-bit applications on 64-bit installations of Arch Linux.
 # https://wiki.archlinux.org/index.php/Multilib
 
-# Enable the multi library repository.
-sudo sed --in-place '/\[multilib\]/,/mirrorlist/ s/^##*//' /etc/pacman.conf
-
 # Upgrade Arch Linux.
 sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 

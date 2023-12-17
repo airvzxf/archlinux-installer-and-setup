@@ -18,7 +18,6 @@ funcIsConnectedToInternet
 # Set up Pacman #
 # ------------- #
 
-# shellcheck disable=SC2119
 funcSetupPacmanConfiguration
 sed --in-place --regexp-extended "s/SigLevel \s?= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 

@@ -120,14 +120,20 @@ funcContinueDefaultYes() {
 
 # Function to change some parameters in the pacman.conf file.
 funcSetupPacmanConfiguration() {
-  local etcDirectory
-  etcDirectory="/etc"
-  if [ -n "${1}" ]; then
-    etcDirectory="${1}"
+  if [ -z "${1}" ]; then
+    set -- "/etc"
   fi
 
+  local etcDirectory
+  etcDirectory="${1}"
+
+  # Enable the multi library repository.
+  sed --in-place '/\[multilib\]/,/mirrorlist/ s/^##*//' "${etcDirectory}"/pacman.conf
+  # Enable the color output.
   sed --in-place "s/#Color/Color/g" "${etcDirectory}"/pacman.conf
+  # Enable the verbose package list.
   sed --in-place "s/#VerbosePkgLists/VerbosePkgLists/g" "${etcDirectory}"/pacman.conf
+  # Enable and set the parallel downloads.
   sed --in-place --regexp-extended "s/[#]?ParallelDownloads = 5/ParallelDownloads = 35/g" "${etcDirectory}"/pacman.conf
 }
 

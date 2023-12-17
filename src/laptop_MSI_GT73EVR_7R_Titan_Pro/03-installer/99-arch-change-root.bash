@@ -20,7 +20,6 @@ funcChangeConsoleFont
 # Set up Pacman #
 # ------------- #
 
-# shellcheck disable=SC2119
 funcSetupPacmanConfiguration
 
 # shellcheck disable=SC2119

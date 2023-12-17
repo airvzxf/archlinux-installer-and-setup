@@ -26,7 +26,6 @@ funcIsConnectedToInternet
 # Set up Pacman #
 # ------------- #
 
-# shellcheck disable=SC2119
 funcSetupPacmanConfiguration
 
 # Change the pacman.conf file to trust all packages, even if the signature is not correct.
