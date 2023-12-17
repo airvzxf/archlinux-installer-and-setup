@@ -116,12 +116,9 @@ KERNEL==\"hidraw*\", KERNELS==\"*28DE:*\", MODE=\"0666\"
 # Run steam for the first time.
 steam
 
-# Steam has a good commands to check all the missing libraries.
-# All these libraries should be there in MultiLib repositories.
-# Show missing libraries in Steam.
+# Steam has a good command to check all the missing libraries.
 cd ~/.local/share/Steam/ubuntu12_32 || funcDirectoryNotExist
-chmod +x libx264.so.142
-file ./* | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq
+file ./* | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep -i 'not found' | sort | uniq
 
 # -------- #
 # Finished #
