@@ -21,7 +21,7 @@ funcIsConnectedToInternet
 funcSetupPacmanConfiguration
 sed --in-place --regexp-extended "s/SigLevel \s?= Required DatabaseOptional/SigLevel = Never TrustAll/g" /etc/pacman.conf
 
-# Stop the automatic system service that updates the mirror list with Reflector. 
+# Stop the automatic system service that updates the mirror list with Reflector.
 systemctl disable --now reflector
 
 # Back up the mirror list of Pacman.
