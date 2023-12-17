@@ -30,10 +30,10 @@ read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheU
 funcContinue "${isThisTheUsb}"
 
 # Umount the USB device.
-sudo umount --recursive /dev/"${usbDevice}" &> /dev/null || true
+sudo umount --recursive /dev/"${usbDevice}" &>/dev/null || true
 
 # Delete all the partitions in the selected USB.
-dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
+dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &>/dev/null
 
 # Create all partitions and formatting your USB properly.
 (
@@ -45,7 +45,7 @@ dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
   echo   # Last sector (Accept default: varies)
   echo a # Toggle a bootable flag
   echo w # Write changes
-) | sudo fdisk /dev/"${usbDevice}" &> /dev/null
+) | sudo fdisk /dev/"${usbDevice}" &>/dev/null
 
 # ----------------------- #
 # Download Arch Linux ISO #
@@ -54,7 +54,7 @@ dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
 # Get Arch Linux ISO name.
 isoRegExp="archlinux-[0-9]{4}\.[0-9]{2}\.[0-9]{2}-x86_64\.iso"
 archlinuxISO=$(
-  curl "${archlinuxImageURL}" 2> /dev/null |
+  curl "${archlinuxImageURL}" 2>/dev/null |
     grep --extended-regexp --only-matching --max-count 1 "${isoRegExp}" |
     head --lines 1
 )
@@ -64,14 +64,14 @@ echo "archlinuxISO: ${archlinuxISO}"
 rm --force ~/"${archlinuxISO}"
 
 # Download Arch Linux ISO.
-curl --header 'Cache-Control: no-cache' "${archlinuxImageURL}/${archlinuxISO}" > ~/"${archlinuxISO}"
+curl --header 'Cache-Control: no-cache' "${archlinuxImageURL}/${archlinuxISO}" >~/"${archlinuxISO}"
 
 # ------------------- #
 # Create the USB Live #
 # ------------------- #
 
 # Upload Arch Linux ISO into the USB.
-cat ~/"${archlinuxISO}" > /dev/"${usbDevice}"
+cat ~/"${archlinuxISO}" >/dev/"${usbDevice}"
 
 # This is your formatted USB.
 fdisk --list /dev/"${usbDevice}"
