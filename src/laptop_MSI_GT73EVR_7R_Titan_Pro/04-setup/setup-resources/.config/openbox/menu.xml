@@ -42,9 +42,9 @@
     </action>
   </item>
   <separator />
-  <item label="Firefox - Web browser">
+  <item label="Firefox 4 DEV - Web browser">
     <action name="Execute">
-      <command>firefox</command>
+      <command>firefox-developer-edition</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
