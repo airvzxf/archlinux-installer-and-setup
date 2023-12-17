@@ -82,7 +82,7 @@ funcChangeConsoleFont() {
 # Function which checks if your computer is connected to the Internet.
 funcIsConnectedToInternet() {
   echo "Check your Internet connection."
-  if ! ping -c 1 google.com >> /dev/null 2>&1; then
+  if ! ping -c 1 google.com >>/dev/null 2>&1; then
     echo "You have problems with your Internet."
     echo "Please check if:"
     echo " — The Internet works properly."

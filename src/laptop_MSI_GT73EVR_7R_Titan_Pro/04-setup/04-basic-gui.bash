@@ -100,9 +100,8 @@ optional-packages --install yes util-linux
 sudo usermod -a -G lp "$(whoami)"
 
 # Enable Bluetooth headset.
-echo -e \
-'[General]
-Enable=Source,Sink,Media,Socket' | sudo tee /etc/bluetooth/audio.conf
+echo "[General]
+Enable=Source,Sink,Media,Socket" | sudo tee /etc/bluetooth/audio.conf
 
 # Add and remove the btusb module from the Linux.
 modprobe btusb

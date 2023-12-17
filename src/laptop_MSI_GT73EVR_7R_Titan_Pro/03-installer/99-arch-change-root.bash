@@ -80,25 +80,25 @@ sed --in-place "/[^ ]${languageCode} UTF-8/ s/^##*//" /etc/locale.gen
 locale-gen
 
 # Set up the language into locale config.
-echo "LANG=${languageCode}" > /etc/locale.conf
+echo "LANG=${languageCode}" >/etc/locale.conf
 
 # Set up the vconsole configuration file.
-echo "KEYMAP=${keyboardLayout}" > /etc/vconsole.conf
-echo "FONT=${consoleFont}" >> /etc/vconsole.conf
+echo "KEYMAP=${keyboardLayout}" >/etc/vconsole.conf
+echo "FONT=${consoleFont}" >>/etc/vconsole.conf
 
 # ------------------ #
 # Set up the network #
 # ------------------ #
 
 # Set up the hostname.
-echo "${computerName}" > /etc/hostname
+echo "${computerName}" >/etc/hostname
 
 # Set up the hosts.
-echo "127.0.0.1    localhost" >> /etc/hosts
-echo "::1          localhost" >> /etc/hosts
+echo "127.0.0.1    localhost" >>/etc/hosts
+echo "::1          localhost" >>/etc/hosts
 
 # Set up the Ethernet connection
-echo '[Match]
+echo "[Match]
 Name=en*
 Name=eth*
 
@@ -114,12 +114,12 @@ RouteMetric=100
 RouteMetric=100
 
 [Route]
-InitialCongestionWindow=6
-InitialAdvertisedReceiveWindow=6
-' | tee /usr/lib/systemd/network/50-ethernet.network
+InitialCongestionWindow=${networkInitialCongestionWindow}
+InitialAdvertisedReceiveWindow=${networkInitialAdvertisedReceiveWindow}
+" | tee /usr/lib/systemd/network/50-ethernet.network
 
 # Set up the Wi-Fi connection
-echo '[Match]
+echo "[Match]
 Name=wl*
 
 [Network]
@@ -132,10 +132,10 @@ RouteMetric=600
 
 [IPv6AcceptRA]
 RouteMetric=600
-' | tee /usr/lib/systemd/network/50-wlan.network
+" | tee /usr/lib/systemd/network/50-wlan.network
 
 # Set up the Mobile connection
-echo '[Match]
+echo "[Match]
 Name=ww*
 
 [Network]
@@ -147,7 +147,7 @@ RouteMetric=700
 
 [IPv6AcceptRA]
 RouteMetric=700
-' | tee /usr/lib/systemd/network/50-wwan.network
+" | tee /usr/lib/systemd/network/50-wwan.network
 
 # Enable the system service for network.
 ln --symbolic /usr/lib/systemd/system/systemd-networkd.service /usr/lib/systemd/system/multi-user.target.wants/systemd-networkd.service
@@ -160,19 +160,19 @@ ln --symbolic /usr/lib/systemd/system/systemd-resolved.service /usr/lib/systemd/
 # ---------------------- #
 
 # Create a script to enable the number lock in the keyboard.
-echo '#!/bin/bash
+echo "#!/bin/bash
 
 for tty in /dev/tty{1..6}
 do
-    /usr/bin/setleds -D +num < "$tty";
+    /usr/bin/setleds -D +num < \"\$tty\";
 done
-' | tee /usr/local/bin/numlock
+" | tee /usr/local/bin/numlock
 
 # Make this script executable.
 chmod +x /usr/local/bin/numlock
 
 # Create the system service for enabling of the number lock.
-echo '[Unit]
+echo "[Unit]
 Description=numlock
 
 [Service]
@@ -182,7 +182,7 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
-' | tee /usr/lib/systemd/system/numlock.service
+" | tee /usr/lib/systemd/system/numlock.service
 
 # Enable the system service for enabling of the number lock.
 ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/multi-user.target.wants/numlock.service
@@ -206,10 +206,10 @@ ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${T
 
 sed --in-place '/HandleLidSwitch=/ s/#*/#/' /etc/systemd/logind.conf
 
-echo '
+echo "
 # Prevent suspending when the lid is closing.
 HandleLidSwitch=ignore
-' | tee --append /etc/systemd/logind.conf
+" | tee --append /etc/systemd/logind.conf
 
 # -------------------------- #
 # Set up Grub configurations #
@@ -257,22 +257,22 @@ gpasswd --add "${userId}" video
 sed --in-place '/%wheel ALL=(ALL:ALL) ALL/ s/^##* *//' /etc/sudoers
 
 # The sudo password is requested one time per session.
-echo '
+echo "
 # Enable the user to power off the computer.
-'"${userId}"' ALL=NOPASSWD:/sbin/poweroff
+\"${userId}\" ALL=NOPASSWD:/sbin/poweroff
 
 # Enable the user to reboot the computer.
-'"${userId}"' ALL=NOPASSWD:/sbin/reboot
+\"${userId}\" ALL=NOPASSWD:/sbin/reboot
 
 # Once the password is entered in the console, it is not requested anymore.
-Defaults:'"${userId}"' timestamp_timeout=-1
-' | tee --append /etc/sudoers
+Defaults:\"${userId}\" timestamp_timeout=-1
+" | tee --append /etc/sudoers
 
 # Disable Wi-Fi 11n, it fixes the slow internet download.
-#echo 'options iwlwifi 11n_disable=1 bt_coex_active=0 power_save=0 auto_agg=0 swcrypto=0' | tee /etc/modprobe.d/iwlwifi.conf
+#echo "options iwlwifi 11n_disable=1 bt_coex_active=0 power_save=0 auto_agg=0 swcrypto=0" | tee /etc/modprobe.d/iwlwifi.conf
 
 # Disable the power save into the Wi-Fi card.
-#echo 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off"' | tee /etc/udev/rules.d/70-wifi-powersave.rules
+#echo "ACTION==\"add\", SUBSYSTEM==\"net\", KERNEL==\"wlp2s*\", RUN+=\"/usr/bin/iw dev %k set power_save off\"" | tee /etc/udev/rules.d/70-wifi-powersave.rules
 
 # Copy configuration files from the project to the user folder.
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
