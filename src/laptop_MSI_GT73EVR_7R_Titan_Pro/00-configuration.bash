@@ -68,6 +68,14 @@ hardDiskDeviceBootSize="+512M"      # (◠‿◠)
 hardDiskDeviceSwapSize="+16G"       # (◠‿◠)
 hardDiskDeviceOtherLinuxSize="+35G" # (◠‿◠)
 hardDiskDeviceArchLinuxSize=""      # (◠‿◠)
+# --------------------------------------------------
+nameserverIPv4One="nameserver 10.0.56.130"                      # (◠‿◠)
+nameserverIPv4Two="nameserver 189.194.28.50"                    # (◠‿◠)
+nameserverIPv6One="nameserver 2806:260:1005:101:200:52:196:196" # (◠‿◠)
+nameserverIPv6Two="nameserver 2806:260:1007:100:189:194:28:50"  # (◠‿◠)
+# --------------------------------------------------
+networkInitialCongestionWindow="6"        # (◠‿◠)
+networkInitialAdvertisedReceiveWindow="6" # (◠‿◠)
 
 # ---------------- #
 # Shared functions #
