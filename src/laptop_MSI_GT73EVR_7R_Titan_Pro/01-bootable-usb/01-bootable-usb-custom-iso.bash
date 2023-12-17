@@ -35,7 +35,7 @@ cp --recursive /usr/share/archiso/configs/"${archIsoProfile}"/* "${archIsoDirect
 cd "${archIsoDirectory}" || funcDirectoryNotExist
 
 # Add packages into 'packages.x86_64'.
-echo '
+echo "
 # ----------------------- #
 # PACKAGES FOR CUSTOM ISO #
 # ----------------------- #
@@ -44,7 +44,7 @@ vim
 git
 reflector
 asciinema
-' >> ./packages.x86_64
+" >>./packages.x86_64
 
 # Create the workspace folder in root.
 mkdir -p ./airootfs/root/workspace/projects
@@ -102,10 +102,10 @@ read -n 1 -r -p "Is this '/dev/${usbDevice}' the USB device? [y/N]: " isThisTheU
 funcContinue "${isThisTheUsb}"
 
 # Umount the USB device.
-sudo umount --recursive /dev/"${usbDevice}" &> /dev/null || true
+sudo umount --recursive /dev/"${usbDevice}" &>/dev/null || true
 
 # Delete all the partitions in the selected USB.
-sudo dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/null
+sudo dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &>/dev/null
 
 # Create all partitions and formatting your USB properly.
 (
@@ -117,9 +117,7 @@ sudo dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &> /dev/
   echo   # Last sector (Accept default: varies)
   echo a # Toggle a bootable flag
   echo w # Write changes
-) | sudo fdisk /dev/"${usbDevice}" &> /dev/null
-
-# Upload Arch Linux ISO into the USB.
+) | sudo fdisk /dev/"${usbDevice}" &>/dev/null# Upload Arch Linux ISO into the USB.
 sudo cp "${archIsoFilePath}" /dev/"${usbDevice}"
 
 # This is your formatted USB.
