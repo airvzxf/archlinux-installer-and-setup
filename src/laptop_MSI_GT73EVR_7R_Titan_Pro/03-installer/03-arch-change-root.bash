@@ -12,7 +12,6 @@ set -ve
 
 source ./../00-configuration.bash
 
-# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 # The arch-chroot command emulates that you are login in the mount device

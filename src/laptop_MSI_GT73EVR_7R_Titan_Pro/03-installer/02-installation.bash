@@ -12,7 +12,6 @@ set -ve
 
 source ./../00-configuration.bash
 
-# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 funcIsConnectedToInternet

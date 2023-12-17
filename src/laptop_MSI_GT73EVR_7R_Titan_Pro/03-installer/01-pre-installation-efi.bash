@@ -18,7 +18,6 @@ source ./../00-configuration.bash
 # please change the hard disk vars into the configuration
 # file (./../00-configuration.bash).
 
-# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 funcIsConnectedToInternet

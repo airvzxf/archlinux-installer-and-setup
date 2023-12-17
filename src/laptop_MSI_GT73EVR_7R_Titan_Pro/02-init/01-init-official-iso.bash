@@ -46,7 +46,6 @@ pacman-key --init
 
 # Install the monospace bitmap font (for X11 and console).
 pacman --sync --needed --noconfirm terminus-font
-# shellcheck disable=SC2119
 funcChangeConsoleFont
 # Install the fast distributed version control system.
 pacman --sync --needed --noconfirm git

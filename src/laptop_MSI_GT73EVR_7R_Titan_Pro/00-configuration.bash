@@ -75,10 +75,6 @@ hardDiskDeviceArchLinuxSize=""      # (◠‿◠)
 
 # Function to change the font family of the console.
 funcChangeConsoleFont() {
-  if [ -n "${1}" ]; then
-    consoleFont="${1}"
-  fi
-
   # Fonts are located in /usr/share/kbd/consolefonts/.
   setfont "${consoleFont}"
 }

@@ -14,7 +14,6 @@ cd /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/03-install
 
 source ./../00-configuration.bash
 
-# shellcheck disable=SC2119
 funcChangeConsoleFont
 
 # ------------- #
