@@ -14,7 +14,7 @@ userEmail="israel.alberto.rv@gmail.com"
 userId="wolf"
 computerName="laptop-archlinux"
 # --------------------------------------------------
-countryCode="US"
+countryCode="MX,US"
 timezone="America/Mexico_City"
 languageCode="en_US.UTF-8"
 keyboardLayout="us"
