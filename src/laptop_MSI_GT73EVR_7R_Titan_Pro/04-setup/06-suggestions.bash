@@ -19,7 +19,7 @@ funcIsConnectedToInternet
 # -------- #
 
 # Install the pack, ship and run any application as a lightweight container.
-optional-packages --install yes docker
+sudo pacman --sync --needed --noconfirm docker
 sudo usermod -aG docker "${userId}"
 
 # Install a proprietary music streaming service.
