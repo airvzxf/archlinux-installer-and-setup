@@ -274,7 +274,7 @@ Defaults:'"${userId}"' timestamp_timeout=-1
 # Disable the power save into the Wi-Fi card.
 #echo 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlp2s*", RUN+="/usr/bin/iw dev %k set power_save off"' | tee /etc/udev/rules.d/70-wifi-powersave.rules
 
-# Move configuration files from the project to the user folder.
+# Copy configuration files from the project to the user folder.
 cp --recursive /archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/04-setup/setup-resources/. /home/"${userId}"/
 chown --recursive "${userId}":users /home/"${userId}"/.
 
@@ -282,7 +282,7 @@ chown --recursive "${userId}":users /home/"${userId}"/.
 # Log in with the user #
 # -------------------- #
 
-# Login as the user.
+# Copy the script for the user setup.
 cp ./99-user-setup.bash /home/"${userId}"/
 chmod +x /home/"${userId}"/99-user-setup.bash
 chown "${userId}":users /home/"${userId}"/99-user-setup.bash

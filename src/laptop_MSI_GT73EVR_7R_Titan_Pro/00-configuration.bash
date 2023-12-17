@@ -69,9 +69,9 @@ hardDiskDeviceSwapSize="+16G"       # (◠‿◠)
 hardDiskDeviceOtherLinuxSize="+35G" # (◠‿◠)
 hardDiskDeviceArchLinuxSize=""      # (◠‿◠)
 
-# ------------------- #
-# 99 Shared functions #
-# ------------------- #
+# ---------------- #
+# Shared functions #
+# ---------------- #
 
 # Function to change the font family of the console.
 funcChangeConsoleFont() {

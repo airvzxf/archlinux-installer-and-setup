@@ -17,8 +17,7 @@ mkdir -p ~/.vim
 # Create workspace directory #
 # -------------------------- #
 
-# Move the ArchLinux project into the user folder.
-mkdir --parents ~/workspace/projects
+# Go to the ArchLinux project into the user folder.
 cd ~/workspace/projects || funcDirectoryNotExist
 
 # ---------- #
