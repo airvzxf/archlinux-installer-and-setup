@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+if test -f "/usr/bin/startx" && [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
 
