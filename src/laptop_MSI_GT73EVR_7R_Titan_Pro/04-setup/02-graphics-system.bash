@@ -45,6 +45,19 @@ xbindkeys --poll-rc
 # Add the user into the TTY group.
 sudo gpasswd -a "${userId}" tty
 
+# -------------------------------- #
+# Set up the automatic user log in #
+# -------------------------------- #
+
+# Create the folder.
+sudo mkdir --parents /etc/systemd/system/getty@tty1.service.d/
+
+# Create the system service for log-in automatically.
+echo "[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${TERM}
+" | sudo tee /etc/systemd/system/getty@tty1.service.d/autologin.conf
+
 # -------- #
 # Finished #
 # -------- #
