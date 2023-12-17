@@ -31,3 +31,8 @@ yay --sync --needed --noconfirm spotify
 # -------- #
 
 # Congrats! You were installed and set up Arch Linux
+
+read -n 1 -s -r -p "Press any key to reboot."
+
+# Reboot
+sudo reboot
