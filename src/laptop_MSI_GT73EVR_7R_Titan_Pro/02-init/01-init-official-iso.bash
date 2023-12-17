@@ -30,7 +30,6 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup-"$(date +%Y-%m-%d-%H
 # Set the mirror list of Pacman.
 reflector --verbose --score 10 --sort score --protocol https --completion-percent 95 --country "${countryCode}" --connection-timeout 600 --save /etc/pacman.d/mirrorlist
 
-# shellcheck disable=SC2119
 funcCheckPacmanMirror
 
 # Update the database sources in Arch Linux.

@@ -22,7 +22,6 @@ funcChangeConsoleFont
 
 funcSetupPacmanConfiguration
 
-# shellcheck disable=SC2119
 funcCheckPacmanMirror
 
 # Update the database sources in Arch Linux.
