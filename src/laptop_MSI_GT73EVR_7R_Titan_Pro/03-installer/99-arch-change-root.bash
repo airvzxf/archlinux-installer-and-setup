@@ -37,28 +37,31 @@ pacman-key --init
 # Install Operative system tools.
 # -------------------------------
 # Install the GNU GRand Unified Bootloader.
-pacman --sync --needed --noconfirm grub
 # Install the Linux user-space application to modify the EFI Boot Manager.
-pacman --sync --needed --noconfirm efibootmgr
 # Install the DOS filesystem utilities.
-pacman --sync --needed --noconfirm dosfstools
 # Install the utility to detect other OSes on a set of drives.
-pacman --sync --needed --noconfirm os-prober
 # Install a collection of utilities to access MS-DOS disks.
-pacman --sync --needed --noconfirm mtools
-# Install the Vi Improved, a highly configurable, improved version of the vi text editor.
-
+# -------------------
 # Install user tools.
 # -------------------
-pacman --sync --needed --noconfirm vim
-# Install the fast distributed version control system.
-pacman --sync --needed --noconfirm git
-# Install the programmable completion for the bash shell.
-pacman --sync --needed --noconfirm bash-completion
-# Install the record and share terminal sessions.
-pacman --sync --needed --noconfirm asciinema
+# Install a terminal-based program for viewing text files.
 # Install the Cat clone with syntax highlighting and git integration.
-pacman --sync --needed --noconfirm bat
+# Install the Vi Improved, a highly configurable, improved version of the vi text editor.
+# Install the programmable completion for the bash shell.
+# Install the record and share terminal sessions.
+# Install the fast distributed version control system.
+# -------------------
+# Install firmwares
+# -------------------
+# Install the firmware files for Linux - qlogic / Firmware for QLogic devices.
+pacman --sync --needed --noconfirm \
+  grub efibootmgr dosfstools os-prober mtools \
+  less bat vim bash-completion asciinema git \
+  linux-firmware-qlogic
+
+# Create an initial ramdisk environment.
+# NOTE: This step is not necessary because the above firmware executed the mkinitcpio.
+#mkinitcpio --preset linux
 
 # ------------------- #
 # Set up the generals #
@@ -226,16 +229,6 @@ sed --in-place 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
 
 # Create the grub config file.
 grub-mkconfig --output /boot/grub/grub.cfg
-
-# ----------------- #
-# Set up Mkinitcpio #
-# ----------------- #
-
-# Install the firmware files for Linux - qlogic / Firmware for QLogic devices.
-pacman --sync --needed --noconfirm linux-firmware-qlogic
-
-# Create an initial ramdisk environment.
-mkinitcpio --preset linux
 
 # ---------------------------- #
 # Set up users and permissions #
