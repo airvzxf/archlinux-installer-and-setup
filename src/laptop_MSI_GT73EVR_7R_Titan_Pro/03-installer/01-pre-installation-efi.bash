@@ -55,15 +55,6 @@ sed --in-place --regexp-extended "s/weekly with/every 12 hours with/g" /usr/lib/
 sed --in-place --regexp-extended "s/OnCalendar=weekly/OnCalendar=*-*-* 00,12:00:00/g" /usr/lib/systemd/system/reflector.timer
 sed --in-place --regexp-extended "s/RandomizedDelaySec=12h/RandomizedDelaySec=6h/g" /usr/lib/systemd/system/reflector.timer
 
-# Enable the system timer to start Reflector.
-systemctl enable --now reflector.timer
-
-# Start the system timer of the Reflector.
-systemctl restart reflector.timer
-
-# Enable the automatic system service that updates the mirror list with Reflector.
-systemctl enable --now reflector
-
 # Restart the Reflector service.
 systemctl restart reflector
 
