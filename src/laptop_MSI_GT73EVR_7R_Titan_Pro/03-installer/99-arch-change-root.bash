@@ -190,19 +190,6 @@ WantedBy=multi-user.target
 # Enable the system service for enabling of the number lock.
 ln --symbolic /usr/lib/systemd/system/numlock.service /usr/lib/systemd/system/multi-user.target.wants/numlock.service
 
-# -------------------------------- #
-# Set up the automatic user log in #
-# -------------------------------- #
-
-# Create the folder.
-mkdir --parents /etc/systemd/system/getty@tty1.service.d/
-
-# Create the system service for log-in automatically.
-echo "[Service]
-ExecStart=
-ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${TERM}
-" | tee /etc/systemd/system/getty@tty1.service.d/autologin.conf
-
 # ----------------------------- #
 # Set up the laptop lid actions #
 # ----------------------------- #
