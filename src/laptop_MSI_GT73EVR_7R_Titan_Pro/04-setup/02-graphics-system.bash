@@ -63,4 +63,4 @@ ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin ${userId} %I ${T
 # -------- #
 
 # The next step is set up NVIDIA.
-# Execute './03a01-graphic-card-nvidia.bash'.
+# Execute './03-graphic-card-nvidia.bash'.
