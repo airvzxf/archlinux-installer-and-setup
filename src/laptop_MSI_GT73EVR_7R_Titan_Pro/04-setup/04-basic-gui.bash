@@ -74,7 +74,7 @@ echo "[General]
 Enable=Source,Sink,Media,Socket" | sudo tee /etc/bluetooth/audio.conf
 
 # Add and remove the btusb module from the Linux.
-modprobe btusb
+sudo modprobe btusb
 
 # Start the Bluetooth service.
 sudo systemctl start bluetooth.service
