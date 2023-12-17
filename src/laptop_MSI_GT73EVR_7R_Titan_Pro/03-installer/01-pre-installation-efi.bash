@@ -39,7 +39,7 @@ cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector-"$(date +%Y-%m
 
 # Set the mirror list of Pacman.
 echo "--verbose
---protocol https
+--protocol http,https
 --ipv4
 --completion-percent 100
 --country ${countryCode}
