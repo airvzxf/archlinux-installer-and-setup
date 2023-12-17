@@ -287,8 +287,19 @@ cp ./99-user-setup.bash /home/"${userId}"/
 chmod +x /home/"${userId}"/99-user-setup.bash
 chown "${userId}":users /home/"${userId}"/99-user-setup.bash
 
-su --login -c "export userName='${userName}' userEmail='${userEmail}'; /home/${userId}/99-user-setup.bash" "${userId}"
+# Create the ArchLinux project into the user folder.
+mkdir --parents /home/"${userId}"/workspace/projects
 
+# Copy the project to the user folder.
+cp --recursive /archlinux-installer-and-setup /home/"${userId}"/workspace/projects
+
+# Change the workspace directory owner and group to the user.
+chown --recursive "${userId}":users /home/"${userId}"/workspace
+
+# Log in with the user.
+su --login -c "/home/${userId}/99-user-setup.bash '${userName}' '${userEmail}'" "${userId}"
+
+# Remove the script for the user setup.
 rm --force /home/"${userId}"/99-user-setup.bash
 
 # -------- #
