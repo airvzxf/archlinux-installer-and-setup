@@ -117,7 +117,9 @@ sudo dd if=/dev/zero of=/dev/"${usbDevice}" bs=512 count=1 conv=notrunc &>/dev/n
   echo   # Last sector (Accept default: varies)
   echo a # Toggle a bootable flag
   echo w # Write changes
-) | sudo fdisk /dev/"${usbDevice}" &>/dev/null# Upload Arch Linux ISO into the USB.
+) | sudo fdisk /dev/"${usbDevice}" &>/dev/null
+
+# Upload Arch Linux ISO into the USB.
 sudo cp "${archIsoFilePath}" /dev/"${usbDevice}"
 
 # This is your formatted USB.
