@@ -272,7 +272,7 @@ alias upgrade-logs-short='cat /var/log/pacman.log | grep --color=always --extend
 alias upgrade='sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm && yay --sync --aur --sysupgrade --answerclean All --noconfirm && yay --sync --clean --noconfirm'
 alias v='alsamixer'
 alias watching='watch --interval 0.1 '
-alias web='firefox >/dev/null 2>&1 &'
+alias web='firefox-developer-edition >/dev/null 2>&1 &'
 alias workspace='cd ~/workspace'
 alias x='exit'
 alias xterm-tmux='xterm -fullscreen tmux >/dev/null 2>&1 &'
