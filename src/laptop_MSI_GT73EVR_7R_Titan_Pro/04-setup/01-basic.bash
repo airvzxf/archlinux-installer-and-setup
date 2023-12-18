@@ -130,6 +130,7 @@ sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 # Install the American male/female and scottish English male speaker.
 # Install the miscellaneous system utilities for Linux.
 # Install the portable bandwidth monitor and rate estimator.
+# Install the display and control your Android device.
 sudo pacman --sync --needed --noconfirm \
   fontconfig awesome-terminal-fonts gnu-free-fonts noto-fonts noto-fonts-extra noto-fonts-emoji \
   noto-fonts-cjk ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-freefont ttf-droid ttf-ibm-plex \
@@ -140,7 +141,7 @@ sudo pacman --sync --needed --noconfirm \
   hunspell-en_us hunspell-es_mx acpid tmux plocate bc diffutils colordiff hdparm tree strace \
   nmap speedtest-cli iperf bluez bluez-utils zip unzip nvtop android-tools alsa-utils pulseaudio \
   pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer pulseaudio-jack pulsemixer \
-  speech-dispatcher espeak-ng festival festival-us util-linux bmon
+  speech-dispatcher espeak-ng festival festival-us util-linux bmon scrcpy
 
 # Install the command-line tool that changes the brightness using the xrandr command.
 # Install the tool to generate a sound when the battery is discharging.
