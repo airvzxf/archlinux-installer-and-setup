@@ -278,14 +278,14 @@ alias x='exit'
 alias xterm-tmux='xterm -fullscreen tmux >/dev/null 2>&1 &'
 
 # Functions that act as aliases.
-delete-all-permanent() { sudo find / -iname "*${*}*" -exec rm --force --recursive {} \; 2> /dev/null; }
-delete-here-permanent() { sudo find ./ -iname "*${*}*" -exec rm --force --recursive {} \; 2> /dev/null; }
-find-all() { sudo find / -iname "*${*}*" 2> /dev/null; }
-find-all-directory() { sudo find / -type d -iname "*${*}*" 2> /dev/null; }
-find-all-file() { sudo find / -type f -iname "*${*}*" 2> /dev/null; }
-find-here() { sudo find ./ -iname "*${*}*" 2> /dev/null; }
-find-here-directory() { sudo find ./ -type d -iname "*${*}*" 2> /dev/null; }
-find-here-file() { sudo find ./ -type f -iname "*${*}*" 2> /dev/null; }
+delete-all-permanent() { sudo find / -iname "*${*}*" -exec rm --force --recursive {} \; 2>/dev/null; }
+delete-here-permanent() { sudo find ./ -iname "*${*}*" -exec rm --force --recursive {} \; 2>/dev/null; }
+find-all() { sudo find / -iname "*${*}*" 2>/dev/null; }
+find-all-directory() { sudo find / -type d -iname "*${*}*" 2>/dev/null; }
+find-all-file() { sudo find / -type f -iname "*${*}*" 2>/dev/null; }
+find-here() { sudo find ./ -iname "*${*}*" 2>/dev/null; }
+find-here-directory() { sudo find ./ -type d -iname "*${*}*" 2>/dev/null; }
+find-here-file() { sudo find ./ -type f -iname "*${*}*" 2>/dev/null; }
 packages-installed-by-size() { pacman --query --info | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort --human-numeric-sort; }
 pid-by-name() { pgrep --full "${*}"; }
 pid-search-files() { sudo lsof -p "$(pgrep --full --delimiter ',' "${*}")"; }
