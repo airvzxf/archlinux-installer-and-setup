@@ -31,7 +31,9 @@ sudo usermod -aG docker "${userId}"
 
 # Install a proprietary music streaming service.
 #gpg --recv-keys 13B00F1FD2C19886 # This is the public key for Spotify AUR
-yay --sync --needed --noconfirm spotify
+# Install the tool to manage all your JetBrains Projects and Tools.
+yay --sync --needed --noconfirm \
+  spotify jetbrains-toolbox
 
 # -------- #
 # Finished #
