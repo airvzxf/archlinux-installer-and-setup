@@ -32,6 +32,7 @@ git config --global pull.rebase true
 # Follow the next URLs to set up this sign.
 # - https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 # - https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account
+git config --global gpg.program gpg2
 git config --global user.signingKey AD66CD9F
 git config --global commit.gpgsign true
 
