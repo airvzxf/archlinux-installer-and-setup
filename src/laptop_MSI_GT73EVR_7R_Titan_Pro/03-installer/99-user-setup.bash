@@ -18,11 +18,14 @@ mkdir -p ~/.vim
 # -------------------------- #
 
 # Go to the ArchLinux project into the user folder.
-cd ~/workspace/projects || funcDirectoryNotExist
+cd ~/workspace/projects/archlinux-installer-and-setup || funcDirectoryNotExist
 
 # ---------- #
 # Set up Git #
 # ---------- #
+
+# Undo all the changes for the project.
+git checkout .
 
 # Set up Git.
 if [ -z "${1}" ]; then
@@ -36,7 +39,7 @@ echo "Git username: ${1}"
 echo "Git email: ${2}"
 git config --global user.name "${1}"
 git config --global user.email "${2}"
-./archlinux-installer-and-setup/src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
+./src/laptop_MSI_GT73EVR_7R_Titan_Pro/05-knowledge/99c-git-alias.bash
 
 # -------- #
 # Finished #
