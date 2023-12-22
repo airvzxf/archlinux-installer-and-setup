@@ -23,8 +23,12 @@ funcIsConnectedToInternet
 # Install the official VirtualBox Guest Additions ISO image.
 # Install the VirtualBox Guest userspace utilities.
 # Install the powerful x86 virtualization for enterprise as well as home use.
+# Install the GNU Image Manipulation Program.
+# Install the English help files for Gimp.
+# Install the Spanish help files for Gimp.
 sudo pacman --sync --needed --noconfirm \
-  docker virtualbox-host-modules-arch virtualbox-guest-iso virtualbox-guest-utils virtualbox
+  docker virtualbox-host-modules-arch virtualbox-guest-iso virtualbox-guest-utils virtualbox \
+  gimp gimp-help-en gimp-help-es
 
 # Add Docker to the user group.
 sudo usermod -aG docker "${userId}"
