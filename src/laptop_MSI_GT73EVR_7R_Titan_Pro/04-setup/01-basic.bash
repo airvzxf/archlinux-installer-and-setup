@@ -78,7 +78,7 @@ sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 # Install the programmable completion for the bash shell.
 # Install the GNU Debugger.
 # Install the next generation, high-performance debugger.
-# Install Linux headers
+# Install the Linux headers
 # Install a highly capable, feature-rich programming language.
 # Install the systems programming language focused on safety, speed, and concurrency.
 # Install a C library that implements an SQL database engine.
@@ -89,6 +89,7 @@ sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 # Install the screen fetch for ASCII logo in Linux.
 # Install the Vi Improved, a highly configurable, improved version of the vi text editor.
 # Install the fast distributed version control system.
+# Install the GitHub CLI.
 # Install the SSH protocol implementation for remote login, command execution, and file transfer.
 # Install the library for storing and retrieving passwords and other secrets.
 # Install the record and share terminal sessions.
@@ -117,7 +118,7 @@ sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 # Install the package for extracting and viewing files in .zip archives.
 # Install the GPUs process monitoring for AMD, Intel and NVIDIA.
 # Install the Android platform tools.
-# Install Alsa utils.
+# Install the Alsa utils.
 # Install a feature, general-purpose sound server.
 # Install the ALSA Configuration for PulseAudio.
 # Install the Bluetooth support for PulseAudio.
@@ -132,17 +133,19 @@ sed --in-place -- 's/wolf/'"${userId}"'/g' ~/.xinitrc
 # Install the portable bandwidth monitor and rate estimator.
 # Install the display and control your Android device.
 # Install a library that makes it possible to implement a filesystem in userspace program.
+# Install a utility for reading man pages.
+# Install the Spanish man pages.
 sudo pacman --sync --needed --noconfirm \
   fontconfig awesome-terminal-fonts gnu-free-fonts noto-fonts noto-fonts-extra noto-fonts-emoji \
   noto-fonts-cjk ttf-bitstream-vera ttf-croscore ttf-dejavu ttf-freefont ttf-droid ttf-ibm-plex \
   ttf-liberation ttf-hack ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols \
-  ttf-nerd-fonts-symbols-mono \
-  bash bash-completion gdb lldb linux-headers perl rustup sqlite tk python python-pip \
-  python-virtualenv screenfetch vim git openssh libsecret asciinema bat lsd upower lsof hunspell \
-  hunspell-en_us hunspell-es_mx acpid tmux plocate bc diffutils colordiff hdparm tree strace \
-  nmap speedtest-cli iperf bluez bluez-utils zip unzip nvtop android-tools alsa-utils pulseaudio \
-  pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer pulseaudio-jack pulsemixer \
-  speech-dispatcher espeak-ng festival festival-us util-linux bmon scrcpy fuse2
+  ttf-nerd-fonts-symbols-mono bash bash-completion gdb lldb linux-headers perl rustup sqlite tk \
+  python python-pip python-virtualenv screenfetch vim git github-cli openssh libsecret asciinema \
+  bat lsd upower lsof hunspell hunspell-en_us hunspell-es_mx acpid tmux plocate bc diffutils \
+  colordiff hdparm tree strace nmap speedtest-cli iperf bluez bluez-utils zip unzip nvtop \
+  android-tools alsa-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth pulseaudio-equalizer \
+  pulseaudio-jack pulsemixer speech-dispatcher espeak-ng festival festival-us util-linux bmon \
+  scrcpy fuse2 man-db man-pages-es
 
 # Install the command-line tool that changes the brightness using the xrandr command.
 # Install the tool to generate a sound when the battery is discharging.
