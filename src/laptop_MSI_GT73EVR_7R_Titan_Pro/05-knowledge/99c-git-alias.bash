@@ -15,7 +15,10 @@ set -ve
 #git config --global --list --show-origin
 
 # Change the git editor to vim
-git config --global core.editor "vim"
+git config --global core.editor vim
+
+# Configure the initial branch name to use in all of your new repositories.
+git config --global init.defaultBranch main
 
 # Store your credentials
 git config --global credential.helper store
