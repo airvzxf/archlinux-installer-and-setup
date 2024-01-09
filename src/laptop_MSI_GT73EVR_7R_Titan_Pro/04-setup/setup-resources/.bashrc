@@ -64,10 +64,41 @@ color_my_prompt() {
   local _white_color_bold
   _white_color_bold='\e[1;37m'
 
-  # Check if the Git project is present in the folder.
-  if [[ -d .git ]]; then
-    _git+="\n${text_color_reset}Git:"
+    # Check if the Git project is present in the folder.
+  if [[ -d .git ]] || git status 2>/dev/null; then
+    _git+="\n${_green_color_bold}Git ${text_color_reset}|"
 
+    # Get branch name.
+    local _branch
+    _branch=$(\git rev-parse --abbrev-ref HEAD)
+    _git+=" ${_yellow_color_bold}${_branch} ${text_color_reset}|"
+
+    # Get branch commits behind from origin.
+    local _commit_behind
+    local _commit_behind_text
+    _commit_behind=$(\git rev-list --left-right --count origin/${_branch}...${_branch} 2> /dev/null | cut -f1)
+    _commit_behind_text=""
+    if [[ "${_commit_behind}" -ne 0 ]]; then
+      _commit_behind_text="${_red_color}${_commit_behind} ${_white_color}behind"
+    fi
+
+    # Get branch commits ahead from origin.
+    local _commit_ahead
+    _commit_ahead=$(\git rev-list --left-right --count origin/${_branch}...${_branch} 2> /dev/null | cut -f2)
+    _commit_ahead_text=""
+    if [[ "${_commit_ahead}" -ne 0 ]]; then
+      if [[ "${_commit_behind}" -ne 0 ]]; then
+        _commit_behind_text+=" | "
+      fi
+      _commit_ahead_text+="${_red_color}${_commit_ahead} ${_white_color}ahead"
+    fi
+
+    # Print commits behind and ahead.
+    if [[ "${_commit_behind}" -ne 0 ]] || [[ "${_commit_ahead}" -ne 0 ]]; then
+      _git+=" ${text_color_reset}${_commit_behind_text}${_commit_ahead_text}${text_color_reset} |"
+    fi
+
+    # Setup variables for changes validation.
     local _text_color
     local _identifier
     _identifier="DELETE_THIS_LINE"
@@ -75,29 +106,23 @@ color_my_prompt() {
     # Get staged changes.
     local _staged_changes
     _staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^ [ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
-    _text_color="${text_color_reset}"
     if [[ ${_staged_changes} != "0" ]]; then
-      _text_color="${_green_color}"
+      _git+=" ${_green_color}${_staged_changes} staged ${text_color_reset}|"
     fi
-    _git+=" ${_text_color}${_staged_changes} staged ${text_color_reset}|"
 
     # Get not staged changes.
     local _not_staged_changes
     _not_staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^[ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
-    _text_color="${text_color_reset}"
     if [[ ${_not_staged_changes} != "0" ]]; then
-      _text_color="${_yellow_color}"
+      _git+=" ${_yellow_color}${_not_staged_changes} not staged ${text_color_reset}|"
     fi
-    _git+=" ${_text_color}${_not_staged_changes} not staged ${text_color_reset}|"
 
     # Get untracked changes.
     local _untracked_changes
     _untracked_changes=$(\git status --short | \sed "s|^[^??].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
-    _text_color="${text_color_reset}"
     if [[ ${_untracked_changes} != "0" ]]; then
-      _text_color="${_red_color}"
+      _git+=" ${_red_color}${_untracked_changes} untracked ${text_color_reset}|"
     fi
-    _git+=" ${_text_color}${_untracked_changes} untracked ${text_color_reset}|"
   fi
 
   # User color.
