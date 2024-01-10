@@ -65,7 +65,7 @@ color_my_prompt() {
   _white_color_bold='\e[1;37m'
 
     # Check if the Git project is present in the folder.
-  if [[ -d .git ]] || git status 2>/dev/null; then
+  if [[ -d .git ]] || git status &>/dev/null; then
     _git+="\n${_green_color_bold}Git ${text_color_reset}|"
 
     # Get branch name.
