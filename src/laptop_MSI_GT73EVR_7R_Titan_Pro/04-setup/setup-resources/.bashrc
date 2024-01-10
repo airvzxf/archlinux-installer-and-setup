@@ -105,14 +105,14 @@ color_my_prompt() {
 
     # Get staged changes.
     local _staged_changes
-    _staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^ [ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
+    _staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^[^ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
     if [[ ${_staged_changes} != "0" ]]; then
       _git+=" ${_green_color}${_staged_changes} staged ${text_color_reset}|"
     fi
 
     # Get not staged changes.
     local _not_staged_changes
-    _not_staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^[ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
+    _not_staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^.[^ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
     if [[ ${_not_staged_changes} != "0" ]]; then
       _git+=" ${_yellow_color}${_not_staged_changes} not staged ${text_color_reset}|"
     fi
