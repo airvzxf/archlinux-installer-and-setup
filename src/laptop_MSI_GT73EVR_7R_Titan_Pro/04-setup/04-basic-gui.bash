@@ -59,6 +59,21 @@ sudo pacman --sync --needed --noconfirm \
 # Install the deprecated libraries for the bluetooth protocol stack.
 # sudo pacman --sync --needed --noconfirm bluez-libs
 
+# Change default MIME type opener to Firefox.
+MIME_TYPES=$(grep -oP "<mime-type type=\"\K\w+/\w+" /usr/share/mime/packages/freedesktop.org.xml | sort | uniq)
+
+for mime_type in ${MIME_TYPES}; do
+  mime_default=$(xdg-mime query default "${mime_type}")
+
+  if [[ "${mime_default}" == "chromium.desktop" ]]; then
+    echo "MIME type: ${mime_type}"
+    echo "MIME default: ${mime_default}"
+    echo "It will change the default to Firefox"
+    xdg-mime default firefoxdeveloperedition.desktop "${mime_type}"
+    echo ""
+  fi
+done
+
 # Update the configuration files for geany.
 sed --in-place -- 's/wolfMachine/'${computerName}'/g' ~/.config/geany/geany.conf
 sed --in-place -- 's/wolf/'${userId}'/g' ~/.config/geany/geany.conf
