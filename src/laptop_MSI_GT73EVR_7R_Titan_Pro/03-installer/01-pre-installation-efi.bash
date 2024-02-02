@@ -62,10 +62,9 @@ cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector-"$(date +%Y-%m
 echo "--verbose
 --protocol http,https
 --ipv4
---completion-percent 100
+--completion-percent 90
 --country ${countryCode}
 --connection-timeout 600
---threads 32
 --score 100
 --sort score
 --save /etc/pacman.d/mirrorlist
