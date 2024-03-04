@@ -302,6 +302,9 @@ alias workspace='cd ~/workspace'
 alias x='exit'
 alias xterm-tmux='xterm -fullscreen tmux >/dev/null 2>&1 &'
 
+# Work
+alias citrix-vdi='/opt/Citrix/ICAClient/wfica.sh $(ls -t *.ica | cut -f 1 | head -n 1)'
+
 # Functions that act as aliases.
 delete-all-permanent() { sudo find / -iname "*${*}*" -exec rm --force --recursive {} \; 2>/dev/null; }
 delete-here-permanent() { sudo find ./ -iname "*${*}*" -exec rm --force --recursive {} \; 2>/dev/null; }
