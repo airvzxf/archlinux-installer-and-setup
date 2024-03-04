@@ -201,6 +201,16 @@ echo "
 HandleLidSwitch=ignore
 " | tee --append /etc/systemd/logind.conf
 
+# -------------------------------------------------- #
+# Set up to always be active the bluetooth A2DP Sink #
+# -------------------------------------------------- #
+
+sed --in-place -- 's/load-module module-bluetooth-policy/### Disable the HSP profile, and always keep the A2DP profile.\n#load-module module-bluetooth-policy\nload-module module-bluetooth-policy auto_switch=false/g' /etc/pulse/default.pa
+
+sed --in-place -- 's/load-module module-bluetooth-discover/load-module module-bluetooth-discover\n### Disable the HSP profile, and always keep the A2DP profile.\nload-module module-switch-on-connect/g' /etc/pulse/default.pa
+
+sed --in-place -- 's/\[General\]/\[General\]\n\n# Disable the HSP profile, and always keep the A2DP profile.\nDisable=Headset/g' /etc/bluetooth/main.conf
+
 # -------------------------- #
 # Set up Grub configurations #
 # -------------------------- #
