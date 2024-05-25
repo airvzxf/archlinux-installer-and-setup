@@ -75,6 +75,7 @@ git config --global alias.unstage '! git restore --staged * && echo -e "\n" && g
 git config --global alias.unh '! git reset --hard HEAD~ "$@" && echo -e "\n" && git status'
 git config --global alias.undo '! git reset HEAD~ && echo -e "\n" && git status'
 git config --global alias.untrack 'ls-files . --exclude-standard --others'
+git config --global alias.update '! git fetch --all && git pull --all'
 
 # Show the config file
 #git config --global --list --show-origin
