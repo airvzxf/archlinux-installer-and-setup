@@ -27,7 +27,7 @@ sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 # Install a multi-platform MPEG, VCD/DVD, and DivX player.
 # Install an application to take screenshots.
 # Install a web browser built for speed, simplicity, and security.
-# Install the developer edition of the popular Firefox web browser.
+# Install the standalone web browser from mozilla.org.
 # Install the fast, easy, and free BitTorrent client (GTK+ GUI).
 # Install the LibreOffice branch which contains new features and program enhancements.
 # Install Spanish language pack for LibreOffice Fresh.
@@ -39,13 +39,9 @@ sudo pacman --sync --refresh --refresh --sysupgrade --noconfirm
 # Install the ALSA Configuration for PulseAudio.
 # Install the PulseAudio Volume Control.
 sudo pacman --sync --needed --noconfirm \
-  geany geany-plugins galculator mupdf vlc xfce4-screenshooter chromium firefox-developer-edition \
-  firefox-developer-edition-i18n-es-mx transmission-gtk libreoffice-fresh libreoffice-fresh-es \
+  geany geany-plugins galculator mupdf vlc xfce4-screenshooter chromium firefox \
+  firefox-i18n-es-mx transmission-gtk libreoffice-fresh libreoffice-fresh-es \
   obconf imv cmake make lshw pulseaudio-bluetooth pulseaudio-alsa pavucontrol
-
-# TODO: Check if I need this package.
-# Install the standalone web browser from mozilla.org.
-#sudo pacman --sync --needed --noconfirm firefox
 
 # TODO: Check if I need this package.
 # Install the multimedia graph framework - libav plugin.
@@ -69,7 +65,7 @@ for mime_type in ${MIME_TYPES}; do
     echo "MIME type: ${mime_type}"
     echo "MIME default: ${mime_default}"
     echo "It will change the default to Firefox"
-    xdg-mime default firefoxdeveloperedition.desktop "${mime_type}"
+    xdg-mime default firefox.desktop "${mime_type}"
     echo ""
   fi
 done
