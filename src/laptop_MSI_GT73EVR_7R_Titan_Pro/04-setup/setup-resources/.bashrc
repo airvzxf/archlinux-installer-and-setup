@@ -66,12 +66,12 @@ color_my_prompt() {
 
   # Check if the Git project is present in the folder.
   if [[ -d .git ]] || git status &>/dev/null; then
-    _git+="\n${_green_color_bold}Git ${text_color_reset}|"
+    _git+="\n\[${_green_color_bold}\]Git \[${text_color_reset}\]|"
 
     # Get branch name.
     local _branch
     _branch=$(\git rev-parse --abbrev-ref HEAD)
-    _git+=" ${_yellow_color_bold}${_branch} ${text_color_reset}|"
+    _git+=" \[${_yellow_color_bold}\]${_branch} \[${text_color_reset}\]|"
 
     # Get branch commits behind from origin.
     local _commit_behind
@@ -95,7 +95,7 @@ color_my_prompt() {
 
     # Print commits behind and ahead.
     if [[ "${_commit_behind}" -ne 0 ]] || [[ "${_commit_ahead}" -ne 0 ]]; then
-      _git+=" ${text_color_reset}${_commit_behind_text}${_commit_ahead_text}${text_color_reset} |"
+      _git+=" \[${text_color_reset}\]\[${_commit_behind_text}\]\[${_commit_ahead_text}\]\[${text_color_reset}\] |"
     fi
 
     # Setup variables for changes validation.
@@ -107,21 +107,21 @@ color_my_prompt() {
     local _staged_changes
     _staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^[^ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
     if [[ ${_staged_changes} != "0" ]]; then
-      _git+=" ${_green_color}${_staged_changes} staged ${text_color_reset}|"
+      _git+=" \[${_green_color}\]\[${_staged_changes}\] staged \[${text_color_reset}\]|"
     fi
 
     # Get not staged changes.
     local _not_staged_changes
     _not_staged_changes=$(\git status --short | \sed "s|^??.*|${_identifier}|" | \sed "s|^.[^ACDMRT].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
     if [[ ${_not_staged_changes} != "0" ]]; then
-      _git+=" ${_yellow_color}${_not_staged_changes} not staged ${text_color_reset}|"
+      _git+=" \[${_yellow_color}\]\[${_not_staged_changes}\] not staged \[${text_color_reset}\]|"
     fi
 
     # Get untracked changes.
     local _untracked_changes
     _untracked_changes=$(\git status --short | \sed "s|^[^??].*|${_identifier}|" | \sed --null-data "s|${_identifier}\n||g" | \wc --lines)
     if [[ ${_untracked_changes} != "0" ]]; then
-      _git+=" ${_red_color}${_untracked_changes} untracked ${text_color_reset}|"
+      _git+=" \[${_red_color}\]\[${_untracked_changes}\] untracked \[${text_color_reset}\]|"
     fi
   fi
 
@@ -136,9 +136,9 @@ color_my_prompt() {
   local _prompt_tail
   _prompt_tail="\n"
   if [[ "$(whoami)" == "root" ]]; then
-    _prompt_tail+="${_red_color}#${text_color_reset}"
+    _prompt_tail+="\[${_red_color}\]#\[${text_color_reset}\]"
   else
-    _prompt_tail+="${_yellow_color}\$${text_color_reset}"
+    _prompt_tail+="\[${_yellow_color}\]\$\[${text_color_reset}\]"
   fi
 
   # Get max number of columns and create a division line.
@@ -147,16 +147,16 @@ color_my_prompt() {
   local _division_color
   _division_color="\e[35;45m"
   local _split_prompt
-  _split_prompt="${text_color_reset}${_division_color}"
+  _split_prompt="\[${text_color_reset}\]\[${_division_color}\]"
   local i
   for ((i = 0; i < _terminal_max_columns; i++)); do
     _split_prompt+="-"
   done
-  _split_prompt+="${text_color_reset}\n\n"
+  _split_prompt+="\[${text_color_reset}\]\n\n"
 
   # Generate the user and path information.
-  local _user_and_host="${_user_text_color}\u${_white_color_bold}@${_green_color_bold}\h ${_white_color}| ${_white_color_bold}\t (\d)\n"
-  local _cur_location="${_cyan_color}\w"
+  local _user_and_host="\[${_user_text_color}\]\u\[${_white_color_bold}\]@\[${_green_color_bold}\]\h \[${_white_color}\]| \[${_white_color_bold}\]\t (\d)\n"
+  local _cur_location="\[${_cyan_color}\]\w"
 
   # Set the prompt.
   export PS1="${_split_prompt}${_user_and_host}${_cur_location}${_git}${_prompt_tail} "
