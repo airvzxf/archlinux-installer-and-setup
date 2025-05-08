@@ -156,9 +156,10 @@ sudo pacman --sync --needed --noconfirm \
 # Install the ast-firmware aspeed VGA module from the IPMI.
 # Install the wd719x-firmware driver for Western Digital WD7193, WD7197 and WD7296 SCSI cards.
 # Install the upd72020x-fw renesas uPD720201 / uPD720202 USB 3.0-chipset firmware.
+# Install the r8152-dkms a kernel module for Realtek RTL8152/RTL8153/RTL8154/RTL8156 Based USB Ethernet Adapters.
 # NOTE: This step is not necessary because the above firmwares executed the mkinitcpio for Linux.
 yay --sync --needed --noconfirm \
-  brightness-xrandr battery-discharging aic94xx-firmware ast-firmware wd719x-firmware upd72020x-fw
+  brightness-xrandr battery-discharging aic94xx-firmware ast-firmware wd719x-firmware upd72020x-fw r8152-dkms
 
 # Enable ACPID service.
 sudo systemctl enable --now acpid
