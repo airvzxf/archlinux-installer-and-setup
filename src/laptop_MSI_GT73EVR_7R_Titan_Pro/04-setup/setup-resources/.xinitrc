@@ -17,4 +17,8 @@ xbindkeys
 
 battery-discharging &
 
+if [ -n "${DISPLAY}" ]; then
+  dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY
+fi
+
 openbox-session
