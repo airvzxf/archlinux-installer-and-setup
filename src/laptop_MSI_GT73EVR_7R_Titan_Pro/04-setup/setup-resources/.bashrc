@@ -49,6 +49,9 @@ color_my_prompt() {
   local _yellow_color
   _yellow_color='\e[0;33m'
 
+  local _pink_color
+  _pink_color='\e[0;35m'
+
   local _cyan_color
   _cyan_color='\e[0;36m'
 
@@ -60,6 +63,9 @@ color_my_prompt() {
 
   local _yellow_color_bold
   _yellow_color_bold='\e[1;33m'
+
+  local _pink_color_bold
+  _pink_color_bold='\e[1;35m'
 
   local _white_color_bold
   _white_color_bold='\e[1;37m'
@@ -157,9 +163,17 @@ color_my_prompt() {
   # Generate the user and path information.
   local _user_and_host="\[${_user_text_color}\]\u\[${_white_color_bold}\]@\[${_green_color_bold}\]\h \[${_white_color}\]| \[${_white_color_bold}\]\t (\d)\n"
   local _cur_location="\[${_cyan_color}\]\w"
+  local _venv_indicator=""
+  if [ -n "$VIRTUAL_ENV" ]; then
+     local _virtual_env_prompt=""
+     if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
+       _virtual_env_prompt="\[${_pink_color_bold}\]${VIRTUAL_ENV_PROMPT}\[${text_color_reset}\] | "
+     fi
+    _venv_indicator="\[${text_color_reset}\]${_virtual_env_prompt}\[${_pink_color}\]${VIRTUAL_ENV}\[${text_color_reset}\]\n"
+  fi
 
   # Set the prompt.
-  export PS1="${_split_prompt}${_user_and_host}${_cur_location}${_git}${_prompt_tail} "
+  export PS1="${_split_prompt}${_user_and_host}${_venv_indicator}${_cur_location}${_git}${_prompt_tail} "
 }
 
 error_handler() {
