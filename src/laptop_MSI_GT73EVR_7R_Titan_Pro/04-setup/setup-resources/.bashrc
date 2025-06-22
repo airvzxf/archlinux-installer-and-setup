@@ -283,7 +283,7 @@ alias pc='cd ~/workspace/projects && ~/workspace/projects/check-git-projects.bas
 alias phone-screencast-record='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display-id 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --shortcut-mod=lctrl,lsuper --record android-record-$(date +"%Y%m%d-%H%M%S-%N").mp4 --serial '
 alias phone-screencast='scrcpy --video-bit-rate 32M --no-audio --disable-screensaver --max-fps 30 --display-id 0 --push-target /sdcard/wolf/ --render-driver opengl --stay-awake --show-touches --turn-screen-off --verbosity debug --shortcut-mod=lctrl,lsuper --serial '
 alias phone-screenshot='adb exec-out screencap -p > "android-screenshot-$(date +"%Y%m%d-%H%M%S-%N").png"'
-alias ping-fast='while true; do echo -n $(date "+%a, %T%t")"> " && ping www.google.com; sleep 1; done'
+alias ping-fast='while true; do echo -n $(date "+%a, %T%t")"> " && ping -c 3 -W 1 www.google.com; sleep 1; done'
 alias pip-list='pip list --format columns'
 alias pip-outdate='pip list --outdated'
 alias pip-upgrade="pip list --outdated 2> /dev/null | tail --lines +3 | cut --fields 1 --delimiter ' ' | xargs --max-args 1 pip install --upgrade"
